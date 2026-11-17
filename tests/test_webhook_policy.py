@@ -4,12 +4,16 @@ from pathlib import Path
 import sys
 import unittest
 import uuid
+import io
+import tarfile
+import tempfile
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'scripts'))
 import inventory_organization
 import registry_integration
 import webhook_receiver
 import verify_registry_scan
+import build_registry
 
 
 class WebhookPolicyTests(unittest.TestCase):
@@ -47,6 +51,26 @@ class WebhookPolicyTests(unittest.TestCase):
 
 
 class IntegrationBoundaryTests(unittest.TestCase):
+    def test_source_archive_cannot_write_outside_extraction_root(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            archive = root / 'input.tar.gz'
+            with tarfile.open(archive, 'w:gz') as tar:
+                member = tarfile.TarInfo('../escaped')
+                member.size = 1
+                tar.addfile(member, io.BytesIO(b'x'))
+            with self.assertRaises(tarfile.FilterError):
+                build_registry.unpack('https://unused.invalid', build_registry.file_hash(archive), archive, root / 'source')
+            self.assertFalse((root / 'escaped').exists())
+            self.assertFalse((root / 'source').exists())
+
+    def test_unreviewed_registry_executable_is_rejected_before_execution(self):
+        with tempfile.TemporaryDirectory() as directory:
+            binary = Path(directory) / 'unreviewed'
+            binary.write_bytes(b'not-a-reviewed-binary')
+            with self.assertRaises(ValueError):
+                registry_integration.load_binary(binary)
+
     def test_empty_scanner_report_never_passes_binary_coverage(self):
         self.assertFalse(verify_registry_scan.evaluate({'SchemaVersion': 2}, 'a' * 64)['gate_passed'])
 

@@ -1,8 +1,27 @@
 {
-  "version": "3.1.2",
+  "version": "3.1.2+cis.1",
   "platform": "linux_amd64",
   "url": "https://github.com/distribution/distribution/releases/download/v3.1.2/registry_3.1.2_linux_amd64.tar.gz",
   "archive_sha256": "40df2224d410f72ae425c3371873b078bbdbda3b8b612be9571f0e6751f3acc8",
-  "binary_sha256": "7f9e0df42bd028efb1a11eb7f92ef494156bf308770303a256d3acdcadb378cd",
-  "source": "Official distribution/distribution v3.1.2 release; checksum is integrity evidence, not independent supplier attestation"
+  "binary_sha256": "06c66b1b908b420ea2ef95d97f289ab920ee3b1497bf9d52ac59a0d8c8d72585",
+  "source": "Custom reproducible build from pinned upstream v3.1.2 source, pinned Go SDK and reviewed module locks; not an upstream release binary",
+  "mode": "source-build",
+  "upstream_binary_sha256": "7f9e0df42bd028efb1a11eb7f92ef494156bf308770303a256d3acdcadb378cd",
+  "build": {
+    "go_version": "go1.27.4",
+    "sdk_url": "https://go.dev/dl/go1.27.4.linux-amd64.tar.gz",
+    "sdk_sha256": "7226736c2339719cda28fbf3a54d71aa63bcefe376e98cef00034268dab24840",
+    "source_commit": "3220848f15d9279c66a41aa0a257469e6aede1e9",
+    "source_url": "https://api.github.com/repos/distribution/distribution/tarball/3220848f15d9279c66a41aa0a257469e6aede1e9",
+    "source_sha256": "e4b9cf24f7d8ed85302fbd80c1f8425eff77108d994ee0294a82613f3367e5f9",
+    "module_locks": {
+      "go.mod": "41f5b38de08cec8d538d81617b6f497c77f369a78e82346687f651ddffd62dba",
+      "go.sum": "e3c5643c55cecc02ac54805a7b72575e8f81de5ec9321736fd6481a729373f52"
+    },
+    "patched_dependencies": {
+      "github.com/go-jose/go-jose/v4": "v4.1.6",
+      "github.com/klauspost/compress": "v1.18.7",
+      "golang.org/x/net": "v0.62.0"
+    }
+  }
 }

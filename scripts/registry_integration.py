@@ -20,6 +20,7 @@ import urllib.error
 import urllib.parse
 import urllib.request
 import integration_support
+import build_registry
 
 ROOT = Path(__file__).resolve().parents[1]
 MANIFEST = 'application/vnd.oci.image.manifest.v1+json'
@@ -40,6 +41,9 @@ def load_binary(destination=None):
             raise ValueError('Registry binary cache must be an owned private directory')
         binary = cache / ('registry-' + lock['binary_sha256'])
         if not binary.exists():
+            if lock.get('mode') == 'source-build':
+                build_registry.build_binary(lock, cache, binary)
+                return binary, lock
             with urllib.request.urlopen(lock['url'], timeout=60) as response:
                 archive = response.read(32 * 1024 * 1024 + 1)
             if hashlib.sha256(archive).hexdigest() != lock['archive_sha256']:
@@ -228,6 +232,9 @@ def main():
     report['registry_version'] = lock['version']
     report['binary_sha256'] = lock['binary_sha256']
     report['archive_sha256'] = lock['archive_sha256']
+    if lock.get('mode') == 'source-build':
+        report['build'] = {key: lock['build'][key] for key in
+                           ('source_commit', 'go_version', 'module_locks', 'patched_dependencies')}
     integration_support.write_report(args.output, report)
     print(json.dumps({'checks': len(report['checks']), 'versions': len(report['published_versions']),
                       'service_stopped': report['service_stopped'], 'overall_cis': report['overall_cis']}))

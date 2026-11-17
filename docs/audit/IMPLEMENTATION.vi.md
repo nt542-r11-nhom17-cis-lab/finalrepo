@@ -2,63 +2,64 @@
 
 ## 3.1 Mô hình và phân quyền
 
-Repo đích: hieune-ui/finalrepo. Base main tại e052945db5b4a2bace480b5ab98446a8b82da02e. Nhánh triển khai: audit/cis-1-5-review. Các thành phần gồm người dùng, repository, GitHub API, hosted runner, artifact store và sandbox thư mục tạm. Runner chỉ triển khai app mô phỏng không mở cổng mạng; không kết nối production. Chi tiết hình mô hình/phương pháp nằm tại phần 2.
+Repository hiện tại là `nt542-r11-nhom17-cis-lab/finalrepo`, public, thuộc Organization Free. Nhánh triển khai đợt này là `audit/free-controls-completion`, kế thừa các nhánh audit trước. Không merge hoặc sửa `main`; SHA đối chiếu trước/sau là `e052945db5b4a2bace480b5ab98446a8b82da02e`. Không tác động hai repo nguồn. Hình mô hình/phương pháp thuộc phần 2 trong METHOD.vi.md; phần 3 chỉ mô tả bằng chữ và bảng.
 
-Chỉ hieune-ui đã được xác nhận có quyền admin ở lần kiểm tra trước. Chưa có danh sách ba username còn lại hoặc bằng chứng cấp quyền; bảng sau là đề xuất để nhóm điền, không thay đổi collaborator:
+Mô hình gồm các tài khoản GitHub, repository chứa mã/cấu hình được quản lý phiên bản, GitHub API đọc hiện trạng, GitHub-hosted runner Ubuntu 24.04, container demo không có mạng và kho Actions artifact tách khỏi đĩa runner. Ba workflow phụ trách kiểm tra nguồn/container, kiểm tra bảo mật workflow và thu thập bằng chứng Free. Worker dùng token `contents: read`, checkout không lưu credential. Khóa ký RSA tạm nằm trong thư mục tạm riêng, không được đưa vào gói kết quả. Chữ ký cùng job chứng minh tính toàn vẹn có giới hạn; chưa thay danh tính ký release được tin cậy. Chưa có registry riêng hay production thật do nhóm cung cấp.
 
-| Người/tài khoản | Quyền đề xuất | Nhóm phụ trách | Làm gì | Đầu ra | Minh chứng |
-|---|---|---|---|---|---|
-| hieune-ui | Admin hiện có, chưa đổi | Điều phối 1–5 | Xem xét thay đổi, điều phối Audit/Remediation | Nhánh và PR rà soát | Link nhánh, commit |
-| TV2 – cần username | Write | 1 và 2 | Kiểm tra source/pipeline; script API | JSON/CSV, scanner logs | Phần 2 và catalog |
-| TV3 – cần username | Write | 3 và 4 | Kiểm tra phụ thuộc, artifact, SBOM/chữ ký | Báo cáo lab và policy | Phần 2 và kết quả nhánh |
-| TV4 – cần username | Write nếu review PR; Read nếu chỉ đọc | 5 và kiểm chứng | Kiểm tra deployment sandbox, tổng hợp kết quả | Bảng đối chiếu và nhận xét | Phần 2 và kết quả nhánh |
+Snapshot GET API dưới danh tính người dùng đọc được bốn tài khoản. Đây là quyền quan sát được, không phải bằng chứng mọi quyền kế thừa/tổng thành viên đã được kiểm kê. Workflow token chỉ nhìn thấy hai collaborator trong cùng đợt; không dùng số này làm tổng thành viên. Nguồn: `evidence/free-collaborator-roles.json` và `evidence/free-controls-results.json`.
 
-Không cấp quyền thay người dùng. Hai người review độc lập với tác giả PR cần được xác định khi thử nghiệm tiêu chí phê duyệt. Không dùng tài khoản chung.
+| Tài khoản nhìn thấy qua API người dùng | Quyền hiện tại | Nhiệm vụ đề xuất để nhóm xác nhận | Đầu ra cần có | Kết quả đã xác minh |
+|---|---|---|---|---|
+| hieune-ui | Admin | Điều phối, rà quyền/cấu hình Organization và phê duyệt kết quả | Bảng quyền, bằng chứng Settings, nhánh audit | Có nhánh/commit và CI; chưa thay Settings hoặc cấp quyền |
+| Vuongdlx | Write | Source/build, kiểm tra nhóm 1–2 | JSON/CSV API, log scanner, kiểm thử PR trên nhánh thử | Đã xác minh quyền Write; chưa có bằng chứng tài khoản này thực hiện nhiệm vụ đề xuất |
+| HiepTran01 | Read | Rà supplier/dependency/artifact, nhóm 3–4 | SBOM/provenance supplier, nhận xét license/registry | Đã xác minh quyền Read; muốn push cần owner quyết định cấp quyền thích hợp |
+| dtk0106 | Read | Kiểm chứng triển khai, tổng hợp nhóm 5 | Bảng triển khai và log môi trường được phép | Đã xác minh quyền Read; chưa có production thực tế hoặc bằng chứng thực hiện nhiệm vụ |
+
+Không tự thay quyền, thêm Code Owner hay mời người. Nhóm cần xác nhận các tài khoản có đúng người dự kiến. Mục 1.3.7 còn cần owner xác minh full effective access và chọn admin thứ hai nếu áp dụng theo yêu cầu CIS; không nâng cả nhóm thành Admin. Kiểm thử hai reviewer cần danh tính thật, không dùng tài khoản chung. Đầu ra của trợ lý/CI không được gán thành công việc đã thực hiện bởi ba tài khoản còn lại.
 
 ## 3.2 Triển khai Manual
 
-| Mục | Audit đã làm | Kết quả | Remediation/kiểm tra còn lại |
+Phương pháp là Audit → Remediation → Re-audit; manual là cách thực hiện. Đã đối chiếu inventory với mã tiêu chí, thử GET cấu hình, đọc scope kết quả và chuẩn bị hướng dẫn riêng cho 48 mục. Các thay đổi Settings chưa được thực hiện; không báo đã khắc phục khi chỉ có file đề xuất.
+
+| Mục | Audit thực hiện / kết quả | Đạt hay chưa | Bước tiếp theo |
 |---|---|---|---|
-| 1.1.3/.4/.9/.16/.17/.20 | Script đọc cấu hình và nghiên cứu hướng dẫn Audit | Classic protection trả 403 ở snapshot; chưa kết luận | Người có quyền chụp Settings và thử PR/nhánh lab; không đổi main |
-| 1.2.1 | Đọc chính sách có sẵn và kiểm tra file qua API | Có SECURITY.md; chưa có kênh liên hệ cụ thể | Chốt kênh báo cáo riêng tư hợp lệ, không tự bịa email |
-| 1.5.1 | Đọc phát hiện Gitleaks từ lần chạy tích hợp | Có credential-shaped values trong lịch sử nguồn | Xác minh nguồn gốc; nếu thật phải thu hồi; kế hoạch làm sạch lịch sử cần riêng, không rewrite main |
-| 2.3.1/.2 | Đọc YAML và các bước input/output | Có workflow-as-code, input/output minh họa | Xác nhận phạm vi toàn bộ pipeline |
-| 3.1.7 | Kiểm tra refs action và khóa đầu vào lab | SHA action đã cố định; input hash được kiểm tra | Xác minh provenance/tag và mọi phụ thuộc ngoài lab |
-| 4.1.1/.2/.3 | Xem quy trình ký và mã hóa sandbox | Có mô phỏng, chưa phải quản lý khóa production | Thiết lập danh tính tin cậy, quyền giải mã và registry ngoài phạm vi |
-| 5.1.1/.6/.7 | Tách deploy/demo.json, kiểm tra hash trong lock | Có cấu hình tách tệp và pin hash; vẫn cùng repo | Xác nhận mức tách biệt theo chính sách; không kết luận đạt riêng nhờ tách thư mục |
-| 5.2.1/.2 | Chạy triển khai sandbox tự động và kiểm tra tái lập ZIP | Thành công cục bộ | Chưa triển khai production hay chứng minh tái lập môi trường production |
+| 1.1.5/.10/.11/.12/.13/.14/.15 | Classic protection API HTTP 403 | MANUAL_REVIEW | Owner đọc rule có hiệu lực và bypass; thử trên đúng nhánh `audit/protection-sandbox` |
+| 1.1.7 | Có CODEOWNERS, nhưng rule bắt buộc review chưa đọc được | PARTIAL | Xác minh người sở hữu có quyền và PR thiếu review bị chặn |
+| 1.1.8, 1.2.5 | Inventory đọc sáu nhánh, không có fork nhìn thấy; không xóa tài nguyên | PARTIAL | Owner xác nhận mục đích/hoạt động, lập lịch rà soát và biên bản |
+| 1.3.7 | Snapshot người dùng thấy một admin; token CI có phạm vi nhìn thấy khác | MANUAL_REVIEW | Owner xác minh toàn bộ quyền kế thừa và chọn admin thứ hai; chưa tự cấp quyền |
+| 1.3.4, 1.3.6, 1.4.1–1.4.4 | Chưa có Settings/MFA/app/webhook evidence đủ quyền | NOT_TESTED | Thực hiện các bước cụ thể trong FREE-CONTROLS.vi.md, che thông tin nhạy cảm |
+| 3.1.2 | Chưa có SBOM gốc từ mọi supplier | NOT_TESTED | Thu thập supplier-issued SBOM; SBOM do nhóm tạo không thay tài liệu supplier |
+| 5.2.3/.4 | Chưa có production được nhóm cho phép | NOT_TESTED | Cung cấp môi trường và người quản trị; không dùng sandbox làm bằng chứng production |
 
-Kết luận toàn bộ 120 tiêu chí nằm trong COVERAGE.csv và COVERAGE.vi.md. Không lấy job thành công làm kết quả đạt tiêu chí.
+Mẫu `config/protection-sandbox.ruleset.json` chỉ khớp `refs/heads/audit/protection-sandbox`, không có bypass; chưa được POST/apply. Cần hai reviewer thật và cấu hình ký commit trước khi áp dụng. Mẫu không bao gồm mọi yêu cầu status checks/push restrictions; hướng dẫn nêu phần owner phải hoàn thiện. Không tạo PR vào main, không thử force-push/xóa trên main. Ảnh Settings và kiểm thử owner cần bổ sung ở phần 2; không tạo ảnh giả hoặc lấy ảnh run cũ làm run mới.
 
-## 3.3 Triển khai Automated/Remote Automated
+Danh sách đầy đủ 48 mục và Audit/Remediation/Re-audit: [FREE-CONTROLS.vi.md](FREE-CONTROLS.vi.md). Bảng 27 mục cần điều kiện tiếp theo: [FREE-COMPLETION.vi.md](FREE-COMPLETION.vi.md). Hai mươi mốt mục có bằng chứng thành phần cũng còn các giới hạn cần xử lý, không phải đã đạt hoàn toàn.
 
-Các file mới gồm scripts/audit_github.py, scripts/supply_chain_lab.py, lab-inputs.lock.json, deploy/demo.json, app first-party mẫu, test và tài liệu. Workflow pipeline-io.yml chỉ thay trên nhánh review để checkout nhánh, gọi hai script và upload reports. Main không được chỉnh sửa hoặc merge.
+## 3.3 Triển khai tự động hóa và Remote Automated
 
-| Tác vụ | Lệnh/công cụ | Đầu ra | Trạng thái |
-|---|---|---|---|
-| Audit API local | python3 scripts/audit_github.py --repo hieune-ui/finalrepo | results.json, results.csv | Có snapshot, xem phần 2 |
-| Kiểm thử API lỗi/quyền | python3 -m unittest discover -s tests -v | 4 kiểm thử | PASS local |
-| Lab chuỗi cung ứng | python3 scripts/supply_chain_lab.py | ZIP, SBOM, provenance, ciphertext, signatures, JSON | PASS local; phiên remote ghi riêng |
-| Kiểm tra workflow | actionlint | Lỗi cú pháp | PASS local |
-| Remote | Dispatch pipeline-io.yml với ref nhánh review | Artifact cis-review-RUN_ID | Xem RESULTS.vi.md |
-| Rà soát workflow remote | Dispatch pipeline-security.yml cùng ref | Zizmor logs | Xem RESULTS.vi.md |
+CIS vẫn phân loại 118 Manual, hai Automated (1.1.3 và 2.3.8). Việc viết script cho mục Manual không đổi nhãn CIS. Workflow bổ sung tự chạy khi push đúng `audit/free-controls-completion`; không thêm trigger mới lên main, không dùng pull_request_target, không cấp token write. Hai workflow cũ pipeline-io và pipeline-security giữ workflow_dispatch và được thêm trigger đúng nhánh này.
 
-Báo cáo chứa khóa công khai tạm nhưng không chứa khóa riêng hoặc password giải mã. File encrypted là minh họa; artifact zip plaintext cùng được lưu phục vụ lab nên không tuyên bố bảo mật phân phối production. Workflow sandbox không chứng minh registry riêng đã xác minh upload hoặc giới hạn truy cập artifact.
+| Tool / step | Đầu ra | Kết quả thành phần / giới hạn |
+|---|---|---|
+| record_runtime.py | runtime.json | Allowlist OS/Python/OpenSSL/runner image/commit/run; không dump env hoặc token |
+| audit_free_controls.py | free-controls/results.json và CSV | Đủ 48 dòng: năm đủ nguồn khai báo cho bước thu thập, 43 còn thiếu nguồn; full-control PASS=0 |
+| inventory_governance.py | governance/results.json | Sáu nhánh với SHA/tuổi commit, zero fork API-visible; phân trang đầy đủ, zero thao tác xóa |
+| monitor_action_owners.py | action-owners/results.json | Tám cặp repo/owner numeric ID không đổi; lỗi API/owner đổi/action mới phải được review, không tự cập nhật baseline |
+| project_bundle.py | source.zip, project.spdx.json, provenance.json, signed manifest, public key, verification.json | Ba payload khớp chữ ký/hash; sửa payload/manifest hoặc dùng fingerprint sai bị từ chối. Fingerprint đối chiếu với log run đã xác thực |
+| dependency_graph.py trong môi trường tool đã khóa hash | dependency-graph/results.json | 32 node, 145 quan hệ khai báo; 32 cạnh active ở môi trường mặc định, zero lỗi; không khẳng định mọi extra đã resolve |
+| Unit tests | Log CI | 37 PASS; có thử API bị từ chối/phân trang dở dang, owner drift, thiếu/sai dependency, sửa manifest/payload và khóa sai |
+| Bandit, pip-audit và kiểm tra coverage/hash | JSON trong security artifact | Zero Bandit HIGH; đúng 32 package, zero advisory đã biết, 32 hash wheel khớp PyPI; 20 license còn cần review |
+| Gitleaks current tree | current-source-gitleaks.json | Zero phát hiện ở source hiện tại; không có tuyên bố lịch sử đã sạch hoặc credential cũ đã thu hồi |
+| Docker/Trivy | JSON scanner và log runtime | Zero HIGH/CRITICAL theo phạm vi scan; kiểm tra non-root, CapEff=0, NoNewPrivs=1 và từ chối ghi. Không thay quét/bảo vệ toàn bộ host runner |
+| Zizmor | Log workflow security | Quét mọi workflow; finding thiếu tên job ở run đầu đã sửa, run xác nhận thành công |
+| upload-artifact | Artifact ngoài runner, retention bảy ngày | Bảo toàn kết quả; repo public, chưa phải kho output riêng tư có ACL được kiểm thử |
 
-## Đợt bổ sung trên nhánh audit/cis-complete-runbooks
+Code được xác minh: `f1df426fb33f05fbdf64f04d5068a6d6c97085bf`. Các commit báo cáo sau đó không thay code đã được kiểm tra.
 
-Bổ sung 120 runbook và control-plans.json, audit_all.py, audit_dependencies.py, registry_lab.py, scanner_selftest.py, checksum Gitleaks, hook pre-push local và 4 test bổ sung (tổng 8). Phần 2 giải thích hình/bằng chứng; tại đây chỉ ghi chữ/bảng. Các vai trò nhóm trước vẫn là đề xuất vì chưa có ba username. Không cấp quyền thật. Kết quả bổ sung có registry fixture 13 phép thử và scanner 2 phép thử; không cộng chúng thành số tiêu chí CIS đạt. Nhánh main, collaborator/settings và hai repo nguồn không được thay đổi.
+| Workflow | Run | Kết quả |
+|---|---|---|
+| Free controls evidence | [44108703310](https://github.com/nt542-r11-nhom17-cis-lab/finalrepo/actions/runs/44108703310) | SUCCESS; đã tải, đọc và xác minh bundle theo fingerprint từ log |
+| Source/container, API, SBOM/lab | [44108703867](https://github.com/nt542-r11-nhom17-cis-lab/finalrepo/actions/runs/44108703867) | SUCCESS; đã tải và đọc security/review artifact |
+| Workflow security | [44108703323](https://github.com/nt542-r11-nhom17-cis-lab/finalrepo/actions/runs/44108703323) | SUCCESS |
 
-## Đợt khắc phục nguồn và container — nhánh audit/remediate-config-and-scans
-
-Đã bỏ secret khỏi cấu hình hiện tại, đọc env, thêm test port/secret defaults và .env.example. Đã pin Alpine 3.24.4 bằng digest chính thức, thêm source-security job làm điều kiện trước job lab. Job build container, chạy không mạng/read-only/non-root và quét source/IaC cùng image với gate HIGH/CRITICAL. Cả hai job và workflow Zizmor đã SUCCESS; 11 unit tests PASS. File JSON source/image/Gitleaks đã được tải đọc và lưu trong evidence. Hình nằm ở phần 2 (Hình 2.7).
-
-CODEOWNERS mới chỉ đề xuất trên nhánh, dùng tài khoản admin hieune-ui đã xác minh; không kích hoạt policy của main hoặc mời thêm người. Mẫu PR yêu cầu task/issue và bằng chứng before/after. Ảnh/config IdP, registry và production vẫn cần hệ thống thật và người có quyền.
-
-## Triển khai sau chuyển Organization — audit/organization-controls
-
-Đã cập nhật remote/hook sang nt542-r11-nhom17-cis-lab/finalrepo; main giữ nguyên. Bổ sung audit_organization.py (8 trường, 6 test), audit_python_toolchain.py, requirements-security.lock và metadata 32 wheel. Bandit HIGH gate và pip-audit được gọi trong source-security job. Tổng 17 unit tests local PASS, SAST 0 HIGH, dependency audit không báo CVE; 20 license cần review. Kết quả remote ghi riêng sau chạy. Không áp dụng Settings/MFA/roles. Phần 2 chứa hình và bằng chứng; phần 3 chỉ chữ/bảng.
-
-## Kết quả triển khai trên Organization đã xác minh
-
-Đã push và chạy code 4003107 trên audit/organization-controls. Source-security và job tổng hợp đều thành công; Zizmor thành công. Có 21 unit tests, source/container checks, SAST/SCA và Audit Organization. Bổ sung bước kiểm tra exact lock coverage để bảo đảm đủ 32 package, đúng version, không skipped/advisory. File JSON thật đã được tải từ artifact và đưa vào evidence. Ảnh Hình 2.8 nằm phần 2. Không thay đổi main hoặc chính sách quản trị.
+File xuất kết quả lưu lâu dài trong nhánh: [free-controls-export.zip](evidence/free-controls-export.zip), chứa các đầu ra Free/security/review của đúng những run trên, bao gồm signed source bundle. JSON/CSV 48 mục cũng có bản riêng trong evidence. SHA256 của ZIP nằm ở `evidence/free-completion-summary.json`. Không lưu private signing key. Kết quả chi tiết và thống kê 120 mục nằm trong RESULTS.vi.md và COVERAGE.csv; CI xanh không phải chứng nhận đạt CIS.

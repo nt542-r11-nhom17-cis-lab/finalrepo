@@ -51,6 +51,8 @@ Không lấy fingerprint chỉ từ chính gói tải về để tuyên bố ngu
 6. Tạo PR giữa hai nhánh thử; kiểm tra từng điều kiện từ chối ở các mục dưới. Không mở PR vào `main`, không merge vào `main`, không thử force-push/xóa trên `main`. Lưu ảnh thực tế ở phần 2, ghi chữ/bảng phần 3.
 7. Đối chiếu SHA `main` và phạm vi ruleset trước/sau. Khi xong, owner chỉ vô hiệu rule thử do mình tạo, không xóa/chỉnh rule khác.
 
+<a name="cis-1-1-1"></a>
+
 ### CIS 1.1.1
 
 **Ensure any changes to code are tracked in a version control platform**
@@ -64,6 +66,8 @@ Không lấy fingerprint chỉ từ chính gói tải về để tuyên bố ngu
 **Còn cần bạn thực hiện/cung cấp:** Chưa xác minh mọi dự án/thiết bị của nhóm đều quản lý mã bằng Git.
 
 **Minh chứng cần lưu:** JSON/CSV hoặc ảnh cấu hình và kiểm thử của đúng đối tượng; ghi thời gian, username, ref, trước/sau; che email, token, endpoint nội bộ. Đối chiếu Audit gốc ở trang ghi trong catalog.json.
+
+<a name="cis-1-1-5"></a>
 
 ### CIS 1.1.5
 
@@ -79,6 +83,8 @@ Không lấy fingerprint chỉ từ chính gói tải về để tuyên bố ngu
 
 **Minh chứng cần lưu:** JSON/CSV hoặc ảnh cấu hình và kiểm thử của đúng đối tượng; ghi thời gian, username, ref, trước/sau; che email, token, endpoint nội bộ. Đối chiếu Audit gốc ở trang ghi trong catalog.json.
 
+<a name="cis-1-1-7"></a>
+
 ### CIS 1.1.7
 
 **Ensure code owner's review is required when a change affects owned code**
@@ -92,6 +98,8 @@ Không lấy fingerprint chỉ từ chính gói tải về để tuyên bố ngu
 **Còn cần bạn thực hiện/cung cấp:** CODEOWNERS chưa chứng minh rule có hiệu lực; thiếu username/thử nghiệm.
 
 **Minh chứng cần lưu:** JSON/CSV hoặc ảnh cấu hình và kiểm thử của đúng đối tượng; ghi thời gian, username, ref, trước/sau; che email, token, endpoint nội bộ. Đối chiếu Audit gốc ở trang ghi trong catalog.json.
+
+<a name="cis-1-1-8"></a>
 
 ### CIS 1.1.8
 
@@ -107,6 +115,8 @@ Không lấy fingerprint chỉ từ chính gói tải về để tuyên bố ngu
 
 **Minh chứng cần lưu:** JSON/CSV hoặc ảnh cấu hình và kiểm thử của đúng đối tượng; ghi thời gian, username, ref, trước/sau; che email, token, endpoint nội bộ. Đối chiếu Audit gốc ở trang ghi trong catalog.json.
 
+<a name="cis-1-1-10"></a>
+
 ### CIS 1.1.10
 
 **Ensure open Git branches are up to date before they can be merged into code base**
@@ -120,6 +130,8 @@ Không lấy fingerprint chỉ từ chính gói tải về để tuyên bố ngu
 **Còn cần bạn thực hiện/cung cấp:** Cần quyền Settings và PR thử; không áp dụng main.
 
 **Minh chứng cần lưu:** JSON/CSV hoặc ảnh cấu hình và kiểm thử của đúng đối tượng; ghi thời gian, username, ref, trước/sau; che email, token, endpoint nội bộ. Đối chiếu Audit gốc ở trang ghi trong catalog.json.
+
+<a name="cis-1-1-11"></a>
 
 ### CIS 1.1.11
 
@@ -135,6 +147,8 @@ Không lấy fingerprint chỉ từ chính gói tải về để tuyên bố ngu
 
 **Minh chứng cần lưu:** JSON/CSV hoặc ảnh cấu hình và kiểm thử của đúng đối tượng; ghi thời gian, username, ref, trước/sau; che email, token, endpoint nội bộ. Đối chiếu Audit gốc ở trang ghi trong catalog.json.
 
+<a name="cis-1-1-12"></a>
+
 ### CIS 1.1.12
 
 **Ensure verification of signed commits for new changes before merging**
@@ -148,6 +162,8 @@ Không lấy fingerprint chỉ từ chính gói tải về để tuyên bố ngu
 **Còn cần bạn thực hiện/cung cấp:** Git author hoặc hash commit không thay bằng chứng chữ ký.
 
 **Minh chứng cần lưu:** JSON/CSV hoặc ảnh cấu hình và kiểm thử của đúng đối tượng; ghi thời gian, username, ref, trước/sau; che email, token, endpoint nội bộ. Đối chiếu Audit gốc ở trang ghi trong catalog.json.
+
+<a name="cis-1-1-13"></a>
 
 ### CIS 1.1.13
 
@@ -163,6 +179,8 @@ Không lấy fingerprint chỉ từ chính gói tải về để tuyên bố ngu
 
 **Minh chứng cần lưu:** JSON/CSV hoặc ảnh cấu hình và kiểm thử của đúng đối tượng; ghi thời gian, username, ref, trước/sau; che email, token, endpoint nội bộ. Đối chiếu Audit gốc ở trang ghi trong catalog.json.
 
+<a name="cis-1-1-14"></a>
+
 ### CIS 1.1.14
 
 **Ensure branch protection rules are enforced for administrators**
@@ -176,6 +194,8 @@ Không lấy fingerprint chỉ từ chính gói tải về để tuyên bố ngu
 **Còn cần bạn thực hiện/cung cấp:** Không thử trên main để tránh khóa công việc nhóm.
 
 **Minh chứng cần lưu:** JSON/CSV hoặc ảnh cấu hình và kiểm thử của đúng đối tượng; ghi thời gian, username, ref, trước/sau; che email, token, endpoint nội bộ. Đối chiếu Audit gốc ở trang ghi trong catalog.json.
+
+<a name="cis-1-1-15"></a>
 
 ### CIS 1.1.15
 
@@ -191,6 +211,8 @@ Không lấy fingerprint chỉ từ chính gói tải về để tuyên bố ngu
 
 **Minh chứng cần lưu:** JSON/CSV hoặc ảnh cấu hình và kiểm thử của đúng đối tượng; ghi thời gian, username, ref, trước/sau; che email, token, endpoint nội bộ. Đối chiếu Audit gốc ở trang ghi trong catalog.json.
 
+<a name="cis-1-1-18"></a>
+
 ### CIS 1.1.18
 
 **Ensure any merging of code is automatically scanned for risks**
@@ -204,6 +226,8 @@ Không lấy fingerprint chỉ từ chính gói tải về để tuyên bố ngu
 **Còn cần bạn thực hiện/cung cấp:** Scan nhánh audit chưa đồng nghĩa mọi merge trên main đều được quét/chặn.
 
 **Minh chứng cần lưu:** JSON/CSV hoặc ảnh cấu hình và kiểm thử của đúng đối tượng; ghi thời gian, username, ref, trước/sau; che email, token, endpoint nội bộ. Đối chiếu Audit gốc ở trang ghi trong catalog.json.
+
+<a name="cis-1-1-19"></a>
 
 ### CIS 1.1.19
 
@@ -219,6 +243,8 @@ Không lấy fingerprint chỉ từ chính gói tải về để tuyên bố ngu
 
 **Minh chứng cần lưu:** JSON/CSV hoặc ảnh cấu hình và kiểm thử của đúng đối tượng; ghi thời gian, username, ref, trước/sau; che email, token, endpoint nội bộ. Đối chiếu Audit gốc ở trang ghi trong catalog.json.
 
+<a name="cis-1-2-5"></a>
+
 ### CIS 1.2.5
 
 **Ensure all copies (forks) of code are tracked and accounted for**
@@ -232,6 +258,8 @@ Không lấy fingerprint chỉ từ chính gói tải về để tuyên bố ngu
 **Còn cần bạn thực hiện/cung cấp:** Không có fork lúc kiểm tra không chứng minh có quy trình quản lý fork.
 
 **Minh chứng cần lưu:** JSON/CSV hoặc ảnh cấu hình và kiểm thử của đúng đối tượng; ghi thời gian, username, ref, trước/sau; che email, token, endpoint nội bộ. Đối chiếu Audit gốc ở trang ghi trong catalog.json.
+
+<a name="cis-1-2-7"></a>
 
 ### CIS 1.2.7
 
@@ -247,6 +275,8 @@ Không lấy fingerprint chỉ từ chính gói tải về để tuyên bố ngu
 
 **Minh chứng cần lưu:** JSON/CSV hoặc ảnh cấu hình và kiểm thử của đúng đối tượng; ghi thời gian, username, ref, trước/sau; che email, token, endpoint nội bộ. Đối chiếu Audit gốc ở trang ghi trong catalog.json.
 
+<a name="cis-1-3-1"></a>
+
 ### CIS 1.3.1
 
 **Ensure inactive users are reviewed and removed periodically**
@@ -260,6 +290,8 @@ Không lấy fingerprint chỉ từ chính gói tải về để tuyên bố ngu
 **Còn cần bạn thực hiện/cung cấp:** Thiếu danh tính thật và owner review; không suy tổng thành viên từ public members.
 
 **Minh chứng cần lưu:** JSON/CSV hoặc ảnh cấu hình và kiểm thử của đúng đối tượng; ghi thời gian, username, ref, trước/sau; che email, token, endpoint nội bộ. Đối chiếu Audit gốc ở trang ghi trong catalog.json.
+
+<a name="cis-1-3-3"></a>
 
 ### CIS 1.3.3
 
@@ -275,6 +307,8 @@ Không lấy fingerprint chỉ từ chính gói tải về để tuyên bố ngu
 
 **Minh chứng cần lưu:** JSON/CSV hoặc ảnh cấu hình và kiểm thử của đúng đối tượng; ghi thời gian, username, ref, trước/sau; che email, token, endpoint nội bộ. Đối chiếu Audit gốc ở trang ghi trong catalog.json.
 
+<a name="cis-1-3-4"></a>
+
 ### CIS 1.3.4
 
 **Ensure Multi-Factor Authentication (MFA) is required for contributors of new code**
@@ -288,6 +322,8 @@ Không lấy fingerprint chỉ từ chính gói tải về để tuyên bố ngu
 **Còn cần bạn thực hiện/cung cấp:** Thay đổi yêu cầu MFA có thể ảnh hưởng thành viên, cần owner thao tác sau rà soát.
 
 **Minh chứng cần lưu:** JSON/CSV hoặc ảnh cấu hình và kiểm thử của đúng đối tượng; ghi thời gian, username, ref, trước/sau; che email, token, endpoint nội bộ. Đối chiếu Audit gốc ở trang ghi trong catalog.json.
+
+<a name="cis-1-3-6"></a>
 
 ### CIS 1.3.6
 
@@ -303,6 +339,8 @@ Không lấy fingerprint chỉ từ chính gói tải về để tuyên bố ngu
 
 **Minh chứng cần lưu:** JSON/CSV hoặc ảnh cấu hình và kiểm thử của đúng đối tượng; ghi thời gian, username, ref, trước/sau; che email, token, endpoint nội bộ. Đối chiếu Audit gốc ở trang ghi trong catalog.json.
 
+<a name="cis-1-3-7"></a>
+
 ### CIS 1.3.7
 
 **Ensure two administrators are set for each repository**
@@ -316,6 +354,8 @@ Không lấy fingerprint chỉ từ chính gói tải về để tuyên bố ngu
 **Còn cần bạn thực hiện/cung cấp:** Snapshot người dùng thấy một admin (hieune-ui); cần owner xác minh toàn bộ quyền kế thừa và nhóm quyết định admin thứ hai. Không tự cấp quyền.
 
 **Minh chứng cần lưu:** JSON/CSV hoặc ảnh cấu hình và kiểm thử của đúng đối tượng; ghi thời gian, username, ref, trước/sau; che email, token, endpoint nội bộ. Đối chiếu Audit gốc ở trang ghi trong catalog.json.
+
+<a name="cis-1-3-13"></a>
 
 ### CIS 1.3.13
 
@@ -331,6 +371,8 @@ Không lấy fingerprint chỉ từ chính gói tải về để tuyên bố ngu
 
 **Minh chứng cần lưu:** JSON/CSV hoặc ảnh cấu hình và kiểm thử của đúng đối tượng; ghi thời gian, username, ref, trước/sau; che email, token, endpoint nội bộ. Đối chiếu Audit gốc ở trang ghi trong catalog.json.
 
+<a name="cis-1-4-1"></a>
+
 ### CIS 1.4.1
 
 **Ensure administrator approval is required for every installed application**
@@ -344,6 +386,8 @@ Không lấy fingerprint chỉ từ chính gói tải về để tuyên bố ngu
 **Còn cần bạn thực hiện/cung cấp:** Connector không có quyền quản lý policy app.
 
 **Minh chứng cần lưu:** JSON/CSV hoặc ảnh cấu hình và kiểm thử của đúng đối tượng; ghi thời gian, username, ref, trước/sau; che email, token, endpoint nội bộ. Đối chiếu Audit gốc ở trang ghi trong catalog.json.
+
+<a name="cis-1-4-2"></a>
 
 ### CIS 1.4.2
 
@@ -359,6 +403,8 @@ Không lấy fingerprint chỉ từ chính gói tải về để tuyên bố ngu
 
 **Minh chứng cần lưu:** JSON/CSV hoặc ảnh cấu hình và kiểm thử của đúng đối tượng; ghi thời gian, username, ref, trước/sau; che email, token, endpoint nội bộ. Đối chiếu Audit gốc ở trang ghi trong catalog.json.
 
+<a name="cis-1-4-3"></a>
+
 ### CIS 1.4.3
 
 **Ensure the access granted to each installed application is limited to the least privilege needed**
@@ -372,6 +418,8 @@ Không lấy fingerprint chỉ từ chính gói tải về để tuyên bố ngu
 **Còn cần bạn thực hiện/cung cấp:** Cần ảnh cấu hình cài đặt; không suy least privilege từ quyền admin của user.
 
 **Minh chứng cần lưu:** JSON/CSV hoặc ảnh cấu hình và kiểm thử của đúng đối tượng; ghi thời gian, username, ref, trước/sau; che email, token, endpoint nội bộ. Đối chiếu Audit gốc ở trang ghi trong catalog.json.
+
+<a name="cis-1-4-4"></a>
 
 ### CIS 1.4.4
 
@@ -387,6 +435,8 @@ Không lấy fingerprint chỉ từ chính gói tải về để tuyên bố ngu
 
 **Minh chứng cần lưu:** JSON/CSV hoặc ảnh cấu hình và kiểm thử của đúng đối tượng; ghi thời gian, username, ref, trước/sau; che email, token, endpoint nội bộ. Đối chiếu Audit gốc ở trang ghi trong catalog.json.
 
+<a name="cis-2-1-2"></a>
+
 ### CIS 2.1.2
 
 **Ensure all aspects of the pipeline infrastructure and configuration are immutable**
@@ -400,6 +450,8 @@ Không lấy fingerprint chỉ từ chính gói tải về để tuyên bố ngu
 **Còn cần bạn thực hiện/cung cấp:** GitHub-hosted image cập nhật; cần lifecycle/provisioning evidence đầy đủ.
 
 **Minh chứng cần lưu:** JSON/CSV hoặc ảnh cấu hình và kiểm thử của đúng đối tượng; ghi thời gian, username, ref, trước/sau; che email, token, endpoint nội bộ. Đối chiếu Audit gốc ở trang ghi trong catalog.json.
+
+<a name="cis-2-1-3"></a>
 
 ### CIS 2.1.3
 
@@ -415,6 +467,8 @@ Không lấy fingerprint chỉ từ chính gói tải về để tuyên bố ngu
 
 **Minh chứng cần lưu:** JSON/CSV hoặc ảnh cấu hình và kiểm thử của đúng đối tượng; ghi thời gian, username, ref, trước/sau; che email, token, endpoint nội bộ. Đối chiếu Audit gốc ở trang ghi trong catalog.json.
 
+<a name="cis-2-1-5"></a>
+
 ### CIS 2.1.5
 
 **Ensure access to build environments is limited**
@@ -428,6 +482,8 @@ Không lấy fingerprint chỉ từ chính gói tải về để tuyên bố ngu
 **Còn cần bạn thực hiện/cung cấp:** API quản trị Actions 403; cần owner kiểm tra UI.
 
 **Minh chứng cần lưu:** JSON/CSV hoặc ảnh cấu hình và kiểm thử của đúng đối tượng; ghi thời gian, username, ref, trước/sau; che email, token, endpoint nội bộ. Đối chiếu Audit gốc ở trang ghi trong catalog.json.
+
+<a name="cis-2-1-6"></a>
 
 ### CIS 2.1.6
 
@@ -443,6 +499,8 @@ Không lấy fingerprint chỉ từ chính gói tải về để tuyên bố ngu
 
 **Minh chứng cần lưu:** JSON/CSV hoặc ảnh cấu hình và kiểm thử của đúng đối tượng; ghi thời gian, username, ref, trước/sau; che email, token, endpoint nội bộ. Đối chiếu Audit gốc ở trang ghi trong catalog.json.
 
+<a name="cis-2-1-7"></a>
+
 ### CIS 2.1.7
 
 **Ensure build secrets are limited to the minimal necessary scope**
@@ -456,6 +514,8 @@ Không lấy fingerprint chỉ từ chính gói tải về để tuyên bố ngu
 **Còn cần bạn thực hiện/cung cấp:** API chỉ cho metadata/số lượng; không chứng minh mọi secret đều tối thiểu.
 
 **Minh chứng cần lưu:** JSON/CSV hoặc ảnh cấu hình và kiểm thử của đúng đối tượng; ghi thời gian, username, ref, trước/sau; che email, token, endpoint nội bộ. Đối chiếu Audit gốc ở trang ghi trong catalog.json.
+
+<a name="cis-2-1-8"></a>
 
 ### CIS 2.1.8
 
@@ -471,6 +531,8 @@ Không lấy fingerprint chỉ từ chính gói tải về để tuyên bố ngu
 
 **Minh chứng cần lưu:** JSON/CSV hoặc ảnh cấu hình và kiểm thử của đúng đối tượng; ghi thời gian, username, ref, trước/sau; che email, token, endpoint nội bộ. Đối chiếu Audit gốc ở trang ghi trong catalog.json.
 
+<a name="cis-2-1-9"></a>
+
 ### CIS 2.1.9
 
 **Ensure default passwords are not used**
@@ -484,6 +546,8 @@ Không lấy fingerprint chỉ từ chính gói tải về để tuyên bố ngu
 **Còn cần bạn thực hiện/cung cấp:** Không thể tự xoay credential dịch vụ chưa được cung cấp; không rewrite history.
 
 **Minh chứng cần lưu:** JSON/CSV hoặc ảnh cấu hình và kiểm thử của đúng đối tượng; ghi thời gian, username, ref, trước/sau; che email, token, endpoint nội bộ. Đối chiếu Audit gốc ở trang ghi trong catalog.json.
+
+<a name="cis-2-1-10"></a>
 
 ### CIS 2.1.10
 
@@ -499,6 +563,8 @@ Không lấy fingerprint chỉ từ chính gói tải về để tuyên bố ngu
 
 **Minh chứng cần lưu:** JSON/CSV hoặc ảnh cấu hình và kiểm thử của đúng đối tượng; ghi thời gian, username, ref, trước/sau; che email, token, endpoint nội bộ. Đối chiếu Audit gốc ở trang ghi trong catalog.json.
 
+<a name="cis-2-1-11"></a>
+
 ### CIS 2.1.11
 
 **Ensure minimum number of administrators are set for the build environment**
@@ -512,6 +578,8 @@ Không lấy fingerprint chỉ từ chính gói tải về để tuyên bố ngu
 **Còn cần bạn thực hiện/cung cấp:** Thiếu username và cấu hình build platform; không tự hạ quyền.
 
 **Minh chứng cần lưu:** JSON/CSV hoặc ảnh cấu hình và kiểm thử của đúng đối tượng; ghi thời gian, username, ref, trước/sau; che email, token, endpoint nội bộ. Đối chiếu Audit gốc ở trang ghi trong catalog.json.
+
+<a name="cis-2-2-2"></a>
 
 ### CIS 2.2.2
 
@@ -527,6 +595,8 @@ Không lấy fingerprint chỉ từ chính gói tải về để tuyên bố ngu
 
 **Minh chứng cần lưu:** JSON/CSV hoặc ảnh cấu hình và kiểm thử của đúng đối tượng; ghi thời gian, username, ref, trước/sau; che email, token, endpoint nội bộ. Đối chiếu Audit gốc ở trang ghi trong catalog.json.
 
+<a name="cis-2-2-5"></a>
+
 ### CIS 2.2.5
 
 **Ensure run-time security is enforced for build workers**
@@ -540,6 +610,8 @@ Không lấy fingerprint chỉ từ chính gói tải về để tuyên bố ngu
 **Còn cần bạn thực hiện/cung cấp:** Hardening demo không thay runtime threat detection cho toàn bộ worker.
 
 **Minh chứng cần lưu:** JSON/CSV hoặc ảnh cấu hình và kiểm thử của đúng đối tượng; ghi thời gian, username, ref, trước/sau; che email, token, endpoint nội bộ. Đối chiếu Audit gốc ở trang ghi trong catalog.json.
+
+<a name="cis-2-2-7"></a>
 
 ### CIS 2.2.7
 
@@ -555,6 +627,8 @@ Không lấy fingerprint chỉ từ chính gói tải về để tuyên bố ngu
 
 **Minh chứng cần lưu:** JSON/CSV hoặc ảnh cấu hình và kiểm thử của đúng đối tượng; ghi thời gian, username, ref, trước/sau; che email, token, endpoint nội bộ. Đối chiếu Audit gốc ở trang ghi trong catalog.json.
 
+<a name="cis-2-3-3"></a>
+
 ### CIS 2.3.3
 
 **Ensure output is written to a separate, secured storage repository**
@@ -568,6 +642,8 @@ Không lấy fingerprint chỉ từ chính gói tải về để tuyên bố ngu
 **Còn cần bạn thực hiện/cung cấp:** Repo public không thể chứng minh output storage riêng tư; chưa tạo registry thật.
 
 **Minh chứng cần lưu:** JSON/CSV hoặc ảnh cấu hình và kiểm thử của đúng đối tượng; ghi thời gian, username, ref, trước/sau; che email, token, endpoint nội bộ. Đối chiếu Audit gốc ở trang ghi trong catalog.json.
+
+<a name="cis-2-3-5"></a>
 
 ### CIS 2.3.5
 
@@ -583,6 +659,8 @@ Không lấy fingerprint chỉ từ chính gói tải về để tuyên bố ngu
 
 **Minh chứng cần lưu:** JSON/CSV hoặc ảnh cấu hình và kiểm thử của đúng đối tượng; ghi thời gian, username, ref, trước/sau; che email, token, endpoint nội bộ. Đối chiếu Audit gốc ở trang ghi trong catalog.json.
 
+<a name="cis-2-3-7"></a>
+
 ### CIS 2.3.7
 
 **Ensure pipelines are automatically scanned for vulnerabilities**
@@ -596,6 +674,8 @@ Không lấy fingerprint chỉ từ chính gói tải về để tuyên bố ngu
 **Còn cần bạn thực hiện/cung cấp:** Đã có pipeline scan; required check/main enforcement chưa áp dụng.
 
 **Minh chứng cần lưu:** JSON/CSV hoặc ảnh cấu hình và kiểm thử của đúng đối tượng; ghi thời gian, username, ref, trước/sau; che email, token, endpoint nội bộ. Đối chiếu Audit gốc ở trang ghi trong catalog.json.
+
+<a name="cis-2-4-1"></a>
 
 ### CIS 2.4.1
 
@@ -611,6 +691,8 @@ Không lấy fingerprint chỉ từ chính gói tải về để tuyên bố ngu
 
 **Minh chứng cần lưu:** JSON/CSV hoặc ảnh cấu hình và kiểm thử của đúng đối tượng; ghi thời gian, username, ref, trước/sau; che email, token, endpoint nội bộ. Đối chiếu Audit gốc ở trang ghi trong catalog.json.
 
+<a name="cis-3-1-2"></a>
+
 ### CIS 3.1.2
 
 **Ensure Software Bill of Materials (SBOM) is required from all third-party suppliers**
@@ -624,6 +706,8 @@ Không lấy fingerprint chỉ từ chính gói tải về để tuyên bố ngu
 **Còn cần bạn thực hiện/cung cấp:** Chưa có bộ SBOM gốc từ mọi nhà cung cấp.
 
 **Minh chứng cần lưu:** JSON/CSV hoặc ảnh cấu hình và kiểm thử của đúng đối tượng; ghi thời gian, username, ref, trước/sau; che email, token, endpoint nội bộ. Đối chiếu Audit gốc ở trang ghi trong catalog.json.
+
+<a name="cis-3-1-3"></a>
 
 ### CIS 3.1.3
 
@@ -639,6 +723,8 @@ Không lấy fingerprint chỉ từ chính gói tải về để tuyên bố ngu
 
 **Minh chứng cần lưu:** JSON/CSV hoặc ảnh cấu hình và kiểm thử của đúng đối tượng; ghi thời gian, username, ref, trước/sau; che email, token, endpoint nội bộ. Đối chiếu Audit gốc ở trang ghi trong catalog.json.
 
+<a name="cis-3-1-4"></a>
+
 ### CIS 3.1.4
 
 **Ensure dependencies are monitored between open-source components**
@@ -652,6 +738,8 @@ Không lấy fingerprint chỉ từ chính gói tải về để tuyên bố ngu
 **Còn cần bạn thực hiện/cung cấp:** Đã có graph scanner toolchain; còn graph cho Actions, OS, binary tải và xác minh extras/path giải dependency đầy đủ.
 
 **Minh chứng cần lưu:** JSON/CSV hoặc ảnh cấu hình và kiểm thử của đúng đối tượng; ghi thời gian, username, ref, trước/sau; che email, token, endpoint nội bộ. Đối chiếu Audit gốc ở trang ghi trong catalog.json.
+
+<a name="cis-3-1-6"></a>
 
 ### CIS 3.1.6
 
@@ -667,6 +755,8 @@ Không lấy fingerprint chỉ từ chính gói tải về để tuyên bố ngu
 
 **Minh chứng cần lưu:** JSON/CSV hoặc ảnh cấu hình và kiểm thử của đúng đối tượng; ghi thời gian, username, ref, trước/sau; che email, token, endpoint nội bộ. Đối chiếu Audit gốc ở trang ghi trong catalog.json.
 
+<a name="cis-3-2-4"></a>
+
 ### CIS 3.2.4
 
 **Ensure packages are automatically scanned for ownership change**
@@ -680,6 +770,8 @@ Không lấy fingerprint chỉ từ chính gói tải về để tuyên bố ngu
 **Còn cần bạn thực hiện/cung cấp:** Chỉ theo dõi repository owner của Actions; chưa theo dõi người duy trì 32 package PyPI.
 
 **Minh chứng cần lưu:** JSON/CSV hoặc ảnh cấu hình và kiểm thử của đúng đối tượng; ghi thời gian, username, ref, trước/sau; che email, token, endpoint nội bộ. Đối chiếu Audit gốc ở trang ghi trong catalog.json.
+
+<a name="cis-5-1-4"></a>
 
 ### CIS 5.1.4
 
@@ -695,6 +787,8 @@ Không lấy fingerprint chỉ từ chính gói tải về để tuyên bố ngu
 
 **Minh chứng cần lưu:** JSON/CSV hoặc ảnh cấu hình và kiểm thử của đúng đối tượng; ghi thời gian, username, ref, trước/sau; che email, token, endpoint nội bộ. Đối chiếu Audit gốc ở trang ghi trong catalog.json.
 
+<a name="cis-5-2-3"></a>
+
 ### CIS 5.2.3
 
 **Ensure access to production environment is limited**
@@ -708,6 +802,8 @@ Không lấy fingerprint chỉ từ chính gói tải về để tuyên bố ngu
 **Còn cần bạn thực hiện/cung cấp:** Không có production được nhóm chỉ định; không tự triển khai cloud trả phí.
 
 **Minh chứng cần lưu:** JSON/CSV hoặc ảnh cấu hình và kiểm thử của đúng đối tượng; ghi thời gian, username, ref, trước/sau; che email, token, endpoint nội bộ. Đối chiếu Audit gốc ở trang ghi trong catalog.json.
+
+<a name="cis-5-2-4"></a>
 
 ### CIS 5.2.4
 

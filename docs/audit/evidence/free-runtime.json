@@ -1,0 +1,22 @@
+{
+  "checked_at": "2026-11-17T14:56:58.517152+00:00",
+  "system": "Linux",
+  "release": "7.0.0-1017-azure",
+  "machine": "x86_64",
+  "python": "3.12.3",
+  "openssl": "OpenSSL 3.0.13 30 Jan 2024",
+  "commit": "f1df426fb33f05fbdf64f04d5068a6d6c97085bf",
+  "runner": {
+    "RUNNER_OS": "Linux",
+    "RUNNER_ARCH": "X64",
+    "ImageOS": "ubuntu24",
+    "ImageVersion": "20261111.370.1"
+  },
+  "github": {
+    "GITHUB_REPOSITORY": "nt542-r11-nhom17-cis-lab/finalrepo",
+    "GITHUB_RUN_ID": "44108703310",
+    "GITHUB_RUN_ATTEMPT": "1",
+    "GITHUB_REF_NAME": "audit/free-controls-completion"
+  },
+  "scope": "Allowlisted metadata for this job only; no complete host/runtime security attestation."
+}

@@ -114,3 +114,23 @@ Audit tổ chức dùng GET-only, phân biệt null/thiếu/403 với false; kh�
 ![Kết quả workflow Organization, hai job thành công và ba artifacts](images/organization-run.jpg)
 
 Ảnh thật từ run 44077094456, commit 4003107, nhánh audit/organization-controls. Security và review artifact đã được tải đọc: Bandit 0 HIGH, kiểm CVE đủ 32 package, 32 hash khớp. Ảnh summary chỉ chứng minh trạng thái job/artifact; giá trị kiểm tra lấy từ JSON trong evidence, không suy diễn từ màu xanh.
+
+
+## Bổ sung phương pháp cho 48 mục hướng Free
+
+Hướng dẫn thao tác riêng theo mã ở [FREE-CONTROLS.vi.md](FREE-CONTROLS.vi.md). Workflow lớn: chốt phạm vi → đọc cấu hình/API → kiểm tra nguồn/runtime/bundle → ghi thiếu bằng chứng → owner khắc phục trên nhánh thử → re-audit và lưu minh chứng. Không suy từ source scan sang bảo vệ main, hoặc từ khóa ký tạm sang release authority.
+
+### Hình 2.9 — Sơ đồ tổng hợp từ kết quả đợt Free
+
+```mermaid
+flowchart LR
+ A[48 mục hướng Free] --> B[Audit API và mã nguồn]
+ B --> C[21 mục có bằng chứng thành phần]
+ B --> D[8 mục cần owner kiểm tra tiếp]
+ B --> E[19 mục chưa đủ môi trường triển khai]
+ C --> F[Remediation bổ sung và re-audit]
+ D --> F
+ E --> F
+```
+
+Đây là sơ đồ giải thích kết quả, không phải ảnh chụp Settings. Run thực tế: 44108703310, 44108703867, 44108703323 trên code f1df426. Đã tải artifact và đối chiếu signed bundle theo fingerprint log. Ảnh run/Settings mới chưa được bổ sung; các hình chụp phía trên vẫn thuộc đúng các run cũ ghi trong chú thích. Khi owner làm thủ công, chụp cấu hình trước/sau và phép thử bị từ chối, che dữ liệu nhạy cảm, đặt ảnh ở phần 2; phần 3 chỉ tham chiếu.

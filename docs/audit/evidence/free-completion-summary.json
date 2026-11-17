@@ -1,0 +1,86 @@
+{
+  "checked_at": "2026-11-17T14:59:13.853757+00:00",
+  "branch": "audit/free-controls-completion",
+  "tested_code_sha": "f1df426fb33f05fbdf64f04d5068a6d6c97085bf",
+  "main_before": "e052945db5b4a2bace480b5ab98446a8b82da02e",
+  "main_after": "e052945db5b4a2bace480b5ab98446a8b82da02e",
+  "main_rules_or_settings_changed": false,
+  "runs": [
+    {
+      "id": 44108703310,
+      "workflow": "CIS - Free controls evidence",
+      "conclusion": "success"
+    },
+    {
+      "id": 44108703867,
+      "workflow": "CIS - Pipeline Input Output",
+      "conclusion": "success"
+    },
+    {
+      "id": 44108703323,
+      "workflow": "CIS - Pipeline Security Scan",
+      "conclusion": "success"
+    }
+  ],
+  "unit_tests": 37,
+  "bandit_high": 0,
+  "current_tree_gitleaks_findings": 0,
+  "history_clean_claim": false,
+  "trivy_source_high_critical": 0,
+  "trivy_image_high_critical": 0,
+  "python_packages_exact_coverage": 32,
+  "known_advisories": 0,
+  "wheel_hash_matches": 32,
+  "license_manual_review": 20,
+  "dependency_graph": {
+    "nodes": 32,
+    "declared_edges": 145,
+    "default_active_edges": 32,
+    "errors": 0
+  },
+  "action_owner_monitor": {
+    "repository_owner_pairs": 8,
+    "gate": "passed",
+    "scope": "Actions only; PyPI maintainers excluded"
+  },
+  "governance": {
+    "branches_observed": 6,
+    "forks_observed": 0,
+    "mutations": 0
+  },
+  "bundle": {
+    "scope": "Three payloads of this branch run only, not every release",
+    "commit": "f1df426fb33f05fbdf64f04d5068a6d6c97085bf",
+    "payloads_verified": 3,
+    "tampered_payload_rejected": true,
+    "signer_fingerprint_sha256_der": "b80961a87d4d5fe43622c6fdf3cab6bda1beba77604172feb72be00bbd2ab675",
+    "private_key_exported": false,
+    "overall_cis": "PARTIAL"
+  },
+  "bundle_fingerprint_independently_compared_to_authenticated_run_log": true,
+  "free_readiness": {
+    "controls": 48,
+    "evidence_collected": 5,
+    "incomplete": 43,
+    "full_control_pass": 0
+  },
+  "free_implementation": {
+    "partial": 21,
+    "manual_review": 8,
+    "not_tested": 19,
+    "full_pass": 0
+  },
+  "artifact_export": {
+    "path": "free-controls-export.zip",
+    "sha256": "1bce0882c309664eec5f027b8f764b5df8bd4951b5b0c4cdbfb8824a7a5fd66c",
+    "bytes": 500199
+  },
+  "limits": [
+    "No organization/admin/main changes",
+    "No production/real registry supplied",
+    "Ephemeral signing key is not production identity",
+    "Package licenses require 20 manual reviews",
+    "User and workflow collaborator API visibility differ",
+    "All 120 full-control PASS count remains 0"
+  ]
+}

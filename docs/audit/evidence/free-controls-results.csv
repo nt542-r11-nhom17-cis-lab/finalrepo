@@ -1,0 +1,49 @@
+cis_id,execution,overall_cis,available_sources,missing_sources,remaining,manual_guide
+1.1.1,EVIDENCE_COLLECTED,MANUAL_REVIEW,source,,Chưa xác minh mọi dự án/thiết bị của nhóm đều quản lý mã bằng Git.,FREE-CONTROLS.vi.md#cis-1-1-1
+1.1.5,INCOMPLETE,MANUAL_REVIEW,,"protection, behavior_test",API protection 403; cần owner và hai tài khoản thử thật.,FREE-CONTROLS.vi.md#cis-1-1-5
+1.1.7,INCOMPLETE,MANUAL_REVIEW,source,"protection, behavior_test",CODEOWNERS chưa chứng minh rule có hiệu lực; thiếu username/thử nghiệm.,FREE-CONTROLS.vi.md#cis-1-1-7
+1.1.8,INCOMPLETE,MANUAL_REVIEW,branches,organization_admin,Không tự xóa nhánh vì có thể chứa bài làm chưa gộp.,FREE-CONTROLS.vi.md#cis-1-1-8
+1.1.10,INCOMPLETE,MANUAL_REVIEW,,"protection, behavior_test",Cần quyền Settings và PR thử; không áp dụng main.,FREE-CONTROLS.vi.md#cis-1-1-10
+1.1.11,INCOMPLETE,MANUAL_REVIEW,,"protection, behavior_test",Thiếu hiệu lực rule và kiểm thử nhiều tài khoản.,FREE-CONTROLS.vi.md#cis-1-1-11
+1.1.12,INCOMPLETE,MANUAL_REVIEW,,"protection, behavior_test",Git author hoặc hash commit không thay bằng chứng chữ ký.,FREE-CONTROLS.vi.md#cis-1-1-12
+1.1.13,INCOMPLETE,MANUAL_REVIEW,,"protection, behavior_test",Chưa đổi rule hoặc rewrite lịch sử.,FREE-CONTROLS.vi.md#cis-1-1-13
+1.1.14,INCOMPLETE,MANUAL_REVIEW,,"protection, behavior_test",Không thử trên main để tránh khóa công việc nhóm.,FREE-CONTROLS.vi.md#cis-1-1-14
+1.1.15,INCOMPLETE,MANUAL_REVIEW,collaborators,"protection, behavior_test",Không tự thay quyền hoặc mời người chưa được xác định.,FREE-CONTROLS.vi.md#cis-1-1-15
+1.1.18,INCOMPLETE,MANUAL_REVIEW,source,"protection, behavior_test",Scan nhánh audit chưa đồng nghĩa mọi merge trên main đều được quét/chặn.,FREE-CONTROLS.vi.md#cis-1-1-18
+1.1.19,INCOMPLETE,MANUAL_REVIEW,,organization_admin,Không dùng API Enterprise làm điều kiện bắt buộc của phương án Free; cần ảnh/log UI.,FREE-CONTROLS.vi.md#cis-1-1-19
+1.2.5,INCOMPLETE,MANUAL_REVIEW,forks,organization_admin,Không có fork lúc kiểm tra không chứng minh có quy trình quản lý fork.,FREE-CONTROLS.vi.md#cis-1-2-5
+1.2.7,INCOMPLETE,MANUAL_REVIEW,,organization_admin,Đổi trạng thái repo thật cần quyết định nhóm.,FREE-CONTROLS.vi.md#cis-1-2-7
+1.3.1,INCOMPLETE,MANUAL_REVIEW,,organization_admin,Thiếu danh tính thật và owner review; không suy tổng thành viên từ public members.,FREE-CONTROLS.vi.md#cis-1-3-1
+1.3.3,INCOMPLETE,MANUAL_REVIEW,,organization_admin,Chưa có quyết định vai trò của nhóm; không bịa số người.,FREE-CONTROLS.vi.md#cis-1-3-3
+1.3.4,INCOMPLETE,MANUAL_REVIEW,collaborators,organization_admin,"Thay đổi yêu cầu MFA có thể ảnh hưởng thành viên, cần owner thao tác sau rà soát.",FREE-CONTROLS.vi.md#cis-1-3-4
+1.3.6,INCOMPLETE,MANUAL_REVIEW,,organization_admin,Cần email và đồng ý của các thành viên; chưa có thông tin nên không mời.,FREE-CONTROLS.vi.md#cis-1-3-6
+1.3.7,INCOMPLETE,MANUAL_REVIEW,collaborators,organization_admin,Snapshot người dùng thấy một admin (hieune-ui); cần owner xác minh toàn bộ quyền kế thừa và nhóm quyết định admin thứ hai. Không tự cấp quyền.,FREE-CONTROLS.vi.md#cis-1-3-7
+1.3.13,INCOMPLETE,MANUAL_REVIEW,source,organization_admin,"Chưa có kênh nhận cảnh báo, ngưỡng hành vi và vận hành thực tế.",FREE-CONTROLS.vi.md#cis-1-3-13
+1.4.1,INCOMPLETE,MANUAL_REVIEW,,organization_admin,Connector không có quyền quản lý policy app.,FREE-CONTROLS.vi.md#cis-1-4-1
+1.4.2,INCOMPLETE,MANUAL_REVIEW,,organization_admin,Không tự gỡ Connector hoặc app có thể đang dùng.,FREE-CONTROLS.vi.md#cis-1-4-2
+1.4.3,INCOMPLETE,MANUAL_REVIEW,,organization_admin,Cần ảnh cấu hình cài đặt; không suy least privilege từ quyền admin của user.,FREE-CONTROLS.vi.md#cis-1-4-3
+1.4.4,INCOMPLETE,MANUAL_REVIEW,,"hooks, organization_admin",Chưa có endpoint webhook thực; không tạo webhook gửi dữ liệu ra ngoài.,FREE-CONTROLS.vi.md#cis-1-4-4
+2.1.2,INCOMPLETE,MANUAL_REVIEW,source,build_admin,GitHub-hosted image cập nhật; cần lifecycle/provisioning evidence đầy đủ.,FREE-CONTROLS.vi.md#cis-2-1-2
+2.1.3,EVIDENCE_COLLECTED,MANUAL_REVIEW,source,,Log thuộc run nhánh thử; cần chính sách retention được nhóm duyệt.,FREE-CONTROLS.vi.md#cis-2-1-3
+2.1.5,INCOMPLETE,MANUAL_REVIEW,collaborators,"actions_policy, build_admin",API quản trị Actions 403; cần owner kiểm tra UI.,FREE-CONTROLS.vi.md#cis-2-1-5
+2.1.6,INCOMPLETE,MANUAL_REVIEW,,"actions_policy, build_admin",Chưa có bằng chứng thực về mọi đường truy cập; repo public cho phép đọc log không phải quyền điều khiển.,FREE-CONTROLS.vi.md#cis-2-1-6
+2.1.7,INCOMPLETE,MANUAL_REVIEW,source,"secrets, workflow_token_policy",API chỉ cho metadata/số lượng; không chứng minh mọi secret đều tối thiểu.,FREE-CONTROLS.vi.md#cis-2-1-7
+2.1.8,INCOMPLETE,MANUAL_REVIEW,source,build_admin,Container scan không thay kiểm tra toàn hạ tầng GitHub-hosted.,FREE-CONTROLS.vi.md#cis-2-1-8
+2.1.9,INCOMPLETE,MANUAL_REVIEW,source,build_admin,Không thể tự xoay credential dịch vụ chưa được cung cấp; không rewrite history.,FREE-CONTROLS.vi.md#cis-2-1-9
+2.1.10,INCOMPLETE,MANUAL_REVIEW,,"hooks, build_admin",Không có endpoint build webhook được nhóm chỉ định.,FREE-CONTROLS.vi.md#cis-2-1-10
+2.1.11,INCOMPLETE,MANUAL_REVIEW,collaborators,build_admin,Thiếu username và cấu hình build platform; không tự hạ quyền.,FREE-CONTROLS.vi.md#cis-2-1-11
+2.2.2,INCOMPLETE,MANUAL_REVIEW,source,build_admin,Các job scanner vẫn tải package/tool; chưa đáp ứng cho mọi worker.,FREE-CONTROLS.vi.md#cis-2-2-2
+2.2.5,INCOMPLETE,MANUAL_REVIEW,source,build_admin,Hardening demo không thay runtime threat detection cho toàn bộ worker.,FREE-CONTROLS.vi.md#cis-2-2-5
+2.2.7,INCOMPLETE,MANUAL_REVIEW,source,build_admin,"GitHub-hosted provisioning do nhà cung cấp quản lý, chưa có đối chiếu đầy đủ.",FREE-CONTROLS.vi.md#cis-2-2-7
+2.3.3,INCOMPLETE,MANUAL_REVIEW,bundle,registry,Repo public không thể chứng minh output storage riêng tư; chưa tạo registry thật.,FREE-CONTROLS.vi.md#cis-2-3-3
+2.3.5,INCOMPLETE,MANUAL_REVIEW,collaborators,"actions_policy, build_admin",Không tự đổi quyền repo hoặc org workflow settings.,FREE-CONTROLS.vi.md#cis-2-3-5
+2.3.7,EVIDENCE_COLLECTED,MANUAL_REVIEW,source,,Đã có pipeline scan; required check/main enforcement chưa áp dụng.,FREE-CONTROLS.vi.md#cis-2-3-7
+2.4.1,EVIDENCE_COLLECTED,MANUAL_REVIEW,"bundle, releases",,Key tạm cùng job không thay release authority; chưa ký mọi artifact/mọi release.,FREE-CONTROLS.vi.md#cis-2-4-1
+3.1.2,INCOMPLETE,MANUAL_REVIEW,,supplier,Chưa có bộ SBOM gốc từ mọi nhà cung cấp.,FREE-CONTROLS.vi.md#cis-3-1-2
+3.1.3,INCOMPLETE,MANUAL_REVIEW,bundle,supplier,Same-job ephemeral key không phải chứng thực build độc lập của supplier.,FREE-CONTROLS.vi.md#cis-3-1-3
+3.1.4,INCOMPLETE,MANUAL_REVIEW,source,supplier,"Đã có graph scanner toolchain; còn graph cho Actions, OS, binary tải và xác minh extras/path giải dependency đầy đủ.",FREE-CONTROLS.vi.md#cis-3-1-4
+3.1.6,EVIDENCE_COLLECTED,MANUAL_REVIEW,bundle,,"Chưa bao phủ OS, mọi binary tải, application graph và supplier SBOM.",FREE-CONTROLS.vi.md#cis-3-1-6
+3.2.4,INCOMPLETE,MANUAL_REVIEW,owners,supplier,Chỉ theo dõi repository owner của Actions; chưa theo dõi người duy trì 32 package PyPI.,FREE-CONTROLS.vi.md#cis-3-2-4
+5.1.4,INCOMPLETE,MANUAL_REVIEW,source,"protection, production",Chưa có deployment target/quyền thật; CODEOWNERS chưa là enforcement.,FREE-CONTROLS.vi.md#cis-5-1-4
+5.2.3,INCOMPLETE,MANUAL_REVIEW,,production,Không có production được nhóm chỉ định; không tự triển khai cloud trả phí.,FREE-CONTROLS.vi.md#cis-5-2-3
+5.2.4,INCOMPLETE,MANUAL_REVIEW,,production,Không có production/secret manager; không bịa kết quả đăng nhập.,FREE-CONTROLS.vi.md#cis-5-2-4

@@ -1,0 +1,6 @@
+{
+  "expected_packages": 32,
+  "audited_packages": 32,
+  "known_vulnerabilities": 0,
+  "coverage": "EXACT"
+}

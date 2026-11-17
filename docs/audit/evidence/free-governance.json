@@ -1,0 +1,66 @@
+{
+  "checked_at": "2026-11-17T14:57:02.088513+00:00",
+  "repository": "nt542-r11-nhom17-cis-lab/finalrepo",
+  "scope": "API-visible branches and forks only; branch age is not user inactivity; no deletion or archive",
+  "branches": {
+    "http": 200,
+    "pagination_complete": true,
+    "items": [
+      {
+        "branch": "audit/cis-1-5-review",
+        "commit": "3c94d861ba09222b59d63186b49750d9075045e1",
+        "protected_api_flag": false,
+        "commit_http": 200,
+        "last_commit_age_days": 0.2,
+        "decision": "OWNER_REVIEW_REQUIRED; age alone does not mean inactive or safe to delete"
+      },
+      {
+        "branch": "audit/cis-complete-runbooks",
+        "commit": "8aa0ef2756b74e4bba19a7a21c06d09adbe3fa16",
+        "protected_api_flag": false,
+        "commit_http": 200,
+        "last_commit_age_days": 0.19,
+        "decision": "OWNER_REVIEW_REQUIRED; age alone does not mean inactive or safe to delete"
+      },
+      {
+        "branch": "audit/free-controls-completion",
+        "commit": "f1df426fb33f05fbdf64f04d5068a6d6c97085bf",
+        "protected_api_flag": false,
+        "commit_http": 200,
+        "last_commit_age_days": 0.0,
+        "decision": "OWNER_REVIEW_REQUIRED; age alone does not mean inactive or safe to delete"
+      },
+      {
+        "branch": "audit/organization-controls",
+        "commit": "613df629200bb2c0cee69c6e68f80ef3b653bf44",
+        "protected_api_flag": false,
+        "commit_http": 200,
+        "last_commit_age_days": 0.03,
+        "decision": "OWNER_REVIEW_REQUIRED; age alone does not mean inactive or safe to delete"
+      },
+      {
+        "branch": "audit/remediate-config-and-scans",
+        "commit": "8342a18addadf350886321bd882358412f91cd38",
+        "protected_api_flag": false,
+        "commit_http": 200,
+        "last_commit_age_days": 0.18,
+        "decision": "OWNER_REVIEW_REQUIRED; age alone does not mean inactive or safe to delete"
+      },
+      {
+        "branch": "main",
+        "commit": "e052945db5b4a2bace480b5ab98446a8b82da02e",
+        "protected_api_flag": false,
+        "commit_http": 200,
+        "last_commit_age_days": 0.21,
+        "decision": "OWNER_REVIEW_REQUIRED; age alone does not mean inactive or safe to delete"
+      }
+    ]
+  },
+  "forks": {
+    "http": 200,
+    "pagination_complete": true,
+    "items": []
+  },
+  "overall_cis": "PARTIAL",
+  "mutations": 0
+}

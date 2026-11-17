@@ -1,11 +1,15 @@
 {
   "controls": 120,
   "implementation_evidence_counts": {
-    "NOT_TESTED": 51,
-    "PARTIAL": 45,
-    "MANUAL_REVIEW": 14,
+    "PARTIAL": 66,
+    "MANUAL_REVIEW": 22,
+    "NOT_TESTED": 22,
     "LAB_ONLY": 10
   },
   "runbooks": 120,
-  "full_control_pass": 0
+  "full_control_pass": 0,
+  "original_free_scope": 48,
+  "new_partial": 21,
+  "new_manual_review": 8,
+  "still_not_tested_free_scope": 19
 }

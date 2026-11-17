@@ -1,0 +1,628 @@
+{
+  "checked_at": "2026-11-17T14:57:09.116217+00:00",
+  "repository": "nt542-r11-nhom17-cis-lab/finalrepo",
+  "mode": "GET-only; no settings/permissions/main mutations",
+  "sources": {
+    "repository": {
+      "available": true,
+      "http": 200,
+      "id": 1461201903,
+      "private": false,
+      "default_branch": "main"
+    },
+    "source": {
+      "available": true,
+      "commit": "f1df426fb33f05fbdf64f04d5068a6d6c97085bf",
+      "ref": "audit/free-controls-completion",
+      "tracked_count": 117,
+      "untracked_count": 0,
+      "tracked_workflows": [
+        ".github/workflows/app-build.yml",
+        ".github/workflows/cis-1-1-scan.yml",
+        ".github/workflows/cis-scanners.yml",
+        ".github/workflows/free-controls.yml",
+        ".github/workflows/pipeline-io.yml",
+        ".github/workflows/pipeline-security.yml",
+        ".github/workflows/resource-monitor.yml",
+        ".github/workflows/runner-check.yml"
+      ],
+      "note": "Current checkout only. Does not prove all organization code/changes are version-controlled."
+    },
+    "branches": {
+      "http": 200,
+      "complete": true,
+      "count": 6,
+      "available": true,
+      "note": "Counts only; count does not prove a security policy."
+    },
+    "forks": {
+      "http": 200,
+      "complete": true,
+      "count": 0,
+      "available": true,
+      "note": "Counts only; count does not prove a security policy."
+    },
+    "collaborators": {
+      "http": 200,
+      "complete": true,
+      "count": 2,
+      "available": true,
+      "note": "Counts only; count does not prove a security policy."
+    },
+    "pulls": {
+      "http": 200,
+      "complete": true,
+      "count": 0,
+      "available": true,
+      "note": "Counts only; count does not prove a security policy."
+    },
+    "hooks": {
+      "http": 403,
+      "complete": false,
+      "count": 0,
+      "available": false,
+      "note": "Counts only; count does not prove a security policy."
+    },
+    "releases": {
+      "http": 200,
+      "complete": true,
+      "count": 0,
+      "available": true,
+      "note": "Counts only; count does not prove a security policy."
+    },
+    "deployments": {
+      "http": 200,
+      "complete": true,
+      "count": 0,
+      "available": true,
+      "note": "Counts only; count does not prove a security policy."
+    },
+    "runners": {
+      "available": false,
+      "http": 403,
+      "count": null,
+      "note": "No runner names, labels, addresses or credentials exported."
+    },
+    "actions_policy": {
+      "available": false,
+      "http": 403,
+      "observed": {},
+      "note": "No secret names/values or application identities exported."
+    },
+    "workflow_token_policy": {
+      "available": false,
+      "http": 403,
+      "observed": {},
+      "note": "No secret names/values or application identities exported."
+    },
+    "secrets": {
+      "available": false,
+      "http": 403,
+      "observed": {},
+      "note": "No secret names/values or application identities exported."
+    },
+    "protection": {
+      "available": false,
+      "http": 403,
+      "components": {
+        "1.1.5": {
+          "http": 403,
+          "value": null,
+          "configuration_result": "UNKNOWN",
+          "note": "Classic protection only; effective rulesets, bypass and behavior still need review."
+        },
+        "1.1.7": {
+          "http": 403,
+          "value": null,
+          "configuration_result": "UNKNOWN",
+          "note": "Classic protection only; effective rulesets, bypass and behavior still need review."
+        },
+        "1.1.10": {
+          "http": 403,
+          "value": null,
+          "configuration_result": "UNKNOWN",
+          "note": "Classic protection only; effective rulesets, bypass and behavior still need review."
+        },
+        "1.1.11": {
+          "http": 403,
+          "value": null,
+          "configuration_result": "UNKNOWN",
+          "note": "Classic protection only; effective rulesets, bypass and behavior still need review."
+        },
+        "1.1.12": {
+          "http": 403,
+          "value": null,
+          "configuration_result": "UNKNOWN",
+          "note": "Classic protection only; effective rulesets, bypass and behavior still need review."
+        },
+        "1.1.13": {
+          "http": 403,
+          "value": null,
+          "configuration_result": "UNKNOWN",
+          "note": "Classic protection only; effective rulesets, bypass and behavior still need review."
+        },
+        "1.1.14": {
+          "http": 403,
+          "value": null,
+          "configuration_result": "UNKNOWN",
+          "note": "Classic protection only; effective rulesets, bypass and behavior still need review."
+        },
+        "1.1.15": {
+          "http": 403,
+          "value": null,
+          "configuration_result": "UNKNOWN",
+          "note": "Classic protection only; effective rulesets, bypass and behavior still need review."
+        }
+      }
+    },
+    "bundle": {
+      "available": true,
+      "path": "project-bundle/verification.json",
+      "note": "Read the referenced report; file existence is not a compliance finding."
+    },
+    "owners": {
+      "available": true,
+      "path": "action-owners/results.json",
+      "note": "Read the referenced report; file existence is not a compliance finding."
+    },
+    "organization_admin": {
+      "available": false,
+      "reason": "Need organization owner Settings evidence; integration lacks organization policy scopes."
+    },
+    "build_admin": {
+      "available": false,
+      "reason": "Need actual Actions access/runner lifecycle and configuration evidence."
+    },
+    "supplier": {
+      "available": false,
+      "reason": "Need independent supplier SBOM, provenance and verification trust roots."
+    },
+    "production": {
+      "available": false,
+      "reason": "Need a real authorized deployment target and identities; sandbox is not production."
+    },
+    "behavior_test": {
+      "available": false,
+      "reason": "Need approved disposable protected branch and multiple actual users; never test on main."
+    },
+    "registry": {
+      "available": false,
+      "reason": "Need real separately secured registry/storage permissions and audit evidence."
+    }
+  },
+  "controls": [
+    {
+      "cis_id": "1.1.1",
+      "execution": "EVIDENCE_COLLECTED",
+      "overall_cis": "MANUAL_REVIEW",
+      "available_sources": "source",
+      "missing_sources": "",
+      "remaining": "Chưa xác minh mọi dự án/thiết bị của nhóm đều quản lý mã bằng Git.",
+      "manual_guide": "FREE-CONTROLS.vi.md#cis-1-1-1"
+    },
+    {
+      "cis_id": "1.1.5",
+      "execution": "INCOMPLETE",
+      "overall_cis": "MANUAL_REVIEW",
+      "available_sources": "",
+      "missing_sources": "protection, behavior_test",
+      "remaining": "API protection 403; cần owner và hai tài khoản thử thật.",
+      "manual_guide": "FREE-CONTROLS.vi.md#cis-1-1-5"
+    },
+    {
+      "cis_id": "1.1.7",
+      "execution": "INCOMPLETE",
+      "overall_cis": "MANUAL_REVIEW",
+      "available_sources": "source",
+      "missing_sources": "protection, behavior_test",
+      "remaining": "CODEOWNERS chưa chứng minh rule có hiệu lực; thiếu username/thử nghiệm.",
+      "manual_guide": "FREE-CONTROLS.vi.md#cis-1-1-7"
+    },
+    {
+      "cis_id": "1.1.8",
+      "execution": "INCOMPLETE",
+      "overall_cis": "MANUAL_REVIEW",
+      "available_sources": "branches",
+      "missing_sources": "organization_admin",
+      "remaining": "Không tự xóa nhánh vì có thể chứa bài làm chưa gộp.",
+      "manual_guide": "FREE-CONTROLS.vi.md#cis-1-1-8"
+    },
+    {
+      "cis_id": "1.1.10",
+      "execution": "INCOMPLETE",
+      "overall_cis": "MANUAL_REVIEW",
+      "available_sources": "",
+      "missing_sources": "protection, behavior_test",
+      "remaining": "Cần quyền Settings và PR thử; không áp dụng main.",
+      "manual_guide": "FREE-CONTROLS.vi.md#cis-1-1-10"
+    },
+    {
+      "cis_id": "1.1.11",
+      "execution": "INCOMPLETE",
+      "overall_cis": "MANUAL_REVIEW",
+      "available_sources": "",
+      "missing_sources": "protection, behavior_test",
+      "remaining": "Thiếu hiệu lực rule và kiểm thử nhiều tài khoản.",
+      "manual_guide": "FREE-CONTROLS.vi.md#cis-1-1-11"
+    },
+    {
+      "cis_id": "1.1.12",
+      "execution": "INCOMPLETE",
+      "overall_cis": "MANUAL_REVIEW",
+      "available_sources": "",
+      "missing_sources": "protection, behavior_test",
+      "remaining": "Git author hoặc hash commit không thay bằng chứng chữ ký.",
+      "manual_guide": "FREE-CONTROLS.vi.md#cis-1-1-12"
+    },
+    {
+      "cis_id": "1.1.13",
+      "execution": "INCOMPLETE",
+      "overall_cis": "MANUAL_REVIEW",
+      "available_sources": "",
+      "missing_sources": "protection, behavior_test",
+      "remaining": "Chưa đổi rule hoặc rewrite lịch sử.",
+      "manual_guide": "FREE-CONTROLS.vi.md#cis-1-1-13"
+    },
+    {
+      "cis_id": "1.1.14",
+      "execution": "INCOMPLETE",
+      "overall_cis": "MANUAL_REVIEW",
+      "available_sources": "",
+      "missing_sources": "protection, behavior_test",
+      "remaining": "Không thử trên main để tránh khóa công việc nhóm.",
+      "manual_guide": "FREE-CONTROLS.vi.md#cis-1-1-14"
+    },
+    {
+      "cis_id": "1.1.15",
+      "execution": "INCOMPLETE",
+      "overall_cis": "MANUAL_REVIEW",
+      "available_sources": "collaborators",
+      "missing_sources": "protection, behavior_test",
+      "remaining": "Không tự thay quyền hoặc mời người chưa được xác định.",
+      "manual_guide": "FREE-CONTROLS.vi.md#cis-1-1-15"
+    },
+    {
+      "cis_id": "1.1.18",
+      "execution": "INCOMPLETE",
+      "overall_cis": "MANUAL_REVIEW",
+      "available_sources": "source",
+      "missing_sources": "protection, behavior_test",
+      "remaining": "Scan nhánh audit chưa đồng nghĩa mọi merge trên main đều được quét/chặn.",
+      "manual_guide": "FREE-CONTROLS.vi.md#cis-1-1-18"
+    },
+    {
+      "cis_id": "1.1.19",
+      "execution": "INCOMPLETE",
+      "overall_cis": "MANUAL_REVIEW",
+      "available_sources": "",
+      "missing_sources": "organization_admin",
+      "remaining": "Không dùng API Enterprise làm điều kiện bắt buộc của phương án Free; cần ảnh/log UI.",
+      "manual_guide": "FREE-CONTROLS.vi.md#cis-1-1-19"
+    },
+    {
+      "cis_id": "1.2.5",
+      "execution": "INCOMPLETE",
+      "overall_cis": "MANUAL_REVIEW",
+      "available_sources": "forks",
+      "missing_sources": "organization_admin",
+      "remaining": "Không có fork lúc kiểm tra không chứng minh có quy trình quản lý fork.",
+      "manual_guide": "FREE-CONTROLS.vi.md#cis-1-2-5"
+    },
+    {
+      "cis_id": "1.2.7",
+      "execution": "INCOMPLETE",
+      "overall_cis": "MANUAL_REVIEW",
+      "available_sources": "",
+      "missing_sources": "organization_admin",
+      "remaining": "Đổi trạng thái repo thật cần quyết định nhóm.",
+      "manual_guide": "FREE-CONTROLS.vi.md#cis-1-2-7"
+    },
+    {
+      "cis_id": "1.3.1",
+      "execution": "INCOMPLETE",
+      "overall_cis": "MANUAL_REVIEW",
+      "available_sources": "",
+      "missing_sources": "organization_admin",
+      "remaining": "Thiếu danh tính thật và owner review; không suy tổng thành viên từ public members.",
+      "manual_guide": "FREE-CONTROLS.vi.md#cis-1-3-1"
+    },
+    {
+      "cis_id": "1.3.3",
+      "execution": "INCOMPLETE",
+      "overall_cis": "MANUAL_REVIEW",
+      "available_sources": "",
+      "missing_sources": "organization_admin",
+      "remaining": "Chưa có quyết định vai trò của nhóm; không bịa số người.",
+      "manual_guide": "FREE-CONTROLS.vi.md#cis-1-3-3"
+    },
+    {
+      "cis_id": "1.3.4",
+      "execution": "INCOMPLETE",
+      "overall_cis": "MANUAL_REVIEW",
+      "available_sources": "collaborators",
+      "missing_sources": "organization_admin",
+      "remaining": "Thay đổi yêu cầu MFA có thể ảnh hưởng thành viên, cần owner thao tác sau rà soát.",
+      "manual_guide": "FREE-CONTROLS.vi.md#cis-1-3-4"
+    },
+    {
+      "cis_id": "1.3.6",
+      "execution": "INCOMPLETE",
+      "overall_cis": "MANUAL_REVIEW",
+      "available_sources": "",
+      "missing_sources": "organization_admin",
+      "remaining": "Cần email và đồng ý của các thành viên; chưa có thông tin nên không mời.",
+      "manual_guide": "FREE-CONTROLS.vi.md#cis-1-3-6"
+    },
+    {
+      "cis_id": "1.3.7",
+      "execution": "INCOMPLETE",
+      "overall_cis": "MANUAL_REVIEW",
+      "available_sources": "collaborators",
+      "missing_sources": "organization_admin",
+      "remaining": "Snapshot người dùng thấy một admin (hieune-ui); cần owner xác minh toàn bộ quyền kế thừa và nhóm quyết định admin thứ hai. Không tự cấp quyền.",
+      "manual_guide": "FREE-CONTROLS.vi.md#cis-1-3-7"
+    },
+    {
+      "cis_id": "1.3.13",
+      "execution": "INCOMPLETE",
+      "overall_cis": "MANUAL_REVIEW",
+      "available_sources": "source",
+      "missing_sources": "organization_admin",
+      "remaining": "Chưa có kênh nhận cảnh báo, ngưỡng hành vi và vận hành thực tế.",
+      "manual_guide": "FREE-CONTROLS.vi.md#cis-1-3-13"
+    },
+    {
+      "cis_id": "1.4.1",
+      "execution": "INCOMPLETE",
+      "overall_cis": "MANUAL_REVIEW",
+      "available_sources": "",
+      "missing_sources": "organization_admin",
+      "remaining": "Connector không có quyền quản lý policy app.",
+      "manual_guide": "FREE-CONTROLS.vi.md#cis-1-4-1"
+    },
+    {
+      "cis_id": "1.4.2",
+      "execution": "INCOMPLETE",
+      "overall_cis": "MANUAL_REVIEW",
+      "available_sources": "",
+      "missing_sources": "organization_admin",
+      "remaining": "Không tự gỡ Connector hoặc app có thể đang dùng.",
+      "manual_guide": "FREE-CONTROLS.vi.md#cis-1-4-2"
+    },
+    {
+      "cis_id": "1.4.3",
+      "execution": "INCOMPLETE",
+      "overall_cis": "MANUAL_REVIEW",
+      "available_sources": "",
+      "missing_sources": "organization_admin",
+      "remaining": "Cần ảnh cấu hình cài đặt; không suy least privilege từ quyền admin của user.",
+      "manual_guide": "FREE-CONTROLS.vi.md#cis-1-4-3"
+    },
+    {
+      "cis_id": "1.4.4",
+      "execution": "INCOMPLETE",
+      "overall_cis": "MANUAL_REVIEW",
+      "available_sources": "",
+      "missing_sources": "hooks, organization_admin",
+      "remaining": "Chưa có endpoint webhook thực; không tạo webhook gửi dữ liệu ra ngoài.",
+      "manual_guide": "FREE-CONTROLS.vi.md#cis-1-4-4"
+    },
+    {
+      "cis_id": "2.1.2",
+      "execution": "INCOMPLETE",
+      "overall_cis": "MANUAL_REVIEW",
+      "available_sources": "source",
+      "missing_sources": "build_admin",
+      "remaining": "GitHub-hosted image cập nhật; cần lifecycle/provisioning evidence đầy đủ.",
+      "manual_guide": "FREE-CONTROLS.vi.md#cis-2-1-2"
+    },
+    {
+      "cis_id": "2.1.3",
+      "execution": "EVIDENCE_COLLECTED",
+      "overall_cis": "MANUAL_REVIEW",
+      "available_sources": "source",
+      "missing_sources": "",
+      "remaining": "Log thuộc run nhánh thử; cần chính sách retention được nhóm duyệt.",
+      "manual_guide": "FREE-CONTROLS.vi.md#cis-2-1-3"
+    },
+    {
+      "cis_id": "2.1.5",
+      "execution": "INCOMPLETE",
+      "overall_cis": "MANUAL_REVIEW",
+      "available_sources": "collaborators",
+      "missing_sources": "actions_policy, build_admin",
+      "remaining": "API quản trị Actions 403; cần owner kiểm tra UI.",
+      "manual_guide": "FREE-CONTROLS.vi.md#cis-2-1-5"
+    },
+    {
+      "cis_id": "2.1.6",
+      "execution": "INCOMPLETE",
+      "overall_cis": "MANUAL_REVIEW",
+      "available_sources": "",
+      "missing_sources": "actions_policy, build_admin",
+      "remaining": "Chưa có bằng chứng thực về mọi đường truy cập; repo public cho phép đọc log không phải quyền điều khiển.",
+      "manual_guide": "FREE-CONTROLS.vi.md#cis-2-1-6"
+    },
+    {
+      "cis_id": "2.1.7",
+      "execution": "INCOMPLETE",
+      "overall_cis": "MANUAL_REVIEW",
+      "available_sources": "source",
+      "missing_sources": "secrets, workflow_token_policy",
+      "remaining": "API chỉ cho metadata/số lượng; không chứng minh mọi secret đều tối thiểu.",
+      "manual_guide": "FREE-CONTROLS.vi.md#cis-2-1-7"
+    },
+    {
+      "cis_id": "2.1.8",
+      "execution": "INCOMPLETE",
+      "overall_cis": "MANUAL_REVIEW",
+      "available_sources": "source",
+      "missing_sources": "build_admin",
+      "remaining": "Container scan không thay kiểm tra toàn hạ tầng GitHub-hosted.",
+      "manual_guide": "FREE-CONTROLS.vi.md#cis-2-1-8"
+    },
+    {
+      "cis_id": "2.1.9",
+      "execution": "INCOMPLETE",
+      "overall_cis": "MANUAL_REVIEW",
+      "available_sources": "source",
+      "missing_sources": "build_admin",
+      "remaining": "Không thể tự xoay credential dịch vụ chưa được cung cấp; không rewrite history.",
+      "manual_guide": "FREE-CONTROLS.vi.md#cis-2-1-9"
+    },
+    {
+      "cis_id": "2.1.10",
+      "execution": "INCOMPLETE",
+      "overall_cis": "MANUAL_REVIEW",
+      "available_sources": "",
+      "missing_sources": "hooks, build_admin",
+      "remaining": "Không có endpoint build webhook được nhóm chỉ định.",
+      "manual_guide": "FREE-CONTROLS.vi.md#cis-2-1-10"
+    },
+    {
+      "cis_id": "2.1.11",
+      "execution": "INCOMPLETE",
+      "overall_cis": "MANUAL_REVIEW",
+      "available_sources": "collaborators",
+      "missing_sources": "build_admin",
+      "remaining": "Thiếu username và cấu hình build platform; không tự hạ quyền.",
+      "manual_guide": "FREE-CONTROLS.vi.md#cis-2-1-11"
+    },
+    {
+      "cis_id": "2.2.2",
+      "execution": "INCOMPLETE",
+      "overall_cis": "MANUAL_REVIEW",
+      "available_sources": "source",
+      "missing_sources": "build_admin",
+      "remaining": "Các job scanner vẫn tải package/tool; chưa đáp ứng cho mọi worker.",
+      "manual_guide": "FREE-CONTROLS.vi.md#cis-2-2-2"
+    },
+    {
+      "cis_id": "2.2.5",
+      "execution": "INCOMPLETE",
+      "overall_cis": "MANUAL_REVIEW",
+      "available_sources": "source",
+      "missing_sources": "build_admin",
+      "remaining": "Hardening demo không thay runtime threat detection cho toàn bộ worker.",
+      "manual_guide": "FREE-CONTROLS.vi.md#cis-2-2-5"
+    },
+    {
+      "cis_id": "2.2.7",
+      "execution": "INCOMPLETE",
+      "overall_cis": "MANUAL_REVIEW",
+      "available_sources": "source",
+      "missing_sources": "build_admin",
+      "remaining": "GitHub-hosted provisioning do nhà cung cấp quản lý, chưa có đối chiếu đầy đủ.",
+      "manual_guide": "FREE-CONTROLS.vi.md#cis-2-2-7"
+    },
+    {
+      "cis_id": "2.3.3",
+      "execution": "INCOMPLETE",
+      "overall_cis": "MANUAL_REVIEW",
+      "available_sources": "bundle",
+      "missing_sources": "registry",
+      "remaining": "Repo public không thể chứng minh output storage riêng tư; chưa tạo registry thật.",
+      "manual_guide": "FREE-CONTROLS.vi.md#cis-2-3-3"
+    },
+    {
+      "cis_id": "2.3.5",
+      "execution": "INCOMPLETE",
+      "overall_cis": "MANUAL_REVIEW",
+      "available_sources": "collaborators",
+      "missing_sources": "actions_policy, build_admin",
+      "remaining": "Không tự đổi quyền repo hoặc org workflow settings.",
+      "manual_guide": "FREE-CONTROLS.vi.md#cis-2-3-5"
+    },
+    {
+      "cis_id": "2.3.7",
+      "execution": "EVIDENCE_COLLECTED",
+      "overall_cis": "MANUAL_REVIEW",
+      "available_sources": "source",
+      "missing_sources": "",
+      "remaining": "Đã có pipeline scan; required check/main enforcement chưa áp dụng.",
+      "manual_guide": "FREE-CONTROLS.vi.md#cis-2-3-7"
+    },
+    {
+      "cis_id": "2.4.1",
+      "execution": "EVIDENCE_COLLECTED",
+      "overall_cis": "MANUAL_REVIEW",
+      "available_sources": "bundle, releases",
+      "missing_sources": "",
+      "remaining": "Key tạm cùng job không thay release authority; chưa ký mọi artifact/mọi release.",
+      "manual_guide": "FREE-CONTROLS.vi.md#cis-2-4-1"
+    },
+    {
+      "cis_id": "3.1.2",
+      "execution": "INCOMPLETE",
+      "overall_cis": "MANUAL_REVIEW",
+      "available_sources": "",
+      "missing_sources": "supplier",
+      "remaining": "Chưa có bộ SBOM gốc từ mọi nhà cung cấp.",
+      "manual_guide": "FREE-CONTROLS.vi.md#cis-3-1-2"
+    },
+    {
+      "cis_id": "3.1.3",
+      "execution": "INCOMPLETE",
+      "overall_cis": "MANUAL_REVIEW",
+      "available_sources": "bundle",
+      "missing_sources": "supplier",
+      "remaining": "Same-job ephemeral key không phải chứng thực build độc lập của supplier.",
+      "manual_guide": "FREE-CONTROLS.vi.md#cis-3-1-3"
+    },
+    {
+      "cis_id": "3.1.4",
+      "execution": "INCOMPLETE",
+      "overall_cis": "MANUAL_REVIEW",
+      "available_sources": "source",
+      "missing_sources": "supplier",
+      "remaining": "Đã có graph scanner toolchain; còn graph cho Actions, OS, binary tải và xác minh extras/path giải dependency đầy đủ.",
+      "manual_guide": "FREE-CONTROLS.vi.md#cis-3-1-4"
+    },
+    {
+      "cis_id": "3.1.6",
+      "execution": "EVIDENCE_COLLECTED",
+      "overall_cis": "MANUAL_REVIEW",
+      "available_sources": "bundle",
+      "missing_sources": "",
+      "remaining": "Chưa bao phủ OS, mọi binary tải, application graph và supplier SBOM.",
+      "manual_guide": "FREE-CONTROLS.vi.md#cis-3-1-6"
+    },
+    {
+      "cis_id": "3.2.4",
+      "execution": "INCOMPLETE",
+      "overall_cis": "MANUAL_REVIEW",
+      "available_sources": "owners",
+      "missing_sources": "supplier",
+      "remaining": "Chỉ theo dõi repository owner của Actions; chưa theo dõi người duy trì 32 package PyPI.",
+      "manual_guide": "FREE-CONTROLS.vi.md#cis-3-2-4"
+    },
+    {
+      "cis_id": "5.1.4",
+      "execution": "INCOMPLETE",
+      "overall_cis": "MANUAL_REVIEW",
+      "available_sources": "source",
+      "missing_sources": "protection, production",
+      "remaining": "Chưa có deployment target/quyền thật; CODEOWNERS chưa là enforcement.",
+      "manual_guide": "FREE-CONTROLS.vi.md#cis-5-1-4"
+    },
+    {
+      "cis_id": "5.2.3",
+      "execution": "INCOMPLETE",
+      "overall_cis": "MANUAL_REVIEW",
+      "available_sources": "",
+      "missing_sources": "production",
+      "remaining": "Không có production được nhóm chỉ định; không tự triển khai cloud trả phí.",
+      "manual_guide": "FREE-CONTROLS.vi.md#cis-5-2-3"
+    },
+    {
+      "cis_id": "5.2.4",
+      "execution": "INCOMPLETE",
+      "overall_cis": "MANUAL_REVIEW",
+      "available_sources": "",
+      "missing_sources": "production",
+      "remaining": "Không có production/secret manager; không bịa kết quả đăng nhập.",
+      "manual_guide": "FREE-CONTROLS.vi.md#cis-5-2-4"
+    }
+  ],
+  "full_control_pass": 0
+}

@@ -1,0 +1,103 @@
+{
+  "checked_at": "2026-11-17T14:57:02.016857+00:00",
+  "scope": "Pinned GitHub Actions repositories and owner numeric IDs only; not PyPI maintainers, individual commits or supplier trust",
+  "results": [
+    {
+      "action": "actions/checkout",
+      "state": "UNCHANGED",
+      "expected": {
+        "repository_id": 197814629,
+        "owner_id": 44036562
+      },
+      "observed": {
+        "repository_id": 197814629,
+        "owner_id": 44036562
+      }
+    },
+    {
+      "action": "actions/upload-artifact",
+      "state": "UNCHANGED",
+      "expected": {
+        "repository_id": 192625955,
+        "owner_id": 44036562
+      },
+      "observed": {
+        "repository_id": 192625955,
+        "owner_id": 44036562
+      }
+    },
+    {
+      "action": "anchore/sbom-action",
+      "state": "UNCHANGED",
+      "expected": {
+        "repository_id": 399925381,
+        "owner_id": 16208487
+      },
+      "observed": {
+        "repository_id": 399925381,
+        "owner_id": 16208487
+      }
+    },
+    {
+      "action": "anchore/scan-action",
+      "state": "UNCHANGED",
+      "expected": {
+        "repository_id": 212692077,
+        "owner_id": 16208487
+      },
+      "observed": {
+        "repository_id": 212692077,
+        "owner_id": 16208487
+      }
+    },
+    {
+      "action": "aquasecurity/trivy-action",
+      "state": "UNCHANGED",
+      "expected": {
+        "repository_id": 268833180,
+        "owner_id": 12783832
+      },
+      "observed": {
+        "repository_id": 268833180,
+        "owner_id": 12783832
+      }
+    },
+    {
+      "action": "rhysd/actionlint",
+      "state": "UNCHANGED",
+      "expected": {
+        "repository_id": 370668507,
+        "owner_id": 823277
+      },
+      "observed": {
+        "repository_id": 370668507,
+        "owner_id": 823277
+      }
+    },
+    {
+      "action": "step-security/harden-runner",
+      "state": "UNCHANGED",
+      "expected": {
+        "repository_id": 422287306,
+        "owner_id": 88700172
+      },
+      "observed": {
+        "repository_id": 422287306,
+        "owner_id": 88700172
+      }
+    },
+    {
+      "action": "zizmorcore/zizmor-action",
+      "state": "UNCHANGED",
+      "expected": {
+        "repository_id": 985558803,
+        "owner_id": 210636713
+      },
+      "observed": {
+        "repository_id": 985558803,
+        "owner_id": 210636713
+      }
+    }
+  ],
+  "overall_cis": "PARTIAL"
+}

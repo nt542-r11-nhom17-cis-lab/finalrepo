@@ -1,0 +1,9 @@
+{
+  "scope": "Three payloads of this branch run only, not every release",
+  "commit": "f1df426fb33f05fbdf64f04d5068a6d6c97085bf",
+  "payloads_verified": 3,
+  "tampered_payload_rejected": true,
+  "signer_fingerprint_sha256_der": "b80961a87d4d5fe43622c6fdf3cab6bda1beba77604172feb72be00bbd2ab675",
+  "private_key_exported": false,
+  "overall_cis": "PARTIAL"
+}

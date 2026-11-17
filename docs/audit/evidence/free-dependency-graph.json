@@ -1,0 +1,1587 @@
+{
+  "scope": "32 locked Python scanner distributions only, current Python/platform default markers; optional declared edges retained, extras resolution not certified",
+  "nodes": [
+    {
+      "name": "bandit",
+      "version": "1.9.4"
+    },
+    {
+      "name": "boolean-py",
+      "version": "5.0"
+    },
+    {
+      "name": "cachecontrol",
+      "version": "0.15.0"
+    },
+    {
+      "name": "certifi",
+      "version": "2026.10.23"
+    },
+    {
+      "name": "charset-normalizer",
+      "version": "3.5.2"
+    },
+    {
+      "name": "cyclonedx-python-lib",
+      "version": "11.12.0"
+    },
+    {
+      "name": "defusedxml",
+      "version": "0.7.1"
+    },
+    {
+      "name": "filelock",
+      "version": "4.2.11"
+    },
+    {
+      "name": "idna",
+      "version": "3.20"
+    },
+    {
+      "name": "license-expression",
+      "version": "30.4.4"
+    },
+    {
+      "name": "markdown-it-py",
+      "version": "4.3.0"
+    },
+    {
+      "name": "mdurl",
+      "version": "0.1.2"
+    },
+    {
+      "name": "msgpack",
+      "version": "1.2.4"
+    },
+    {
+      "name": "packageurl-python",
+      "version": "0.17.6"
+    },
+    {
+      "name": "packaging",
+      "version": "26.3"
+    },
+    {
+      "name": "pip",
+      "version": "26.3"
+    },
+    {
+      "name": "pip-api",
+      "version": "0.0.35"
+    },
+    {
+      "name": "pip-audit",
+      "version": "2.10.1"
+    },
+    {
+      "name": "pip-requirements-parser",
+      "version": "32.0.1"
+    },
+    {
+      "name": "platformdirs",
+      "version": "4.14.5"
+    },
+    {
+      "name": "py-serializable",
+      "version": "2.2.0"
+    },
+    {
+      "name": "pygments",
+      "version": "2.21.0"
+    },
+    {
+      "name": "pyparsing",
+      "version": "3.3.3"
+    },
+    {
+      "name": "pyyaml",
+      "version": "6.0.3"
+    },
+    {
+      "name": "requests",
+      "version": "2.34.2"
+    },
+    {
+      "name": "rich",
+      "version": "15.0.0"
+    },
+    {
+      "name": "sortedcontainers",
+      "version": "2.4.0"
+    },
+    {
+      "name": "stevedore",
+      "version": "5.10.0"
+    },
+    {
+      "name": "tomli",
+      "version": "2.5.0"
+    },
+    {
+      "name": "tomli-w",
+      "version": "1.2.0"
+    },
+    {
+      "name": "typing-extensions",
+      "version": "4.16.0"
+    },
+    {
+      "name": "urllib3",
+      "version": "2.8.0"
+    }
+  ],
+  "edges": [
+    {
+      "from": "bandit",
+      "to": "pyyaml",
+      "declared": "PyYAML>=5.3.1",
+      "marker": null,
+      "default_environment_active": true,
+      "target_in_lock": true,
+      "locked_version_satisfies": true,
+      "scope": "Declared metadata edge; selected extras/actual resolver path not inferred"
+    },
+    {
+      "from": "bandit",
+      "to": "stevedore",
+      "declared": "stevedore>=1.20.0",
+      "marker": null,
+      "default_environment_active": true,
+      "target_in_lock": true,
+      "locked_version_satisfies": true,
+      "scope": "Declared metadata edge; selected extras/actual resolver path not inferred"
+    },
+    {
+      "from": "bandit",
+      "to": "rich",
+      "declared": "rich",
+      "marker": null,
+      "default_environment_active": true,
+      "target_in_lock": true,
+      "locked_version_satisfies": true,
+      "scope": "Declared metadata edge; selected extras/actual resolver path not inferred"
+    },
+    {
+      "from": "bandit",
+      "to": "colorama",
+      "declared": "colorama>=0.3.9; platform_system == \"Windows\"",
+      "marker": "platform_system == \"Windows\"",
+      "default_environment_active": false,
+      "target_in_lock": false,
+      "locked_version_satisfies": false,
+      "scope": "Declared metadata edge; selected extras/actual resolver path not inferred"
+    },
+    {
+      "from": "bandit",
+      "to": "pyyaml",
+      "declared": "PyYAML; extra == \"yaml\"",
+      "marker": "extra == \"yaml\"",
+      "default_environment_active": false,
+      "target_in_lock": true,
+      "locked_version_satisfies": true,
+      "scope": "Declared metadata edge; selected extras/actual resolver path not inferred"
+    },
+    {
+      "from": "bandit",
+      "to": "tomli",
+      "declared": "tomli>=1.1.0; python_version < \"3.11\" and extra == \"toml\"",
+      "marker": "python_version < \"3.11\" and extra == \"toml\"",
+      "default_environment_active": false,
+      "target_in_lock": true,
+      "locked_version_satisfies": true,
+      "scope": "Declared metadata edge; selected extras/actual resolver path not inferred"
+    },
+    {
+      "from": "bandit",
+      "to": "gitpython",
+      "declared": "GitPython>=3.1.30; extra == \"baseline\"",
+      "marker": "extra == \"baseline\"",
+      "default_environment_active": false,
+      "target_in_lock": false,
+      "locked_version_satisfies": false,
+      "scope": "Declared metadata edge; selected extras/actual resolver path not inferred"
+    },
+    {
+      "from": "bandit",
+      "to": "sarif-om",
+      "declared": "sarif-om>=1.0.4; extra == \"sarif\"",
+      "marker": "extra == \"sarif\"",
+      "default_environment_active": false,
+      "target_in_lock": false,
+      "locked_version_satisfies": false,
+      "scope": "Declared metadata edge; selected extras/actual resolver path not inferred"
+    },
+    {
+      "from": "bandit",
+      "to": "jschema-to-python",
+      "declared": "jschema-to-python>=1.2.3; extra == \"sarif\"",
+      "marker": "extra == \"sarif\"",
+      "default_environment_active": false,
+      "target_in_lock": false,
+      "locked_version_satisfies": false,
+      "scope": "Declared metadata edge; selected extras/actual resolver path not inferred"
+    },
+    {
+      "from": "bandit",
+      "to": "coverage",
+      "declared": "coverage>=4.5.4; extra == \"test\"",
+      "marker": "extra == \"test\"",
+      "default_environment_active": false,
+      "target_in_lock": false,
+      "locked_version_satisfies": false,
+      "scope": "Declared metadata edge; selected extras/actual resolver path not inferred"
+    },
+    {
+      "from": "bandit",
+      "to": "fixtures",
+      "declared": "fixtures>=3.0.0; extra == \"test\"",
+      "marker": "extra == \"test\"",
+      "default_environment_active": false,
+      "target_in_lock": false,
+      "locked_version_satisfies": false,
+      "scope": "Declared metadata edge; selected extras/actual resolver path not inferred"
+    },
+    {
+      "from": "bandit",
+      "to": "flake8",
+      "declared": "flake8>=4.0.0; extra == \"test\"",
+      "marker": "extra == \"test\"",
+      "default_environment_active": false,
+      "target_in_lock": false,
+      "locked_version_satisfies": false,
+      "scope": "Declared metadata edge; selected extras/actual resolver path not inferred"
+    },
+    {
+      "from": "bandit",
+      "to": "stestr",
+      "declared": "stestr>=2.5.0; extra == \"test\"",
+      "marker": "extra == \"test\"",
+      "default_environment_active": false,
+      "target_in_lock": false,
+      "locked_version_satisfies": false,
+      "scope": "Declared metadata edge; selected extras/actual resolver path not inferred"
+    },
+    {
+      "from": "bandit",
+      "to": "testscenarios",
+      "declared": "testscenarios>=0.5.0; extra == \"test\"",
+      "marker": "extra == \"test\"",
+      "default_environment_active": false,
+      "target_in_lock": false,
+      "locked_version_satisfies": false,
+      "scope": "Declared metadata edge; selected extras/actual resolver path not inferred"
+    },
+    {
+      "from": "bandit",
+      "to": "testtools",
+      "declared": "testtools>=2.3.0; extra == \"test\"",
+      "marker": "extra == \"test\"",
+      "default_environment_active": false,
+      "target_in_lock": false,
+      "locked_version_satisfies": false,
+      "scope": "Declared metadata edge; selected extras/actual resolver path not inferred"
+    },
+    {
+      "from": "bandit",
+      "to": "beautifulsoup4",
+      "declared": "beautifulsoup4>=4.8.0; extra == \"test\"",
+      "marker": "extra == \"test\"",
+      "default_environment_active": false,
+      "target_in_lock": false,
+      "locked_version_satisfies": false,
+      "scope": "Declared metadata edge; selected extras/actual resolver path not inferred"
+    },
+    {
+      "from": "bandit",
+      "to": "pylint",
+      "declared": "pylint==1.9.4; extra == \"test\"",
+      "marker": "extra == \"test\"",
+      "default_environment_active": false,
+      "target_in_lock": false,
+      "locked_version_satisfies": false,
+      "scope": "Declared metadata edge; selected extras/actual resolver path not inferred"
+    },
+    {
+      "from": "boolean-py",
+      "to": "pytest",
+      "declared": "pytest!=7.0.0,>=6; extra == \"testing\"",
+      "marker": "extra == \"testing\"",
+      "default_environment_active": false,
+      "target_in_lock": false,
+      "locked_version_satisfies": false,
+      "scope": "Declared metadata edge; selected extras/actual resolver path not inferred"
+    },
+    {
+      "from": "boolean-py",
+      "to": "pytest-xdist",
+      "declared": "pytest-xdist>=2; extra == \"testing\"",
+      "marker": "extra == \"testing\"",
+      "default_environment_active": false,
+      "target_in_lock": false,
+      "locked_version_satisfies": false,
+      "scope": "Declared metadata edge; selected extras/actual resolver path not inferred"
+    },
+    {
+      "from": "boolean-py",
+      "to": "twine",
+      "declared": "twine; extra == \"dev\"",
+      "marker": "extra == \"dev\"",
+      "default_environment_active": false,
+      "target_in_lock": false,
+      "locked_version_satisfies": false,
+      "scope": "Declared metadata edge; selected extras/actual resolver path not inferred"
+    },
+    {
+      "from": "boolean-py",
+      "to": "build",
+      "declared": "build; extra == \"dev\"",
+      "marker": "extra == \"dev\"",
+      "default_environment_active": false,
+      "target_in_lock": false,
+      "locked_version_satisfies": false,
+      "scope": "Declared metadata edge; selected extras/actual resolver path not inferred"
+    },
+    {
+      "from": "boolean-py",
+      "to": "black",
+      "declared": "black; extra == \"linting\"",
+      "marker": "extra == \"linting\"",
+      "default_environment_active": false,
+      "target_in_lock": false,
+      "locked_version_satisfies": false,
+      "scope": "Declared metadata edge; selected extras/actual resolver path not inferred"
+    },
+    {
+      "from": "boolean-py",
+      "to": "isort",
+      "declared": "isort; extra == \"linting\"",
+      "marker": "extra == \"linting\"",
+      "default_environment_active": false,
+      "target_in_lock": false,
+      "locked_version_satisfies": false,
+      "scope": "Declared metadata edge; selected extras/actual resolver path not inferred"
+    },
+    {
+      "from": "boolean-py",
+      "to": "pycodestyle",
+      "declared": "pycodestyle; extra == \"linting\"",
+      "marker": "extra == \"linting\"",
+      "default_environment_active": false,
+      "target_in_lock": false,
+      "locked_version_satisfies": false,
+      "scope": "Declared metadata edge; selected extras/actual resolver path not inferred"
+    },
+    {
+      "from": "boolean-py",
+      "to": "sphinx",
+      "declared": "Sphinx>=3.3.1; extra == \"docs\"",
+      "marker": "extra == \"docs\"",
+      "default_environment_active": false,
+      "target_in_lock": false,
+      "locked_version_satisfies": false,
+      "scope": "Declared metadata edge; selected extras/actual resolver path not inferred"
+    },
+    {
+      "from": "boolean-py",
+      "to": "sphinx-rtd-theme",
+      "declared": "sphinx-rtd-theme>=0.5.0; extra == \"docs\"",
+      "marker": "extra == \"docs\"",
+      "default_environment_active": false,
+      "target_in_lock": false,
+      "locked_version_satisfies": false,
+      "scope": "Declared metadata edge; selected extras/actual resolver path not inferred"
+    },
+    {
+      "from": "boolean-py",
+      "to": "doc8",
+      "declared": "doc8>=0.8.1; extra == \"docs\"",
+      "marker": "extra == \"docs\"",
+      "default_environment_active": false,
+      "target_in_lock": false,
+      "locked_version_satisfies": false,
+      "scope": "Declared metadata edge; selected extras/actual resolver path not inferred"
+    },
+    {
+      "from": "boolean-py",
+      "to": "sphinxcontrib-apidoc",
+      "declared": "sphinxcontrib-apidoc>=0.3.0; extra == \"docs\"",
+      "marker": "extra == \"docs\"",
+      "default_environment_active": false,
+      "target_in_lock": false,
+      "locked_version_satisfies": false,
+      "scope": "Declared metadata edge; selected extras/actual resolver path not inferred"
+    },
+    {
+      "from": "cachecontrol",
+      "to": "requests",
+      "declared": "requests>=2.16.0",
+      "marker": null,
+      "default_environment_active": true,
+      "target_in_lock": true,
+      "locked_version_satisfies": true,
+      "scope": "Declared metadata edge; selected extras/actual resolver path not inferred"
+    },
+    {
+      "from": "cachecontrol",
+      "to": "msgpack",
+      "declared": "msgpack>=0.5.2,<2.0.0",
+      "marker": null,
+      "default_environment_active": true,
+      "target_in_lock": true,
+      "locked_version_satisfies": true,
+      "scope": "Declared metadata edge; selected extras/actual resolver path not inferred"
+    },
+    {
+      "from": "cachecontrol",
+      "to": "filelock",
+      "declared": "filelock>=3.8.0 ; extra == 'filecache'",
+      "marker": "extra == \"filecache\"",
+      "default_environment_active": false,
+      "target_in_lock": true,
+      "locked_version_satisfies": true,
+      "scope": "Declared metadata edge; selected extras/actual resolver path not inferred"
+    },
+    {
+      "from": "cachecontrol",
+      "to": "redis",
+      "declared": "redis>=2.10.5 ; extra == 'redis'",
+      "marker": "extra == \"redis\"",
+      "default_environment_active": false,
+      "target_in_lock": false,
+      "locked_version_satisfies": false,
+      "scope": "Declared metadata edge; selected extras/actual resolver path not inferred"
+    },
+    {
+      "from": "cyclonedx-python-lib",
+      "to": "jsonschema",
+      "declared": "jsonschema[format-nongpl] (>=4.25,<5.0) ; extra == \"validation\" or extra == \"json-validation\"",
+      "marker": "extra == \"validation\" or extra == \"json-validation\"",
+      "default_environment_active": false,
+      "target_in_lock": false,
+      "locked_version_satisfies": false,
+      "scope": "Declared metadata edge; selected extras/actual resolver path not inferred"
+    },
+    {
+      "from": "cyclonedx-python-lib",
+      "to": "license-expression",
+      "declared": "license-expression (>=30,<31)",
+      "marker": null,
+      "default_environment_active": true,
+      "target_in_lock": true,
+      "locked_version_satisfies": true,
+      "scope": "Declared metadata edge; selected extras/actual resolver path not inferred"
+    },
+    {
+      "from": "cyclonedx-python-lib",
+      "to": "lxml",
+      "declared": "lxml (>=4,<7) ; extra == \"validation\" or extra == \"xml-validation\"",
+      "marker": "extra == \"validation\" or extra == \"xml-validation\"",
+      "default_environment_active": false,
+      "target_in_lock": false,
+      "locked_version_satisfies": false,
+      "scope": "Declared metadata edge; selected extras/actual resolver path not inferred"
+    },
+    {
+      "from": "cyclonedx-python-lib",
+      "to": "packageurl-python",
+      "declared": "packageurl-python (>=0.11,<2)",
+      "marker": null,
+      "default_environment_active": true,
+      "target_in_lock": true,
+      "locked_version_satisfies": true,
+      "scope": "Declared metadata edge; selected extras/actual resolver path not inferred"
+    },
+    {
+      "from": "cyclonedx-python-lib",
+      "to": "py-serializable",
+      "declared": "py-serializable (>=2.1.0,<3.0.0)",
+      "marker": null,
+      "default_environment_active": true,
+      "target_in_lock": true,
+      "locked_version_satisfies": true,
+      "scope": "Declared metadata edge; selected extras/actual resolver path not inferred"
+    },
+    {
+      "from": "cyclonedx-python-lib",
+      "to": "referencing",
+      "declared": "referencing (>=0.28.4) ; extra == \"validation\" or extra == \"json-validation\"",
+      "marker": "extra == \"validation\" or extra == \"json-validation\"",
+      "default_environment_active": false,
+      "target_in_lock": false,
+      "locked_version_satisfies": false,
+      "scope": "Declared metadata edge; selected extras/actual resolver path not inferred"
+    },
+    {
+      "from": "cyclonedx-python-lib",
+      "to": "sortedcontainers",
+      "declared": "sortedcontainers (>=2.4.0,<3.0.0)",
+      "marker": null,
+      "default_environment_active": true,
+      "target_in_lock": true,
+      "locked_version_satisfies": true,
+      "scope": "Declared metadata edge; selected extras/actual resolver path not inferred"
+    },
+    {
+      "from": "cyclonedx-python-lib",
+      "to": "typing-extensions",
+      "declared": "typing_extensions (>=4.6,<5.0) ; python_version < \"3.13\"",
+      "marker": "python_version < \"3.13\"",
+      "default_environment_active": true,
+      "target_in_lock": true,
+      "locked_version_satisfies": true,
+      "scope": "Declared metadata edge; selected extras/actual resolver path not inferred"
+    },
+    {
+      "from": "idna",
+      "to": "ruff",
+      "declared": "ruff >= 0.16.0 ; extra == \"all\"",
+      "marker": "extra == \"all\"",
+      "default_environment_active": false,
+      "target_in_lock": false,
+      "locked_version_satisfies": false,
+      "scope": "Declared metadata edge; selected extras/actual resolver path not inferred"
+    },
+    {
+      "from": "idna",
+      "to": "mypy",
+      "declared": "mypy >= 1.11.2 ; extra == \"all\"",
+      "marker": "extra == \"all\"",
+      "default_environment_active": false,
+      "target_in_lock": false,
+      "locked_version_satisfies": false,
+      "scope": "Declared metadata edge; selected extras/actual resolver path not inferred"
+    },
+    {
+      "from": "idna",
+      "to": "ty",
+      "declared": "ty >= 0.0.37 ; extra == \"all\"",
+      "marker": "extra == \"all\"",
+      "default_environment_active": false,
+      "target_in_lock": false,
+      "locked_version_satisfies": false,
+      "scope": "Declared metadata edge; selected extras/actual resolver path not inferred"
+    },
+    {
+      "from": "idna",
+      "to": "pytest",
+      "declared": "pytest >= 8.3.2 ; extra == \"all\"",
+      "marker": "extra == \"all\"",
+      "default_environment_active": false,
+      "target_in_lock": false,
+      "locked_version_satisfies": false,
+      "scope": "Declared metadata edge; selected extras/actual resolver path not inferred"
+    },
+    {
+      "from": "idna",
+      "to": "hypothesis",
+      "declared": "hypothesis >= 6.141.1 ; extra == \"all\"",
+      "marker": "extra == \"all\"",
+      "default_environment_active": false,
+      "target_in_lock": false,
+      "locked_version_satisfies": false,
+      "scope": "Declared metadata edge; selected extras/actual resolver path not inferred"
+    },
+    {
+      "from": "idna",
+      "to": "coverage",
+      "declared": "coverage >= 7.10.0 ; extra == \"all\"",
+      "marker": "extra == \"all\"",
+      "default_environment_active": false,
+      "target_in_lock": false,
+      "locked_version_satisfies": false,
+      "scope": "Declared metadata edge; selected extras/actual resolver path not inferred"
+    },
+    {
+      "from": "license-expression",
+      "to": "boolean-py",
+      "declared": "boolean.py>=4.0",
+      "marker": null,
+      "default_environment_active": true,
+      "target_in_lock": true,
+      "locked_version_satisfies": true,
+      "scope": "Declared metadata edge; selected extras/actual resolver path not inferred"
+    },
+    {
+      "from": "license-expression",
+      "to": "pytest",
+      "declared": "pytest>=7.0.1; extra == \"dev\"",
+      "marker": "extra == \"dev\"",
+      "default_environment_active": false,
+      "target_in_lock": false,
+      "locked_version_satisfies": false,
+      "scope": "Declared metadata edge; selected extras/actual resolver path not inferred"
+    },
+    {
+      "from": "license-expression",
+      "to": "pytest-xdist",
+      "declared": "pytest-xdist>=2; extra == \"dev\"",
+      "marker": "extra == \"dev\"",
+      "default_environment_active": false,
+      "target_in_lock": false,
+      "locked_version_satisfies": false,
+      "scope": "Declared metadata edge; selected extras/actual resolver path not inferred"
+    },
+    {
+      "from": "license-expression",
+      "to": "twine",
+      "declared": "twine; extra == \"dev\"",
+      "marker": "extra == \"dev\"",
+      "default_environment_active": false,
+      "target_in_lock": false,
+      "locked_version_satisfies": false,
+      "scope": "Declared metadata edge; selected extras/actual resolver path not inferred"
+    },
+    {
+      "from": "license-expression",
+      "to": "ruff",
+      "declared": "ruff; extra == \"dev\"",
+      "marker": "extra == \"dev\"",
+      "default_environment_active": false,
+      "target_in_lock": false,
+      "locked_version_satisfies": false,
+      "scope": "Declared metadata edge; selected extras/actual resolver path not inferred"
+    },
+    {
+      "from": "license-expression",
+      "to": "sphinx",
+      "declared": "Sphinx>=5.0.2; extra == \"dev\"",
+      "marker": "extra == \"dev\"",
+      "default_environment_active": false,
+      "target_in_lock": false,
+      "locked_version_satisfies": false,
+      "scope": "Declared metadata edge; selected extras/actual resolver path not inferred"
+    },
+    {
+      "from": "license-expression",
+      "to": "sphinx-rtd-theme",
+      "declared": "sphinx-rtd-theme>=1.0.0; extra == \"dev\"",
+      "marker": "extra == \"dev\"",
+      "default_environment_active": false,
+      "target_in_lock": false,
+      "locked_version_satisfies": false,
+      "scope": "Declared metadata edge; selected extras/actual resolver path not inferred"
+    },
+    {
+      "from": "license-expression",
+      "to": "sphinxcontrib-apidoc",
+      "declared": "sphinxcontrib-apidoc>=0.4.0; extra == \"dev\"",
+      "marker": "extra == \"dev\"",
+      "default_environment_active": false,
+      "target_in_lock": false,
+      "locked_version_satisfies": false,
+      "scope": "Declared metadata edge; selected extras/actual resolver path not inferred"
+    },
+    {
+      "from": "license-expression",
+      "to": "sphinx-reredirects",
+      "declared": "sphinx-reredirects>=0.1.2; extra == \"dev\"",
+      "marker": "extra == \"dev\"",
+      "default_environment_active": false,
+      "target_in_lock": false,
+      "locked_version_satisfies": false,
+      "scope": "Declared metadata edge; selected extras/actual resolver path not inferred"
+    },
+    {
+      "from": "license-expression",
+      "to": "doc8",
+      "declared": "doc8>=0.11.2; extra == \"dev\"",
+      "marker": "extra == \"dev\"",
+      "default_environment_active": false,
+      "target_in_lock": false,
+      "locked_version_satisfies": false,
+      "scope": "Declared metadata edge; selected extras/actual resolver path not inferred"
+    },
+    {
+      "from": "license-expression",
+      "to": "sphinx-autobuild",
+      "declared": "sphinx-autobuild; extra == \"dev\"",
+      "marker": "extra == \"dev\"",
+      "default_environment_active": false,
+      "target_in_lock": false,
+      "locked_version_satisfies": false,
+      "scope": "Declared metadata edge; selected extras/actual resolver path not inferred"
+    },
+    {
+      "from": "license-expression",
+      "to": "sphinx-rtd-dark-mode",
+      "declared": "sphinx-rtd-dark-mode>=1.3.0; extra == \"dev\"",
+      "marker": "extra == \"dev\"",
+      "default_environment_active": false,
+      "target_in_lock": false,
+      "locked_version_satisfies": false,
+      "scope": "Declared metadata edge; selected extras/actual resolver path not inferred"
+    },
+    {
+      "from": "license-expression",
+      "to": "sphinx-copybutton",
+      "declared": "sphinx-copybutton; extra == \"dev\"",
+      "marker": "extra == \"dev\"",
+      "default_environment_active": false,
+      "target_in_lock": false,
+      "locked_version_satisfies": false,
+      "scope": "Declared metadata edge; selected extras/actual resolver path not inferred"
+    },
+    {
+      "from": "markdown-it-py",
+      "to": "mdurl",
+      "declared": "mdurl~=0.1",
+      "marker": null,
+      "default_environment_active": true,
+      "target_in_lock": true,
+      "locked_version_satisfies": true,
+      "scope": "Declared metadata edge; selected extras/actual resolver path not inferred"
+    },
+    {
+      "from": "markdown-it-py",
+      "to": "psutil",
+      "declared": "psutil ; extra == \"benchmarking\"",
+      "marker": "extra == \"benchmarking\"",
+      "default_environment_active": false,
+      "target_in_lock": false,
+      "locked_version_satisfies": false,
+      "scope": "Declared metadata edge; selected extras/actual resolver path not inferred"
+    },
+    {
+      "from": "markdown-it-py",
+      "to": "pytest",
+      "declared": "pytest ; extra == \"benchmarking\"",
+      "marker": "extra == \"benchmarking\"",
+      "default_environment_active": false,
+      "target_in_lock": false,
+      "locked_version_satisfies": false,
+      "scope": "Declared metadata edge; selected extras/actual resolver path not inferred"
+    },
+    {
+      "from": "markdown-it-py",
+      "to": "pytest-benchmark",
+      "declared": "pytest-benchmark ; extra == \"benchmarking\"",
+      "marker": "extra == \"benchmarking\"",
+      "default_environment_active": false,
+      "target_in_lock": false,
+      "locked_version_satisfies": false,
+      "scope": "Declared metadata edge; selected extras/actual resolver path not inferred"
+    },
+    {
+      "from": "markdown-it-py",
+      "to": "markdown",
+      "declared": "markdown~=3.4 ; extra == \"compare\"",
+      "marker": "extra == \"compare\"",
+      "default_environment_active": false,
+      "target_in_lock": false,
+      "locked_version_satisfies": false,
+      "scope": "Declared metadata edge; selected extras/actual resolver path not inferred"
+    },
+    {
+      "from": "markdown-it-py",
+      "to": "mistletoe",
+      "declared": "mistletoe~=1.0 ; extra == \"compare\"",
+      "marker": "extra == \"compare\"",
+      "default_environment_active": false,
+      "target_in_lock": false,
+      "locked_version_satisfies": false,
+      "scope": "Declared metadata edge; selected extras/actual resolver path not inferred"
+    },
+    {
+      "from": "markdown-it-py",
+      "to": "mistune",
+      "declared": "mistune~=3.0 ; extra == \"compare\"",
+      "marker": "extra == \"compare\"",
+      "default_environment_active": false,
+      "target_in_lock": false,
+      "locked_version_satisfies": false,
+      "scope": "Declared metadata edge; selected extras/actual resolver path not inferred"
+    },
+    {
+      "from": "markdown-it-py",
+      "to": "panflute",
+      "declared": "panflute~=2.3 ; extra == \"compare\"",
+      "marker": "extra == \"compare\"",
+      "default_environment_active": false,
+      "target_in_lock": false,
+      "locked_version_satisfies": false,
+      "scope": "Declared metadata edge; selected extras/actual resolver path not inferred"
+    },
+    {
+      "from": "markdown-it-py",
+      "to": "markdown-it-pyrs",
+      "declared": "markdown-it-pyrs ; extra == \"compare\"",
+      "marker": "extra == \"compare\"",
+      "default_environment_active": false,
+      "target_in_lock": false,
+      "locked_version_satisfies": false,
+      "scope": "Declared metadata edge; selected extras/actual resolver path not inferred"
+    },
+    {
+      "from": "markdown-it-py",
+      "to": "coverage",
+      "declared": "coverage ; extra == \"coverage\"",
+      "marker": "extra == \"coverage\"",
+      "default_environment_active": false,
+      "target_in_lock": false,
+      "locked_version_satisfies": false,
+      "scope": "Declared metadata edge; selected extras/actual resolver path not inferred"
+    },
+    {
+      "from": "markdown-it-py",
+      "to": "pytest-cov",
+      "declared": "pytest-cov ; extra == \"coverage\"",
+      "marker": "extra == \"coverage\"",
+      "default_environment_active": false,
+      "target_in_lock": false,
+      "locked_version_satisfies": false,
+      "scope": "Declared metadata edge; selected extras/actual resolver path not inferred"
+    },
+    {
+      "from": "markdown-it-py",
+      "to": "linkify-it-py",
+      "declared": "linkify-it-py>=1,<3 ; extra == \"linkify\"",
+      "marker": "extra == \"linkify\"",
+      "default_environment_active": false,
+      "target_in_lock": false,
+      "locked_version_satisfies": false,
+      "scope": "Declared metadata edge; selected extras/actual resolver path not inferred"
+    },
+    {
+      "from": "markdown-it-py",
+      "to": "mdit-py-plugins",
+      "declared": "mdit-py-plugins>=0.5.0 ; extra == \"plugins\"",
+      "marker": "extra == \"plugins\"",
+      "default_environment_active": false,
+      "target_in_lock": false,
+      "locked_version_satisfies": false,
+      "scope": "Declared metadata edge; selected extras/actual resolver path not inferred"
+    },
+    {
+      "from": "markdown-it-py",
+      "to": "gprof2dot",
+      "declared": "gprof2dot ; extra == \"profiling\"",
+      "marker": "extra == \"profiling\"",
+      "default_environment_active": false,
+      "target_in_lock": false,
+      "locked_version_satisfies": false,
+      "scope": "Declared metadata edge; selected extras/actual resolver path not inferred"
+    },
+    {
+      "from": "markdown-it-py",
+      "to": "mdit-py-plugins",
+      "declared": "mdit-py-plugins>=0.5.0 ; extra == \"rtd\"",
+      "marker": "extra == \"rtd\"",
+      "default_environment_active": false,
+      "target_in_lock": false,
+      "locked_version_satisfies": false,
+      "scope": "Declared metadata edge; selected extras/actual resolver path not inferred"
+    },
+    {
+      "from": "markdown-it-py",
+      "to": "myst-parser",
+      "declared": "myst-parser ; extra == \"rtd\"",
+      "marker": "extra == \"rtd\"",
+      "default_environment_active": false,
+      "target_in_lock": false,
+      "locked_version_satisfies": false,
+      "scope": "Declared metadata edge; selected extras/actual resolver path not inferred"
+    },
+    {
+      "from": "markdown-it-py",
+      "to": "pyyaml",
+      "declared": "pyyaml ; extra == \"rtd\"",
+      "marker": "extra == \"rtd\"",
+      "default_environment_active": false,
+      "target_in_lock": true,
+      "locked_version_satisfies": true,
+      "scope": "Declared metadata edge; selected extras/actual resolver path not inferred"
+    },
+    {
+      "from": "markdown-it-py",
+      "to": "sphinx",
+      "declared": "sphinx ; extra == \"rtd\"",
+      "marker": "extra == \"rtd\"",
+      "default_environment_active": false,
+      "target_in_lock": false,
+      "locked_version_satisfies": false,
+      "scope": "Declared metadata edge; selected extras/actual resolver path not inferred"
+    },
+    {
+      "from": "markdown-it-py",
+      "to": "sphinx-copybutton",
+      "declared": "sphinx-copybutton ; extra == \"rtd\"",
+      "marker": "extra == \"rtd\"",
+      "default_environment_active": false,
+      "target_in_lock": false,
+      "locked_version_satisfies": false,
+      "scope": "Declared metadata edge; selected extras/actual resolver path not inferred"
+    },
+    {
+      "from": "markdown-it-py",
+      "to": "sphinx-design",
+      "declared": "sphinx-design ; extra == \"rtd\"",
+      "marker": "extra == \"rtd\"",
+      "default_environment_active": false,
+      "target_in_lock": false,
+      "locked_version_satisfies": false,
+      "scope": "Declared metadata edge; selected extras/actual resolver path not inferred"
+    },
+    {
+      "from": "markdown-it-py",
+      "to": "sphinx-book-theme",
+      "declared": "sphinx-book-theme~=1.0 ; extra == \"rtd\"",
+      "marker": "extra == \"rtd\"",
+      "default_environment_active": false,
+      "target_in_lock": false,
+      "locked_version_satisfies": false,
+      "scope": "Declared metadata edge; selected extras/actual resolver path not inferred"
+    },
+    {
+      "from": "markdown-it-py",
+      "to": "jupyter-sphinx",
+      "declared": "jupyter_sphinx ; extra == \"rtd\"",
+      "marker": "extra == \"rtd\"",
+      "default_environment_active": false,
+      "target_in_lock": false,
+      "locked_version_satisfies": false,
+      "scope": "Declared metadata edge; selected extras/actual resolver path not inferred"
+    },
+    {
+      "from": "markdown-it-py",
+      "to": "ipykernel",
+      "declared": "ipykernel ; extra == \"rtd\"",
+      "marker": "extra == \"rtd\"",
+      "default_environment_active": false,
+      "target_in_lock": false,
+      "locked_version_satisfies": false,
+      "scope": "Declared metadata edge; selected extras/actual resolver path not inferred"
+    },
+    {
+      "from": "markdown-it-py",
+      "to": "flit-core",
+      "declared": "flit_core>=3.4,<5 ; extra == \"testing\"",
+      "marker": "extra == \"testing\"",
+      "default_environment_active": false,
+      "target_in_lock": false,
+      "locked_version_satisfies": false,
+      "scope": "Declared metadata edge; selected extras/actual resolver path not inferred"
+    },
+    {
+      "from": "markdown-it-py",
+      "to": "pytest",
+      "declared": "pytest ; extra == \"testing\"",
+      "marker": "extra == \"testing\"",
+      "default_environment_active": false,
+      "target_in_lock": false,
+      "locked_version_satisfies": false,
+      "scope": "Declared metadata edge; selected extras/actual resolver path not inferred"
+    },
+    {
+      "from": "markdown-it-py",
+      "to": "pytest-regressions",
+      "declared": "pytest-regressions ; extra == \"testing\"",
+      "marker": "extra == \"testing\"",
+      "default_environment_active": false,
+      "target_in_lock": false,
+      "locked_version_satisfies": false,
+      "scope": "Declared metadata edge; selected extras/actual resolver path not inferred"
+    },
+    {
+      "from": "markdown-it-py",
+      "to": "pytest-timeout",
+      "declared": "pytest-timeout ; extra == \"testing\"",
+      "marker": "extra == \"testing\"",
+      "default_environment_active": false,
+      "target_in_lock": false,
+      "locked_version_satisfies": false,
+      "scope": "Declared metadata edge; selected extras/actual resolver path not inferred"
+    },
+    {
+      "from": "markdown-it-py",
+      "to": "requests",
+      "declared": "requests ; extra == \"testing\"",
+      "marker": "extra == \"testing\"",
+      "default_environment_active": false,
+      "target_in_lock": true,
+      "locked_version_satisfies": true,
+      "scope": "Declared metadata edge; selected extras/actual resolver path not inferred"
+    },
+    {
+      "from": "packageurl-python",
+      "to": "isort",
+      "declared": "isort; extra == \"lint\"",
+      "marker": "extra == \"lint\"",
+      "default_environment_active": false,
+      "target_in_lock": false,
+      "locked_version_satisfies": false,
+      "scope": "Declared metadata edge; selected extras/actual resolver path not inferred"
+    },
+    {
+      "from": "packageurl-python",
+      "to": "black",
+      "declared": "black; extra == \"lint\"",
+      "marker": "extra == \"lint\"",
+      "default_environment_active": false,
+      "target_in_lock": false,
+      "locked_version_satisfies": false,
+      "scope": "Declared metadata edge; selected extras/actual resolver path not inferred"
+    },
+    {
+      "from": "packageurl-python",
+      "to": "mypy",
+      "declared": "mypy; extra == \"lint\"",
+      "marker": "extra == \"lint\"",
+      "default_environment_active": false,
+      "target_in_lock": false,
+      "locked_version_satisfies": false,
+      "scope": "Declared metadata edge; selected extras/actual resolver path not inferred"
+    },
+    {
+      "from": "packageurl-python",
+      "to": "pytest",
+      "declared": "pytest; extra == \"test\"",
+      "marker": "extra == \"test\"",
+      "default_environment_active": false,
+      "target_in_lock": false,
+      "locked_version_satisfies": false,
+      "scope": "Declared metadata edge; selected extras/actual resolver path not inferred"
+    },
+    {
+      "from": "packageurl-python",
+      "to": "setuptools",
+      "declared": "setuptools; extra == \"build\"",
+      "marker": "extra == \"build\"",
+      "default_environment_active": false,
+      "target_in_lock": false,
+      "locked_version_satisfies": false,
+      "scope": "Declared metadata edge; selected extras/actual resolver path not inferred"
+    },
+    {
+      "from": "packageurl-python",
+      "to": "wheel",
+      "declared": "wheel; extra == \"build\"",
+      "marker": "extra == \"build\"",
+      "default_environment_active": false,
+      "target_in_lock": false,
+      "locked_version_satisfies": false,
+      "scope": "Declared metadata edge; selected extras/actual resolver path not inferred"
+    },
+    {
+      "from": "packageurl-python",
+      "to": "sqlalchemy",
+      "declared": "sqlalchemy>=2.0.0; extra == \"sqlalchemy\"",
+      "marker": "extra == \"sqlalchemy\"",
+      "default_environment_active": false,
+      "target_in_lock": false,
+      "locked_version_satisfies": false,
+      "scope": "Declared metadata edge; selected extras/actual resolver path not inferred"
+    },
+    {
+      "from": "pip-api",
+      "to": "pip",
+      "declared": "pip",
+      "marker": null,
+      "default_environment_active": true,
+      "target_in_lock": true,
+      "locked_version_satisfies": true,
+      "scope": "Declared metadata edge; selected extras/actual resolver path not inferred"
+    },
+    {
+      "from": "pip-audit",
+      "to": "cachecontrol",
+      "declared": "CacheControl[filecache] >= 0.13.0",
+      "marker": null,
+      "default_environment_active": true,
+      "target_in_lock": true,
+      "locked_version_satisfies": true,
+      "scope": "Declared metadata edge; selected extras/actual resolver path not inferred"
+    },
+    {
+      "from": "pip-audit",
+      "to": "cyclonedx-python-lib",
+      "declared": "cyclonedx-python-lib >= 5,< 12",
+      "marker": null,
+      "default_environment_active": true,
+      "target_in_lock": true,
+      "locked_version_satisfies": true,
+      "scope": "Declared metadata edge; selected extras/actual resolver path not inferred"
+    },
+    {
+      "from": "pip-audit",
+      "to": "packaging",
+      "declared": "packaging>=23.0.0",
+      "marker": null,
+      "default_environment_active": true,
+      "target_in_lock": true,
+      "locked_version_satisfies": true,
+      "scope": "Declared metadata edge; selected extras/actual resolver path not inferred"
+    },
+    {
+      "from": "pip-audit",
+      "to": "pip-api",
+      "declared": "pip-api>=0.0.28",
+      "marker": null,
+      "default_environment_active": true,
+      "target_in_lock": true,
+      "locked_version_satisfies": true,
+      "scope": "Declared metadata edge; selected extras/actual resolver path not inferred"
+    },
+    {
+      "from": "pip-audit",
+      "to": "pip-requirements-parser",
+      "declared": "pip-requirements-parser>=32.0.0",
+      "marker": null,
+      "default_environment_active": true,
+      "target_in_lock": true,
+      "locked_version_satisfies": true,
+      "scope": "Declared metadata edge; selected extras/actual resolver path not inferred"
+    },
+    {
+      "from": "pip-audit",
+      "to": "requests",
+      "declared": "requests >= 2.31.0",
+      "marker": null,
+      "default_environment_active": true,
+      "target_in_lock": true,
+      "locked_version_satisfies": true,
+      "scope": "Declared metadata edge; selected extras/actual resolver path not inferred"
+    },
+    {
+      "from": "pip-audit",
+      "to": "rich",
+      "declared": "rich >= 12.4",
+      "marker": null,
+      "default_environment_active": true,
+      "target_in_lock": true,
+      "locked_version_satisfies": true,
+      "scope": "Declared metadata edge; selected extras/actual resolver path not inferred"
+    },
+    {
+      "from": "pip-audit",
+      "to": "tomli",
+      "declared": "tomli >= 2.2.1",
+      "marker": null,
+      "default_environment_active": true,
+      "target_in_lock": true,
+      "locked_version_satisfies": true,
+      "scope": "Declared metadata edge; selected extras/actual resolver path not inferred"
+    },
+    {
+      "from": "pip-audit",
+      "to": "tomli-w",
+      "declared": "tomli-w >= 1.2.0",
+      "marker": null,
+      "default_environment_active": true,
+      "target_in_lock": true,
+      "locked_version_satisfies": true,
+      "scope": "Declared metadata edge; selected extras/actual resolver path not inferred"
+    },
+    {
+      "from": "pip-audit",
+      "to": "platformdirs",
+      "declared": "platformdirs >= 4.2.0",
+      "marker": null,
+      "default_environment_active": true,
+      "target_in_lock": true,
+      "locked_version_satisfies": true,
+      "scope": "Declared metadata edge; selected extras/actual resolver path not inferred"
+    },
+    {
+      "from": "pip-audit",
+      "to": "coverage",
+      "declared": "coverage[toml] ~= 7.0, != 7.3.3 ; extra == \"cov\"",
+      "marker": "extra == \"cov\"",
+      "default_environment_active": false,
+      "target_in_lock": false,
+      "locked_version_satisfies": false,
+      "scope": "Declared metadata edge; selected extras/actual resolver path not inferred"
+    },
+    {
+      "from": "pip-audit",
+      "to": "build",
+      "declared": "build ; extra == \"dev\"",
+      "marker": "extra == \"dev\"",
+      "default_environment_active": false,
+      "target_in_lock": false,
+      "locked_version_satisfies": false,
+      "scope": "Declared metadata edge; selected extras/actual resolver path not inferred"
+    },
+    {
+      "from": "pip-audit",
+      "to": "pip-audit",
+      "declared": "pip-audit[doc, test, lint] ; extra == \"dev\"",
+      "marker": "extra == \"dev\"",
+      "default_environment_active": false,
+      "target_in_lock": true,
+      "locked_version_satisfies": true,
+      "scope": "Declared metadata edge; selected extras/actual resolver path not inferred"
+    },
+    {
+      "from": "pip-audit",
+      "to": "pdoc",
+      "declared": "pdoc ; extra == \"doc\"",
+      "marker": "extra == \"doc\"",
+      "default_environment_active": false,
+      "target_in_lock": false,
+      "locked_version_satisfies": false,
+      "scope": "Declared metadata edge; selected extras/actual resolver path not inferred"
+    },
+    {
+      "from": "pip-audit",
+      "to": "ruff",
+      "declared": "ruff >= 0.14 ; extra == \"lint\"",
+      "marker": "extra == \"lint\"",
+      "default_environment_active": false,
+      "target_in_lock": false,
+      "locked_version_satisfies": false,
+      "scope": "Declared metadata edge; selected extras/actual resolver path not inferred"
+    },
+    {
+      "from": "pip-audit",
+      "to": "interrogate",
+      "declared": "interrogate ~= 1.6 ; extra == \"lint\"",
+      "marker": "extra == \"lint\"",
+      "default_environment_active": false,
+      "target_in_lock": false,
+      "locked_version_satisfies": false,
+      "scope": "Declared metadata edge; selected extras/actual resolver path not inferred"
+    },
+    {
+      "from": "pip-audit",
+      "to": "mypy",
+      "declared": "mypy ; extra == \"lint\"",
+      "marker": "extra == \"lint\"",
+      "default_environment_active": false,
+      "target_in_lock": false,
+      "locked_version_satisfies": false,
+      "scope": "Declared metadata edge; selected extras/actual resolver path not inferred"
+    },
+    {
+      "from": "pip-audit",
+      "to": "types-requests",
+      "declared": "types-requests ; extra == \"lint\"",
+      "marker": "extra == \"lint\"",
+      "default_environment_active": false,
+      "target_in_lock": false,
+      "locked_version_satisfies": false,
+      "scope": "Declared metadata edge; selected extras/actual resolver path not inferred"
+    },
+    {
+      "from": "pip-audit",
+      "to": "types-toml",
+      "declared": "types-toml ; extra == \"lint\"",
+      "marker": "extra == \"lint\"",
+      "default_environment_active": false,
+      "target_in_lock": false,
+      "locked_version_satisfies": false,
+      "scope": "Declared metadata edge; selected extras/actual resolver path not inferred"
+    },
+    {
+      "from": "pip-audit",
+      "to": "typos",
+      "declared": "typos ; extra == \"lint\"",
+      "marker": "extra == \"lint\"",
+      "default_environment_active": false,
+      "target_in_lock": false,
+      "locked_version_satisfies": false,
+      "scope": "Declared metadata edge; selected extras/actual resolver path not inferred"
+    },
+    {
+      "from": "pip-audit",
+      "to": "pretend",
+      "declared": "pretend ; extra == \"test\"",
+      "marker": "extra == \"test\"",
+      "default_environment_active": false,
+      "target_in_lock": false,
+      "locked_version_satisfies": false,
+      "scope": "Declared metadata edge; selected extras/actual resolver path not inferred"
+    },
+    {
+      "from": "pip-audit",
+      "to": "pytest",
+      "declared": "pytest ; extra == \"test\"",
+      "marker": "extra == \"test\"",
+      "default_environment_active": false,
+      "target_in_lock": false,
+      "locked_version_satisfies": false,
+      "scope": "Declared metadata edge; selected extras/actual resolver path not inferred"
+    },
+    {
+      "from": "pip-audit",
+      "to": "pip-audit",
+      "declared": "pip-audit[cov] ; extra == \"test\"",
+      "marker": "extra == \"test\"",
+      "default_environment_active": false,
+      "target_in_lock": true,
+      "locked_version_satisfies": true,
+      "scope": "Declared metadata edge; selected extras/actual resolver path not inferred"
+    },
+    {
+      "from": "pip-requirements-parser",
+      "to": "packaging",
+      "declared": "packaging",
+      "marker": null,
+      "default_environment_active": true,
+      "target_in_lock": true,
+      "locked_version_satisfies": true,
+      "scope": "Declared metadata edge; selected extras/actual resolver path not inferred"
+    },
+    {
+      "from": "pip-requirements-parser",
+      "to": "pyparsing",
+      "declared": "pyparsing",
+      "marker": null,
+      "default_environment_active": true,
+      "target_in_lock": true,
+      "locked_version_satisfies": true,
+      "scope": "Declared metadata edge; selected extras/actual resolver path not inferred"
+    },
+    {
+      "from": "pip-requirements-parser",
+      "to": "sphinx",
+      "declared": "Sphinx (>=3.3.1) ; extra == 'docs'",
+      "marker": "extra == \"docs\"",
+      "default_environment_active": false,
+      "target_in_lock": false,
+      "locked_version_satisfies": false,
+      "scope": "Declared metadata edge; selected extras/actual resolver path not inferred"
+    },
+    {
+      "from": "pip-requirements-parser",
+      "to": "sphinx-rtd-theme",
+      "declared": "sphinx-rtd-theme (>=0.5.0) ; extra == 'docs'",
+      "marker": "extra == \"docs\"",
+      "default_environment_active": false,
+      "target_in_lock": false,
+      "locked_version_satisfies": false,
+      "scope": "Declared metadata edge; selected extras/actual resolver path not inferred"
+    },
+    {
+      "from": "pip-requirements-parser",
+      "to": "doc8",
+      "declared": "doc8 (>=0.8.1) ; extra == 'docs'",
+      "marker": "extra == \"docs\"",
+      "default_environment_active": false,
+      "target_in_lock": false,
+      "locked_version_satisfies": false,
+      "scope": "Declared metadata edge; selected extras/actual resolver path not inferred"
+    },
+    {
+      "from": "pip-requirements-parser",
+      "to": "pytest",
+      "declared": "pytest (!=7.0.0,>=6) ; extra == 'testing'",
+      "marker": "extra == \"testing\"",
+      "default_environment_active": false,
+      "target_in_lock": false,
+      "locked_version_satisfies": false,
+      "scope": "Declared metadata edge; selected extras/actual resolver path not inferred"
+    },
+    {
+      "from": "pip-requirements-parser",
+      "to": "pytest-xdist",
+      "declared": "pytest-xdist (>=2) ; extra == 'testing'",
+      "marker": "extra == \"testing\"",
+      "default_environment_active": false,
+      "target_in_lock": false,
+      "locked_version_satisfies": false,
+      "scope": "Declared metadata edge; selected extras/actual resolver path not inferred"
+    },
+    {
+      "from": "pip-requirements-parser",
+      "to": "aboutcode-toolkit",
+      "declared": "aboutcode-toolkit (>=6.0.0) ; extra == 'testing'",
+      "marker": "extra == \"testing\"",
+      "default_environment_active": false,
+      "target_in_lock": false,
+      "locked_version_satisfies": false,
+      "scope": "Declared metadata edge; selected extras/actual resolver path not inferred"
+    },
+    {
+      "from": "pip-requirements-parser",
+      "to": "black",
+      "declared": "black ; extra == 'testing'",
+      "marker": "extra == \"testing\"",
+      "default_environment_active": false,
+      "target_in_lock": false,
+      "locked_version_satisfies": false,
+      "scope": "Declared metadata edge; selected extras/actual resolver path not inferred"
+    },
+    {
+      "from": "py-serializable",
+      "to": "defusedxml",
+      "declared": "defusedxml (>=0.7.1,<0.8.0)",
+      "marker": null,
+      "default_environment_active": true,
+      "target_in_lock": true,
+      "locked_version_satisfies": true,
+      "scope": "Declared metadata edge; selected extras/actual resolver path not inferred"
+    },
+    {
+      "from": "pygments",
+      "to": "colorama",
+      "declared": "colorama>=0.4.6; extra == 'windows-terminal'",
+      "marker": "extra == \"windows-terminal\"",
+      "default_environment_active": false,
+      "target_in_lock": false,
+      "locked_version_satisfies": false,
+      "scope": "Declared metadata edge; selected extras/actual resolver path not inferred"
+    },
+    {
+      "from": "pyparsing",
+      "to": "railroad-diagrams",
+      "declared": "railroad-diagrams ; extra == \"diagrams\"",
+      "marker": "extra == \"diagrams\"",
+      "default_environment_active": false,
+      "target_in_lock": false,
+      "locked_version_satisfies": false,
+      "scope": "Declared metadata edge; selected extras/actual resolver path not inferred"
+    },
+    {
+      "from": "pyparsing",
+      "to": "jinja2",
+      "declared": "jinja2 ; extra == \"diagrams\"",
+      "marker": "extra == \"diagrams\"",
+      "default_environment_active": false,
+      "target_in_lock": false,
+      "locked_version_satisfies": false,
+      "scope": "Declared metadata edge; selected extras/actual resolver path not inferred"
+    },
+    {
+      "from": "requests",
+      "to": "charset-normalizer",
+      "declared": "charset_normalizer<4,>=2",
+      "marker": null,
+      "default_environment_active": true,
+      "target_in_lock": true,
+      "locked_version_satisfies": true,
+      "scope": "Declared metadata edge; selected extras/actual resolver path not inferred"
+    },
+    {
+      "from": "requests",
+      "to": "idna",
+      "declared": "idna<4,>=2.5",
+      "marker": null,
+      "default_environment_active": true,
+      "target_in_lock": true,
+      "locked_version_satisfies": true,
+      "scope": "Declared metadata edge; selected extras/actual resolver path not inferred"
+    },
+    {
+      "from": "requests",
+      "to": "urllib3",
+      "declared": "urllib3<3,>=1.26",
+      "marker": null,
+      "default_environment_active": true,
+      "target_in_lock": true,
+      "locked_version_satisfies": true,
+      "scope": "Declared metadata edge; selected extras/actual resolver path not inferred"
+    },
+    {
+      "from": "requests",
+      "to": "certifi",
+      "declared": "certifi>=2023.5.7",
+      "marker": null,
+      "default_environment_active": true,
+      "target_in_lock": true,
+      "locked_version_satisfies": true,
+      "scope": "Declared metadata edge; selected extras/actual resolver path not inferred"
+    },
+    {
+      "from": "requests",
+      "to": "pysocks",
+      "declared": "PySocks!=1.5.7,>=1.5.6; extra == \"socks\"",
+      "marker": "extra == \"socks\"",
+      "default_environment_active": false,
+      "target_in_lock": false,
+      "locked_version_satisfies": false,
+      "scope": "Declared metadata edge; selected extras/actual resolver path not inferred"
+    },
+    {
+      "from": "requests",
+      "to": "chardet",
+      "declared": "chardet<8,>=3.0.2; extra == \"use-chardet-on-py3\"",
+      "marker": "extra == \"use-chardet-on-py3\"",
+      "default_environment_active": false,
+      "target_in_lock": false,
+      "locked_version_satisfies": false,
+      "scope": "Declared metadata edge; selected extras/actual resolver path not inferred"
+    },
+    {
+      "from": "rich",
+      "to": "ipywidgets",
+      "declared": "ipywidgets (>=7.5.1,<9) ; extra == \"jupyter\"",
+      "marker": "extra == \"jupyter\"",
+      "default_environment_active": false,
+      "target_in_lock": false,
+      "locked_version_satisfies": false,
+      "scope": "Declared metadata edge; selected extras/actual resolver path not inferred"
+    },
+    {
+      "from": "rich",
+      "to": "markdown-it-py",
+      "declared": "markdown-it-py (>=2.2.0)",
+      "marker": null,
+      "default_environment_active": true,
+      "target_in_lock": true,
+      "locked_version_satisfies": true,
+      "scope": "Declared metadata edge; selected extras/actual resolver path not inferred"
+    },
+    {
+      "from": "rich",
+      "to": "pygments",
+      "declared": "pygments (>=2.13.0,<3.0.0)",
+      "marker": null,
+      "default_environment_active": true,
+      "target_in_lock": true,
+      "locked_version_satisfies": true,
+      "scope": "Declared metadata edge; selected extras/actual resolver path not inferred"
+    },
+    {
+      "from": "urllib3",
+      "to": "brotli",
+      "declared": "brotli>=1.2.0; (platform_python_implementation == 'CPython') and extra == 'brotli'",
+      "marker": "platform_python_implementation == \"CPython\" and extra == \"brotli\"",
+      "default_environment_active": false,
+      "target_in_lock": false,
+      "locked_version_satisfies": false,
+      "scope": "Declared metadata edge; selected extras/actual resolver path not inferred"
+    },
+    {
+      "from": "urllib3",
+      "to": "brotlicffi",
+      "declared": "brotlicffi>=1.2.0.0; (platform_python_implementation != 'CPython') and extra == 'brotli'",
+      "marker": "platform_python_implementation != \"CPython\" and extra == \"brotli\"",
+      "default_environment_active": false,
+      "target_in_lock": false,
+      "locked_version_satisfies": false,
+      "scope": "Declared metadata edge; selected extras/actual resolver path not inferred"
+    },
+    {
+      "from": "urllib3",
+      "to": "h2",
+      "declared": "h2<5,>=4; extra == 'h2'",
+      "marker": "extra == \"h2\"",
+      "default_environment_active": false,
+      "target_in_lock": false,
+      "locked_version_satisfies": false,
+      "scope": "Declared metadata edge; selected extras/actual resolver path not inferred"
+    },
+    {
+      "from": "urllib3",
+      "to": "pysocks",
+      "declared": "pysocks!=1.5.7,<2.0,>=1.5.6; extra == 'socks'",
+      "marker": "extra == \"socks\"",
+      "default_environment_active": false,
+      "target_in_lock": false,
+      "locked_version_satisfies": false,
+      "scope": "Declared metadata edge; selected extras/actual resolver path not inferred"
+    },
+    {
+      "from": "urllib3",
+      "to": "backports-zstd",
+      "declared": "backports-zstd>=1.0.0; (python_version < '3.14') and extra == 'zstd'",
+      "marker": "python_version < \"3.14\" and extra == \"zstd\"",
+      "default_environment_active": false,
+      "target_in_lock": false,
+      "locked_version_satisfies": false,
+      "scope": "Declared metadata edge; selected extras/actual resolver path not inferred"
+    }
+  ],
+  "errors": [],
+  "overall_cis": "PARTIAL"
+}

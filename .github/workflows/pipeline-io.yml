@@ -1,0 +1,138 @@
+name: CIS - Pipeline Input Output
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  generate-and-validate:
+    name: Generate SBOM and verify signatures
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+
+    env:
+      INPUT_MESSAGE: CIS pipeline lab
+      OUTPUT_FILE: output/message.txt
+
+    steps:
+      - name: Generate and validate output
+        shell: bash
+        run: |
+          mkdir -p output
+          printf '%s\n' "$INPUT_MESSAGE" > "$OUTPUT_FILE"
+          test -s "$OUTPUT_FILE"
+          printf '%s\n' "$INPUT_MESSAGE" | cmp - "$OUTPUT_FILE"
+          echo "PASS: output matches input"
+          sha256sum "$OUTPUT_FILE"
+
+      - name: Collect runner package inventory
+        shell: bash
+        run: |
+          mkdir -p runner-root/etc runner-root/var/lib/dpkg
+          cp /etc/os-release runner-root/etc/os-release
+          cp /var/lib/dpkg/status runner-root/var/lib/dpkg/status
+
+      - name: Generate runner package SBOM
+        uses: anchore/sbom-action@66cbf4bc1f1c0d2edc94016e65bc221b6bb0ad6c # v0.24.3
+        with:
+          path: runner-root
+          format: spdx-json
+          output-file: output/runner-sbom.spdx.json
+          syft-version: v1.54.0
+          upload-artifact: false
+          upload-release-assets: false
+          dependency-snapshot: false
+
+      - name: Check SBOM contents
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+
+          data = json.loads(
+              Path("output/runner-sbom.spdx.json").read_text()
+          )
+          packages = data.get("packages", [])
+          assert data.get("spdxVersion", "").startswith("SPDX-")
+          assert packages, "SBOM contains no packages"
+
+          print("SBOM format:", data["spdxVersion"])
+          print("Scope: Ubuntu packages recorded in runner dpkg inventory")
+          print("Package count:", len(packages))
+          for package in packages[:5]:
+              print(
+                  "Package:",
+                  package.get("name"),
+                  package.get("versionInfo", "unknown")
+              )
+          print("PASS: SBOM JSON parsed and contains packages")
+          PY
+
+      - name: Sign artifact and SBOM with temporary lab key
+        shell: bash
+        run: |
+          umask 077
+          KEY_FILE="$RUNNER_TEMP/lab-signing-key.pem"
+          trap 'rm -f "$KEY_FILE"' EXIT
+
+          openssl genpkey -algorithm RSA \
+            -pkeyopt rsa_keygen_bits:3072 \
+            -out "$KEY_FILE" 2>/dev/null
+
+          openssl pkey -in "$KEY_FILE" \
+            -pubout -out output/lab-public-key.pem
+
+          for file in "$OUTPUT_FILE" output/runner-sbom.spdx.json; do
+            openssl dgst -sha256 \
+              -sign "$KEY_FILE" \
+              -out "$file.sig" "$file"
+          done
+
+          echo "PASS: artifact and SBOM signed"
+
+      - name: Verify signatures and reject modified copies
+        shell: bash
+        run: |
+          for file in "$OUTPUT_FILE" output/runner-sbom.spdx.json; do
+            echo "Verifying: $file"
+
+            openssl dgst -sha256 \
+              -verify output/lab-public-key.pem \
+              -signature "$file.sig" "$file"
+
+            echo "PASS: original signature verified for $file"
+
+            MODIFIED_FILE="$RUNNER_TEMP/$(basename "$file").modified"
+            cp "$file" "$MODIFIED_FILE"
+            printf '\nmodified\n' >> "$MODIFIED_FILE"
+
+            if openssl dgst -sha256 \
+              -verify output/lab-public-key.pem \
+              -signature "$file.sig" \
+              "$MODIFIED_FILE" >/dev/null 2>&1; then
+              echo "::error::Modified file passed verification: $file"
+              exit 1
+            fi
+
+            echo "PASS: modified copy rejected for $file"
+          done
+
+      - name: Store signed artifact and SBOM
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: pipeline-signed-output-${{ github.run_id }}
+          path: |
+            output/message.txt
+            output/message.txt.sig
+            output/runner-sbom.spdx.json
+            output/runner-sbom.spdx.json.sig
+            output/lab-public-key.pem
+          if-no-files-found: error
+          retention-days: 7

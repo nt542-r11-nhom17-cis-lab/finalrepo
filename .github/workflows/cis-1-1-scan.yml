@@ -1,0 +1,17 @@
+name: DEMO ONLY - CIS 1.1 placeholder
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  code-scanning:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Run code security scan
+        run: |
+          echo "DEMO ONLY: no security scanner is executed by this workflow."

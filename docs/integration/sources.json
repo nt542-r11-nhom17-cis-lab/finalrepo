@@ -1,0 +1,12 @@
+{
+  "group_commit": "fc400ea7aaa69a3386cc9c45429492e45dedf915",
+  "personal_commit": "753a72fa2a2b08b563b2c575721d6fee0b8e710f",
+  "mode": "isolated integration; no remote changes",
+  "added_workflows": [
+    "cis-1-1-scan.yml",
+    "pipeline-io.yml",
+    "pipeline-security.yml",
+    "resource-monitor.yml",
+    "runner-check.yml"
+  ]
+}

@@ -1,0 +1,97 @@
+name: CIS - Runner Resource Monitor
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  monitor-resources:
+    name: Monitor runner resources
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+
+    steps:
+      - name: Monitor resources during sample task
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import os
+          import shutil
+          import subprocess
+          import time
+
+          def cpu_times():
+              with open("/proc/stat") as f:
+                  values = list(map(int, f.readline().split()[1:]))
+              return sum(values), values[3] + values[4]
+
+          def memory_percent():
+              values = {}
+              with open("/proc/meminfo") as f:
+                  for line in f:
+                      key, value = line.split(":", 1)
+                      values[key] = int(value.split()[0])
+              return 100 * (1 - values["MemAvailable"] / values["MemTotal"])
+
+          task = subprocess.Popen([
+              "python3", "-c",
+              "import time; end=time.monotonic()+30\n"
+              "while time.monotonic()<end: sum(range(10000))"
+          ])
+
+          rows = []
+          previous_total, previous_idle = cpu_times()
+
+          while True:
+              time.sleep(5)
+              total, idle = cpu_times()
+              elapsed = total - previous_total
+              cpu = 100 * (1 - (idle - previous_idle) / elapsed) if elapsed else 0
+              previous_total, previous_idle = total, idle
+              ram = memory_percent()
+              disk = shutil.disk_usage("/")
+              disk_used = 100 * disk.used / disk.total
+
+              message = (
+                  f"CPU={cpu:.1f}% RAM={ram:.1f}% "
+                  f"DISK={disk_used:.1f}%"
+              )
+              print(message, flush=True)
+              rows.append((cpu, ram, disk_used))
+
+              for name, value in [
+                  ("CPU", cpu), ("RAM", ram), ("DISK", disk_used)
+              ]:
+                  if value >= 85:
+                      print(
+                          f"::warning title=Resource threshold exceeded::"
+                          f"{name}={value:.1f}% (threshold 85%)",
+                          flush=True
+                      )
+
+              if task.poll() is not None:
+                  break
+
+          if task.wait() != 0:
+              raise SystemExit("Sample task failed")
+
+          with open(os.environ["GITHUB_STEP_SUMMARY"], "a") as report:
+              report.write("## Runner resource monitoring\n\n")
+              report.write("Scope: this job during a 30-second sample task.\n\n")
+              report.write("| Sample | CPU % | RAM % | Disk used % |\n")
+              report.write("|---|---|---|---|\n")
+              for index, (cpu, ram, disk) in enumerate(rows, 1):
+                  report.write(
+                      f"| {index} | {cpu:.1f} | {ram:.1f} | {disk:.1f} |\n"
+                  )
+          PY
+
+      - name: Demonstrate warning delivery
+        run: |
+          echo "::warning title=DEMO ONLY::Test warning delivery; not an actual resource threshold breach."

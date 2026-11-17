@@ -1,0 +1,125 @@
+name: CIS - Runner Check
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  inspect-runner:
+    name: Inspect runner
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+
+    steps:
+      - name: Restrict outbound network
+        uses: step-security/harden-runner@05e31511f85b41b11d1cf0ef85d0992719546e2c # v2.21.0
+        with:
+          egress-policy: block
+          allowed-endpoints: >
+            github.com:443
+          disable-telemetry: true
+
+      - name: Show runner information
+        env:
+          RUNNER_ENVIRONMENT: ${{ runner.environment }}
+          RUNNER_OS: ${{ runner.os }}
+          RUNNER_ARCH: ${{ runner.arch }}
+        run: |
+          echo "Environment: $RUNNER_ENVIRONMENT"
+          echo "OS: $RUNNER_OS"
+          echo "Architecture: $RUNNER_ARCH"
+          cat /etc/os-release
+
+  verify-platform:
+    name: Verify platform
+    needs: inspect-runner
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+
+    steps:
+      - name: Restrict outbound network
+        uses: step-security/harden-runner@05e31511f85b41b11d1cf0ef85d0992719546e2c # v2.21.0
+        with:
+          egress-policy: block
+          allowed-endpoints: >
+            github.com:443
+          disable-telemetry: true
+
+      - name: Verify required operating system
+        run: |
+          . /etc/os-release
+          test "$ID" = "ubuntu"
+          test "$VERSION_ID" = "24.04"
+          echo "PASS: Ubuntu 24.04"
+
+  check-network:
+    name: Check network
+    needs: verify-platform
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+
+    steps:
+      - name: Restrict outbound network
+        uses: step-security/harden-runner@05e31511f85b41b11d1cf0ef85d0992719546e2c # v2.21.0
+        with:
+          egress-policy: block
+          allowed-endpoints: >
+            github.com:443
+          disable-telemetry: true
+
+      - name: Check outbound HTTPS access
+        run: |
+          for url in https://github.com https://example.com; do
+            echo "Checking $url"
+            if curl --head --silent --show-error \
+              --connect-timeout 10 --max-time 20 \
+              "$url" > /dev/null; then
+              echo "REACHABLE: $url"
+            else
+              echo "NOT REACHABLE: $url"
+            fi
+          done
+
+  scan-runner:
+    name: Scan runner packages
+    needs: check-network
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+
+    steps:
+      - name: Restrict outbound network
+        uses: step-security/harden-runner@05e31511f85b41b11d1cf0ef85d0992719546e2c # v2.21.0
+        with:
+          egress-policy: block
+          allowed-endpoints: >
+            github.com:443
+            api.github.com:443
+            raw.githubusercontent.com:443
+            release-assets.githubusercontent.com:443
+            get.anchore.io:443
+            grype.anchore.io:443
+            toolbox-data.anchore.io:443
+          disable-telemetry: true
+
+      - name: Collect installed Ubuntu package inventory
+        run: |
+          mkdir -p runner-root/etc runner-root/var/lib/dpkg
+          cp /etc/os-release runner-root/etc/os-release
+          cp /var/lib/dpkg/status runner-root/var/lib/dpkg/status
+          echo "Runner image: $ImageOS / $ImageVersion"
+          echo "Scope: installed packages recorded in dpkg"
+          dpkg-query -W | wc -l
+
+      - name: Scan Ubuntu packages for vulnerabilities
+        uses: anchore/scan-action@27805bf3b4e84b4a5c980df22ed233c00390a439 # v7.4.2
+        with:
+          path: runner-root
+          output-format: table
+          fail-build: false
+          cache-db: false

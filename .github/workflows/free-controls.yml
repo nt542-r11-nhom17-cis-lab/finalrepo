@@ -13,6 +13,7 @@ concurrency:
 
 jobs:
   collect-free-evidence:
+    name: Collect scoped Free-control evidence
     runs-on: ubuntu-24.04
     timeout-minutes: 15
     steps:

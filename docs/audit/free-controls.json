@@ -31,7 +31,7 @@
       "behavior_test"
     ],
     "audit": "Đọc .github/CODEOWNERS; xác minh người được khai báo có quyền phù hợp và rule Require review from Code Owners.",
-    "remediation": "Tạo rule riêng cho audit/protection-sandbox; bật Code Owner review. Chưa biết 3 username còn lại nên không tự thêm.",
+    "remediation": "Tạo rule riêng cho audit/protection-sandbox; bật Code Owner review. Đã có snapshot username/quyền; chưa có phân công được nhóm xác nhận nên không tự thêm Code Owner hoặc cấp quyền.",
     "re_audit": "PR sửa file thuộc sở hữu phải bị chặn khi chưa có Code Owner approval.",
     "remaining": "CODEOWNERS chưa chứng minh rule có hiệu lực; thiếu username/thử nghiệm."
   },
@@ -222,7 +222,7 @@
     "audit": "Repo Settings → Collaborators and teams: xác định hai admin thực tế và MFA của họ.",
     "remediation": "Owner chọn hai người có nhiệm vụ quản trị, cấp quyền theo quyết định nhóm; không cấp Admin cho cả nhóm mặc định.",
     "re_audit": "Hai người tự đăng nhập kiểm tra đúng quyền; tài khoản developer không có admin.",
-    "remaining": "Thiếu username thứ hai và phê duyệt phân công thực tế."
+    "remaining": "Snapshot người dùng thấy một admin (hieune-ui); cần owner xác minh toàn bộ quyền kế thừa và nhóm quyết định admin thứ hai. Không tự cấp quyền."
   },
   {
     "id": "1.3.13",

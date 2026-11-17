@@ -15,7 +15,7 @@ flowchart LR
  E --> F[Lưu JSON CSV log và ảnh đã che dữ liệu]
 ```
 
-Ảnh thực nghiệm chỉ đặt trong phần 2 (METHOD.vi.md); phần 3 dùng chữ/bảng và tham chiếu ảnh. Chưa có ảnh Settings thì ghi chưa có, không tạo ảnh giả. Không dùng sơ đồ thay ảnh kiểm chứng. Người thực hiện thủ công ghi username thật, thời gian, repo/ref, cấu hình trước/sau và kết quả. Với nhóm bốn người, danh tính chỉ biết hieune-ui; TV2/TV3/TV4 là vị trí đề xuất, không phải quyền đã cấp.
+Ảnh thực nghiệm chỉ đặt trong phần 2 (METHOD.vi.md); phần 3 dùng chữ/bảng và tham chiếu ảnh. Chưa có ảnh Settings thì ghi chưa có, không tạo ảnh giả. Không dùng sơ đồ thay ảnh kiểm chứng. Người thực hiện thủ công ghi username thật, thời gian, repo/ref, cấu hình trước/sau và kết quả. Đã đọc được bốn tài khoản qua API người dùng (xem IMPLEMENTATION.vi.md và evidence/free-collaborator-roles.json); nhiệm vụ đề xuất không phải bằng chứng các tài khoản đã thực hiện công việc. Workflow token chỉ thấy một tập con khác, không dùng số API-visible làm tổng thành viên Organization.
 
 ## Cách chạy và đọc kết quả
 
@@ -84,7 +84,7 @@ Không lấy fingerprint chỉ từ chính gói tải về để tuyên bố ngu
 
 **Audit:** Đọc .github/CODEOWNERS; xác minh người được khai báo có quyền phù hợp và rule Require review from Code Owners.
 
-**Remediation:** Tạo rule riêng cho audit/protection-sandbox; bật Code Owner review. Chưa biết 3 username còn lại nên không tự thêm.
+**Remediation:** Tạo rule riêng cho audit/protection-sandbox; bật Code Owner review. Đã có snapshot username/quyền nhưng chưa có phân công được nhóm xác nhận nên không tự thêm Code Owner hoặc cấp quyền.
 
 **Re-audit:** PR sửa file thuộc sở hữu phải bị chặn khi chưa có Code Owner approval.
 

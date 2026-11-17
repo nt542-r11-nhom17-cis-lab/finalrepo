@@ -1,0 +1,53 @@
+{
+  "checked_at": "2026-11-17T14:46:56.207095+00:00",
+  "repository": "nt542-r11-nhom17-cis-lab/finalrepo",
+  "mode": "Authenticated user GET /collaborators; no role changes",
+  "scope": "API-visible accounts only. Confirm full effective access and organization inheritance in owner UI. Workflow token sees a different subset.",
+  "api_visible_accounts": 4,
+  "accounts": [
+    {
+      "login": "Vuongdlx",
+      "permissions": {
+        "admin": false,
+        "maintain": false,
+        "pull": true,
+        "push": true,
+        "triage": true
+      },
+      "role_name": "write"
+    },
+    {
+      "login": "HiepTran01",
+      "permissions": {
+        "admin": false,
+        "maintain": false,
+        "pull": true,
+        "push": false,
+        "triage": false
+      },
+      "role_name": "read"
+    },
+    {
+      "login": "dtk0106",
+      "permissions": {
+        "admin": false,
+        "maintain": false,
+        "pull": true,
+        "push": false,
+        "triage": false
+      },
+      "role_name": "read"
+    },
+    {
+      "login": "hieune-ui",
+      "permissions": {
+        "admin": true,
+        "maintain": true,
+        "pull": true,
+        "push": true,
+        "triage": true
+      },
+      "role_name": "admin"
+    }
+  ]
+}

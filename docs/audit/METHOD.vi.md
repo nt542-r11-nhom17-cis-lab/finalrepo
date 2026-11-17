@@ -2,6 +2,10 @@
 
 Phương pháp duy nhất được chọn để đào sâu là đánh giá cấu hình theo hướng dẫn Audit của CIS, thực hiện Remediation trong phạm vi được cho phép rồi kiểm tra lại. Manual, Automated và Remote Automated là các cách thực hiện phương pháp, không phải ba tiêu chuẩn khác nhau. Nhãn Manual/Automated trong catalog giữ nguyên theo PDF; công cụ không tự đổi nhãn CIS.
 
+![Hình 2.1: quy trình Manual](images/manual.svg)
+
+![Hình 2.3: mô hình lab](images/topology.svg)
+
 ## 2.1 Manual
 
 Với mỗi tiêu chí, đọc Description, Audit, Remediation và phạm vi áp dụng; xác định đối tượng GitHub thực tế; quan sát cấu hình; thực hiện kiểm thử hành vi nếu an toàn; ghi bằng chứng; đối chiếu yêu cầu; lập đề xuất khắc phục; kiểm tra lại sau khắc phục. Bằng chứng phải ghi repository, nhánh, tài khoản thực hiện, thời điểm và mã tiêu chí. Thiếu quyền xem cấu hình được ghi là chưa kiểm tra được.
@@ -21,7 +25,9 @@ Ví dụ 1.1.3: Audit số phê duyệt và quy tắc có hiệu lực; đề xu
 
 ### Hình và bằng chứng thuộc phần 2
 
-Các sơ đồ Mermaid ở tài liệu này là hình giải thích phương pháp, không phải ảnh chụp thực nghiệm. Bằng chứng đã có: [các phiên chạy trước](../integration/RESULTS.vi.md), [snapshot API](evidence/github-api.json), [kết quả lab cục bộ](evidence/sandbox.json). Bảng phiên chạy nhánh sẽ được cập nhật trong RESULTS.vi.md. Không tạo ảnh giả cấu hình GitHub.
+![Hình 2.4: bảng tổng hợp từ kết quả thực](images/results.svg)
+
+Các sơ đồ Mermaid ở tài liệu này là hình giải thích phương pháp, không phải ảnh chụp thực nghiệm. Bằng chứng đã có: [các phiên chạy trước](../integration/RESULTS.vi.md), [snapshot API](evidence/github-api.json), [kết quả lab cục bộ](evidence/sandbox.json). [Bảng phiên chạy nhánh](RESULTS.vi.md) đã có kết quả remote và artifact thực tế. Không tạo ảnh giả cấu hình GitHub.
 
 Ảnh Settings, thành viên và PR bị chặn cần người có quyền chụp thực tế. Khi bổ sung, đặt ảnh dưới docs/audit/images và nhúng tại phần 2 này; phần 3 chỉ dẫn số hình. Chưa có các ảnh đó thì phải giữ trạng thái thiếu minh chứng.
 
@@ -51,6 +57,8 @@ Script API xuất configuration_result và overall_status riêng. PASS của c�
 Lab tạo artifact ZIP hai lần và so byte; tạo SBOM có phạm vi khai báo rõ; ký artifact/SBOM/provenance bằng khóa tạm; kiểm chứng bản gốc và bản sửa đổi; ký ciphertext trước khi giải mã; triển khai bản đã xác minh vào thư mục tạm rồi smoke test. Khóa riêng và mật khẩu mã hóa không nằm trong thư mục upload. Mọi kết quả chỉ áp dụng cho lab.
 
 ## 2.3 Remote Automated và GitHub API
+
+![Hình 2.2: workflow remote](images/remote.svg)
 
 Cùng script được chạy trên GitHub-hosted runner bằng workflow_dispatch, chỉ định ref audit/cis-1-5-review. Workflow pipeline-io.yml đã có trên default branch nên có thể gọi phiên bản nhánh. Không cần thay main để thử nghiệm. Token mặc định chỉ được khai báo contents: read; endpoint cần quyền Administration read có thể trả 403. Không mở rộng quyền để né giới hạn này.
 

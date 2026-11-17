@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="350" viewBox="0 0 1000 350">
+<rect width="1000" height="350" fill="#f7f9fc"/><g font-family="sans-serif" fill="#15334d">
+<text x="45" y="45" font-size="24">Hình 2.4 — Tổng hợp kết quả thực tế trên nhánh review</text>
+<text x="45" y="86" font-size="18">Nhánh: audit/cis-1-5-review · Code: c594dfc</text>
+<text x="45" y="130" font-size="20">API + supply-chain sandbox: SUCCESS · Run 44061920719</text>
+<text x="45" y="174" font-size="20">Zizmor workflow audit: SUCCESS · Run 44061926508</text>
+<text x="45" y="218" font-size="18">Catalog: 120 mục · 32 PARTIAL · 7 MANUAL_REVIEW · 81 NOT_TESTED</text>
+<text x="45" y="265" font-size="17">Biểu đồ tổng hợp từ metadata API, không phải screenshot giao diện GitHub.</text>
+<text x="45" y="303" font-size="17">Run thành công không chứng minh toàn bộ tiêu chí CIS đạt.</text></g></svg>

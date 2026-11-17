@@ -1,0 +1,28 @@
+{
+  "checked_at": "2026-11-17T10:09:21.982200+00:00",
+  "runs": [
+    {
+      "conclusion": "success",
+      "databaseId": 44061920719,
+      "headBranch": "audit/cis-1-5-review",
+      "headSha": "c594dfc53ef76ae359d51ed75d5e8e71741bacfa",
+      "name": "CIS - Pipeline Input Output",
+      "status": "completed",
+      "url": "https://github.com/hieune-ui/finalrepo/actions/runs/44061920719"
+    },
+    {
+      "conclusion": "success",
+      "databaseId": 44061926508,
+      "headBranch": "audit/cis-1-5-review",
+      "headSha": "c594dfc53ef76ae359d51ed75d5e8e71741bacfa",
+      "name": "CIS - Pipeline Security Scan",
+      "status": "completed",
+      "url": "https://github.com/hieune-ui/finalrepo/actions/runs/44061926508"
+    }
+  ],
+  "artifacts": [
+    "cis-review-44061920719",
+    "pipeline-signed-output-44061920719"
+  ],
+  "main_sha": "e052945db5b4a2bace480b5ab98446a8b82da02e"
+}

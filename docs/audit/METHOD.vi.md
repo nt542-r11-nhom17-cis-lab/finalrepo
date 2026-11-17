@@ -86,3 +86,9 @@ Quy trình khắc phục từ xa của đợt này chỉ sửa mã và tài li�
 ## Bổ sung phương pháp cho toàn bộ 120 mục
 
 Mỗi mục có Audit, Remediation đề xuất, Re-audit và yêu cầu bằng chứng trong [runbooks](COMPLETE-REVIEW.vi.md). Bộ thu thập readiness thực hiện GET metadata; 403, thiếu IdP/registry/production được ghi BLOCKED_PREREQUISITE. Registry fixture chỉ kiểm thử logic ủy quyền, claim MFA giả, chữ ký, phiên bản bất biến, từ chối anonymous/tampering và log; không chứng minh MFA/SSO thật. Inventory dependency ghi SHA, tag, release date và tuổi, không suy từ tuổi commit sang tuổi phiên bản. Scanner self-test dùng credential tổng hợp trong thư mục tạm, kiểm cả trường hợp sạch và có phát hiện.
+
+### Hình 2.5 — Ảnh chụp thực tế workflow nhánh mới
+
+![Workflow thành công, artifacts và cảnh báo runtime trước khắc phục](images/run-before-runtime-update.jpg)
+
+Ảnh thật từ run 44064408467, commit a355912: workflow thành công nhưng có cảnh báo Node.js 20 của checkout. Ảnh giữ lại làm bằng chứng trước Remediation; bản khắc phục cập nhật checkout lên SHA của v7.0.1 và được kiểm tra riêng. Không chỉnh sửa ảnh để xóa cảnh báo.

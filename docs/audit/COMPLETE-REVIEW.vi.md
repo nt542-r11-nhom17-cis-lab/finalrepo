@@ -54,3 +54,7 @@ Mục 3.1.8 có dữ liệu release age: một số phiên bản action chưa h�
 Main không đổi. Nhánh mới chỉ có file/config lab; không có database migration hoặc triển khai mạng. Không có thao tác xóa/force-push. Để bỏ đề xuất, không merge nhánh. Không cần rollback main. Không bật hook cho người khác tự động; người muốn sử dụng tự cấu hình `git config core.hooksPath .githooks` sau khi đọc file.
 
 Kết quả remote và commit đã kiểm tra sẽ ghi trong [RESULTS.vi.md](RESULTS.vi.md). File xuất được lưu trong artifacts phiên chạy nhánh.
+
+## Khắc phục cảnh báo runtime
+
+Sau khi kiểm tra run đầu, đổi checkout từ SHA của v4 sang SHA v7.0.1 (đối chiếu API tag) chỉ trên nhánh mới để loại runtime Node.js 20 deprecated. Ảnh trước/sau nằm phần 2; phiên chạy sau được ghi trong RESULTS.vi.md.

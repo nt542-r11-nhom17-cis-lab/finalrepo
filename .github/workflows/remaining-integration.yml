@@ -34,13 +34,18 @@ jobs:
       - name: Scan pinned registry binary for known HIGH or CRITICAL vulnerabilities
         uses: aquasecurity/trivy-action@ed142fd0673e97e23eac54620cfb913e5ce36c25 # v0.36.0
         with:
-          scan-type: fs
+          scan-type: rootfs
           scan-ref: ${{ runner.temp }}/cis-registry-bin
           scanners: vuln
+          list-all-pkgs: 'true'
           severity: HIGH,CRITICAL
           exit-code: '1'
           format: json
           output: reports/registry-binary-vulnerabilities.json
+
+      - name: Require actual Go binary package coverage
+        if: ${{ !cancelled() }}
+        run: python3 scripts/verify_registry_scan.py
 
       - name: Inventory repositories and access without changing settings
         if: ${{ !cancelled() }}
@@ -58,5 +63,6 @@ jobs:
             reports/registry-integration/results.json
             reports/organization-inventory/results.json
             reports/registry-binary-vulnerabilities.json
+            reports/registry-scan-coverage.json
           if-no-files-found: error
           retention-days: 7

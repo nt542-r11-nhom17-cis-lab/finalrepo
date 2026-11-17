@@ -9,6 +9,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'scripts'))
 import inventory_organization
 import registry_integration
 import webhook_receiver
+import verify_registry_scan
 
 
 class WebhookPolicyTests(unittest.TestCase):
@@ -46,6 +47,19 @@ class WebhookPolicyTests(unittest.TestCase):
 
 
 class IntegrationBoundaryTests(unittest.TestCase):
+    def test_empty_scanner_report_never_passes_binary_coverage(self):
+        self.assertFalse(verify_registry_scan.evaluate({'SchemaVersion': 2}, 'a' * 64)['gate_passed'])
+
+    def test_wrong_binary_or_missing_packages_never_passes(self):
+        for record in ({'Type': 'gobinary', 'Target': 'registry-' + 'b' * 64, 'Packages': [{'Name': 'stdlib'}]},
+                       {'Type': 'gobinary', 'Target': 'registry-' + 'a' * 64}):
+            self.assertFalse(verify_registry_scan.evaluate({'Results': [record]}, 'a' * 64)['gate_passed'])
+
+    def test_high_finding_with_inventory_is_not_clean(self):
+        row = {'Type': 'gobinary', 'Target': 'registry-' + 'a' * 64, 'Packages': [{'Name': 'stdlib'}],
+               'Vulnerabilities': [{'Severity': 'HIGH'}]}
+        self.assertFalse(verify_registry_scan.evaluate({'Results': [row]}, 'a' * 64)['gate_passed'])
+
     def test_registry_redirect_cannot_receive_credentials(self):
         for location in ('https://example.com/v2/cis/lab/blobs/uploads/x',
                          'http://127.0.0.1:5000/v2/cis/lab/blobs/uploads/x',

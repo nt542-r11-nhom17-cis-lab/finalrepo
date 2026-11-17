@@ -52,3 +52,7 @@ Workflow pipeline-io.yml của nhánh thực thi kiểm tra source/container, SA
 ## Những phần không được biến thành PASS bằng mô phỏng
 
 Registry/IdP/production/supplier thực tế vẫn chưa được cung cấp. Credential cũ còn trong lịch sử, cần xác minh/thu hồi nếu từng dùng thật; không rewrite main. Các package/action dưới 60 ngày và license chưa xác định vẫn là findings/manual review, không nới policy chỉ để làm xanh.
+
+## Khắc phục độ bao phủ dependency audit
+
+Lần chạy đầu c22d271 thành công nhưng report dependency chỉ liệt kê 30/32 package; pip và packaging không xuất hiện trong chế độ resolver đó. Đã kiểm tra lại bằng chế độ đọc trực tiếp lock fully-pinned/hashed (`--require-hashes --disable-pip --strict`), đủ 32/32 và 0 advisory. `--disable-pip` chỉ bỏ bước tạo môi trường resolver nội bộ, không tắt truy vấn lỗ hổng. Bước install trước đó vẫn dùng require-hashes; metadata wheel được đối chiếu PyPI độc lập. Thêm verify_dependency_coverage.py để bắt buộc tên và version trong báo cáo khớp toàn bộ lock, không có package skipped và không có advisory; báo cáo thiếu package sẽ fail. Thêm bốn regression tests (tổng 21). Kết quả remote sau sửa được ghi riêng.

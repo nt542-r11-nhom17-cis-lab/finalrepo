@@ -1,3 +1,18 @@
+# Kết quả mới nhất — audit/cis-complete-runbooks
+
+Code đã chạy: `574c0f16fe8b81961bcd5d16d0dd40008d31d47b`.
+
+| Kiểm tra | Kết quả | Bằng chứng |
+|---|---|---|
+| API, 120-control evidence readiness, dependency inventory, supply-chain/registry/scanner labs, SBOM/chữ ký | SUCCESS | [Run 44064853230](https://github.com/hieune-ui/finalrepo/actions/runs/44064853230) |
+| Zizmor kiểm tra workflow của nhánh | SUCCESS | [Run 44064859042](https://github.com/hieune-ui/finalrepo/actions/runs/44064859042) |
+| Unit tests (8), supply-chain lab (5), registry fixture (13), scanner fixture (2) | PASS | Các bước trong workflow tổng hợp |
+| Main không đổi | Đã đối chiếu SHA | e052945db5b4a2bace480b5ab98446a8b82da02e |
+
+Artifacts thực tế: `cis-review-44064853230` (API JSON/CSV, readiness 120 mục, dependency report, lab reports), `pipeline-signed-output-44064853230` (SBOM runner và chữ ký). Ảnh thực tế trước/sau cập nhật runtime được đặt ở phần 2, METHOD.vi.md. Trang summary sau cập nhật không còn annotation cảnh báo Node.js 20 của checkout.
+
+Mức triển khai hiện ghi 39 PARTIAL, 10 LAB_ONLY, 7 MANUAL_REVIEW và 64 NOT_TESTED. Đủ 120 runbook không biến các mục đó thành PASS. Bộ readiness thực hiện thu thập/kiểm tra điều kiện, không thay Audit thủ công toàn bộ tiêu chí. Các kết quả cũ phía dưới giữ lại để truy vết.
+
 # Cập nhật đợt bổ sung toàn bộ quy trình
 
 Xem [COMPLETE-REVIEW.vi.md](COMPLETE-REVIEW.vi.md) và [bảng 120 mục cập nhật](COVERAGE.vi.md). Đã có 120 runbook, thu thập readiness và lab bổ sung; không có tuyên bố đạt toàn benchmark. Các thống kê/kết quả phía dưới thuộc lần review trước, giữ lại để truy vết.

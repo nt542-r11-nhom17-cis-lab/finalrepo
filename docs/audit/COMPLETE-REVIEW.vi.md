@@ -58,3 +58,9 @@ Kết quả remote và commit đã kiểm tra sẽ ghi trong [RESULTS.vi.md](RES
 ## Khắc phục cảnh báo runtime
 
 Sau khi kiểm tra run đầu, đổi checkout từ SHA của v4 sang SHA v7.0.1 (đối chiếu API tag) chỉ trên nhánh mới để loại runtime Node.js 20 deprecated. Ảnh trước/sau nằm phần 2; phiên chạy sau được ghi trong RESULTS.vi.md.
+
+## Kết quả kiểm tra cuối
+
+Hai workflow đã SUCCESS tại code 574c0f1. Có 8 unit tests, 5 supply-chain checks, 13 registry fixtures và 2 scanner fixtures. Ảnh trước/sau thực tế đặt ở phần 2. Main và hai repo nguồn đã được đối chiếu SHA không đổi. Xem RESULTS.vi.md để mở run và tải artifact.
+
+Đây chưa phải triển khai thực tế đủ 120 tiêu chí. Những mục cần organization/IdP/supplier/registry/production và danh tính nhóm vẫn không thể hoàn tất chỉ từ tài khoản cá nhân và nhánh Git. Bảng hiện ghi 39 PARTIAL, 10 LAB_ONLY, 7 MANUAL_REVIEW, 64 NOT_TESTED; không che các khoảng trống bằng kết quả mô phỏng.

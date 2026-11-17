@@ -1,0 +1,155 @@
+{
+  "scope": "GitHub Actions only; downloaded tools, runner OS and transitive dependencies require additional evidence",
+  "checked_at": "2026-11-17T10:28:59.591562+00:00",
+  "dependencies": [
+    {
+      "action": "actions/checkout",
+      "ref": "3d3c42e5aac5ba805825da76410c181273ba90b1",
+      "tag_hint": "v7.0.1",
+      "files": [
+        "app-build.yml",
+        "cis-1-1-scan.yml",
+        "cis-scanners.yml",
+        "cis-scanners.yml",
+        "cis-scanners.yml",
+        "pipeline-io.yml",
+        "pipeline-security.yml"
+      ],
+      "full_sha_pinned": true,
+      "commit_http": 200,
+      "commit_exists": true,
+      "trusted_supplier_verification": "MANUAL_REVIEW",
+      "release_age_days": 119.8,
+      "over_60_days": true,
+      "tag_matches_sha": true,
+      "release_http": 200,
+      "release_published_at": "2026-07-20T15:10:05Z"
+    },
+    {
+      "action": "actions/upload-artifact",
+      "ref": "cf430e030ddbb5b0abf93d22962f4752f3646cd9",
+      "tag_hint": "v7.0.2",
+      "files": [
+        "cis-scanners.yml",
+        "pipeline-io.yml",
+        "pipeline-io.yml"
+      ],
+      "full_sha_pinned": true,
+      "commit_http": 200,
+      "commit_exists": true,
+      "trusted_supplier_verification": "MANUAL_REVIEW",
+      "release_age_days": 41.01,
+      "over_60_days": false,
+      "tag_matches_sha": true,
+      "release_http": 200,
+      "release_published_at": "2026-10-07T10:08:14Z"
+    },
+    {
+      "action": "rhysd/actionlint",
+      "ref": "62dc61a45fc95efe8c800af7a557ab0b9165d63b",
+      "tag_hint": "v1.7.1",
+      "files": [
+        "cis-scanners.yml"
+      ],
+      "full_sha_pinned": true,
+      "commit_http": 200,
+      "commit_exists": true,
+      "trusted_supplier_verification": "MANUAL_REVIEW",
+      "release_age_days": 902.94,
+      "over_60_days": true,
+      "tag_matches_sha": true,
+      "release_http": 200,
+      "release_published_at": "2024-05-28T11:50:24Z"
+    },
+    {
+      "action": "aquasecurity/trivy-action",
+      "ref": "ed142fd0673e97e23eac54620cfb913e5ce36c25",
+      "tag_hint": "v0.36.0",
+      "files": [
+        "cis-scanners.yml"
+      ],
+      "full_sha_pinned": true,
+      "commit_http": 200,
+      "commit_exists": true,
+      "trusted_supplier_verification": "MANUAL_REVIEW",
+      "release_age_days": 209.03,
+      "over_60_days": true,
+      "tag_matches_sha": true,
+      "release_http": 200,
+      "release_published_at": "2026-04-22T09:39:33Z"
+    },
+    {
+      "action": "anchore/sbom-action",
+      "ref": "66cbf4bc1f1c0d2edc94016e65bc221b6bb0ad6c",
+      "tag_hint": "v0.24.3",
+      "files": [
+        "pipeline-io.yml"
+      ],
+      "full_sha_pinned": true,
+      "commit_http": 200,
+      "commit_exists": true,
+      "trusted_supplier_verification": "MANUAL_REVIEW",
+      "release_age_days": 45.79,
+      "over_60_days": false,
+      "tag_matches_sha": true,
+      "release_http": 200,
+      "release_published_at": "2026-10-02T15:35:43Z"
+    },
+    {
+      "action": "zizmorcore/zizmor-action",
+      "ref": "85b2b9fb8e3325e7a23d7d0a9d7ba5ae0f999e3e",
+      "tag_hint": "v0.7.1",
+      "files": [
+        "pipeline-security.yml"
+      ],
+      "full_sha_pinned": true,
+      "commit_http": 200,
+      "commit_exists": true,
+      "trusted_supplier_verification": "MANUAL_REVIEW",
+      "release_age_days": 32.46,
+      "over_60_days": false,
+      "tag_matches_sha": true,
+      "release_http": 200,
+      "release_published_at": "2026-10-15T23:23:14Z"
+    },
+    {
+      "action": "step-security/harden-runner",
+      "ref": "05e31511f85b41b11d1cf0ef85d0992719546e2c",
+      "tag_hint": "v2.21.0",
+      "files": [
+        "runner-check.yml",
+        "runner-check.yml",
+        "runner-check.yml",
+        "runner-check.yml"
+      ],
+      "full_sha_pinned": true,
+      "commit_http": 200,
+      "commit_exists": true,
+      "trusted_supplier_verification": "MANUAL_REVIEW",
+      "release_age_days": 94.19,
+      "over_60_days": true,
+      "tag_matches_sha": true,
+      "release_http": 200,
+      "release_published_at": "2026-08-15T05:52:25Z"
+    },
+    {
+      "action": "anchore/scan-action",
+      "ref": "27805bf3b4e84b4a5c980df22ed233c00390a439",
+      "tag_hint": "v7.4.2",
+      "files": [
+        "runner-check.yml"
+      ],
+      "full_sha_pinned": true,
+      "commit_http": 200,
+      "commit_exists": true,
+      "trusted_supplier_verification": "MANUAL_REVIEW",
+      "release_age_days": 80.61,
+      "over_60_days": true,
+      "tag_matches_sha": true,
+      "release_http": 200,
+      "release_published_at": "2026-08-28T19:43:40Z"
+    }
+  ],
+  "cis_3_1_8": "No blanket compliance claim: unknown release dates or versions <=60 days must be reviewed.",
+  "trust": "API existence and tag match are partial evidence, not independent supplier attestation verification."
+}

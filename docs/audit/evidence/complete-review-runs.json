@@ -1,0 +1,34 @@
+{
+  "checked_at": "2026-11-17T10:28:59.523482+00:00",
+  "branch": "audit/cis-complete-runbooks",
+  "runs": [
+    {
+      "conclusion": "success",
+      "databaseId": 44064853230,
+      "headBranch": "audit/cis-complete-runbooks",
+      "headSha": "574c0f16fe8b81961bcd5d16d0dd40008d31d47b",
+      "name": "CIS - Pipeline Input Output",
+      "status": "completed",
+      "url": "https://github.com/hieune-ui/finalrepo/actions/runs/44064853230"
+    },
+    {
+      "conclusion": "success",
+      "databaseId": 44064859042,
+      "headBranch": "audit/cis-complete-runbooks",
+      "headSha": "574c0f16fe8b81961bcd5d16d0dd40008d31d47b",
+      "name": "CIS - Pipeline Security Scan",
+      "status": "completed",
+      "url": "https://github.com/hieune-ui/finalrepo/actions/runs/44064859042"
+    }
+  ],
+  "main_sha_unchanged": "e052945db5b4a2bace480b5ab98446a8b82da02e",
+  "original_group_main_sha": "fc400ea7aaa69a3386cc9c45429492e45dedf915",
+  "original_personal_main_sha": "753a72fa2a2b08b563b2c575721d6fee0b8e710f",
+  "tests": {
+    "unit_tests": 8,
+    "supply_chain_lab_checks": 5,
+    "registry_fixture_tests": 13,
+    "scanner_fixture_tests": 2
+  },
+  "compliance": "Not all controls implemented; missing external systems and identity evidence remain explicit."
+}

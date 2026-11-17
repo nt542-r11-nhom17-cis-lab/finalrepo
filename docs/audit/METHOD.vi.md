@@ -92,3 +92,9 @@ Mỗi mục có Audit, Remediation đề xuất, Re-audit và yêu cầu bằng 
 ![Workflow thành công, artifacts và cảnh báo runtime trước khắc phục](images/run-before-runtime-update.jpg)
 
 Ảnh thật từ run 44064408467, commit a355912: workflow thành công nhưng có cảnh báo Node.js 20 của checkout. Ảnh giữ lại làm bằng chứng trước Remediation; bản khắc phục cập nhật checkout lên SHA của v7.0.1 và được kiểm tra riêng. Không chỉnh sửa ảnh để xóa cảnh báo.
+
+### Hình 2.6 — Ảnh thực tế sau khắc phục runtime
+
+![Workflow sau khắc phục runtime, status Success và hai artifacts](images/run-after-runtime-update.jpg)
+
+Run 44064853230, code 574c0f1, nhánh audit/cis-complete-runbooks. Đây là screenshot GitHub thật; trang summary không còn cảnh báo checkout Node.js 20. Ảnh chỉ chứng minh trạng thái phiên chạy và artifact, không chứng minh 120 tiêu chí đạt.

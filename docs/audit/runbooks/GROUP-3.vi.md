@@ -1,6 +1,6 @@
 # Nhóm 3: 12 quy trình Audit–Remediation–Re-audit
 
-Đủ quy trình không đồng nghĩa đủ triển khai hoặc đạt tuân thủ. Hướng dẫn dưới đây diễn giải để áp dụng lab; đối chiếu Audit/Remediation gốc tại trang tham chiếu khi thực hiện. Không tự thay settings, cấp quyền, xóa tài nguyên hoặc tác động main.
+Đủ quy trình không đồng nghĩa đủ triển khai hoặc đạt tuân thủ. Hướng dẫn dưới đây diễn giải để áp dụng lab; đối chiếu Audit/Remediation gốc tại trang tham chiếu khi thực hiện. Phạm vi đợt đánh giá không bao gồm thay đổi settings, quyền người dùng, xóa tài nguyên hoặc chỉnh sửa main. Khi kiểm tra lại, ghi đối tượng, ref, người thực hiện, thời gian và bằng chứng trước/sau; các phép thử gây thay đổi chỉ thực hiện trên đối tượng thử được phê duyệt.
 
 ## 3.1.1 — Ensure third-party artifacts and open-source libraries are verified
 
@@ -10,7 +10,7 @@ CIS: **Manual**, trang 169.
 
 **Remediation đề xuất:** Chỉ nhận package đã xác minh, ghi lại trust root.
 
-**Re-audit:** Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.
+**Re-audit:** Với từng artifact bên thứ ba, đối chiếu phiên bản/digest và chữ ký/provenance với nguồn supplier được duyệt; lưu trust root và thử bản sao bị sửa phải bị từ chối.
 
 **Nguồn bằng chứng cần có:** supplier, organization_policy.
 
@@ -26,7 +26,7 @@ CIS: **Manual**, trang 171.
 
 **Remediation đề xuất:** Yêu cầu supplier SBOM trong quy trình tiếp nhận.
 
-**Re-audit:** Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.
+**Re-audit:** Đối chiếu package/digest được dùng với SBOM supplier; supplier không cung cấp phải ghi thiếu.
 
 **Nguồn bằng chứng cần có:** supplier, organization_policy.
 
@@ -42,7 +42,7 @@ CIS: **Manual**, trang 173.
 
 **Remediation đề xuất:** Yêu cầu provenance ký, xác minh signer và nội dung.
 
-**Re-audit:** Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.
+**Re-audit:** Kiểm tra metadata signature + hash; sửa manifest/key phải bị từ chối.
 
 **Nguồn bằng chứng cần có:** supplier, organization_policy.
 
@@ -58,7 +58,7 @@ CIS: **Manual**, trang 175.
 
 **Remediation đề xuất:** Theo dõi graph, cập nhật và xử lý thay đổi bất thường.
 
-**Re-audit:** Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.
+**Re-audit:** Xác minh mọi cạnh phụ thuộc và phiên bản được giải quyết; không tự suy cạnh từ thứ tự lock.
 
 **Nguồn bằng chứng cần có:** supplier, organization_policy.
 
@@ -74,7 +74,7 @@ CIS: **Manual**, trang 176.
 
 **Remediation đề xuất:** Chỉ cho nguồn tin cậy, ưu tiên đúng registry để giảm dependency confusion.
 
-**Re-audit:** Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.
+**Re-audit:** Kiểm tra cấu hình index/registry và thứ tự ưu tiên trên môi trường sạch; xác nhận dependency được lấy từ nguồn đã duyệt, không tự fallback sang nguồn không tin cậy.
 
 **Nguồn bằng chứng cần có:** supplier, organization_policy.
 
@@ -90,7 +90,7 @@ CIS: **Manual**, trang 178.
 
 **Remediation đề xuất:** Cung cấp signed SBOM gắn với phiên bản artifact.
 
-**Re-audit:** Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.
+**Re-audit:** Dùng fingerprint từ log run đã kiểm tra để verify; sửa SBOM một byte phải thất bại.
 
 **Nguồn bằng chứng cần có:** supplier, organization_policy.
 
@@ -106,7 +106,7 @@ CIS: **Manual**, trang 180.
 
 **Remediation đề xuất:** Pin phiên bản/hash đã được xác minh qua review.
 
-**Re-audit:** Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.
+**Re-audit:** Cài/build lại từ lock trên môi trường sạch, đối chiếu mọi phiên bản và SHA thực với lock; kiểm tra mismatch không được tự sửa hoặc bỏ qua.
 
 **Nguồn bằng chứng cần có:** supplier, organization_policy.
 
@@ -122,7 +122,7 @@ CIS: **Manual**, trang 182.
 
 **Remediation đề xuất:** Chọn phiên bản hơn 60 ngày theo yêu cầu, xử lý ngoại lệ theo chính sách.
 
-**Re-audit:** Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.
+**Re-audit:** Tính tuổi từng phiên bản từ ngày phát hành được xác minh tới ngày đánh giá; ghi mục không quá 60 ngày hoặc chưa xác minh được ngày. Phân biệt ngày upload wheel với ngày phát hành phiên bản.
 
 **Nguồn bằng chứng cần có:** supplier, organization_policy.
 
@@ -138,7 +138,7 @@ CIS: **Manual**, trang 185.
 
 **Remediation đề xuất:** Áp dụng policy toàn tổ chức và quản lý ngoại lệ có hạn.
 
-**Re-audit:** Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.
+**Re-audit:** Đối chiếu dependency thực với policy nguồn, license và phiên bản được Organization phê duyệt; thử dependency bị cấm trong fixture và kiểm tra gate từ chối.
 
 **Nguồn bằng chứng cần có:** supplier, organization_policy.
 
@@ -154,7 +154,7 @@ CIS: **Manual**, trang 186.
 
 **Remediation đề xuất:** Quét CVE tự động định kỳ và trước phát hành.
 
-**Re-audit:** Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.
+**Re-audit:** Chạy SCA tự động trên inventory khóa, đối chiếu đủ tên/phiên bản và kiểm tra advisory/failed scan không bị chuyển thành kết quả sạch.
 
 **Nguồn bằng chứng cần có:** supplier, organization_policy.
 
@@ -170,7 +170,7 @@ CIS: **Manual**, trang 187.
 
 **Remediation đề xuất:** Quét license tự động và buộc xử lý vi phạm.
 
-**Re-audit:** Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.
+**Re-audit:** Chạy license scan trên inventory đầy đủ, đối chiếu từng license với policy được duyệt; license không rõ phải có review ghi nhận, không tự bỏ qua.
 
 **Nguồn bằng chứng cần có:** supplier, organization_policy.
 
@@ -186,7 +186,7 @@ CIS: **Manual**, trang 189.
 
 **Remediation đề xuất:** Giám sát ownership change, cảnh báo và review trước dùng bản mới.
 
-**Re-audit:** Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.
+**Re-audit:** Chạy đối chiếu thật; unit test đổi owner, xóa entry và lỗi API phải chặn.
 
 **Nguồn bằng chứng cần có:** supplier, organization_policy.
 

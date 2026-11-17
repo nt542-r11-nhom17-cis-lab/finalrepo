@@ -1,6 +1,6 @@
 # Nhóm 5: 11 quy trình Audit–Remediation–Re-audit
 
-Đủ quy trình không đồng nghĩa đủ triển khai hoặc đạt tuân thủ. Hướng dẫn dưới đây diễn giải để áp dụng lab; đối chiếu Audit/Remediation gốc tại trang tham chiếu khi thực hiện. Không tự thay settings, cấp quyền, xóa tài nguyên hoặc tác động main.
+Đủ quy trình không đồng nghĩa đủ triển khai hoặc đạt tuân thủ. Hướng dẫn dưới đây diễn giải để áp dụng lab; đối chiếu Audit/Remediation gốc tại trang tham chiếu khi thực hiện. Phạm vi đợt đánh giá không bao gồm thay đổi settings, quyền người dùng, xóa tài nguyên hoặc chỉnh sửa main. Khi kiểm tra lại, ghi đối tượng, ref, người thực hiện, thời gian và bằng chứng trước/sau; các phép thử gây thay đổi chỉ thực hiện trên đối tượng thử được phê duyệt.
 
 ## 5.1.1 — Ensure deployment configuration files are separated from source code
 
@@ -10,7 +10,7 @@ CIS: **Manual**, trang 219.
 
 **Remediation đề xuất:** Tách config theo kiến trúc/quyền phù hợp, không chỉ đổi thư mục.
 
-**Re-audit:** Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.
+**Re-audit:** Đối chiếu vị trí deployment config, repository/thư mục và quyền thay đổi với source; ghi rõ nếu chỉ tách thư mục nhưng vẫn chung quyền truy cập.
 
 **Nguồn bằng chứng cần có:** production, identity_provider.
 
@@ -26,7 +26,7 @@ CIS: **Manual**, trang 220.
 
 **Remediation đề xuất:** Version-control cấu hình và ghi review/approval.
 
-**Re-audit:** Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.
+**Re-audit:** Tạo thay đổi config trên nhánh thử, truy commit/PR về task/reviewer và đối chiếu audit log; xác nhận cấu hình đang dùng khớp phiên bản đã review.
 
 **Nguồn bằng chứng cần có:** production, identity_provider.
 
@@ -42,7 +42,7 @@ CIS: **Manual**, trang 221.
 
 **Remediation đề xuất:** Ngăn secret plaintext, dùng secret manager và scanner.
 
-**Re-audit:** Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.
+**Re-audit:** Dùng fixture deployment chứa secret giả để kiểm tra scanner và gate; quét lại config thực theo phạm vi HEAD/lịch sử riêng, không dùng secret production làm mẫu.
 
 **Nguồn bằng chứng cần có:** production, identity_provider.
 
@@ -58,7 +58,7 @@ CIS: **Manual**, trang 222.
 
 **Remediation đề xuất:** Giới hạn quyền theo môi trường, review độc lập.
 
-**Re-audit:** Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.
+**Re-audit:** Tài khoản không có quyền không được sửa config; PR thiếu owner review bị chặn trên nhánh thử.
 
 **Nguồn bằng chứng cần có:** production, identity_provider.
 
@@ -74,7 +74,7 @@ CIS: **Manual**, trang 224.
 
 **Remediation đề xuất:** Quét mọi IaC thực dùng và xử lý phát hiện.
 
-**Re-audit:** Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.
+**Re-audit:** Chạy IaC scanner trên manifest/template thực với đúng parser; dùng fixture cấu hình không an toàn để xác nhận detection và ghi các định dạng/tài nguyên chưa được bao phủ.
 
 **Nguồn bằng chứng cần có:** production, identity_provider.
 
@@ -90,7 +90,7 @@ CIS: **Manual**, trang 225.
 
 **Remediation đề xuất:** Xác minh manifest theo trust root trước sử dụng.
 
-**Re-audit:** Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.
+**Re-audit:** Đối chiếu digest/chữ ký của manifest với phiên bản được phê duyệt; sửa bản sao manifest phải bị từ chối trước triển khai, ghi trust root dùng để xác minh.
 
 **Nguồn bằng chứng cần có:** production, identity_provider.
 
@@ -106,7 +106,7 @@ CIS: **Manual**, trang 226.
 
 **Remediation đề xuất:** Pin manifest và dependency phiên bản được xác minh.
 
-**Re-audit:** Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.
+**Re-audit:** Đối chiếu deployment đang chạy với commit/digest manifest khóa; thay đổi tag hoặc hash sai trong sandbox phải bị từ chối, không tự cập nhật lock.
 
 **Nguồn bằng chứng cần có:** production, identity_provider.
 
@@ -122,7 +122,7 @@ CIS: **Manual**, trang 229.
 
 **Remediation đề xuất:** Mã hóa deployment và kiểm tra smoke/rollback.
 
-**Re-audit:** Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.
+**Re-audit:** Triển khai lên môi trường thử được phép bằng pipeline, ghi input/commit/run và trạng thái đích; xác nhận không có bước sửa tay bị thiếu trong quy trình ghi nhận.
 
 **Nguồn bằng chứng cần có:** production, identity_provider.
 
@@ -138,7 +138,7 @@ CIS: **Manual**, trang 230.
 
 **Remediation đề xuất:** Khóa môi trường, tự động provisioning, kiểm chứng tái lập môi trường.
 
-**Re-audit:** Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.
+**Re-audit:** Tạo lại hai môi trường thử từ cùng IaC/config và artifact khóa, so phiên bản/cấu hình và smoke test; phân biệt tái lập ứng dụng với tái lập toàn bộ môi trường production.
 
 **Nguồn bằng chứng cần có:** production, identity_provider.
 
@@ -154,7 +154,7 @@ CIS: **Manual**, trang 231.
 
 **Remediation đề xuất:** Giới hạn quyền production và audit truy cập.
 
-**Re-audit:** Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.
+**Re-audit:** Thử người không được cấp bị từ chối và người hợp lệ đúng phạm vi; lưu log đã che dữ liệu.
 
 **Nguồn bằng chứng cần có:** production, identity_provider.
 
@@ -170,7 +170,7 @@ CIS: **Manual**, trang 232.
 
 **Remediation đề xuất:** Thay default credentials, quản lý bí mật và vòng đời rotation.
 
-**Re-audit:** Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.
+**Re-audit:** Đăng nhập bằng credential mặc định/cũ phải bị từ chối trong kiểm thử được phép.
 
 **Nguồn bằng chứng cần có:** production, identity_provider.
 

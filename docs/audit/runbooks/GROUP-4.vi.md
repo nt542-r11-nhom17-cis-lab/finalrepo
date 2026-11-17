@@ -1,6 +1,6 @@
 # Nhóm 4: 14 quy trình Audit–Remediation–Re-audit
 
-Đủ quy trình không đồng nghĩa đủ triển khai hoặc đạt tuân thủ. Hướng dẫn dưới đây diễn giải để áp dụng lab; đối chiếu Audit/Remediation gốc tại trang tham chiếu khi thực hiện. Không tự thay settings, cấp quyền, xóa tài nguyên hoặc tác động main.
+Đủ quy trình không đồng nghĩa đủ triển khai hoặc đạt tuân thủ. Hướng dẫn dưới đây diễn giải để áp dụng lab; đối chiếu Audit/Remediation gốc tại trang tham chiếu khi thực hiện. Phạm vi đợt đánh giá không bao gồm thay đổi settings, quyền người dùng, xóa tài nguyên hoặc chỉnh sửa main. Khi kiểm tra lại, ghi đối tượng, ref, người thực hiện, thời gian và bằng chứng trước/sau; các phép thử gây thay đổi chỉ thực hiện trên đối tượng thử được phê duyệt.
 
 ## 4.1.1 — Ensure all artifacts are signed by the build pipeline itself
 
@@ -10,7 +10,7 @@ CIS: **Manual**, trang 192.
 
 **Remediation đề xuất:** Ký trong pipeline bằng danh tính quản lý được và kiểm chứng.
 
-**Re-audit:** Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.
+**Re-audit:** Xác minh chữ ký artifact của đúng pipeline/run và quyền truy cập signer; thử artifact sửa và khóa sai bị từ chối. Ghi rõ signer lab nếu chưa có danh tính production.
 
 **Nguồn bằng chứng cần có:** registry, identity_provider.
 
@@ -26,7 +26,7 @@ CIS: **Manual**, trang 195.
 
 **Remediation đề xuất:** Mã hóa trước phân phối, xác thực integrity trước giải mã.
 
-**Re-audit:** Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.
+**Re-audit:** Kiểm tra artifact được mã hóa trước khi chuyển khỏi pipeline và khóa không nằm trong gói; xác minh ciphertext trước giải mã, thử ciphertext bị sửa phải bị từ chối.
 
 **Nguồn bằng chứng cần có:** registry, identity_provider.
 
@@ -42,7 +42,7 @@ CIS: **Manual**, trang 196.
 
 **Remediation đề xuất:** Giới hạn khóa giải mã cho nền tảng được ủy quyền.
 
-**Re-audit:** Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.
+**Re-audit:** Trên nền tảng được phép, kiểm tra giải mã thành công; nền tảng/tài khoản không có grant phải bị từ chối. Đối chiếu quyền secret manager và audit log, không chỉ dùng fixture offline.
 
 **Nguồn bằng chứng cần có:** registry, identity_provider.
 
@@ -58,7 +58,7 @@ CIS: **Manual**, trang 199.
 
 **Remediation đề xuất:** Giới hạn signer, bảo vệ khóa và audit mọi lần dùng.
 
-**Re-audit:** Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.
+**Re-audit:** Đối chiếu danh sách signer/certifier với policy và quyền KMS/CA; tài khoản không được cấp thử ký hoặc cấp chứng nhận phải bị từ chối.
 
 **Nguồn bằng chứng cần có:** registry, identity_provider.
 
@@ -74,7 +74,7 @@ CIS: **Manual**, trang 200.
 
 **Remediation đề xuất:** Giảm người được upload theo least privilege.
 
-**Re-audit:** Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.
+**Re-audit:** Rà toàn bộ quyền upload theo user/team/service account; dùng tài khoản Read thử upload bị từ chối và tài khoản publisher đúng phạm vi được chấp nhận.
 
 **Nguồn bằng chứng cần có:** registry, identity_provider.
 
@@ -90,7 +90,7 @@ CIS: **Manual**, trang 201.
 
 **Remediation đề xuất:** Bắt buộc MFA theo khả năng registry, quản lý recovery.
 
-**Re-audit:** Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.
+**Re-audit:** Kiểm tra policy MFA của registry thật và danh tính được áp dụng; tài khoản chưa đáp ứng MFA không được thao tác theo phạm vi policy, ghi ngoại lệ cho service account.
 
 **Nguồn bằng chứng cần có:** registry, identity_provider.
 
@@ -106,7 +106,7 @@ CIS: **Manual**, trang 202.
 
 **Remediation đề xuất:** Dùng quản lý danh tính tập trung, giảm tài khoản local theo policy.
 
-**Re-audit:** Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.
+**Re-audit:** Đối chiếu người dùng registry với IdP/SSO bên ngoài và đường đăng nhập local; vô hiệu user thử tại IdP theo quy trình được duyệt, kiểm tra registry thu hồi quyền tương ứng.
 
 **Nguồn bằng chứng cần có:** registry, identity_provider.
 
@@ -122,7 +122,7 @@ CIS: **Manual**, trang 203.
 
 **Remediation đề xuất:** Tắt anonymous access theo phạm vi và kiểm tra lại.
 
-**Re-audit:** Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.
+**Re-audit:** Thử tải artifact từ registry thật khi không đăng nhập và bằng tài khoản không có grant; đối chiếu HTTP/ACL. Không dùng registry giả lập hoặc repo public để kết luận.
 
 **Nguồn bằng chứng cần có:** registry, identity_provider.
 
@@ -138,7 +138,7 @@ CIS: **Manual**, trang 205.
 
 **Remediation đề xuất:** Giảm admin và định kỳ review.
 
-**Re-audit:** Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.
+**Re-audit:** Xuất danh sách admin hiệu lực của registry, đối chiếu nhu cầu công việc và ngoại lệ; tài khoản thường không được đổi cấu hình/quyền quản trị.
 
 **Nguồn bằng chứng cần có:** registry, identity_provider.
 
@@ -154,7 +154,7 @@ CIS: **Manual**, trang 208.
 
 **Remediation đề xuất:** Xác minh chữ ký trước chấp nhận upload, fail closed.
 
-**Re-audit:** Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.
+**Re-audit:** Upload artifact ký hợp lệ và bản sao sai/thiếu chữ ký tới registry thử; registry phải từ chối bản không hợp lệ trước khi artifact được phân phối.
 
 **Nguồn bằng chứng cần có:** registry, identity_provider.
 
@@ -170,7 +170,7 @@ CIS: **Manual**, trang 210.
 
 **Remediation đề xuất:** Xác minh mọi phiên bản và cấm overwrite không được phê duyệt.
 
-**Re-audit:** Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.
+**Re-audit:** Liệt kê mọi phiên bản artifact trong phạm vi, xác minh từng chữ ký với trust policy tương ứng; ghi phiên bản thiếu chữ ký hoặc không thể xác minh.
 
 **Nguồn bằng chứng cần có:** registry, identity_provider.
 
@@ -186,7 +186,7 @@ CIS: **Manual**, trang 212.
 
 **Remediation đề xuất:** Bật audit và cảnh báo thay đổi cấu hình.
 
-**Re-audit:** Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.
+**Re-audit:** Thay đổi cấu hình vô hại trên registry thử đã được duyệt; kiểm tra log lưu actor, thời gian và cấu hình trước/sau, kiểm tra quyền sửa/xóa log.
 
 **Nguồn bằng chứng cần có:** registry, identity_provider.
 
@@ -202,7 +202,7 @@ CIS: **Manual**, trang 214.
 
 **Remediation đề xuất:** Bảo vệ webhook registry, kiểm tra certificate và nhận sự kiện.
 
-**Re-audit:** Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.
+**Re-audit:** Gửi webhook thử hợp lệ, sai chữ ký và replay tới endpoint registry được phép; kiểm tra TLS, HMAC và event allowlist, bảo đảm request sai bị từ chối.
 
 **Nguồn bằng chứng cần có:** registry, identity_provider.
 
@@ -218,7 +218,7 @@ CIS: **Manual**, trang 216.
 
 **Remediation đề xuất:** Gắn thông tin nguồn gốc xác thực với digest artifact.
 
-**Re-audit:** Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.
+**Re-audit:** Đối chiếu metadata nguồn gốc với commit, run ID, builder và digest artifact; xác minh chữ ký metadata và kiểm tra sửa commit/digest làm xác minh thất bại.
 
 **Nguồn bằng chứng cần có:** registry, identity_provider.
 

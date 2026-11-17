@@ -19,7 +19,7 @@ flowchart LR
  E --> F[Kiểm tra lại và lưu bằng chứng]
 ```
 
-Ví dụ 1.1.3: Audit số phê duyệt và quy tắc có hiệu lực; đề xuất yêu cầu tối thiểu hai người phê duyệt độc lập, đối chiếu giá trị 2 trong Audit của bản CIS; kiểm tra xác thực mạnh theo phạm vi tiêu chí. Không dùng số lượng review làm bằng chứng MFA. Thử nghiệm PR thiếu review phải bị chặn, PR đủ review còn phải đáp ứng các điều kiện khác. Ví dụ 1.1.4: quan sát dismiss-stale, tạo PR đã phê duyệt và cập nhật mã để kiểm chứng phê duyệt cũ mất hiệu lực. Những thao tác thay đổi protection/Rulesets của main hiện không được thực hiện vì người dùng yêu cầu giữ main nguyên trạng.
+Ví dụ 1.1.3: Audit số phê duyệt và quy tắc có hiệu lực; đề xuất yêu cầu tối thiểu hai người phê duyệt độc lập, đối chiếu giá trị 2 trong Audit của bản CIS; kiểm tra xác thực mạnh theo phạm vi tiêu chí. Không dùng số lượng review làm bằng chứng MFA. Thử nghiệm PR thiếu review phải bị chặn, PR đủ review còn phải đáp ứng các điều kiện khác. Ví dụ 1.1.4: quan sát dismiss-stale, tạo PR đã phê duyệt và cập nhật mã để kiểm chứng phê duyệt cũ mất hiệu lực. Những thao tác thay đổi protection/Rulesets của main hiện không được thực hiện do phạm vi đánh giá không bao gồm thay đổi nhánh main.
 
 Đối với 1.2.1, đọc SECURITY.md chứ không chỉ kiểm tra tên tệp. Cần kênh báo cáo riêng tư cụ thể. Đối với quyền nhóm, xác minh quyền hiện có và tính phù hợp với nhiệm vụ; bảng phân công đề xuất không được trình bày như bằng chứng đã cấp quyền.
 

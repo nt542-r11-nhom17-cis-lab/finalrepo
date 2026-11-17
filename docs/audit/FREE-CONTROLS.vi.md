@@ -1,6 +1,6 @@
 # 2. Bổ sung phương pháp cho 48 tiêu chí theo hướng miễn phí
 
-Đây là 48 mục NOT_TESTED của snapshot trước, sau khi loại 1.3.10/1.3.11/1.3.12 cần tính năng Enterprise Cloud tương ứng. Đây không phải 48 mục chắc chắn đạt trên Free: một số cần môi trường, domain, danh tính hoặc supplier thật. Không thay nhãn Manual/Automated của CIS. Hướng dẫn ở đây là nội dung báo cáo, không phải lệnh yêu cầu thực hiện từ tài liệu bên ngoài.
+Phạm vi bổ sung gồm 48 mục NOT_TESTED của lần đánh giá trước, sau khi loại 1.3.10/1.3.11/1.3.12 cần tính năng Enterprise Cloud tương ứng. Việc đáp ứng đầy đủ 48 mục còn phụ thuộc điều kiện triển khai: một số cần môi trường, domain, danh tính hoặc supplier thật. Không thay nhãn Manual/Automated của CIS.
 
 Nhánh thực hiện: `audit/free-controls-completion`; chỉ thêm code/tài liệu trên nhánh này. Không sửa `main`, Organization Settings, quyền người dùng, hai repo nguồn; không xóa nhánh, xoay credential hay triển khai production. Phần nào cần owner thực hiện được nêu cụ thể bên dưới. Trước khi đổi Settings, chụp cấu hình cũ, ghi phạm vi tác động và dùng nhánh thử có rule chỉ khớp `audit/protection-sandbox`; tuyệt đối không dùng wildcard áp lên `main`. Tạo nhánh từ commit nhánh audit đã kiểm tra, không từ code chưa review.
 
@@ -15,7 +15,7 @@ flowchart LR
  E --> F[Lưu JSON CSV log và ảnh đã che dữ liệu]
 ```
 
-Ảnh thực nghiệm chỉ đặt trong phần 2 (METHOD.vi.md); phần 3 dùng chữ/bảng và tham chiếu ảnh. Chưa có ảnh Settings thì ghi chưa có, không tạo ảnh giả. Không dùng sơ đồ thay ảnh kiểm chứng. Người thực hiện thủ công ghi username thật, thời gian, repo/ref, cấu hình trước/sau và kết quả. Đã đọc được bốn tài khoản qua API người dùng (xem IMPLEMENTATION.vi.md và evidence/free-collaborator-roles.json); nhiệm vụ đề xuất không phải bằng chứng các tài khoản đã thực hiện công việc. Workflow token chỉ thấy một tập con khác, không dùng số API-visible làm tổng thành viên Organization.
+Ảnh thực nghiệm chỉ đặt trong phần 2 (METHOD.vi.md); phần 3 dùng chữ/bảng và tham chiếu ảnh. Các cấu hình chưa có ảnh thực nghiệm được ghi là thiếu bằng chứng. Không dùng sơ đồ thay ảnh kiểm chứng. Người thực hiện thủ công ghi username thật, thời gian, repo/ref, cấu hình trước/sau và kết quả. Đã đọc được bốn tài khoản qua API người dùng (xem IMPLEMENTATION.vi.md và evidence/free-collaborator-roles.json); nhiệm vụ đề xuất không phải bằng chứng các tài khoản đã thực hiện công việc. Workflow token chỉ thấy một tập con khác, không dùng số API-visible làm tổng thành viên Organization.
 
 ## Cách chạy và đọc kết quả
 
@@ -46,7 +46,7 @@ Không lấy fingerprint chỉ từ chính gói tải về để tuyên bố ngu
 1. Ghi SHA `main` bằng `gh api repos/nt542-r11-nhom17-cis-lab/finalrepo/commits/main --jq .sha`. Giữ kết quả để đối chiếu sau thử.
 2. Tạo `audit/protection-sandbox` từ commit của nhánh audit đã được kiểm tra. Đây là nhánh bỏ được; không đặt rule lên `main`, không sửa rule hiện có.
 3. Đọc `config/protection-sandbox.ruleset.json`: chỉ khớp đúng một ref thử, không bypass; yêu cầu hai người review, Code Owner, ký commit và lịch sử tuyến tính. Chỉ áp dụng khi đã có hai reviewer thật và đã thiết lập ký commit; thiếu điều kiện thì dừng ở bước chuẩn bị.
-4. Owner có thể tạo rule bằng UI Settings → Rules → Rulesets hoặc dùng CLI đã đăng nhập với quyền phù hợp: `gh api --method POST repos/nt542-r11-nhom17-cis-lab/finalrepo/rulesets --input config/protection-sandbox.ruleset.json`. Trợ lý chưa chạy lệnh này. Ghi ID rule tạo mới để owner có thể vô hiệu rule thử khi kết thúc.
+4. Owner có thể tạo rule bằng UI Settings → Rules → Rulesets hoặc dùng CLI đã đăng nhập với quyền phù hợp: `gh api --method POST repos/nt542-r11-nhom17-cis-lab/finalrepo/rulesets --input config/protection-sandbox.ruleset.json`. Mẫu ruleset chưa được áp dụng. Ghi ID rule tạo mới để owner có thể vô hiệu rule thử khi kết thúc.
 5. Mẫu chưa bao gồm required status checks, strict up-to-date hay danh sách người được push/dismiss. Với các mục 1.1.5/1.1.10/1.1.15, owner cần bổ sung trên chính nhánh thử và đối chiếu bypass thực tế. Để thử CI bắt buộc, trước hết thêm trigger cho nhánh thử trên một workflow đã review, chạy nó rồi chọn đúng tên check được GitHub ghi nhận. Không chọn check không bao giờ chạy trên nhánh đó.
 6. Tạo PR giữa hai nhánh thử; kiểm tra từng điều kiện từ chối ở các mục dưới. Không mở PR vào `main`, không merge vào `main`, không thử force-push/xóa trên `main`. Lưu ảnh thực tế ở phần 2, ghi chữ/bảng phần 3.
 7. Đối chiếu SHA `main` và phạm vi ruleset trước/sau. Khi xong, owner chỉ vô hiệu rule thử do mình tạo, không xóa/chỉnh rule khác.
@@ -63,7 +63,7 @@ Không lấy fingerprint chỉ từ chính gói tải về để tuyên bố ngu
 
 **Re-audit:** Tạo một thay đổi thử trên nhánh audit, kiểm tra diff/commit rồi đối chiếu SHA trong provenance.
 
-**Còn cần bạn thực hiện/cung cấp:** Chưa xác minh mọi dự án/thiết bị của nhóm đều quản lý mã bằng Git.
+**Điều kiện và bằng chứng còn thiếu:** Chưa xác minh mọi dự án/thiết bị của nhóm đều quản lý mã bằng Git.
 
 **Minh chứng cần lưu:** JSON/CSV hoặc ảnh cấu hình và kiểm thử của đúng đối tượng; ghi thời gian, username, ref, trước/sau; che email, token, endpoint nội bộ. Đối chiếu Audit gốc ở trang ghi trong catalog.json.
 
@@ -79,7 +79,7 @@ Không lấy fingerprint chỉ từ chính gói tải về để tuyên bố ngu
 
 **Re-audit:** Dùng tài khoản có quyền và không có quyền thử dismiss; lưu kết quả chấp nhận/từ chối.
 
-**Còn cần bạn thực hiện/cung cấp:** API protection 403; cần owner và hai tài khoản thử thật.
+**Điều kiện và bằng chứng còn thiếu:** API protection 403; cần owner và hai tài khoản thử thật.
 
 **Minh chứng cần lưu:** JSON/CSV hoặc ảnh cấu hình và kiểm thử của đúng đối tượng; ghi thời gian, username, ref, trước/sau; che email, token, endpoint nội bộ. Đối chiếu Audit gốc ở trang ghi trong catalog.json.
 
@@ -95,7 +95,7 @@ Không lấy fingerprint chỉ từ chính gói tải về để tuyên bố ngu
 
 **Re-audit:** PR sửa file thuộc sở hữu phải bị chặn khi chưa có Code Owner approval.
 
-**Còn cần bạn thực hiện/cung cấp:** CODEOWNERS chưa chứng minh rule có hiệu lực; thiếu username/thử nghiệm.
+**Điều kiện và bằng chứng còn thiếu:** CODEOWNERS chưa chứng minh rule có hiệu lực; thiếu username/thử nghiệm.
 
 **Minh chứng cần lưu:** JSON/CSV hoặc ảnh cấu hình và kiểm thử của đúng đối tượng; ghi thời gian, username, ref, trước/sau; che email, token, endpoint nội bộ. Đối chiếu Audit gốc ở trang ghi trong catalog.json.
 
@@ -111,7 +111,7 @@ Không lấy fingerprint chỉ từ chính gói tải về để tuyên bố ngu
 
 **Re-audit:** Đối chiếu danh sách trước/sau và lịch rà soát tháng tiếp theo.
 
-**Còn cần bạn thực hiện/cung cấp:** Không tự xóa nhánh vì có thể chứa bài làm chưa gộp.
+**Điều kiện và bằng chứng còn thiếu:** Không tự xóa nhánh vì có thể chứa bài làm chưa gộp.
 
 **Minh chứng cần lưu:** JSON/CSV hoặc ảnh cấu hình và kiểm thử của đúng đối tượng; ghi thời gian, username, ref, trước/sau; che email, token, endpoint nội bộ. Đối chiếu Audit gốc ở trang ghi trong catalog.json.
 
@@ -127,7 +127,7 @@ Không lấy fingerprint chỉ từ chính gói tải về để tuyên bố ngu
 
 **Re-audit:** Cập nhật base branch thử sau khi CI xanh; PR cũ phải yêu cầu cập nhật/chạy lại.
 
-**Còn cần bạn thực hiện/cung cấp:** Cần quyền Settings và PR thử; không áp dụng main.
+**Điều kiện và bằng chứng còn thiếu:** Cần quyền Settings và PR thử; không áp dụng main.
 
 **Minh chứng cần lưu:** JSON/CSV hoặc ảnh cấu hình và kiểm thử của đúng đối tượng; ghi thời gian, username, ref, trước/sau; che email, token, endpoint nội bộ. Đối chiếu Audit gốc ở trang ghi trong catalog.json.
 
@@ -143,7 +143,7 @@ Không lấy fingerprint chỉ từ chính gói tải về để tuyên bố ngu
 
 **Re-audit:** Để một review thread chưa resolve: merge bị chặn; resolve rồi kiểm tra lại.
 
-**Còn cần bạn thực hiện/cung cấp:** Thiếu hiệu lực rule và kiểm thử nhiều tài khoản.
+**Điều kiện và bằng chứng còn thiếu:** Thiếu hiệu lực rule và kiểm thử nhiều tài khoản.
 
 **Minh chứng cần lưu:** JSON/CSV hoặc ảnh cấu hình và kiểm thử của đúng đối tượng; ghi thời gian, username, ref, trước/sau; che email, token, endpoint nội bộ. Đối chiếu Audit gốc ở trang ghi trong catalog.json.
 
@@ -155,11 +155,11 @@ Không lấy fingerprint chỉ từ chính gói tải về để tuyên bố ngu
 
 **Audit:** Kiểm tra Require signed commits và trạng thái Verified; đọc chữ ký trên commit thử.
 
-**Remediation:** Cấu hình ký GPG/SSH cho tài khoản của bạn; bật yêu cầu trên nhánh thử. Không gửi private key cho trợ lý.
+**Remediation:** Cấu hình ký GPG/SSH cho tài khoản thực hiện commit; bật yêu cầu trên nhánh thử. Khóa riêng được lưu tại máy ký hoặc secret manager và không đưa vào tài liệu, log hay repository.
 
 **Re-audit:** Commit không ký phải bị từ chối; commit ký hợp lệ phải được nhận khi đủ điều kiện còn lại.
 
-**Còn cần bạn thực hiện/cung cấp:** Git author hoặc hash commit không thay bằng chứng chữ ký.
+**Điều kiện và bằng chứng còn thiếu:** Git author hoặc hash commit không thay bằng chứng chữ ký.
 
 **Minh chứng cần lưu:** JSON/CSV hoặc ảnh cấu hình và kiểm thử của đúng đối tượng; ghi thời gian, username, ref, trước/sau; che email, token, endpoint nội bộ. Đối chiếu Audit gốc ở trang ghi trong catalog.json.
 
@@ -175,7 +175,7 @@ Không lấy fingerprint chỉ từ chính gói tải về để tuyên bố ngu
 
 **Re-audit:** Thử merge commit vào nhánh thử phải bị chặn; squash/rebase đúng policy được nhận.
 
-**Còn cần bạn thực hiện/cung cấp:** Chưa đổi rule hoặc rewrite lịch sử.
+**Điều kiện và bằng chứng còn thiếu:** Chưa đổi rule hoặc rewrite lịch sử.
 
 **Minh chứng cần lưu:** JSON/CSV hoặc ảnh cấu hình và kiểm thử của đúng đối tượng; ghi thời gian, username, ref, trước/sau; che email, token, endpoint nội bộ. Đối chiếu Audit gốc ở trang ghi trong catalog.json.
 
@@ -191,7 +191,7 @@ Không lấy fingerprint chỉ từ chính gói tải về để tuyên bố ngu
 
 **Re-audit:** Admin thử push/merge thiếu điều kiện trên nhánh thử phải bị chặn.
 
-**Còn cần bạn thực hiện/cung cấp:** Không thử trên main để tránh khóa công việc nhóm.
+**Điều kiện và bằng chứng còn thiếu:** Không thử trên main để tránh khóa công việc nhóm.
 
 **Minh chứng cần lưu:** JSON/CSV hoặc ảnh cấu hình và kiểm thử của đúng đối tượng; ghi thời gian, username, ref, trước/sau; che email, token, endpoint nội bộ. Đối chiếu Audit gốc ở trang ghi trong catalog.json.
 
@@ -207,7 +207,7 @@ Không lấy fingerprint chỉ từ chính gói tải về để tuyên bố ngu
 
 **Re-audit:** Tài khoản ngoài danh sách thử push/merge bị từ chối; người hợp lệ vẫn cần đủ review/CI.
 
-**Còn cần bạn thực hiện/cung cấp:** Không tự thay quyền hoặc mời người chưa được xác định.
+**Điều kiện và bằng chứng còn thiếu:** Không tự thay quyền hoặc mời người chưa được xác định.
 
 **Minh chứng cần lưu:** JSON/CSV hoặc ảnh cấu hình và kiểm thử của đúng đối tượng; ghi thời gian, username, ref, trước/sau; che email, token, endpoint nội bộ. Đối chiếu Audit gốc ở trang ghi trong catalog.json.
 
@@ -223,7 +223,7 @@ Không lấy fingerprint chỉ từ chính gói tải về để tuyên bố ngu
 
 **Re-audit:** Kiểm tra CI trên commit nhánh mới; sau đó thử PR có lỗi mẫu an toàn trên nhánh thử và xác nhận bị chặn.
 
-**Còn cần bạn thực hiện/cung cấp:** Scan nhánh audit chưa đồng nghĩa mọi merge trên main đều được quét/chặn.
+**Điều kiện và bằng chứng còn thiếu:** Scan nhánh audit chưa đồng nghĩa mọi merge trên main đều được quét/chặn.
 
 **Minh chứng cần lưu:** JSON/CSV hoặc ảnh cấu hình và kiểm thử của đúng đối tượng; ghi thời gian, username, ref, trước/sau; che email, token, endpoint nội bộ. Đối chiếu Audit gốc ở trang ghi trong catalog.json.
 
@@ -239,7 +239,7 @@ Không lấy fingerprint chỉ từ chính gói tải về để tuyên bố ngu
 
 **Re-audit:** Owner đổi một rule của nhánh thử, tìm đúng actor/time/action trong log rồi phục hồi cấu hình thử.
 
-**Còn cần bạn thực hiện/cung cấp:** Không dùng API Enterprise làm điều kiện bắt buộc của phương án Free; cần ảnh/log UI.
+**Điều kiện và bằng chứng còn thiếu:** Không dùng API Enterprise làm điều kiện bắt buộc của phương án Free; cần ảnh/log UI.
 
 **Minh chứng cần lưu:** JSON/CSV hoặc ảnh cấu hình và kiểm thử của đúng đối tượng; ghi thời gian, username, ref, trước/sau; che email, token, endpoint nội bộ. Đối chiếu Audit gốc ở trang ghi trong catalog.json.
 
@@ -255,7 +255,7 @@ Không lấy fingerprint chỉ từ chính gói tải về để tuyên bố ngu
 
 **Re-audit:** So sánh số fork API với danh sách đã rà; lưu ngày và người duyệt.
 
-**Còn cần bạn thực hiện/cung cấp:** Không có fork lúc kiểm tra không chứng minh có quy trình quản lý fork.
+**Điều kiện và bằng chứng còn thiếu:** Không có fork lúc kiểm tra không chứng minh có quy trình quản lý fork.
 
 **Minh chứng cần lưu:** JSON/CSV hoặc ảnh cấu hình và kiểm thử của đúng đối tượng; ghi thời gian, username, ref, trước/sau; che email, token, endpoint nội bộ. Đối chiếu Audit gốc ở trang ghi trong catalog.json.
 
@@ -271,7 +271,7 @@ Không lấy fingerprint chỉ từ chính gói tải về để tuyên bố ngu
 
 **Re-audit:** Kiểm tra trạng thái Archived của repo thử được phép và biên bản rà soát.
 
-**Còn cần bạn thực hiện/cung cấp:** Đổi trạng thái repo thật cần quyết định nhóm.
+**Điều kiện và bằng chứng còn thiếu:** Đổi trạng thái repo thật cần quyết định nhóm.
 
 **Minh chứng cần lưu:** JSON/CSV hoặc ảnh cấu hình và kiểm thử của đúng đối tượng; ghi thời gian, username, ref, trước/sau; che email, token, endpoint nội bộ. Đối chiếu Audit gốc ở trang ghi trong catalog.json.
 
@@ -287,7 +287,7 @@ Không lấy fingerprint chỉ từ chính gói tải về để tuyên bố ngu
 
 **Re-audit:** Người được thu hồi không còn truy cập repo riêng thử; lưu danh sách trước/sau đã che PII.
 
-**Còn cần bạn thực hiện/cung cấp:** Thiếu danh tính thật và owner review; không suy tổng thành viên từ public members.
+**Điều kiện và bằng chứng còn thiếu:** Thiếu danh tính thật và owner review; không suy tổng thành viên từ public members.
 
 **Minh chứng cần lưu:** JSON/CSV hoặc ảnh cấu hình và kiểm thử của đúng đối tượng; ghi thời gian, username, ref, trước/sau; che email, token, endpoint nội bộ. Đối chiếu Audit gốc ở trang ghi trong catalog.json.
 
@@ -303,7 +303,7 @@ Không lấy fingerprint chỉ từ chính gói tải về để tuyên bố ngu
 
 **Re-audit:** Xuất bảng vai trò đã che PII và giải thích từng owner.
 
-**Còn cần bạn thực hiện/cung cấp:** Chưa có quyết định vai trò của nhóm; không bịa số người.
+**Điều kiện và bằng chứng còn thiếu:** Chưa có quyết định phân công vai trò và xác nhận danh sách quản trị viên.
 
 **Minh chứng cần lưu:** JSON/CSV hoặc ảnh cấu hình và kiểm thử của đúng đối tượng; ghi thời gian, username, ref, trước/sau; che email, token, endpoint nội bộ. Đối chiếu Audit gốc ở trang ghi trong catalog.json.
 
@@ -319,7 +319,7 @@ Không lấy fingerprint chỉ từ chính gói tải về để tuyên bố ngu
 
 **Re-audit:** Tài khoản không MFA không được cấp/giữ quyền đóng góp theo policy; lưu ảnh xác nhận không lộ recovery codes.
 
-**Còn cần bạn thực hiện/cung cấp:** Thay đổi yêu cầu MFA có thể ảnh hưởng thành viên, cần owner thao tác sau rà soát.
+**Điều kiện và bằng chứng còn thiếu:** Thay đổi yêu cầu MFA có thể ảnh hưởng thành viên, cần owner thao tác sau rà soát.
 
 **Minh chứng cần lưu:** JSON/CSV hoặc ảnh cấu hình và kiểm thử của đúng đối tượng; ghi thời gian, username, ref, trước/sau; che email, token, endpoint nội bộ. Đối chiếu Audit gốc ở trang ghi trong catalog.json.
 
@@ -335,7 +335,7 @@ Không lấy fingerprint chỉ từ chính gói tải về để tuyên bố ngu
 
 **Re-audit:** Đối chiếu invitation/audit log với email được duyệt, che địa chỉ trong báo cáo công khai.
 
-**Còn cần bạn thực hiện/cung cấp:** Cần email và đồng ý của các thành viên; chưa có thông tin nên không mời.
+**Điều kiện và bằng chứng còn thiếu:** Cần email và đồng ý của các thành viên; chưa có thông tin nên không mời.
 
 **Minh chứng cần lưu:** JSON/CSV hoặc ảnh cấu hình và kiểm thử của đúng đối tượng; ghi thời gian, username, ref, trước/sau; che email, token, endpoint nội bộ. Đối chiếu Audit gốc ở trang ghi trong catalog.json.
 
@@ -351,7 +351,7 @@ Không lấy fingerprint chỉ từ chính gói tải về để tuyên bố ngu
 
 **Re-audit:** Hai người tự đăng nhập kiểm tra đúng quyền; tài khoản developer không có admin.
 
-**Còn cần bạn thực hiện/cung cấp:** Snapshot người dùng thấy một admin (hieune-ui); cần owner xác minh toàn bộ quyền kế thừa và nhóm quyết định admin thứ hai. Không tự cấp quyền.
+**Điều kiện và bằng chứng còn thiếu:** Snapshot người dùng thấy một admin (hieune-ui); cần owner xác minh toàn bộ quyền kế thừa và nhóm quyết định admin thứ hai. Không tự cấp quyền.
 
 **Minh chứng cần lưu:** JSON/CSV hoặc ảnh cấu hình và kiểm thử của đúng đối tượng; ghi thời gian, username, ref, trước/sau; che email, token, endpoint nội bộ. Đối chiếu Audit gốc ở trang ghi trong catalog.json.
 
@@ -367,7 +367,7 @@ Không lấy fingerprint chỉ từ chính gói tải về để tuyên bố ngu
 
 **Re-audit:** Tạo sự kiện an toàn trên nhánh thử, xác nhận cảnh báo đến người trực và ghi xử lý.
 
-**Còn cần bạn thực hiện/cung cấp:** Chưa có kênh nhận cảnh báo, ngưỡng hành vi và vận hành thực tế.
+**Điều kiện và bằng chứng còn thiếu:** Chưa có kênh nhận cảnh báo, ngưỡng hành vi và vận hành thực tế.
 
 **Minh chứng cần lưu:** JSON/CSV hoặc ảnh cấu hình và kiểm thử của đúng đối tượng; ghi thời gian, username, ref, trước/sau; che email, token, endpoint nội bộ. Đối chiếu Audit gốc ở trang ghi trong catalog.json.
 
@@ -383,7 +383,7 @@ Không lấy fingerprint chỉ từ chính gói tải về để tuyên bố ngu
 
 **Re-audit:** Thành viên thường yêu cầu cài app thử, owner phải phê duyệt trước khi app có quyền.
 
-**Còn cần bạn thực hiện/cung cấp:** Connector không có quyền quản lý policy app.
+**Điều kiện và bằng chứng còn thiếu:** Connector không có quyền quản lý policy app.
 
 **Minh chứng cần lưu:** JSON/CSV hoặc ảnh cấu hình và kiểm thử của đúng đối tượng; ghi thời gian, username, ref, trước/sau; che email, token, endpoint nội bộ. Đối chiếu Audit gốc ở trang ghi trong catalog.json.
 
@@ -399,7 +399,7 @@ Không lấy fingerprint chỉ từ chính gói tải về để tuyên bố ngu
 
 **Re-audit:** Đối chiếu sổ app trước/sau; xác nhận CI cần thiết vẫn hoạt động.
 
-**Còn cần bạn thực hiện/cung cấp:** Không tự gỡ Connector hoặc app có thể đang dùng.
+**Điều kiện và bằng chứng còn thiếu:** Không tự gỡ Connector hoặc app có thể đang dùng.
 
 **Minh chứng cần lưu:** JSON/CSV hoặc ảnh cấu hình và kiểm thử của đúng đối tượng; ghi thời gian, username, ref, trước/sau; che email, token, endpoint nội bộ. Đối chiếu Audit gốc ở trang ghi trong catalog.json.
 
@@ -415,7 +415,7 @@ Không lấy fingerprint chỉ từ chính gói tải về để tuyên bố ngu
 
 **Re-audit:** Thử đọc repo không được cấp phải thất bại; repo được cấp vẫn hoạt động.
 
-**Còn cần bạn thực hiện/cung cấp:** Cần ảnh cấu hình cài đặt; không suy least privilege từ quyền admin của user.
+**Điều kiện và bằng chứng còn thiếu:** Cần ảnh cấu hình cài đặt; không suy least privilege từ quyền admin của user.
 
 **Minh chứng cần lưu:** JSON/CSV hoặc ảnh cấu hình và kiểm thử của đúng đối tượng; ghi thời gian, username, ref, trước/sau; che email, token, endpoint nội bộ. Đối chiếu Audit gốc ở trang ghi trong catalog.json.
 
@@ -431,7 +431,7 @@ Không lấy fingerprint chỉ từ chính gói tải về để tuyên bố ngu
 
 **Re-audit:** Gửi delivery hợp lệ và payload sửa/chữ ký sai; endpoint phải từ chối trường hợp sai.
 
-**Còn cần bạn thực hiện/cung cấp:** Chưa có endpoint webhook thực; không tạo webhook gửi dữ liệu ra ngoài.
+**Điều kiện và bằng chứng còn thiếu:** Chưa có endpoint webhook thực; không tạo webhook gửi dữ liệu ra ngoài.
 
 **Minh chứng cần lưu:** JSON/CSV hoặc ảnh cấu hình và kiểm thử của đúng đối tượng; ghi thời gian, username, ref, trước/sau; che email, token, endpoint nội bộ. Đối chiếu Audit gốc ở trang ghi trong catalog.json.
 
@@ -447,7 +447,7 @@ Không lấy fingerprint chỉ từ chính gói tải về để tuyên bố ngu
 
 **Re-audit:** Đối chiếu source tree, image digest và log trước/sau mỗi lần tạo lại.
 
-**Còn cần bạn thực hiện/cung cấp:** GitHub-hosted image cập nhật; cần lifecycle/provisioning evidence đầy đủ.
+**Điều kiện và bằng chứng còn thiếu:** GitHub-hosted image cập nhật; cần lifecycle/provisioning evidence đầy đủ.
 
 **Minh chứng cần lưu:** JSON/CSV hoặc ảnh cấu hình và kiểm thử của đúng đối tượng; ghi thời gian, username, ref, trước/sau; che email, token, endpoint nội bộ. Đối chiếu Audit gốc ở trang ghi trong catalog.json.
 
@@ -463,7 +463,7 @@ Không lấy fingerprint chỉ từ chính gói tải về để tuyên bố ngu
 
 **Re-audit:** Tải artifact, đối chiếu commit/run ID; kiểm tra không có token, secret hoặc home path.
 
-**Còn cần bạn thực hiện/cung cấp:** Log thuộc run nhánh thử; cần chính sách retention được nhóm duyệt.
+**Điều kiện và bằng chứng còn thiếu:** Log thuộc run nhánh thử; cần chính sách retention được nhóm duyệt.
 
 **Minh chứng cần lưu:** JSON/CSV hoặc ảnh cấu hình và kiểm thử của đúng đối tượng; ghi thời gian, username, ref, trước/sau; che email, token, endpoint nội bộ. Đối chiếu Audit gốc ở trang ghi trong catalog.json.
 
@@ -479,7 +479,7 @@ Không lấy fingerprint chỉ từ chính gói tải về để tuyên bố ngu
 
 **Re-audit:** Tài khoản Read không được sửa/kích hoạt trái phép; Write chỉ làm nhiệm vụ cần thiết.
 
-**Còn cần bạn thực hiện/cung cấp:** API quản trị Actions 403; cần owner kiểm tra UI.
+**Điều kiện và bằng chứng còn thiếu:** API quản trị Actions 403; cần owner kiểm tra UI.
 
 **Minh chứng cần lưu:** JSON/CSV hoặc ảnh cấu hình và kiểm thử của đúng đối tượng; ghi thời gian, username, ref, trước/sau; che email, token, endpoint nội bộ. Đối chiếu Audit gốc ở trang ghi trong catalog.json.
 
@@ -495,7 +495,7 @@ Không lấy fingerprint chỉ từ chính gói tải về để tuyên bố ngu
 
 **Re-audit:** Tài khoản chưa đăng nhập/không được cấp quyền không thể điều khiển build.
 
-**Còn cần bạn thực hiện/cung cấp:** Chưa có bằng chứng thực về mọi đường truy cập; repo public cho phép đọc log không phải quyền điều khiển.
+**Điều kiện và bằng chứng còn thiếu:** Chưa có bằng chứng thực về mọi đường truy cập; repo public cho phép đọc log không phải quyền điều khiển.
 
 **Minh chứng cần lưu:** JSON/CSV hoặc ảnh cấu hình và kiểm thử của đúng đối tượng; ghi thời gian, username, ref, trước/sau; che email, token, endpoint nội bộ. Đối chiếu Audit gốc ở trang ghi trong catalog.json.
 
@@ -511,7 +511,7 @@ Không lấy fingerprint chỉ từ chính gói tải về để tuyên bố ngu
 
 **Re-audit:** Kiểm tra job không dùng secret ngoài phạm vi; artifact không chứa private key.
 
-**Còn cần bạn thực hiện/cung cấp:** API chỉ cho metadata/số lượng; không chứng minh mọi secret đều tối thiểu.
+**Điều kiện và bằng chứng còn thiếu:** API chỉ cho metadata/số lượng; không chứng minh mọi secret đều tối thiểu.
 
 **Minh chứng cần lưu:** JSON/CSV hoặc ảnh cấu hình và kiểm thử của đúng đối tượng; ghi thời gian, username, ref, trước/sau; che email, token, endpoint nội bộ. Đối chiếu Audit gốc ở trang ghi trong catalog.json.
 
@@ -527,7 +527,7 @@ Không lấy fingerprint chỉ từ chính gói tải về để tuyên bố ngu
 
 **Re-audit:** Đọc JSON scanner, kiểm tra coverage và lỗi kết nối phải được báo; không chỉ nhìn CI xanh.
 
-**Còn cần bạn thực hiện/cung cấp:** Container scan không thay kiểm tra toàn hạ tầng GitHub-hosted.
+**Điều kiện và bằng chứng còn thiếu:** Container scan không thay kiểm tra toàn hạ tầng GitHub-hosted.
 
 **Minh chứng cần lưu:** JSON/CSV hoặc ảnh cấu hình và kiểm thử của đúng đối tượng; ghi thời gian, username, ref, trước/sau; che email, token, endpoint nội bộ. Đối chiếu Audit gốc ở trang ghi trong catalog.json.
 
@@ -543,7 +543,7 @@ Không lấy fingerprint chỉ từ chính gói tải về để tuyên bố ngu
 
 **Re-audit:** Xác nhận credential cũ bị từ chối; scanner HEAD/lịch sử có phạm vi ghi rõ.
 
-**Còn cần bạn thực hiện/cung cấp:** Không thể tự xoay credential dịch vụ chưa được cung cấp; không rewrite history.
+**Điều kiện và bằng chứng còn thiếu:** Không thể tự xoay credential dịch vụ chưa được cung cấp; không rewrite history.
 
 **Minh chứng cần lưu:** JSON/CSV hoặc ảnh cấu hình và kiểm thử của đúng đối tượng; ghi thời gian, username, ref, trước/sau; che email, token, endpoint nội bộ. Đối chiếu Audit gốc ở trang ghi trong catalog.json.
 
@@ -559,7 +559,7 @@ Không lấy fingerprint chỉ từ chính gói tải về để tuyên bố ngu
 
 **Re-audit:** Delivery sai chữ ký/replay bị từ chối; không lộ secret trong log.
 
-**Còn cần bạn thực hiện/cung cấp:** Không có endpoint build webhook được nhóm chỉ định.
+**Điều kiện và bằng chứng còn thiếu:** Không có endpoint build webhook được nhóm chỉ định.
 
 **Minh chứng cần lưu:** JSON/CSV hoặc ảnh cấu hình và kiểm thử của đúng đối tượng; ghi thời gian, username, ref, trước/sau; che email, token, endpoint nội bộ. Đối chiếu Audit gốc ở trang ghi trong catalog.json.
 
@@ -575,7 +575,7 @@ Không lấy fingerprint chỉ từ chính gói tải về để tuyên bố ngu
 
 **Re-audit:** Owner duyệt danh sách và thử bằng tài khoản không admin.
 
-**Còn cần bạn thực hiện/cung cấp:** Thiếu username và cấu hình build platform; không tự hạ quyền.
+**Điều kiện và bằng chứng còn thiếu:** Thiếu username và cấu hình build platform; không tự hạ quyền.
 
 **Minh chứng cần lưu:** JSON/CSV hoặc ảnh cấu hình và kiểm thử của đúng đối tượng; ghi thời gian, username, ref, trước/sau; che email, token, endpoint nội bộ. Đối chiếu Audit gốc ở trang ghi trong catalog.json.
 
@@ -591,7 +591,7 @@ Không lấy fingerprint chỉ từ chính gói tải về để tuyên bố ngu
 
 **Re-audit:** Đối chiếu smoke test không mạng; thử tác vụ cần mạng phải thất bại trong container thử.
 
-**Còn cần bạn thực hiện/cung cấp:** Các job scanner vẫn tải package/tool; chưa đáp ứng cho mọi worker.
+**Điều kiện và bằng chứng còn thiếu:** Các job scanner vẫn tải package/tool; chưa đáp ứng cho mọi worker.
 
 **Minh chứng cần lưu:** JSON/CSV hoặc ảnh cấu hình và kiểm thử của đúng đối tượng; ghi thời gian, username, ref, trước/sau; che email, token, endpoint nội bộ. Đối chiếu Audit gốc ở trang ghi trong catalog.json.
 
@@ -607,7 +607,7 @@ Không lấy fingerprint chỉ từ chính gói tải về để tuyên bố ngu
 
 **Re-audit:** Thử ghi root FS/mở mạng trong container thử phải thất bại; kiểm tra log run.
 
-**Còn cần bạn thực hiện/cung cấp:** Hardening demo không thay runtime threat detection cho toàn bộ worker.
+**Điều kiện và bằng chứng còn thiếu:** Hardening demo không thay runtime threat detection cho toàn bộ worker.
 
 **Minh chứng cần lưu:** JSON/CSV hoặc ảnh cấu hình và kiểm thử của đúng đối tượng; ghi thời gian, username, ref, trước/sau; che email, token, endpoint nội bộ. Đối chiếu Audit gốc ở trang ghi trong catalog.json.
 
@@ -623,7 +623,7 @@ Không lấy fingerprint chỉ từ chính gói tải về để tuyên bố ngu
 
 **Re-audit:** Đối chiếu archive HEAD với cấu hình worker được triển khai và commit/tree trong provenance.
 
-**Còn cần bạn thực hiện/cung cấp:** GitHub-hosted provisioning do nhà cung cấp quản lý, chưa có đối chiếu đầy đủ.
+**Điều kiện và bằng chứng còn thiếu:** GitHub-hosted provisioning do nhà cung cấp quản lý, chưa có đối chiếu đầy đủ.
 
 **Minh chứng cần lưu:** JSON/CSV hoặc ảnh cấu hình và kiểm thử của đúng đối tượng; ghi thời gian, username, ref, trước/sau; che email, token, endpoint nội bộ. Đối chiếu Audit gốc ở trang ghi trong catalog.json.
 
@@ -639,7 +639,7 @@ Không lấy fingerprint chỉ từ chính gói tải về để tuyên bố ngu
 
 **Re-audit:** Tải artifact từ run, xác minh fingerprint/chữ ký; thử quyền truy cập bằng user phù hợp.
 
-**Còn cần bạn thực hiện/cung cấp:** Repo public không thể chứng minh output storage riêng tư; chưa tạo registry thật.
+**Điều kiện và bằng chứng còn thiếu:** Repo public không thể chứng minh output storage riêng tư; chưa tạo registry thật.
 
 **Minh chứng cần lưu:** JSON/CSV hoặc ảnh cấu hình và kiểm thử của đúng đối tượng; ghi thời gian, username, ref, trước/sau; che email, token, endpoint nội bộ. Đối chiếu Audit gốc ở trang ghi trong catalog.json.
 
@@ -655,7 +655,7 @@ Không lấy fingerprint chỉ từ chính gói tải về để tuyên bố ngu
 
 **Re-audit:** Push nhánh đúng tạo run; nhánh khác không kích hoạt workflow bổ sung; tài khoản Read không điều khiển được build.
 
-**Còn cần bạn thực hiện/cung cấp:** Không tự đổi quyền repo hoặc org workflow settings.
+**Điều kiện và bằng chứng còn thiếu:** Không tự đổi quyền repo hoặc org workflow settings.
 
 **Minh chứng cần lưu:** JSON/CSV hoặc ảnh cấu hình và kiểm thử của đúng đối tượng; ghi thời gian, username, ref, trước/sau; che email, token, endpoint nội bộ. Đối chiếu Audit gốc ở trang ghi trong catalog.json.
 
@@ -671,7 +671,7 @@ Không lấy fingerprint chỉ từ chính gói tải về để tuyên bố ngu
 
 **Re-audit:** Đọc report/log run; thêm fixture không an toàn chỉ trong unit/offline hoặc nhánh thử riêng để xác nhận scanner bắt lỗi.
 
-**Còn cần bạn thực hiện/cung cấp:** Đã có pipeline scan; required check/main enforcement chưa áp dụng.
+**Điều kiện và bằng chứng còn thiếu:** Đã có pipeline scan; required check/main enforcement chưa áp dụng.
 
 **Minh chứng cần lưu:** JSON/CSV hoặc ảnh cấu hình và kiểm thử của đúng đối tượng; ghi thời gian, username, ref, trước/sau; che email, token, endpoint nội bộ. Đối chiếu Audit gốc ở trang ghi trong catalog.json.
 
@@ -687,7 +687,7 @@ Không lấy fingerprint chỉ từ chính gói tải về để tuyên bố ngu
 
 **Re-audit:** Xác minh mọi payload trong manifest; sửa một byte hoặc thay key phải thất bại.
 
-**Còn cần bạn thực hiện/cung cấp:** Key tạm cùng job không thay release authority; chưa ký mọi artifact/mọi release.
+**Điều kiện và bằng chứng còn thiếu:** Key tạm cùng job không thay release authority; chưa ký mọi artifact/mọi release.
 
 **Minh chứng cần lưu:** JSON/CSV hoặc ảnh cấu hình và kiểm thử của đúng đối tượng; ghi thời gian, username, ref, trước/sau; che email, token, endpoint nội bộ. Đối chiếu Audit gốc ở trang ghi trong catalog.json.
 
@@ -703,7 +703,7 @@ Không lấy fingerprint chỉ từ chính gói tải về để tuyên bố ngu
 
 **Re-audit:** Đối chiếu package/digest được dùng với SBOM supplier; supplier không cung cấp phải ghi thiếu.
 
-**Còn cần bạn thực hiện/cung cấp:** Chưa có bộ SBOM gốc từ mọi nhà cung cấp.
+**Điều kiện và bằng chứng còn thiếu:** Chưa có bộ SBOM gốc từ mọi nhà cung cấp.
 
 **Minh chứng cần lưu:** JSON/CSV hoặc ảnh cấu hình và kiểm thử của đúng đối tượng; ghi thời gian, username, ref, trước/sau; che email, token, endpoint nội bộ. Đối chiếu Audit gốc ở trang ghi trong catalog.json.
 
@@ -719,7 +719,7 @@ Không lấy fingerprint chỉ từ chính gói tải về để tuyên bố ngu
 
 **Re-audit:** Kiểm tra metadata signature + hash; sửa manifest/key phải bị từ chối.
 
-**Còn cần bạn thực hiện/cung cấp:** Same-job ephemeral key không phải chứng thực build độc lập của supplier.
+**Điều kiện và bằng chứng còn thiếu:** Same-job ephemeral key không phải chứng thực build độc lập của supplier.
 
 **Minh chứng cần lưu:** JSON/CSV hoặc ảnh cấu hình và kiểm thử của đúng đối tượng; ghi thời gian, username, ref, trước/sau; che email, token, endpoint nội bộ. Đối chiếu Audit gốc ở trang ghi trong catalog.json.
 
@@ -735,7 +735,7 @@ Không lấy fingerprint chỉ từ chính gói tải về để tuyên bố ngu
 
 **Re-audit:** Xác minh mọi cạnh phụ thuộc và phiên bản được giải quyết; không tự suy cạnh từ thứ tự lock.
 
-**Còn cần bạn thực hiện/cung cấp:** Đã có graph scanner toolchain; còn graph cho Actions, OS, binary tải và xác minh extras/path giải dependency đầy đủ.
+**Điều kiện và bằng chứng còn thiếu:** Đã có graph scanner toolchain; còn graph cho Actions, OS, binary tải và xác minh extras/path giải dependency đầy đủ.
 
 **Minh chứng cần lưu:** JSON/CSV hoặc ảnh cấu hình và kiểm thử của đúng đối tượng; ghi thời gian, username, ref, trước/sau; che email, token, endpoint nội bộ. Đối chiếu Audit gốc ở trang ghi trong catalog.json.
 
@@ -751,7 +751,7 @@ Không lấy fingerprint chỉ từ chính gói tải về để tuyên bố ngu
 
 **Re-audit:** Dùng fingerprint từ log run đã kiểm tra để verify; sửa SBOM một byte phải thất bại.
 
-**Còn cần bạn thực hiện/cung cấp:** Chưa bao phủ OS, mọi binary tải, application graph và supplier SBOM.
+**Điều kiện và bằng chứng còn thiếu:** Chưa bao phủ OS, mọi binary tải, application graph và supplier SBOM.
 
 **Minh chứng cần lưu:** JSON/CSV hoặc ảnh cấu hình và kiểm thử của đúng đối tượng; ghi thời gian, username, ref, trước/sau; che email, token, endpoint nội bộ. Đối chiếu Audit gốc ở trang ghi trong catalog.json.
 
@@ -767,7 +767,7 @@ Không lấy fingerprint chỉ từ chính gói tải về để tuyên bố ngu
 
 **Re-audit:** Chạy đối chiếu thật; unit test đổi owner, xóa entry và lỗi API phải chặn.
 
-**Còn cần bạn thực hiện/cung cấp:** Chỉ theo dõi repository owner của Actions; chưa theo dõi người duy trì 32 package PyPI.
+**Điều kiện và bằng chứng còn thiếu:** Chỉ theo dõi repository owner của Actions; chưa theo dõi người duy trì 32 package PyPI.
 
 **Minh chứng cần lưu:** JSON/CSV hoặc ảnh cấu hình và kiểm thử của đúng đối tượng; ghi thời gian, username, ref, trước/sau; che email, token, endpoint nội bộ. Đối chiếu Audit gốc ở trang ghi trong catalog.json.
 
@@ -783,7 +783,7 @@ Không lấy fingerprint chỉ từ chính gói tải về để tuyên bố ngu
 
 **Re-audit:** Tài khoản không có quyền không được sửa config; PR thiếu owner review bị chặn trên nhánh thử.
 
-**Còn cần bạn thực hiện/cung cấp:** Chưa có deployment target/quyền thật; CODEOWNERS chưa là enforcement.
+**Điều kiện và bằng chứng còn thiếu:** Chưa có deployment target/quyền thật; CODEOWNERS chưa là enforcement.
 
 **Minh chứng cần lưu:** JSON/CSV hoặc ảnh cấu hình và kiểm thử của đúng đối tượng; ghi thời gian, username, ref, trước/sau; che email, token, endpoint nội bộ. Đối chiếu Audit gốc ở trang ghi trong catalog.json.
 
@@ -795,11 +795,11 @@ Không lấy fingerprint chỉ từ chính gói tải về để tuyên bố ngu
 
 **Audit:** Liệt kê danh tính được vào production, MFA, RBAC, đường mạng và audit log; không dùng registry fixture làm production.
 
-**Remediation:** Nhóm cung cấp môi trường được phép; owner cấp quyền tối thiểu và tài khoản riêng, không gửi mật khẩu qua chat.
+**Remediation:** Nhóm cung cấp môi trường được phép; owner cấp quyền tối thiểu và tài khoản riêng, không đưa mật khẩu vào tài liệu, log hoặc repository.
 
 **Re-audit:** Thử người không được cấp bị từ chối và người hợp lệ đúng phạm vi; lưu log đã che dữ liệu.
 
-**Còn cần bạn thực hiện/cung cấp:** Không có production được nhóm chỉ định; không tự triển khai cloud trả phí.
+**Điều kiện và bằng chứng còn thiếu:** Không có production được nhóm chỉ định; không tự triển khai cloud trả phí.
 
 **Minh chứng cần lưu:** JSON/CSV hoặc ảnh cấu hình và kiểm thử của đúng đối tượng; ghi thời gian, username, ref, trước/sau; che email, token, endpoint nội bộ. Đối chiếu Audit gốc ở trang ghi trong catalog.json.
 
@@ -815,7 +815,7 @@ Không lấy fingerprint chỉ từ chính gói tải về để tuyên bố ngu
 
 **Re-audit:** Đăng nhập bằng credential mặc định/cũ phải bị từ chối trong kiểm thử được phép.
 
-**Còn cần bạn thực hiện/cung cấp:** Không có production/secret manager; không bịa kết quả đăng nhập.
+**Điều kiện và bằng chứng còn thiếu:** Chưa có môi trường production hoặc secret manager để kiểm chứng kết quả đăng nhập.
 
 **Minh chứng cần lưu:** JSON/CSV hoặc ảnh cấu hình và kiểm thử của đúng đối tượng; ghi thời gian, username, ref, trước/sau; che email, token, endpoint nội bộ. Đối chiếu Audit gốc ở trang ghi trong catalog.json.
 

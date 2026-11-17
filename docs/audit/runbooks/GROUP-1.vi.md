@@ -1,6 +1,6 @@
 # Nhóm 1: 50 quy trình Audit–Remediation–Re-audit
 
-Đủ quy trình không đồng nghĩa đủ triển khai hoặc đạt tuân thủ. Hướng dẫn dưới đây diễn giải để áp dụng lab; đối chiếu Audit/Remediation gốc tại trang tham chiếu khi thực hiện. Không tự thay settings, cấp quyền, xóa tài nguyên hoặc tác động main.
+Đủ quy trình không đồng nghĩa đủ triển khai hoặc đạt tuân thủ. Hướng dẫn dưới đây diễn giải để áp dụng lab; đối chiếu Audit/Remediation gốc tại trang tham chiếu khi thực hiện. Phạm vi đợt đánh giá không bao gồm thay đổi settings, quyền người dùng, xóa tài nguyên hoặc chỉnh sửa main. Khi kiểm tra lại, ghi đối tượng, ref, người thực hiện, thời gian và bằng chứng trước/sau; các phép thử gây thay đổi chỉ thực hiện trên đối tượng thử được phê duyệt.
 
 ## 1.1.1 — Ensure any changes to code are tracked in a version control platform
 
@@ -10,7 +10,7 @@ CIS: **Manual**, trang 19.
 
 **Remediation đề xuất:** Đưa nguồn chưa quản lý vào VCS; bắt buộc thay đổi qua quy trình review.
 
-**Re-audit:** Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.
+**Re-audit:** Tạo một thay đổi thử trên nhánh audit, kiểm tra diff/commit rồi đối chiếu SHA trong provenance.
 
 **Nguồn bằng chứng cần có:** repository_files, branches, pull_requests.
 
@@ -26,7 +26,7 @@ CIS: **Manual**, trang 20.
 
 **Remediation đề xuất:** Yêu cầu mã task và liên kết issue trong mẫu PR, kiểm tra thủ công tính đúng của liên kết.
 
-**Re-audit:** Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.
+**Re-audit:** Lấy mẫu commit/PR sau thay đổi quy trình, mở liên kết issue/task và đối chiếu nội dung thay đổi với nhiệm vụ; ghi riêng trường hợp thiếu hoặc liên kết sai.
 
 **Nguồn bằng chứng cần có:** repository_files, branches, pull_requests.
 
@@ -42,7 +42,7 @@ CIS: **Automated**, trang 22.
 
 **Remediation đề xuất:** Yêu cầu hai phê duyệt theo Audit và chính sách xác thực mạnh; xem xét bypass.
 
-**Re-audit:** Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.
+**Re-audit:** Trên PR thử, kiểm tra merge bị chặn khi chỉ có một approval và khi reviewer không đáp ứng xác thực mạnh; kiểm tra hai reviewer độc lập, đủ điều kiện cùng mọi check bắt buộc trước khi kết luận.
 
 **Nguồn bằng chứng cần có:** repository, branches, pull_requests, required_check_enforcement.
 
@@ -58,7 +58,7 @@ CIS: **Manual**, trang 24.
 
 **Remediation đề xuất:** Bật hủy phê duyệt cũ và kiểm tra yêu cầu review lại.
 
-**Re-audit:** Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.
+**Re-audit:** Phê duyệt PR thử rồi push thêm commit; ghi nhận approval cũ bị dismiss và merge vẫn bị chặn đến khi có review mới.
 
 **Nguồn bằng chứng cần có:** repository, branches, pull_requests, required_check_enforcement.
 
@@ -74,7 +74,7 @@ CIS: **Manual**, trang 26.
 
 **Remediation đề xuất:** Giới hạn dismiss cho tài khoản tin cậy đã được phê duyệt.
 
-**Re-audit:** Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.
+**Re-audit:** Dùng tài khoản có quyền và không có quyền thử dismiss; lưu kết quả chấp nhận/từ chối.
 
 **Nguồn bằng chứng cần có:** repository, branches, pull_requests, required_check_enforcement.
 
@@ -90,7 +90,7 @@ CIS: **Manual**, trang 28.
 
 **Remediation đề xuất:** Khai báo owner có quyền phù hợp cho mã/cấu hình nhạy cảm.
 
-**Re-audit:** Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.
+**Re-audit:** Lấy mẫu file workflow, secret configuration và deployment; đối chiếu pattern CODEOWNERS với người có quyền thực tế và yêu cầu review của từng file.
 
 **Nguồn bằng chứng cần có:** repository, branches, pull_requests, required_check_enforcement.
 
@@ -106,7 +106,7 @@ CIS: **Manual**, trang 30.
 
 **Remediation đề xuất:** Bắt buộc code-owner review trên quy tắc có hiệu lực.
 
-**Re-audit:** Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.
+**Re-audit:** PR sửa file thuộc sở hữu phải bị chặn khi chưa có Code Owner approval.
 
 **Nguồn bằng chứng cần có:** repository, branches, pull_requests, required_check_enforcement.
 
@@ -122,7 +122,7 @@ CIS: **Manual**, trang 32.
 
 **Remediation đề xuất:** Đặt lịch rà soát; chỉ xóa nhánh sau khi xác nhận không còn sử dụng.
 
-**Re-audit:** Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.
+**Re-audit:** Đối chiếu danh sách trước/sau và lịch rà soát tháng tiếp theo.
 
 **Nguồn bằng chứng cần có:** repository_files, branches, pull_requests.
 
@@ -138,7 +138,7 @@ CIS: **Manual**, trang 34.
 
 **Remediation đề xuất:** Bắt buộc checks phù hợp và kiểm soát bypass trước merge.
 
-**Re-audit:** Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.
+**Re-audit:** Cho một required check thất bại trên PR thử và kiểm tra merge bị chặn; chạy lại thành công, đối chiếu tên check với rule và rà mọi bypass actor.
 
 **Nguồn bằng chứng cần có:** repository, branches, pull_requests, required_check_enforcement.
 
@@ -154,7 +154,7 @@ CIS: **Manual**, trang 36.
 
 **Remediation đề xuất:** Bật yêu cầu nhánh cập nhật trước merge hoặc cơ chế tương đương.
 
-**Re-audit:** Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.
+**Re-audit:** Cập nhật base branch thử sau khi CI xanh; PR cũ phải yêu cầu cập nhật/chạy lại.
 
 **Nguồn bằng chứng cần có:** repository, branches, pull_requests, required_check_enforcement.
 
@@ -170,7 +170,7 @@ CIS: **Manual**, trang 38.
 
 **Remediation đề xuất:** Bắt buộc giải quyết hội thoại trước merge.
 
-**Re-audit:** Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.
+**Re-audit:** Để một review thread chưa resolve: merge bị chặn; resolve rồi kiểm tra lại.
 
 **Nguồn bằng chứng cần có:** repository, branches, pull_requests, required_check_enforcement.
 
@@ -186,7 +186,7 @@ CIS: **Manual**, trang 40.
 
 **Remediation đề xuất:** Bắt buộc commit ký được nền tảng xác minh; quản lý khóa người ký.
 
-**Re-audit:** Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.
+**Re-audit:** Commit không ký phải bị từ chối; commit ký hợp lệ phải được nhận khi đủ điều kiện còn lại.
 
 **Nguồn bằng chứng cần có:** repository, branches, pull_requests, required_check_enforcement.
 
@@ -202,7 +202,7 @@ CIS: **Manual**, trang 42.
 
 **Remediation đề xuất:** Bật linear history và chọn cách merge phù hợp.
 
-**Re-audit:** Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.
+**Re-audit:** Thử merge commit vào nhánh thử phải bị chặn; squash/rebase đúng policy được nhận.
 
 **Nguồn bằng chứng cần có:** repository, branches, pull_requests, required_check_enforcement.
 
@@ -218,7 +218,7 @@ CIS: **Manual**, trang 44.
 
 **Remediation đề xuất:** Áp dụng bảo vệ cho admin; giảm ngoại lệ theo chính sách.
 
-**Re-audit:** Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.
+**Re-audit:** Admin thử push/merge thiếu điều kiện trên nhánh thử phải bị chặn.
 
 **Nguồn bằng chứng cần có:** repository, branches, pull_requests, required_check_enforcement.
 
@@ -234,7 +234,7 @@ CIS: **Manual**, trang 46.
 
 **Remediation đề xuất:** Chỉ cho người/nhóm được phê duyệt push hoặc merge.
 
-**Re-audit:** Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.
+**Re-audit:** Tài khoản ngoài danh sách thử push/merge bị từ chối; người hợp lệ vẫn cần đủ review/CI.
 
 **Nguồn bằng chứng cần có:** repository, branches, pull_requests, required_check_enforcement.
 
@@ -250,7 +250,7 @@ CIS: **Manual**, trang 48.
 
 **Remediation đề xuất:** Cấm force push và xem lại bypass.
 
-**Re-audit:** Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.
+**Re-audit:** Chỉ trên nhánh thử được bảo vệ, thử cập nhật non-fast-forward bằng tài khoản được phép kiểm thử; lưu thông báo từ chối và cấu hình bypass. Không thử trên main.
 
 **Nguồn bằng chứng cần có:** repository, branches, pull_requests, required_check_enforcement.
 
@@ -266,7 +266,7 @@ CIS: **Manual**, trang 50.
 
 **Remediation đề xuất:** Cấm xóa nhánh được bảo vệ.
 
-**Re-audit:** Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.
+**Re-audit:** Thử xóa đúng nhánh thử có rule chống xóa bằng tài khoản được phép kiểm thử; đối chiếu kết quả bị từ chối. Kết thúc thử nghiệm bằng quy trình thu hồi rule thử, không tác động nhánh khác.
 
 **Nguồn bằng chứng cần có:** repository, branches, pull_requests, required_check_enforcement.
 
@@ -282,7 +282,7 @@ CIS: **Manual**, trang 52.
 
 **Remediation đề xuất:** Gắn scanner vào quy trình merge, yêu cầu check thành công.
 
-**Re-audit:** Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.
+**Re-audit:** Kiểm tra CI trên commit nhánh mới; sau đó thử PR có lỗi mẫu an toàn trên nhánh thử và xác nhận bị chặn.
 
 **Nguồn bằng chứng cần có:** repository, branches, pull_requests, required_check_enforcement.
 
@@ -298,7 +298,7 @@ CIS: **Manual**, trang 54.
 
 **Remediation đề xuất:** Lưu audit log, phân công người nhận và kiểm tra cảnh báo.
 
-**Re-audit:** Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.
+**Re-audit:** Owner đổi một rule của nhánh thử, tìm đúng actor/time/action trong log rồi phục hồi cấu hình thử.
 
 **Nguồn bằng chứng cần có:** repository, branches, pull_requests, required_check_enforcement.
 
@@ -314,7 +314,7 @@ CIS: **Manual**, trang 56.
 
 **Remediation đề xuất:** Áp dụng protection cho đúng default branch.
 
-**Re-audit:** Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.
+**Re-audit:** Đọc default_branch hiện tại qua API và đối chiếu Rulesets/classic protection thực sự áp dụng ref đó; rà bypass và lưu cấu hình. Thử hành vi trên nhánh riêng có rule tương đương, ghi rõ giới hạn phạm vi.
 
 **Nguồn bằng chứng cần có:** repository, branches, pull_requests, required_check_enforcement.
 
@@ -330,7 +330,7 @@ CIS: **Manual**, trang 59.
 
 **Remediation đề xuất:** Bổ sung policy và kênh tiếp nhận đã được chủ repo xác nhận.
 
-**Re-audit:** Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.
+**Re-audit:** Mở SECURITY.md trên từng repo public, kiểm tra phiên bản được hỗ trợ và kênh báo cáo riêng tư đang hoạt động; phân biệt chính sách kế thừa với file tại repo.
 
 **Nguồn bằng chứng cần có:** repository_files.
 
@@ -346,7 +346,7 @@ CIS: **Manual**, trang 61.
 
 **Remediation đề xuất:** Giới hạn tạo repository cho nhóm được phê duyệt.
 
-**Re-audit:** Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.
+**Re-audit:** Đối chiếu policy tạo repository với vai trò được duyệt; tài khoản ngoài danh sách thử tạo repo trong phạm vi được cho phép phải bị từ chối.
 
 **Nguồn bằng chứng cần có:** repository, organization_policy.
 
@@ -362,7 +362,7 @@ CIS: **Manual**, trang 63.
 
 **Remediation đề xuất:** Giới hạn quyền xóa; có quy trình phê duyệt và khôi phục.
 
-**Re-audit:** Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.
+**Re-audit:** Kiểm tra quyền xóa repo của từng vai trò và log thay đổi; nếu cần thử hành vi, chỉ dùng repo tạm đã được phê duyệt, không dùng finalrepo.
 
 **Nguồn bằng chứng cần có:** repository, organization_policy.
 
@@ -378,7 +378,7 @@ CIS: **Manual**, trang 66.
 
 **Remediation đề xuất:** Giới hạn quyền xóa issue theo nhu cầu công việc.
 
-**Re-audit:** Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.
+**Re-audit:** Tạo issue thử không chứa dữ liệu quan trọng; kiểm tra vai trò không được phép không thể xóa, đối chiếu quyền và audit log của tài khoản thực hiện.
 
 **Nguồn bằng chứng cần có:** repository, organization_policy.
 
@@ -394,7 +394,7 @@ CIS: **Manual**, trang 68.
 
 **Remediation đề xuất:** Kiểm kê forks định kỳ; xử lý bản sao không còn cần thiết.
 
-**Re-audit:** Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.
+**Re-audit:** So sánh số fork API với danh sách đã rà; lưu ngày và người duyệt.
 
 **Nguồn bằng chứng cần có:** forks, organization_policy.
 
@@ -410,7 +410,7 @@ CIS: **Manual**, trang 70.
 
 **Remediation đề xuất:** Cảnh báo/lưu vết thay đổi visibility, giới hạn người được đổi.
 
-**Re-audit:** Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.
+**Re-audit:** Đổi visibility của repo thử đã được phê duyệt; xác nhận inventory và audit log ghi được trạng thái trước/sau, actor và thời gian. Không đổi visibility finalrepo.
 
 **Nguồn bằng chứng cần có:** repository, organization_policy.
 
@@ -426,7 +426,7 @@ CIS: **Manual**, trang 72.
 
 **Remediation đề xuất:** Đặt lịch rà soát và archive sau khi chủ sở hữu xác nhận.
 
-**Re-audit:** Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.
+**Re-audit:** Kiểm tra trạng thái Archived của repo thử được phép và biên bản rà soát.
 
 **Nguồn bằng chứng cần có:** repository, organization_policy.
 
@@ -442,7 +442,7 @@ CIS: **Manual**, trang 75.
 
 **Remediation đề xuất:** Thu hồi thành viên không còn nhu cầu qua quy trình đã phê duyệt.
 
-**Re-audit:** Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.
+**Re-audit:** Người được thu hồi không còn truy cập repo riêng thử; lưu danh sách trước/sau đã che PII.
 
 **Nguồn bằng chứng cần có:** collaborators, organization_policy, identity_provider.
 
@@ -458,7 +458,7 @@ CIS: **Manual**, trang 77.
 
 **Remediation đề xuất:** Chỉ cho người được giao nhiệm vụ tạo team.
 
-**Re-audit:** Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.
+**Re-audit:** Kiểm tra policy tạo team và ngoại lệ owner; tài khoản thành viên thường thử tạo team trong môi trường thử phải tuân theo giới hạn đã duyệt.
 
 **Nguồn bằng chứng cần có:** collaborators, organization_policy, identity_provider.
 
@@ -474,7 +474,7 @@ CIS: **Manual**, trang 79.
 
 **Remediation đề xuất:** Giảm admin tới mức cần thiết và bảo đảm phương án dự phòng.
 
-**Re-audit:** Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.
+**Re-audit:** Xuất bảng vai trò đã che PII và giải thích từng owner.
 
 **Nguồn bằng chứng cần có:** collaborators, organization_policy, identity_provider.
 
@@ -490,7 +490,7 @@ CIS: **Manual**, trang 81.
 
 **Remediation đề xuất:** Bật và kiểm chứng chính sách MFA theo phạm vi người đóng góp.
 
-**Re-audit:** Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.
+**Re-audit:** Tài khoản không MFA không được cấp/giữ quyền đóng góp theo policy; lưu ảnh xác nhận không lộ recovery codes.
 
 **Nguồn bằng chứng cần có:** collaborators, organization_policy, identity_provider.
 
@@ -506,7 +506,7 @@ CIS: **Manual**, trang 83.
 
 **Remediation đề xuất:** Bắt buộc MFA; chuẩn bị recovery trước khi áp dụng.
 
-**Re-audit:** Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.
+**Re-audit:** Owner đối chiếu yêu cầu MFA và toàn bộ phạm vi thành viên/ngoại lệ; kiểm tra tình huống tài khoản chưa bật MFA theo quy trình được phê duyệt, không công khai recovery codes.
 
 **Nguồn bằng chứng cần có:** collaborators, organization_policy, identity_provider.
 
@@ -522,7 +522,7 @@ CIS: **Manual**, trang 85.
 
 **Remediation đề xuất:** Dùng danh sách domain/email được phép trong quy trình mời.
 
-**Re-audit:** Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.
+**Re-audit:** Đối chiếu invitation/audit log với email được duyệt, che địa chỉ trong báo cáo công khai.
 
 **Nguồn bằng chứng cần có:** collaborators, organization_policy, identity_provider.
 
@@ -538,7 +538,7 @@ CIS: **Manual**, trang 87.
 
 **Remediation đề xuất:** Bố trí hai quản trị viên độc lập theo yêu cầu, không chia sẻ tài khoản.
 
-**Re-audit:** Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.
+**Re-audit:** Hai người tự đăng nhập kiểm tra đúng quyền; tài khoản developer không có admin.
 
 **Nguồn bằng chứng cần có:** collaborators, organization_policy, identity_provider.
 
@@ -554,7 +554,7 @@ CIS: **Manual**, trang 89.
 
 **Remediation đề xuất:** Chọn quyền nền tối thiểu và cấp thêm theo team.
 
-**Re-audit:** Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.
+**Re-audit:** Đọc base permission và toàn bộ quyền cấp thêm qua team/collaborator; dùng tài khoản thử không có grant bổ sung để xác nhận quyền truy cập hiệu lực.
 
 **Nguồn bằng chứng cần có:** collaborators, organization_policy, identity_provider.
 
@@ -570,7 +570,7 @@ CIS: **Manual**, trang 91.
 
 **Remediation đề xuất:** Xác minh domain chính thức bằng quy trình GitHub.
 
-**Re-audit:** Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.
+**Re-audit:** Đối chiếu domain được xác minh bằng DNS với website/email Organization và huy hiệu Verified trên giao diện; chỉ ghi đạt khi bằng chứng cùng thuộc đúng Organization.
 
 **Nguồn bằng chứng cần có:** collaborators, organization_policy, identity_provider.
 
@@ -586,7 +586,7 @@ CIS: **Manual**, trang 93.
 
 **Remediation đề xuất:** Giới hạn thông báo tới domain tổ chức đã xác minh.
 
-**Re-audit:** Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.
+**Re-audit:** Trên gói hỗ trợ tính năng, đối chiếu domain thông báo với danh sách đã xác minh/phê duyệt và kiểm tra địa chỉ ngoài danh sách không nhận thông báo theo policy; thiếu tính năng ghi rõ giới hạn gói.
 
 **Nguồn bằng chứng cần có:** collaborators, organization_policy, identity_provider.
 
@@ -602,7 +602,7 @@ CIS: **Manual**, trang 95.
 
 **Remediation đề xuất:** Cấp SSH certificate qua CA được quản lý, có thu hồi và gia hạn.
 
-**Re-audit:** Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.
+**Re-audit:** Đối chiếu SSH CA được cài với CA được duyệt; thử certificate hợp lệ, hết hạn và certificate ký bởi CA khác trên đối tượng thử được phép, ghi kết quả truy cập.
 
 **Nguồn bằng chứng cần có:** collaborators, organization_policy, identity_provider.
 
@@ -618,7 +618,7 @@ CIS: **Manual**, trang 97.
 
 **Remediation đề xuất:** Thiết lập allow list theo mạng công việc, giữ đường khôi phục.
 
-**Re-audit:** Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.
+**Re-audit:** Thử truy cập Git có xác thực từ IP được phép và IP ngoài allow list; ghi địa chỉ nguồn đã che và kết quả. Không dùng truy cập public ẩn danh để kết luận hiệu lực IP policy.
 
 **Nguồn bằng chứng cần có:** collaborators, organization_policy, identity_provider.
 
@@ -634,7 +634,7 @@ CIS: **Manual**, trang 99.
 
 **Remediation đề xuất:** Giám sát bất thường, có người nhận và quy trình xử lý.
 
-**Re-audit:** Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.
+**Re-audit:** Tạo sự kiện an toàn trên nhánh thử, xác nhận cảnh báo đến người trực và ghi xử lý.
 
 **Nguồn bằng chứng cần có:** collaborators, organization_policy, identity_provider.
 
@@ -650,7 +650,7 @@ CIS: **Manual**, trang 101.
 
 **Remediation đề xuất:** Bắt buộc admin phê duyệt ứng dụng trước cấp quyền.
 
-**Re-audit:** Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.
+**Re-audit:** Thành viên thường yêu cầu cài app thử, owner phải phê duyệt trước khi app có quyền.
 
 **Nguồn bằng chứng cần có:** organization_policy.
 
@@ -666,7 +666,7 @@ CIS: **Manual**, trang 103.
 
 **Remediation đề xuất:** Rà soát định kỳ, gỡ app không dùng sau xác nhận.
 
-**Re-audit:** Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.
+**Re-audit:** Đối chiếu sổ app trước/sau; xác nhận CI cần thiết vẫn hoạt động.
 
 **Nguồn bằng chứng cần có:** organization_policy.
 
@@ -682,7 +682,7 @@ CIS: **Manual**, trang 105.
 
 **Remediation đề xuất:** Thu hẹp app scopes và repository access theo least privilege.
 
-**Re-audit:** Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.
+**Re-audit:** Thử đọc repo không được cấp phải thất bại; repo được cấp vẫn hoạt động.
 
 **Nguồn bằng chứng cần có:** organization_policy.
 
@@ -698,7 +698,7 @@ CIS: **Manual**, trang 107.
 
 **Remediation đề xuất:** Chuyển endpoint sang HTTPS hợp lệ và bật SSL verification.
 
-**Re-audit:** Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.
+**Re-audit:** Gửi delivery hợp lệ và payload sửa/chữ ký sai; endpoint phải từ chối trường hợp sai.
 
 **Nguồn bằng chứng cần có:** webhooks.
 
@@ -714,7 +714,7 @@ CIS: **Manual**, trang 110.
 
 **Remediation đề xuất:** Bật scanner/chặn theo chính sách; thu hồi secret thật trước xử lý lịch sử.
 
-**Re-audit:** Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.
+**Re-audit:** Dùng fixture secret giả trong thư mục/nhánh thử, xác nhận scanner phát hiện và gate thất bại; chạy lại trên source hiện tại và lịch sử theo hai phạm vi riêng, ghi các credential cần thu hồi.
 
 **Nguồn bằng chứng cần có:** repository_files, required_check_enforcement.
 
@@ -730,7 +730,7 @@ CIS: **Manual**, trang 112.
 
 **Remediation đề xuất:** Sửa insecure instructions; giữ required security check.
 
-**Re-audit:** Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.
+**Re-audit:** Quét toàn bộ workflow và đối chiếu log scanner với commit được đánh giá; dùng cấu hình không an toàn trong fixture để xác nhận detection, không đưa workflow nguy hiểm vào nhánh đang vận hành.
 
 **Nguồn bằng chứng cần có:** repository_files, required_check_enforcement.
 
@@ -746,7 +746,7 @@ CIS: **Manual**, trang 114.
 
 **Remediation đề xuất:** Quét mọi IaC được sử dụng và xử lý cấu hình mất an toàn.
 
-**Re-audit:** Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.
+**Re-audit:** Quét tập IaC đã kiểm kê, xác nhận scanner hỗ trợ đúng định dạng; thử fixture có misconfiguration và kiểm tra gate chặn. Nếu chưa có IaC thực tế, ghi thiếu phạm vi.
 
 **Nguồn bằng chứng cần có:** repository_files, required_check_enforcement.
 
@@ -762,7 +762,7 @@ CIS: **Manual**, trang 116.
 
 **Remediation đề xuất:** Thiết lập SAST/code scanning phù hợp ngôn ngữ và xử lý findings.
 
-**Re-audit:** Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.
+**Re-audit:** Chạy SAST trên toàn bộ mã thuộc phạm vi, kiểm tra lỗi phân tích và ngưỡng severity; đối chiếu phát hiện với phiên bản công cụ và xác nhận mẫu lỗi kiểm thử được nhận diện.
 
 **Nguồn bằng chứng cần có:** repository_files, required_check_enforcement.
 
@@ -778,7 +778,7 @@ CIS: **Manual**, trang 118.
 
 **Remediation đề xuất:** Bật giám sát dependency và xử lý phiên bản có CVE.
 
-**Re-audit:** Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.
+**Re-audit:** Đối chiếu danh sách dependency thực với báo cáo SCA theo tên/phiên bản; kiểm tra không có package bị bỏ qua và advisory vượt ngưỡng làm gate thất bại.
 
 **Nguồn bằng chứng cần có:** repository_files, required_check_enforcement.
 
@@ -794,7 +794,7 @@ CIS: **Manual**, trang 120.
 
 **Remediation đề xuất:** Thiết lập license scanner và xử lý giấy phép không được phép.
 
-**Re-audit:** Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.
+**Re-audit:** So từng license expression với policy đã phê duyệt; các license thiếu/không rõ hoặc ngoài danh sách phải được review, ghi quyết định và người phê duyệt thay vì chỉ đếm scanner finding.
 
 **Nguồn bằng chứng cần có:** repository_files, required_check_enforcement.
 

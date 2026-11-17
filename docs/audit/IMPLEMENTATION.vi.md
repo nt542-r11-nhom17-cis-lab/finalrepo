@@ -15,7 +15,7 @@ Snapshot GET API dưới danh tính người dùng đọc được bốn tài kh
 | HiepTran01 | Read | Rà supplier/dependency/artifact, nhóm 3–4 | SBOM/provenance supplier, nhận xét license/registry | Đã xác minh quyền Read; muốn push cần owner quyết định cấp quyền thích hợp |
 | dtk0106 | Read | Kiểm chứng triển khai, tổng hợp nhóm 5 | Bảng triển khai và log môi trường được phép | Đã xác minh quyền Read; chưa có production thực tế hoặc bằng chứng thực hiện nhiệm vụ |
 
-Không tự thay quyền, thêm Code Owner hay mời người. Nhóm cần xác nhận các tài khoản có đúng người dự kiến. Mục 1.3.7 còn cần owner xác minh full effective access và chọn admin thứ hai nếu áp dụng theo yêu cầu CIS; không nâng cả nhóm thành Admin. Kiểm thử hai reviewer cần danh tính thật, không dùng tài khoản chung. Đầu ra của trợ lý/CI không được gán thành công việc đã thực hiện bởi ba tài khoản còn lại.
+Không tự thay quyền, thêm Code Owner hay mời người. Nhóm cần xác nhận các tài khoản có đúng người dự kiến. Mục 1.3.7 còn cần owner xác minh full effective access và chọn admin thứ hai nếu áp dụng theo yêu cầu CIS; không nâng cả nhóm thành Admin. Kiểm thử hai reviewer cần danh tính thật, không dùng tài khoản chung. Kết quả CI chỉ xác nhận tác vụ tự động đã chạy; chưa có bằng chứng ba tài khoản còn lại thực hiện nhiệm vụ được đề xuất.
 
 ## 3.2 Triển khai Manual
 
@@ -31,7 +31,7 @@ Phương pháp là Audit → Remediation → Re-audit; manual là cách thực h
 | 3.1.2 | Chưa có SBOM gốc từ mọi supplier | NOT_TESTED | Thu thập supplier-issued SBOM; SBOM do nhóm tạo không thay tài liệu supplier |
 | 5.2.3/.4 | Chưa có production được nhóm cho phép | NOT_TESTED | Cung cấp môi trường và người quản trị; không dùng sandbox làm bằng chứng production |
 
-Mẫu `config/protection-sandbox.ruleset.json` chỉ khớp `refs/heads/audit/protection-sandbox`, không có bypass; chưa được POST/apply. Cần hai reviewer thật và cấu hình ký commit trước khi áp dụng. Mẫu không bao gồm mọi yêu cầu status checks/push restrictions; hướng dẫn nêu phần owner phải hoàn thiện. Không tạo PR vào main, không thử force-push/xóa trên main. Ảnh Settings và kiểm thử owner cần bổ sung ở phần 2; không tạo ảnh giả hoặc lấy ảnh run cũ làm run mới.
+Mẫu `config/protection-sandbox.ruleset.json` chỉ khớp `refs/heads/audit/protection-sandbox`, không có bypass; chưa được POST/apply. Cần hai reviewer thật và cấu hình ký commit trước khi áp dụng. Mẫu không bao gồm mọi yêu cầu status checks/push restrictions; hướng dẫn nêu phần owner phải hoàn thiện. Không tạo PR vào main, không thử force-push/xóa trên main. Ảnh Settings và kiểm thử owner cần bổ sung ở phần 2; mỗi ảnh phải ghi đúng cấu hình, thời điểm và run được kiểm tra.
 
 Danh sách đầy đủ 48 mục và Audit/Remediation/Re-audit: [FREE-CONTROLS.vi.md](FREE-CONTROLS.vi.md). Bảng 27 mục cần điều kiện tiếp theo: [FREE-COMPLETION.vi.md](FREE-COMPLETION.vi.md). Hai mươi mốt mục có bằng chứng thành phần cũng còn các giới hạn cần xử lý, không phải đã đạt hoàn toàn.
 

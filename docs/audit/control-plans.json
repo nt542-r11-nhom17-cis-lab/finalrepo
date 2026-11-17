@@ -6,7 +6,7 @@
     "page": 19,
     "audit": "Đối chiếu nguồn đang chạy với lịch sử Git và commit của mọi thay đổi",
     "remediation": "Đưa nguồn chưa quản lý vào VCS; bắt buộc thay đổi qua quy trình review",
-    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "re_audit": "Tạo một thay đổi thử trên nhánh audit, kiểm tra diff/commit rồi đối chiếu SHA trong provenance.",
     "evidence_sources": [
       "repository_files",
       "branches",
@@ -23,7 +23,7 @@
     "page": 20,
     "audit": "Lấy mẫu commit/PR và truy về issue hoặc task được giao",
     "remediation": "Yêu cầu mã task và liên kết issue trong mẫu PR, kiểm tra thủ công tính đúng của liên kết",
-    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "re_audit": "Lấy mẫu commit/PR sau thay đổi quy trình, mở liên kết issue/task và đối chiếu nội dung thay đổi với nhiệm vụ; ghi riêng trường hợp thiếu hoặc liên kết sai.",
     "evidence_sources": [
       "repository_files",
       "branches",
@@ -40,7 +40,7 @@
     "page": 22,
     "audit": "Đọc required approvals và kiểm thử PR thiếu hai reviewer độc lập; xác minh strong authentication",
     "remediation": "Yêu cầu hai phê duyệt theo Audit và chính sách xác thực mạnh; xem xét bypass",
-    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "re_audit": "Trên PR thử, kiểm tra merge bị chặn khi chỉ có một approval và khi reviewer không đáp ứng xác thực mạnh; kiểm tra hai reviewer độc lập, đủ điều kiện cùng mọi check bắt buộc trước khi kết luận.",
     "evidence_sources": [
       "repository",
       "branches",
@@ -58,7 +58,7 @@
     "page": 24,
     "audit": "Đọc dismiss-stale; đẩy commit thay đổi vào PR đã được duyệt",
     "remediation": "Bật hủy phê duyệt cũ và kiểm tra yêu cầu review lại",
-    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "re_audit": "Phê duyệt PR thử rồi push thêm commit; ghi nhận approval cũ bị dismiss và merge vẫn bị chặn đến khi có review mới.",
     "evidence_sources": [
       "repository",
       "branches",
@@ -76,7 +76,7 @@
     "page": 26,
     "audit": "Kiểm tra danh sách người/nhóm được dismiss review và bypass",
     "remediation": "Giới hạn dismiss cho tài khoản tin cậy đã được phê duyệt",
-    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "re_audit": "Dùng tài khoản có quyền và không có quyền thử dismiss; lưu kết quả chấp nhận/từ chối.",
     "evidence_sources": [
       "repository",
       "branches",
@@ -94,7 +94,7 @@
     "page": 28,
     "audit": "Tìm CODEOWNERS, so đường dẫn nhạy cảm và quyền owner",
     "remediation": "Khai báo owner có quyền phù hợp cho mã/cấu hình nhạy cảm",
-    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "re_audit": "Lấy mẫu file workflow, secret configuration và deployment; đối chiếu pattern CODEOWNERS với người có quyền thực tế và yêu cầu review của từng file.",
     "evidence_sources": [
       "repository",
       "branches",
@@ -112,7 +112,7 @@
     "page": 30,
     "audit": "Đọc required code-owner review và thử PR sửa file có owner",
     "remediation": "Bắt buộc code-owner review trên quy tắc có hiệu lực",
-    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "re_audit": "PR sửa file thuộc sở hữu phải bị chặn khi chưa có Code Owner approval.",
     "evidence_sources": [
       "repository",
       "branches",
@@ -130,7 +130,7 @@
     "page": 32,
     "audit": "Liệt kê nhánh, ngày commit cuối, chủ sở hữu và biên bản rà soát",
     "remediation": "Đặt lịch rà soát; chỉ xóa nhánh sau khi xác nhận không còn sử dụng",
-    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "re_audit": "Đối chiếu danh sách trước/sau và lịch rà soát tháng tiếp theo.",
     "evidence_sources": [
       "repository_files",
       "branches",
@@ -147,7 +147,7 @@
     "page": 34,
     "audit": "Đọc required checks; thử PR có check thất bại",
     "remediation": "Bắt buộc checks phù hợp và kiểm soát bypass trước merge",
-    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "re_audit": "Cho một required check thất bại trên PR thử và kiểm tra merge bị chặn; chạy lại thành công, đối chiếu tên check với rule và rà mọi bypass actor.",
     "evidence_sources": [
       "repository",
       "branches",
@@ -165,7 +165,7 @@
     "page": 36,
     "audit": "Kiểm tra strict/up-to-date requirement và PR tụt sau base",
     "remediation": "Bật yêu cầu nhánh cập nhật trước merge hoặc cơ chế tương đương",
-    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "re_audit": "Cập nhật base branch thử sau khi CI xanh; PR cũ phải yêu cầu cập nhật/chạy lại.",
     "evidence_sources": [
       "repository",
       "branches",
@@ -183,7 +183,7 @@
     "page": 38,
     "audit": "Kiểm tra conversation resolution và PR còn comment chưa giải quyết",
     "remediation": "Bắt buộc giải quyết hội thoại trước merge",
-    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "re_audit": "Để một review thread chưa resolve: merge bị chặn; resolve rồi kiểm tra lại.",
     "evidence_sources": [
       "repository",
       "branches",
@@ -201,7 +201,7 @@
     "page": 40,
     "audit": "Kiểm tra required signatures và commit verification",
     "remediation": "Bắt buộc commit ký được nền tảng xác minh; quản lý khóa người ký",
-    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "re_audit": "Commit không ký phải bị từ chối; commit ký hợp lệ phải được nhận khi đủ điều kiện còn lại.",
     "evidence_sources": [
       "repository",
       "branches",
@@ -219,7 +219,7 @@
     "page": 42,
     "audit": "Đọc linear-history rule và lịch sử merge",
     "remediation": "Bật linear history và chọn cách merge phù hợp",
-    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "re_audit": "Thử merge commit vào nhánh thử phải bị chặn; squash/rebase đúng policy được nhận.",
     "evidence_sources": [
       "repository",
       "branches",
@@ -237,7 +237,7 @@
     "page": 44,
     "audit": "Xem enforce-admins và các bypass actor",
     "remediation": "Áp dụng bảo vệ cho admin; giảm ngoại lệ theo chính sách",
-    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "re_audit": "Admin thử push/merge thiếu điều kiện trên nhánh thử phải bị chặn.",
     "evidence_sources": [
       "repository",
       "branches",
@@ -255,7 +255,7 @@
     "page": 46,
     "audit": "Đọc push restrictions và danh sách team/user",
     "remediation": "Chỉ cho người/nhóm được phê duyệt push hoặc merge",
-    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "re_audit": "Tài khoản ngoài danh sách thử push/merge bị từ chối; người hợp lệ vẫn cần đủ review/CI.",
     "evidence_sources": [
       "repository",
       "branches",
@@ -273,7 +273,7 @@
     "page": 48,
     "audit": "Đọc force-push rule; thử trên nhánh disposable được bảo vệ",
     "remediation": "Cấm force push và xem lại bypass",
-    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "re_audit": "Chỉ trên nhánh thử được bảo vệ, thử cập nhật non-fast-forward bằng tài khoản được phép kiểm thử; lưu thông báo từ chối và cấu hình bypass. Không thử trên main.",
     "evidence_sources": [
       "repository",
       "branches",
@@ -291,7 +291,7 @@
     "page": 50,
     "audit": "Đọc deletion rule; thử xóa nhánh disposable, không main",
     "remediation": "Cấm xóa nhánh được bảo vệ",
-    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "re_audit": "Thử xóa đúng nhánh thử có rule chống xóa bằng tài khoản được phép kiểm thử; đối chiếu kết quả bị từ chối. Kết thúc thử nghiệm bằng quy trình thu hồi rule thử, không tác động nhánh khác.",
     "evidence_sources": [
       "repository",
       "branches",
@@ -309,7 +309,7 @@
     "page": 52,
     "audit": "Đối chiếu mọi PR merge với scanner và kết quả chạy",
     "remediation": "Gắn scanner vào quy trình merge, yêu cầu check thành công",
-    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "re_audit": "Kiểm tra CI trên commit nhánh mới; sau đó thử PR có lỗi mẫu an toàn trên nhánh thử và xác nhận bị chặn.",
     "evidence_sources": [
       "repository",
       "branches",
@@ -327,7 +327,7 @@
     "page": 54,
     "audit": "Tìm sự kiện thay đổi protection/ruleset trong audit log và cơ chế cảnh báo",
     "remediation": "Lưu audit log, phân công người nhận và kiểm tra cảnh báo",
-    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "re_audit": "Owner đổi một rule của nhánh thử, tìm đúng actor/time/action trong log rồi phục hồi cấu hình thử.",
     "evidence_sources": [
       "repository",
       "branches",
@@ -345,7 +345,7 @@
     "page": 56,
     "audit": "Lấy default branch qua API và đối chiếu effective protection",
     "remediation": "Áp dụng protection cho đúng default branch",
-    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "re_audit": "Đọc default_branch hiện tại qua API và đối chiếu Rulesets/classic protection thực sự áp dụng ref đó; rà bypass và lưu cấu hình. Thử hành vi trên nhánh riêng có rule tương đương, ghi rõ giới hạn phạm vi.",
     "evidence_sources": [
       "repository",
       "branches",
@@ -363,7 +363,7 @@
     "page": 59,
     "audit": "Đọc SECURITY.md và xác minh kênh báo cáo riêng tư",
     "remediation": "Bổ sung policy và kênh tiếp nhận đã được chủ repo xác nhận",
-    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "re_audit": "Mở SECURITY.md trên từng repo public, kiểm tra phiên bản được hỗ trợ và kênh báo cáo riêng tư đang hoạt động; phân biệt chính sách kế thừa với file tại repo.",
     "evidence_sources": [
       "repository_files"
     ],
@@ -378,7 +378,7 @@
     "page": 61,
     "audit": "Đọc quyền tạo repository ở cấp tổ chức",
     "remediation": "Giới hạn tạo repository cho nhóm được phê duyệt",
-    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "re_audit": "Đối chiếu policy tạo repository với vai trò được duyệt; tài khoản ngoài danh sách thử tạo repo trong phạm vi được cho phép phải bị từ chối.",
     "evidence_sources": [
       "repository",
       "organization_policy"
@@ -394,7 +394,7 @@
     "page": 63,
     "audit": "Đọc quyền xóa repository và phân quyền quản trị",
     "remediation": "Giới hạn quyền xóa; có quy trình phê duyệt và khôi phục",
-    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "re_audit": "Kiểm tra quyền xóa repo của từng vai trò và log thay đổi; nếu cần thử hành vi, chỉ dùng repo tạm đã được phê duyệt, không dùng finalrepo.",
     "evidence_sources": [
       "repository",
       "organization_policy"
@@ -410,7 +410,7 @@
     "page": 66,
     "audit": "Kiểm tra quyền xóa issue theo vai trò và audit log",
     "remediation": "Giới hạn quyền xóa issue theo nhu cầu công việc",
-    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "re_audit": "Tạo issue thử không chứa dữ liệu quan trọng; kiểm tra vai trò không được phép không thể xóa, đối chiếu quyền và audit log của tài khoản thực hiện.",
     "evidence_sources": [
       "repository",
       "organization_policy"
@@ -426,7 +426,7 @@
     "page": 68,
     "audit": "Đối chiếu danh sách forks, visibility và người chịu trách nhiệm",
     "remediation": "Kiểm kê forks định kỳ; xử lý bản sao không còn cần thiết",
-    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "re_audit": "So sánh số fork API với danh sách đã rà; lưu ngày và người duyệt.",
     "evidence_sources": [
       "forks",
       "organization_policy"
@@ -442,7 +442,7 @@
     "page": 70,
     "audit": "Đọc audit log visibility change và cấu hình theo dõi",
     "remediation": "Cảnh báo/lưu vết thay đổi visibility, giới hạn người được đổi",
-    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "re_audit": "Đổi visibility của repo thử đã được phê duyệt; xác nhận inventory và audit log ghi được trạng thái trước/sau, actor và thời gian. Không đổi visibility finalrepo.",
     "evidence_sources": [
       "repository",
       "organization_policy"
@@ -458,7 +458,7 @@
     "page": 72,
     "audit": "Lấy ngày cập nhật repo và biên bản đánh giá trạng thái",
     "remediation": "Đặt lịch rà soát và archive sau khi chủ sở hữu xác nhận",
-    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "re_audit": "Kiểm tra trạng thái Archived của repo thử được phép và biên bản rà soát.",
     "evidence_sources": [
       "repository",
       "organization_policy"
@@ -474,7 +474,7 @@
     "page": 75,
     "audit": "Đối chiếu thành viên, hoạt động gần nhất và nhu cầu truy cập",
     "remediation": "Thu hồi thành viên không còn nhu cầu qua quy trình đã phê duyệt",
-    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "re_audit": "Người được thu hồi không còn truy cập repo riêng thử; lưu danh sách trước/sau đã che PII.",
     "evidence_sources": [
       "collaborators",
       "organization_policy",
@@ -491,7 +491,7 @@
     "page": 77,
     "audit": "Kiểm tra quyền tạo team của organization members",
     "remediation": "Chỉ cho người được giao nhiệm vụ tạo team",
-    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "re_audit": "Kiểm tra policy tạo team và ngoại lệ owner; tài khoản thành viên thường thử tạo team trong môi trường thử phải tuân theo giới hạn đã duyệt.",
     "evidence_sources": [
       "collaborators",
       "organization_policy",
@@ -508,7 +508,7 @@
     "page": 79,
     "audit": "Kiểm kê organization owners/admins và lý do từng quyền",
     "remediation": "Giảm admin tới mức cần thiết và bảo đảm phương án dự phòng",
-    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "re_audit": "Xuất bảng vai trò đã che PII và giải thích từng owner.",
     "evidence_sources": [
       "collaborators",
       "organization_policy",
@@ -525,7 +525,7 @@
     "page": 81,
     "audit": "Kiểm tra MFA bắt buộc cho người đóng góp, kể cả ngoài tổ chức",
     "remediation": "Bật và kiểm chứng chính sách MFA theo phạm vi người đóng góp",
-    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "re_audit": "Tài khoản không MFA không được cấp/giữ quyền đóng góp theo policy; lưu ảnh xác nhận không lộ recovery codes.",
     "evidence_sources": [
       "collaborators",
       "organization_policy",
@@ -542,7 +542,7 @@
     "page": 83,
     "audit": "Đọc yêu cầu MFA của tổ chức và trạng thái thực thi",
     "remediation": "Bắt buộc MFA; chuẩn bị recovery trước khi áp dụng",
-    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "re_audit": "Owner đối chiếu yêu cầu MFA và toàn bộ phạm vi thành viên/ngoại lệ; kiểm tra tình huống tài khoản chưa bật MFA theo quy trình được phê duyệt, không công khai recovery codes.",
     "evidence_sources": [
       "collaborators",
       "organization_policy",
@@ -559,7 +559,7 @@
     "page": 85,
     "audit": "Đối chiếu email lời mời với domain được công ty chấp thuận",
     "remediation": "Dùng danh sách domain/email được phép trong quy trình mời",
-    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "re_audit": "Đối chiếu invitation/audit log với email được duyệt, che địa chỉ trong báo cáo công khai.",
     "evidence_sources": [
       "collaborators",
       "organization_policy",
@@ -576,7 +576,7 @@
     "page": 87,
     "audit": "Kiểm kê repository admins và xác minh có hai quản trị viên phù hợp",
     "remediation": "Bố trí hai quản trị viên độc lập theo yêu cầu, không chia sẻ tài khoản",
-    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "re_audit": "Hai người tự đăng nhập kiểm tra đúng quyền; tài khoản developer không có admin.",
     "evidence_sources": [
       "collaborators",
       "organization_policy",
@@ -593,7 +593,7 @@
     "page": 89,
     "audit": "Đọc default/base repository permission của tổ chức",
     "remediation": "Chọn quyền nền tối thiểu và cấp thêm theo team",
-    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "re_audit": "Đọc base permission và toàn bộ quyền cấp thêm qua team/collaborator; dùng tài khoản thử không có grant bổ sung để xác nhận quyền truy cập hiệu lực.",
     "evidence_sources": [
       "collaborators",
       "organization_policy",
@@ -610,7 +610,7 @@
     "page": 91,
     "audit": "Kiểm tra Verified badge và bằng chứng sở hữu domain",
     "remediation": "Xác minh domain chính thức bằng quy trình GitHub",
-    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "re_audit": "Đối chiếu domain được xác minh bằng DNS với website/email Organization và huy hiệu Verified trên giao diện; chỉ ghi đạt khi bằng chứng cùng thuộc đúng Organization.",
     "evidence_sources": [
       "collaborators",
       "organization_policy",
@@ -627,7 +627,7 @@
     "page": 93,
     "audit": "Đọc giới hạn email notification tới verified domains",
     "remediation": "Giới hạn thông báo tới domain tổ chức đã xác minh",
-    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "re_audit": "Trên gói hỗ trợ tính năng, đối chiếu domain thông báo với danh sách đã xác minh/phê duyệt và kiểm tra địa chỉ ngoài danh sách không nhận thông báo theo policy; thiếu tính năng ghi rõ giới hạn gói.",
     "evidence_sources": [
       "collaborators",
       "organization_policy",
@@ -644,7 +644,7 @@
     "page": 95,
     "audit": "Kiểm tra SSH CA/certificate policy và vòng đời chứng chỉ",
     "remediation": "Cấp SSH certificate qua CA được quản lý, có thu hồi và gia hạn",
-    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "re_audit": "Đối chiếu SSH CA được cài với CA được duyệt; thử certificate hợp lệ, hết hạn và certificate ký bởi CA khác trên đối tượng thử được phép, ghi kết quả truy cập.",
     "evidence_sources": [
       "collaborators",
       "organization_policy",
@@ -661,7 +661,7 @@
     "page": 97,
     "audit": "Kiểm tra IP allow list và thử nguồn truy cập được phép/không được phép",
     "remediation": "Thiết lập allow list theo mạng công việc, giữ đường khôi phục",
-    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "re_audit": "Thử truy cập Git có xác thực từ IP được phép và IP ngoài allow list; ghi địa chỉ nguồn đã che và kết quả. Không dùng truy cập public ẩn danh để kết luận hiệu lực IP policy.",
     "evidence_sources": [
       "collaborators",
       "organization_policy",
@@ -678,7 +678,7 @@
     "page": 99,
     "audit": "Đọc cơ chế phát hiện hành vi bất thường và mẫu cảnh báo",
     "remediation": "Giám sát bất thường, có người nhận và quy trình xử lý",
-    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "re_audit": "Tạo sự kiện an toàn trên nhánh thử, xác nhận cảnh báo đến người trực và ghi xử lý.",
     "evidence_sources": [
       "collaborators",
       "organization_policy",
@@ -695,7 +695,7 @@
     "page": 101,
     "audit": "Liệt kê ứng dụng và quy trình owner approval",
     "remediation": "Bắt buộc admin phê duyệt ứng dụng trước cấp quyền",
-    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "re_audit": "Thành viên thường yêu cầu cài app thử, owner phải phê duyệt trước khi app có quyền.",
     "evidence_sources": [
       "organization_policy"
     ],
@@ -710,7 +710,7 @@
     "page": 103,
     "audit": "Đối chiếu app installation với hoạt động và chủ sở hữu",
     "remediation": "Rà soát định kỳ, gỡ app không dùng sau xác nhận",
-    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "re_audit": "Đối chiếu sổ app trước/sau; xác nhận CI cần thiết vẫn hoạt động.",
     "evidence_sources": [
       "organization_policy"
     ],
@@ -725,7 +725,7 @@
     "page": 105,
     "audit": "Đọc permissions và repository selection của từng app",
     "remediation": "Thu hẹp app scopes và repository access theo least privilege",
-    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "re_audit": "Thử đọc repo không được cấp phải thất bại; repo được cấp vẫn hoạt động.",
     "evidence_sources": [
       "organization_policy"
     ],
@@ -740,7 +740,7 @@
     "page": 107,
     "audit": "Kiểm tra HTTPS và SSL verification của webhook mà không xuất secret",
     "remediation": "Chuyển endpoint sang HTTPS hợp lệ và bật SSL verification",
-    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "re_audit": "Gửi delivery hợp lệ và payload sửa/chữ ký sai; endpoint phải từ chối trường hợp sai.",
     "evidence_sources": [
       "webhooks"
     ],
@@ -755,7 +755,7 @@
     "page": 110,
     "audit": "Kiểm tra secret scanner, mẫu phát hiện giả và cơ chế chặn",
     "remediation": "Bật scanner/chặn theo chính sách; thu hồi secret thật trước xử lý lịch sử",
-    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "re_audit": "Dùng fixture secret giả trong thư mục/nhánh thử, xác nhận scanner phát hiện và gate thất bại; chạy lại trên source hiện tại và lịch sử theo hai phạm vi riêng, ghi các credential cần thu hồi.",
     "evidence_sources": [
       "repository_files",
       "required_check_enforcement"
@@ -771,7 +771,7 @@
     "page": 112,
     "audit": "Quét mọi workflow bằng công cụ kiểm tra cấu hình CI",
     "remediation": "Sửa insecure instructions; giữ required security check",
-    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "re_audit": "Quét toàn bộ workflow và đối chiếu log scanner với commit được đánh giá; dùng cấu hình không an toàn trong fixture để xác nhận detection, không đưa workflow nguy hiểm vào nhánh đang vận hành.",
     "evidence_sources": [
       "repository_files",
       "required_check_enforcement"
@@ -787,7 +787,7 @@
     "page": 114,
     "audit": "Kiểm kê IaC và xem report misconfiguration",
     "remediation": "Quét mọi IaC được sử dụng và xử lý cấu hình mất an toàn",
-    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "re_audit": "Quét tập IaC đã kiểm kê, xác nhận scanner hỗ trợ đúng định dạng; thử fixture có misconfiguration và kiểm tra gate chặn. Nếu chưa có IaC thực tế, ghi thiếu phạm vi.",
     "evidence_sources": [
       "repository_files",
       "required_check_enforcement"
@@ -803,7 +803,7 @@
     "page": 116,
     "audit": "Kiểm tra code-scanning setup và report trên đúng commit",
     "remediation": "Thiết lập SAST/code scanning phù hợp ngôn ngữ và xử lý findings",
-    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "re_audit": "Chạy SAST trên toàn bộ mã thuộc phạm vi, kiểm tra lỗi phân tích và ngưỡng severity; đối chiếu phát hiện với phiên bản công cụ và xác nhận mẫu lỗi kiểm thử được nhận diện.",
     "evidence_sources": [
       "repository_files",
       "required_check_enforcement"
@@ -819,7 +819,7 @@
     "page": 118,
     "audit": "Kiểm kê dependency, Dependabot và SCA report",
     "remediation": "Bật giám sát dependency và xử lý phiên bản có CVE",
-    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "re_audit": "Đối chiếu danh sách dependency thực với báo cáo SCA theo tên/phiên bản; kiểm tra không có package bị bỏ qua và advisory vượt ngưỡng làm gate thất bại.",
     "evidence_sources": [
       "repository_files",
       "required_check_enforcement"
@@ -835,7 +835,7 @@
     "page": 120,
     "audit": "Đối chiếu package licenses với chính sách sử dụng",
     "remediation": "Thiết lập license scanner và xử lý giấy phép không được phép",
-    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "re_audit": "So từng license expression với policy đã phê duyệt; các license thiếu/không rõ hoặc ngoài danh sách phải được review, ghi quyết định và người phê duyệt thay vì chỉ đếm scanner finding.",
     "evidence_sources": [
       "repository_files",
       "required_check_enforcement"
@@ -851,7 +851,7 @@
     "page": 123,
     "audit": "Kiểm tra trách nhiệm và quyền của từng pipeline",
     "remediation": "Tách pipeline theo mục đích và giảm quyền mỗi pipeline",
-    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "re_audit": "Đọc lại trigger, job, quyền và đầu ra của từng pipeline; đối chiếu một lần chạy thực với trách nhiệm đã mô tả, ghi các tác vụ vượt phạm vi cần tách.",
     "evidence_sources": [
       "repository_files",
       "build_platform_admin"
@@ -867,7 +867,7 @@
     "page": 125,
     "audit": "Đối chiếu image/infrastructure/config với phiên bản và cơ chế sửa trực tiếp",
     "remediation": "Mã hóa cấu hình, pin image và tái tạo thay vì sửa thủ công",
-    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "re_audit": "Đối chiếu source tree, image digest và log trước/sau mỗi lần tạo lại.",
     "evidence_sources": [
       "repository_files",
       "build_platform_admin"
@@ -883,7 +883,7 @@
     "page": 127,
     "audit": "Kiểm tra log môi trường build và chính sách giữ log",
     "remediation": "Ghi image version, tool versions và cấu hình cần thiết, che secrets",
-    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "re_audit": "Tải artifact, đối chiếu commit/run ID; kiểm tra không có token, secret hoặc home path.",
     "evidence_sources": [
       "repository_files",
       "build_platform_admin"
@@ -899,7 +899,7 @@
     "page": 128,
     "audit": "Tạo lại môi trường build từ mã trong môi trường sạch",
     "remediation": "Tự động hóa provisioning và ghi cấu hình trong VCS",
-    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "re_audit": "Tạo lại môi trường build từ cấu hình được quản lý phiên bản trên runner sạch; ghi commit, image và các bước provisioning, xác nhận không cần sửa tay để hoàn tất build.",
     "evidence_sources": [
       "repository_files",
       "build_platform_admin"
@@ -915,7 +915,7 @@
     "page": 129,
     "audit": "Liệt kê người/app có quyền vào môi trường build",
     "remediation": "Giảm quyền theo vai trò, rà soát định kỳ",
-    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "re_audit": "Tài khoản Read không được sửa/kích hoạt trái phép; Write chỉ làm nhiệm vụ cần thiết.",
     "evidence_sources": [
       "repository_files",
       "build_platform_admin"
@@ -931,7 +931,7 @@
     "page": 131,
     "audit": "Thử truy cập chưa xác thực trong môi trường kiểm thử",
     "remediation": "Bắt buộc xác thực cho mọi đường quản trị build",
-    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "re_audit": "Tài khoản chưa đăng nhập/không được cấp quyền không thể điều khiển build.",
     "evidence_sources": [
       "repository_files",
       "build_platform_admin"
@@ -947,7 +947,7 @@
     "page": 132,
     "audit": "Đọc metadata phạm vi secrets mà không đọc giá trị",
     "remediation": "Giới hạn secrets theo repo/environment/job, ưu tiên credentials ngắn hạn",
-    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "re_audit": "Kiểm tra job không dùng secret ngoài phạm vi; artifact không chứa private key.",
     "evidence_sources": [
       "repository_files",
       "build_platform_admin"
@@ -963,7 +963,7 @@
     "page": 134,
     "audit": "Xem scan của hạ tầng build, phạm vi và chu kỳ cập nhật",
     "remediation": "Quét hạ tầng phù hợp và theo dõi xử lý lỗ hổng",
-    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "re_audit": "Đọc JSON scanner, kiểm tra coverage và lỗi kết nối phải được báo; không chỉ nhìn CI xanh.",
     "evidence_sources": [
       "repository_files",
       "build_platform_admin"
@@ -979,7 +979,7 @@
     "page": 135,
     "audit": "Đối chiếu cấu hình dịch vụ với danh sách default credentials, không brute-force",
     "remediation": "Loại mật khẩu mặc định và quản lý secrets đúng quy trình",
-    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "re_audit": "Xác nhận credential cũ bị từ chối; scanner HEAD/lịch sử có phạm vi ghi rõ.",
     "evidence_sources": [
       "repository_files",
       "build_platform_admin"
@@ -995,7 +995,7 @@
     "page": 136,
     "audit": "Đọc cấu hình webhook build: HTTPS, certificate verification, auth",
     "remediation": "Bảo vệ webhook build và kiểm tra lại endpoint",
-    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "re_audit": "Delivery sai chữ ký/replay bị từ chối; không lộ secret trong log.",
     "evidence_sources": [
       "repository_files",
       "build_platform_admin"
@@ -1011,7 +1011,7 @@
     "page": 137,
     "audit": "Kiểm kê admin của build system và lý do cấp quyền",
     "remediation": "Giảm admin tới mức tối thiểu cần thiết",
-    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "re_audit": "Owner duyệt danh sách và thử bằng tài khoản không admin.",
     "evidence_sources": [
       "repository_files",
       "build_platform_admin"
@@ -1027,7 +1027,7 @@
     "page": 139,
     "audit": "Kiểm tra runner lifecycle, reuse và dữ liệu tồn dư giữa job",
     "remediation": "Dùng runner dùng một lần hoặc tái tạo và làm sạch được kiểm chứng",
-    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "re_audit": "Đối chiếu runner/job ID của hai lần build độc lập và bằng chứng hủy môi trường; xác nhận dữ liệu của lần đầu không tồn tại ở worker lần sau. Không suy ra chỉ từ tên ubuntu runner.",
     "evidence_sources": [
       "repository_files",
       "build_platform_admin"
@@ -1043,7 +1043,7 @@
     "page": 140,
     "audit": "Kiểm tra nguồn lệnh/config được cung cấp cho worker",
     "remediation": "Truyền lệnh/config từ controller tin cậy, tránh worker kéo lệnh tùy ý",
-    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "re_audit": "Đối chiếu smoke test không mạng; thử tác vụ cần mạng phải thất bại trong container thử.",
     "evidence_sources": [
       "repository_files",
       "build_platform_admin"
@@ -1059,7 +1059,7 @@
     "page": 141,
     "audit": "Đối chiếu nhiệm vụ/credentials giữa các worker",
     "remediation": "Tách worker theo nhiệm vụ và trust boundary",
-    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "re_audit": "Đối chiếu từng worker với vai trò build/test/publish/deploy, danh tính và quyền; thử một thao tác ngoài vai trò phải bị từ chối trên môi trường thử.",
     "evidence_sources": [
       "repository_files",
       "build_platform_admin"
@@ -1075,7 +1075,7 @@
     "page": 142,
     "audit": "Kiểm tra egress policy và thử endpoint allowed/denied",
     "remediation": "Giới hạn mạng tối thiểu, không nới rule để làm xanh test",
-    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "re_audit": "Kiểm tra egress policy bằng kết nối tới đích được phép và không được phép từ worker; lưu rule/log. Phân biệt container network none với quyền mạng của host runner.",
     "evidence_sources": [
       "repository_files",
       "build_platform_admin"
@@ -1091,7 +1091,7 @@
     "page": 144,
     "audit": "Kiểm tra runtime security agent/policy và sự kiện thử nghiệm",
     "remediation": "Áp dụng runtime protection và giám sát phản hồi",
-    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "re_audit": "Thử ghi root FS/mở mạng trong container thử phải thất bại; kiểm tra log run.",
     "evidence_sources": [
       "repository_files",
       "build_platform_admin"
@@ -1107,7 +1107,7 @@
     "page": 145,
     "audit": "Quét package của worker đúng image/version",
     "remediation": "Quét định kỳ và xử lý CVE theo ngưỡng đã thống nhất",
-    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "re_audit": "Chạy scanner trên image/worker thực và đối chiếu digest với worker được sử dụng; ghi severity, lỗi quét và coverage. Image demo không thay báo cáo toàn bộ host.",
     "evidence_sources": [
       "repository_files",
       "build_platform_admin"
@@ -1123,7 +1123,7 @@
     "page": 146,
     "audit": "Đối chiếu cấu hình triển khai worker với Git commit",
     "remediation": "Lưu cấu hình worker trong VCS và review thay đổi",
-    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "re_audit": "Đối chiếu archive HEAD với cấu hình worker được triển khai và commit/tree trong provenance.",
     "evidence_sources": [
       "repository_files",
       "build_platform_admin"
@@ -1139,7 +1139,7 @@
     "page": 148,
     "audit": "Theo dõi CPU/RAM/disk trong tải thực tế và cảnh báo",
     "remediation": "Thiết lập monitoring và kiểm tra đường cảnh báo",
-    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "re_audit": "Chạy tải thử có giới hạn được phê duyệt; kiểm tra CPU/RAM/disk metrics và cảnh báo đến người nhận, ghi ngưỡng và thời gian thay vì chỉ ảnh tiến trình.",
     "evidence_sources": [
       "repository_files",
       "build_platform_admin"
@@ -1155,7 +1155,7 @@
     "page": 150,
     "audit": "So toàn bộ bước build với YAML/script đang version-control",
     "remediation": "Đưa các bước build vào mã và loại bước không truy vết",
-    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "re_audit": "Đối chiếu log build mới với các step trong workflow ở đúng commit; ghi mọi lệnh triển khai thủ công hoặc cấu hình ngoài Git chưa được quản lý.",
     "evidence_sources": [
       "repository_files",
       "required_check_enforcement"
@@ -1171,7 +1171,7 @@
     "page": 151,
     "audit": "Kiểm tra contract input/output từng stage",
     "remediation": "Khai báo, kiểm tra schema/hash và fail khi output không hợp lệ",
-    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "re_audit": "Cấp input hợp lệ và input thiếu/sai cho step thử; đối chiếu schema/nội dung/hash output và kiểm tra input không hợp lệ không tạo đầu ra được chấp nhận.",
     "evidence_sources": [
       "repository_files",
       "required_check_enforcement"
@@ -1187,7 +1187,7 @@
     "page": 152,
     "audit": "Xác định kho output, quyền truy cập và tách biệt nguồn",
     "remediation": "Lưu output vào kho riêng được bảo vệ và kiểm soát quyền",
-    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "re_audit": "Tải artifact từ run, xác minh fingerprint/chữ ký; thử quyền truy cập bằng user phù hợp.",
     "evidence_sources": [
       "repository_files",
       "required_check_enforcement"
@@ -1203,7 +1203,7 @@
     "page": 153,
     "audit": "Lấy mẫu thay đổi workflow và review tương ứng",
     "remediation": "Bắt buộc review pipeline file, ghi lịch sử và code owner",
-    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "re_audit": "Tạo PR thử sửa workflow, truy commit về task và kiểm tra review bắt buộc bởi người phù hợp; xác nhận thay đổi chưa review không được đưa vào nhánh đích thử.",
     "evidence_sources": [
       "repository_files",
       "required_check_enforcement"
@@ -1219,7 +1219,7 @@
     "page": 154,
     "audit": "Kiểm kê ai có thể dispatch/rerun/trigger qua token hoặc event",
     "remediation": "Giới hạn trigger, runner và quyền token theo nhu cầu",
-    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "re_audit": "Push nhánh đúng tạo run; nhánh khác không kích hoạt workflow bổ sung; tài khoản Read không điều khiển được build.",
     "evidence_sources": [
       "repository_files",
       "required_check_enforcement"
@@ -1235,7 +1235,7 @@
     "page": 155,
     "audit": "Quét misconfiguration toàn bộ pipeline files",
     "remediation": "Bổ sung scanner và sửa cấu hình không an toàn",
-    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "re_audit": "Quét workflow ở commit đánh giá và dùng fixture misconfiguration để kiểm tra detection/gate; rà lỗi phân tích hoặc file bị loại trừ trước khi ghi kết quả.",
     "evidence_sources": [
       "repository_files",
       "required_check_enforcement"
@@ -1251,7 +1251,7 @@
     "page": 156,
     "audit": "Kiểm tra vulnerability scanner cho pipeline và tools được dùng",
     "remediation": "Quét thành phần pipeline và xử lý lỗ hổng",
-    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "re_audit": "Đọc report/log run; thêm fixture không an toàn chỉ trong unit/offline hoặc nhánh thử riêng để xác nhận scanner bắt lỗi.",
     "evidence_sources": [
       "repository_files",
       "required_check_enforcement"
@@ -1267,7 +1267,7 @@
     "page": 157,
     "audit": "Đưa dữ liệu giả vào pipeline fixture và xác minh secret scanner phát hiện",
     "remediation": "Quét mọi pipeline, chặn theo chính sách và không dùng secret thật để thử",
-    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "re_audit": "Chèn secret giả vào fixture pipeline, xác nhận scanner chặn; quét lại workflow thực và phân biệt source hiện tại với lịch sử, không dùng credential thật làm mẫu.",
     "evidence_sources": [
       "repository_files",
       "required_check_enforcement"
@@ -1283,7 +1283,7 @@
     "page": 159,
     "audit": "Kiểm kê mọi release và mọi artifact có chữ ký hợp lệ",
     "remediation": "Ký tất cả release artifacts và xác minh trước phân phối",
-    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "re_audit": "Xác minh mọi payload trong manifest; sửa một byte hoặc thay key phải thất bại.",
     "evidence_sources": [
       "sandbox",
       "supplier"
@@ -1299,7 +1299,7 @@
     "page": 160,
     "audit": "Kiểm kê dependency và lock/version/hash thực tế",
     "remediation": "Khóa mọi external dependency theo phiên bản xác minh",
-    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "re_audit": "Kiểm kê Actions, base image, wheel, binary tải và phụ thuộc gián tiếp; xác minh mỗi mục khóa bằng SHA/digest/hash phù hợp, ghi rõ thành phần còn dùng tag hoặc tải động.",
     "evidence_sources": [
       "sandbox",
       "supplier"
@@ -1315,7 +1315,7 @@
     "page": 162,
     "audit": "Đối chiếu hash/chữ ký với trusted source trước sử dụng",
     "remediation": "Xác minh checksum/signature/attestation trước chạy công cụ",
-    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "re_audit": "Thay một byte của bản sao dependency trong sandbox và kiểm tra xác minh hash/chữ ký thất bại trước khi sử dụng; đối chiếu trust root đã được phê duyệt cho dependency gốc.",
     "evidence_sources": [
       "sandbox",
       "supplier"
@@ -1331,7 +1331,7 @@
     "page": 164,
     "audit": "Build lặp lại cùng input trong môi trường đã kiểm soát",
     "remediation": "Loại yếu tố không xác định và so byte/hash đầu ra",
-    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "re_audit": "Build hai lần trong môi trường sạch từ cùng source commit và bộ dependency khóa; so hash artifact, điều tra mọi chênh lệch timestamp/nội dung thay vì chỉ so tên file.",
     "evidence_sources": [
       "sandbox",
       "supplier"
@@ -1347,7 +1347,7 @@
     "page": 165,
     "audit": "Đọc SBOM, kiểm package coverage và liên kết artifact digest",
     "remediation": "Sinh SBOM mỗi build đúng phạm vi và định dạng được chấp nhận",
-    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "re_audit": "Phân tích SBOM của đúng run, đối chiếu package/phiên bản/hash với inventory build; ghi các thành phần OS/tool/application bị thiếu, không coi inventory rỗng là đạt.",
     "evidence_sources": [
       "sandbox",
       "supplier"
@@ -1363,7 +1363,7 @@
     "page": 166,
     "audit": "Kiểm chữ ký SBOM và danh tính signer",
     "remediation": "Ký SBOM bằng danh tính tin cậy và xác minh khi sử dụng",
-    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "re_audit": "Dùng fingerprint hoặc identity ký được tin cậy từ nguồn riêng để xác minh SBOM; sửa bản sao SBOM và thử khóa sai phải bị từ chối. Ghi rõ khóa lab tạm thời nếu dùng.",
     "evidence_sources": [
       "sandbox",
       "supplier"
@@ -1379,7 +1379,7 @@
     "page": 169,
     "audit": "Đối chiếu third-party package với checksum/chữ ký/nguồn tin cậy",
     "remediation": "Chỉ nhận package đã xác minh, ghi lại trust root",
-    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "re_audit": "Với từng artifact bên thứ ba, đối chiếu phiên bản/digest và chữ ký/provenance với nguồn supplier được duyệt; lưu trust root và thử bản sao bị sửa phải bị từ chối.",
     "evidence_sources": [
       "supplier",
       "organization_policy"
@@ -1395,7 +1395,7 @@
     "page": 171,
     "audit": "Kiểm kê nhà cung cấp và SBOM cho từng thành phần",
     "remediation": "Yêu cầu supplier SBOM trong quy trình tiếp nhận",
-    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "re_audit": "Đối chiếu package/digest được dùng với SBOM supplier; supplier không cung cấp phải ghi thiếu.",
     "evidence_sources": [
       "supplier",
       "organization_policy"
@@ -1411,7 +1411,7 @@
     "page": 173,
     "audit": "Kiểm signed build metadata và đối chiếu artifact digest",
     "remediation": "Yêu cầu provenance ký, xác minh signer và nội dung",
-    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "re_audit": "Kiểm tra metadata signature + hash; sửa manifest/key phải bị từ chối.",
     "evidence_sources": [
       "supplier",
       "organization_policy"
@@ -1427,7 +1427,7 @@
     "page": 175,
     "audit": "Đọc dependency graph và thay đổi quan hệ/transitive dependencies",
     "remediation": "Theo dõi graph, cập nhật và xử lý thay đổi bất thường",
-    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "re_audit": "Xác minh mọi cạnh phụ thuộc và phiên bản được giải quyết; không tự suy cạnh từ thứ tự lock.",
     "evidence_sources": [
       "supplier",
       "organization_policy"
@@ -1443,7 +1443,7 @@
     "page": 176,
     "audit": "Đọc cấu hình package manager, registry precedence và namespace",
     "remediation": "Chỉ cho nguồn tin cậy, ưu tiên đúng registry để giảm dependency confusion",
-    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "re_audit": "Kiểm tra cấu hình index/registry và thứ tự ưu tiên trên môi trường sạch; xác nhận dependency được lấy từ nguồn đã duyệt, không tự fallback sang nguồn không tin cậy.",
     "evidence_sources": [
       "supplier",
       "organization_policy"
@@ -1459,7 +1459,7 @@
     "page": 178,
     "audit": "Kiểm SBOM của mã giao cho bên nhận và chữ ký",
     "remediation": "Cung cấp signed SBOM gắn với phiên bản artifact",
-    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "re_audit": "Dùng fingerprint từ log run đã kiểm tra để verify; sửa SBOM một byte phải thất bại.",
     "evidence_sources": [
       "supplier",
       "organization_policy"
@@ -1475,7 +1475,7 @@
     "page": 180,
     "audit": "Kiểm mọi dependency pinned và bằng chứng verified version",
     "remediation": "Pin phiên bản/hash đã được xác minh qua review",
-    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "re_audit": "Cài/build lại từ lock trên môi trường sạch, đối chiếu mọi phiên bản và SHA thực với lock; kiểm tra mismatch không được tự sửa hoặc bỏ qua.",
     "evidence_sources": [
       "supplier",
       "organization_policy"
@@ -1491,7 +1491,7 @@
     "page": 182,
     "audit": "Tính tuổi phiên bản từ ngày phát hành tin cậy tới ngày kiểm tra",
     "remediation": "Chọn phiên bản hơn 60 ngày theo yêu cầu, xử lý ngoại lệ theo chính sách",
-    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "re_audit": "Tính tuổi từng phiên bản từ ngày phát hành được xác minh tới ngày đánh giá; ghi mục không quá 60 ngày hoặc chưa xác minh được ngày. Phân biệt ngày upload wheel với ngày phát hành phiên bản.",
     "evidence_sources": [
       "supplier",
       "organization_policy"
@@ -1507,7 +1507,7 @@
     "page": 185,
     "audit": "Đối chiếu chính sách dependency đã phê duyệt với enforcement",
     "remediation": "Áp dụng policy toàn tổ chức và quản lý ngoại lệ có hạn",
-    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "re_audit": "Đối chiếu dependency thực với policy nguồn, license và phiên bản được Organization phê duyệt; thử dependency bị cấm trong fixture và kiểm tra gate từ chối.",
     "evidence_sources": [
       "supplier",
       "organization_policy"
@@ -1523,7 +1523,7 @@
     "page": 186,
     "audit": "Kiểm lịch SCA scan và freshness của vulnerability database",
     "remediation": "Quét CVE tự động định kỳ và trước phát hành",
-    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "re_audit": "Chạy SCA tự động trên inventory khóa, đối chiếu đủ tên/phiên bản và kiểm tra advisory/failed scan không bị chuyển thành kết quả sạch.",
     "evidence_sources": [
       "supplier",
       "organization_policy"
@@ -1539,7 +1539,7 @@
     "page": 187,
     "audit": "Đọc license inventory, policy và mẫu vi phạm",
     "remediation": "Quét license tự động và buộc xử lý vi phạm",
-    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "re_audit": "Chạy license scan trên inventory đầy đủ, đối chiếu từng license với policy được duyệt; license không rõ phải có review ghi nhận, không tự bỏ qua.",
     "evidence_sources": [
       "supplier",
       "organization_policy"
@@ -1555,7 +1555,7 @@
     "page": 189,
     "audit": "Đối chiếu package owner hiện tại với baseline đáng tin",
     "remediation": "Giám sát ownership change, cảnh báo và review trước dùng bản mới",
-    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "re_audit": "Chạy đối chiếu thật; unit test đổi owner, xóa entry và lỗi API phải chặn.",
     "evidence_sources": [
       "supplier",
       "organization_policy"
@@ -1571,7 +1571,7 @@
     "page": 192,
     "audit": "Xác minh artifact do pipeline ký và gắn đúng commit",
     "remediation": "Ký trong pipeline bằng danh tính quản lý được và kiểm chứng",
-    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "re_audit": "Xác minh chữ ký artifact của đúng pipeline/run và quyền truy cập signer; thử artifact sửa và khóa sai bị từ chối. Ghi rõ signer lab nếu chưa có danh tính production.",
     "evidence_sources": [
       "registry",
       "identity_provider"
@@ -1587,7 +1587,7 @@
     "page": 195,
     "audit": "Kiểm plaintext/ciphertext ở đường phân phối và thử sửa ciphertext",
     "remediation": "Mã hóa trước phân phối, xác thực integrity trước giải mã",
-    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "re_audit": "Kiểm tra artifact được mã hóa trước khi chuyển khỏi pipeline và khóa không nằm trong gói; xác minh ciphertext trước giải mã, thử ciphertext bị sửa phải bị từ chối.",
     "evidence_sources": [
       "registry",
       "identity_provider"
@@ -1603,7 +1603,7 @@
     "page": 196,
     "audit": "Đối chiếu quyền giải mã, nơi giữ khóa và nền tảng được phép",
     "remediation": "Giới hạn khóa giải mã cho nền tảng được ủy quyền",
-    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "re_audit": "Trên nền tảng được phép, kiểm tra giải mã thành công; nền tảng/tài khoản không có grant phải bị từ chối. Đối chiếu quyền secret manager và audit log, không chỉ dùng fixture offline.",
     "evidence_sources": [
       "registry",
       "identity_provider"
@@ -1619,7 +1619,7 @@
     "page": 199,
     "audit": "Kiểm ai được ký/chứng nhận artifact và key policy",
     "remediation": "Giới hạn signer, bảo vệ khóa và audit mọi lần dùng",
-    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "re_audit": "Đối chiếu danh sách signer/certifier với policy và quyền KMS/CA; tài khoản không được cấp thử ký hoặc cấp chứng nhận phải bị từ chối.",
     "evidence_sources": [
       "registry",
       "identity_provider"
@@ -1635,7 +1635,7 @@
     "page": 200,
     "audit": "Kiểm registry uploader roles và nhu cầu công việc",
     "remediation": "Giảm người được upload theo least privilege",
-    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "re_audit": "Rà toàn bộ quyền upload theo user/team/service account; dùng tài khoản Read thử upload bị từ chối và tài khoản publisher đúng phạm vi được chấp nhận.",
     "evidence_sources": [
       "registry",
       "identity_provider"
@@ -1651,7 +1651,7 @@
     "page": 201,
     "audit": "Kiểm MFA/SSO của người truy cập registry và ngoại lệ",
     "remediation": "Bắt buộc MFA theo khả năng registry, quản lý recovery",
-    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "re_audit": "Kiểm tra policy MFA của registry thật và danh tính được áp dụng; tài khoản chưa đáp ứng MFA không được thao tác theo phạm vi policy, ghi ngoại lệ cho service account.",
     "evidence_sources": [
       "registry",
       "identity_provider"
@@ -1667,7 +1667,7 @@
     "page": 202,
     "audit": "Xác định registry identity provider và local accounts",
     "remediation": "Dùng quản lý danh tính tập trung, giảm tài khoản local theo policy",
-    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "re_audit": "Đối chiếu người dùng registry với IdP/SSO bên ngoài và đường đăng nhập local; vô hiệu user thử tại IdP theo quy trình được duyệt, kiểm tra registry thu hồi quyền tương ứng.",
     "evidence_sources": [
       "registry",
       "identity_provider"
@@ -1683,7 +1683,7 @@
     "page": 203,
     "audit": "Thử anonymous download của artifact cần bảo vệ",
     "remediation": "Tắt anonymous access theo phạm vi và kiểm tra lại",
-    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "re_audit": "Thử tải artifact từ registry thật khi không đăng nhập và bằng tài khoản không có grant; đối chiếu HTTP/ACL. Không dùng registry giả lập hoặc repo public để kết luận.",
     "evidence_sources": [
       "registry",
       "identity_provider"
@@ -1699,7 +1699,7 @@
     "page": 205,
     "audit": "Kiểm kê registry admins và lý do cấp quyền",
     "remediation": "Giảm admin và định kỳ review",
-    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "re_audit": "Xuất danh sách admin hiệu lực của registry, đối chiếu nhu cầu công việc và ngoại lệ; tài khoản thường không được đổi cấu hình/quyền quản trị.",
     "evidence_sources": [
       "registry",
       "identity_provider"
@@ -1715,7 +1715,7 @@
     "page": 208,
     "audit": "Thử upload artifact ký hợp lệ và artifact bị sửa vào registry lab",
     "remediation": "Xác minh chữ ký trước chấp nhận upload, fail closed",
-    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "re_audit": "Upload artifact ký hợp lệ và bản sao sai/thiếu chữ ký tới registry thử; registry phải từ chối bản không hợp lệ trước khi artifact được phân phối.",
     "evidence_sources": [
       "registry",
       "identity_provider"
@@ -1731,7 +1731,7 @@
     "page": 210,
     "audit": "Kiểm mọi version và chữ ký, thử downgrade hoặc overwrite",
     "remediation": "Xác minh mọi phiên bản và cấm overwrite không được phê duyệt",
-    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "re_audit": "Liệt kê mọi phiên bản artifact trong phạm vi, xác minh từng chữ ký với trust policy tương ứng; ghi phiên bản thiếu chữ ký hoặc không thể xác minh.",
     "evidence_sources": [
       "registry",
       "identity_provider"
@@ -1747,7 +1747,7 @@
     "page": 212,
     "audit": "Đọc audit log thay đổi registry configuration",
     "remediation": "Bật audit và cảnh báo thay đổi cấu hình",
-    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "re_audit": "Thay đổi cấu hình vô hại trên registry thử đã được duyệt; kiểm tra log lưu actor, thời gian và cấu hình trước/sau, kiểm tra quyền sửa/xóa log.",
     "evidence_sources": [
       "registry",
       "identity_provider"
@@ -1763,7 +1763,7 @@
     "page": 214,
     "audit": "Đọc webhook registry HTTPS/verification/auth metadata",
     "remediation": "Bảo vệ webhook registry, kiểm tra certificate và nhận sự kiện",
-    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "re_audit": "Gửi webhook thử hợp lệ, sai chữ ký và replay tới endpoint registry được phép; kiểm tra TLS, HMAC và event allowlist, bảo đảm request sai bị từ chối.",
     "evidence_sources": [
       "registry",
       "identity_provider"
@@ -1779,7 +1779,7 @@
     "page": 216,
     "audit": "Đọc provenance repo/commit/build/run và xác minh chữ ký",
     "remediation": "Gắn thông tin nguồn gốc xác thực với digest artifact",
-    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "re_audit": "Đối chiếu metadata nguồn gốc với commit, run ID, builder và digest artifact; xác minh chữ ký metadata và kiểm tra sửa commit/digest làm xác minh thất bại.",
     "evidence_sources": [
       "registry",
       "identity_provider"
@@ -1795,7 +1795,7 @@
     "page": 219,
     "audit": "Kiểm vị trí quản lý config deploy và trust boundary với source",
     "remediation": "Tách config theo kiến trúc/quyền phù hợp, không chỉ đổi thư mục",
-    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "re_audit": "Đối chiếu vị trí deployment config, repository/thư mục và quyền thay đổi với source; ghi rõ nếu chỉ tách thư mục nhưng vẫn chung quyền truy cập.",
     "evidence_sources": [
       "production",
       "identity_provider"
@@ -1811,7 +1811,7 @@
     "page": 220,
     "audit": "Lấy mẫu thay đổi deploy config và audit/review trail",
     "remediation": "Version-control cấu hình và ghi review/approval",
-    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "re_audit": "Tạo thay đổi config trên nhánh thử, truy commit/PR về task/reviewer và đối chiếu audit log; xác nhận cấu hình đang dùng khớp phiên bản đã review.",
     "evidence_sources": [
       "production",
       "identity_provider"
@@ -1827,7 +1827,7 @@
     "page": 221,
     "audit": "Quét config deployment với secret scanner và fixture giả",
     "remediation": "Ngăn secret plaintext, dùng secret manager và scanner",
-    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "re_audit": "Dùng fixture deployment chứa secret giả để kiểm tra scanner và gate; quét lại config thực theo phạm vi HEAD/lịch sử riêng, không dùng secret production làm mẫu.",
     "evidence_sources": [
       "production",
       "identity_provider"
@@ -1843,7 +1843,7 @@
     "page": 222,
     "audit": "Đọc quyền thay config deployment và danh sách approver",
     "remediation": "Giới hạn quyền theo môi trường, review độc lập",
-    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "re_audit": "Tài khoản không có quyền không được sửa config; PR thiếu owner review bị chặn trên nhánh thử.",
     "evidence_sources": [
       "production",
       "identity_provider"
@@ -1859,7 +1859,7 @@
     "page": 224,
     "audit": "Kiểm kê deployment IaC và report misconfiguration",
     "remediation": "Quét mọi IaC thực dùng và xử lý phát hiện",
-    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "re_audit": "Chạy IaC scanner trên manifest/template thực với đúng parser; dùng fixture cấu hình không an toàn để xác nhận detection và ghi các định dạng/tài nguyên chưa được bao phủ.",
     "evidence_sources": [
       "production",
       "identity_provider"
@@ -1875,7 +1875,7 @@
     "page": 225,
     "audit": "Kiểm chữ ký/hash deployment manifest trước áp dụng",
     "remediation": "Xác minh manifest theo trust root trước sử dụng",
-    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "re_audit": "Đối chiếu digest/chữ ký của manifest với phiên bản được phê duyệt; sửa bản sao manifest phải bị từ chối trước triển khai, ghi trust root dùng để xác minh.",
     "evidence_sources": [
       "production",
       "identity_provider"
@@ -1891,7 +1891,7 @@
     "page": 226,
     "audit": "Đối chiếu deployment manifest với phiên bản/digest đã phê duyệt",
     "remediation": "Pin manifest và dependency phiên bản được xác minh",
-    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "re_audit": "Đối chiếu deployment đang chạy với commit/digest manifest khóa; thay đổi tag hoặc hash sai trong sandbox phải bị từ chối, không tự cập nhật lock.",
     "evidence_sources": [
       "production",
       "identity_provider"
@@ -1907,7 +1907,7 @@
     "page": 229,
     "audit": "Theo dõi pipeline triển khai và thao tác thủ công còn lại",
     "remediation": "Mã hóa deployment và kiểm tra smoke/rollback",
-    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "re_audit": "Triển khai lên môi trường thử được phép bằng pipeline, ghi input/commit/run và trạng thái đích; xác nhận không có bước sửa tay bị thiếu trong quy trình ghi nhận.",
     "evidence_sources": [
       "production",
       "identity_provider"
@@ -1923,7 +1923,7 @@
     "page": 230,
     "audit": "Tái tạo môi trường từ input/config đã khóa và so cấu hình",
     "remediation": "Khóa môi trường, tự động provisioning, kiểm chứng tái lập môi trường",
-    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "re_audit": "Tạo lại hai môi trường thử từ cùng IaC/config và artifact khóa, so phiên bản/cấu hình và smoke test; phân biệt tái lập ứng dụng với tái lập toàn bộ môi trường production.",
     "evidence_sources": [
       "production",
       "identity_provider"
@@ -1939,7 +1939,7 @@
     "page": 231,
     "audit": "Kiểm kê production identities, roles, network và break-glass",
     "remediation": "Giới hạn quyền production và audit truy cập",
-    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "re_audit": "Thử người không được cấp bị từ chối và người hợp lệ đúng phạm vi; lưu log đã che dữ liệu.",
     "evidence_sources": [
       "production",
       "identity_provider"
@@ -1955,7 +1955,7 @@
     "page": 232,
     "audit": "Kiểm tra cấu hình production không còn default password, không đăng nhập thử tùy tiện",
     "remediation": "Thay default credentials, quản lý bí mật và vòng đời rotation",
-    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "re_audit": "Đăng nhập bằng credential mặc định/cũ phải bị từ chối trong kiểm thử được phép.",
     "evidence_sources": [
       "production",
       "identity_provider"

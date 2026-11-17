@@ -79,7 +79,7 @@
       "behavior_test"
     ],
     "audit": "Kiểm tra Require signed commits và trạng thái Verified; đọc chữ ký trên commit thử.",
-    "remediation": "Cấu hình ký GPG/SSH cho tài khoản của bạn; bật yêu cầu trên nhánh thử. Không gửi private key cho trợ lý.",
+    "remediation": "Cấu hình ký GPG/SSH cho tài khoản thực hiện commit; bật yêu cầu trên nhánh thử. Khóa riêng được lưu tại máy ký hoặc secret manager và không đưa vào tài liệu, log hay repository.",
     "re_audit": "Commit không ký phải bị từ chối; commit ký hợp lệ phải được nhận khi đủ điều kiện còn lại.",
     "remaining": "Git author hoặc hash commit không thay bằng chứng chữ ký."
   },
@@ -187,7 +187,7 @@
     "audit": "Organization → People → Role Owner: đối chiếu từng owner với nhiệm vụ.",
     "remediation": "Giữ số owner tối thiểu cần cho vận hành và khôi phục theo policy được duyệt; không tự hạ quyền ai.",
     "re_audit": "Xuất bảng vai trò đã che PII và giải thích từng owner.",
-    "remaining": "Chưa có quyết định vai trò của nhóm; không bịa số người."
+    "remaining": "Chưa có quyết định phân công vai trò và xác nhận danh sách quản trị viên."
   },
   {
     "id": "1.3.4",
@@ -552,7 +552,7 @@
       "production"
     ],
     "audit": "Liệt kê danh tính được vào production, MFA, RBAC, đường mạng và audit log; không dùng registry fixture làm production.",
-    "remediation": "Nhóm cung cấp môi trường được phép; owner cấp quyền tối thiểu và tài khoản riêng, không gửi mật khẩu qua chat.",
+    "remediation": "Nhóm cung cấp môi trường được phép; owner cấp quyền tối thiểu và tài khoản riêng, không đưa mật khẩu vào tài liệu, log hoặc repository.",
     "re_audit": "Thử người không được cấp bị từ chối và người hợp lệ đúng phạm vi; lưu log đã che dữ liệu.",
     "remaining": "Không có production được nhóm chỉ định; không tự triển khai cloud trả phí."
   },
@@ -565,6 +565,6 @@
     "audit": "Kiểm tra dịch vụ production, tài khoản khởi tạo và secret manager; xác minh tài khoản mặc định đã vô hiệu/đổi.",
     "remediation": "Owner đổi mật khẩu mặc định, xoay credential cũ và lưu secret ngoài Git; không ghi giá trị trong báo cáo.",
     "re_audit": "Đăng nhập bằng credential mặc định/cũ phải bị từ chối trong kiểm thử được phép.",
-    "remaining": "Không có production/secret manager; không bịa kết quả đăng nhập."
+    "remaining": "Chưa có môi trường production hoặc secret manager để kiểm chứng kết quả đăng nhập."
   }
 ]

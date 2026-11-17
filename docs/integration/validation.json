@@ -1,8 +1,58 @@
 {
-  "original_group_files_unchanged": true,
-  "workflow_count": 7,
-  "imported_workflows_manual_only": true,
+  "checked_at": "2026-11-17T09:49:08.885409+00:00",
+  "repository": "hieune-ui/finalrepo",
   "actionlint_v1_7_7": "PASS",
-  "github_runtime": "NOT RUN",
-  "remote_changes": "NONE"
+  "original_group_files_unchanged_at_initial_import": true,
+  "original_remotes_modified": false,
+  "runtime_runs": [
+    {
+      "conclusion": "success",
+      "databaseId": 44058799508,
+      "headSha": "93043dd22e57e441b1c403562dff0e10db4b6928",
+      "name": "Dedicated Application Build Pipeline",
+      "status": "completed",
+      "url": "https://github.com/hieune-ui/finalrepo/actions/runs/44058799508"
+    },
+    {
+      "conclusion": "failure",
+      "databaseId": 44058799530,
+      "headSha": "93043dd22e57e441b1c403562dff0e10db4b6928",
+      "name": "CIS 1.5 & 2.1 Security Pipeline",
+      "status": "completed",
+      "url": "https://github.com/hieune-ui/finalrepo/actions/runs/44058799530"
+    },
+    {
+      "conclusion": "success",
+      "databaseId": 44058801337,
+      "headSha": "93043dd22e57e441b1c403562dff0e10db4b6928",
+      "name": "CIS - Pipeline Security Scan",
+      "status": "completed",
+      "url": "https://github.com/hieune-ui/finalrepo/actions/runs/44058801337"
+    },
+    {
+      "conclusion": "success",
+      "databaseId": 44058355321,
+      "headSha": "3fa394752c33e96d88dc980f88095353c0a8caf2",
+      "name": "CIS - Pipeline Input Output",
+      "status": "completed",
+      "url": "https://github.com/hieune-ui/finalrepo/actions/runs/44058355321"
+    },
+    {
+      "conclusion": "success",
+      "databaseId": 44058362039,
+      "headSha": "3fa394752c33e96d88dc980f88095353c0a8caf2",
+      "name": "CIS - Runner Resource Monitor",
+      "status": "completed",
+      "url": "https://github.com/hieune-ui/finalrepo/actions/runs/44058362039"
+    },
+    {
+      "conclusion": "success",
+      "databaseId": 44058368799,
+      "headSha": "3fa394752c33e96d88dc980f88095353c0a8caf2",
+      "name": "CIS - Runner Check",
+      "status": "completed",
+      "url": "https://github.com/hieune-ui/finalrepo/actions/runs/44058368799"
+    }
+  ],
+  "note": "Runtime success is not a CIS compliance claim. Gitleaks findings intentionally remain failures; no suppression added."
 }

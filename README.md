@@ -32,3 +32,7 @@ Mở **Actions → chọn workflow → Run workflow** để chạy thủ công. 
 Lần nhập đầu giữ nguyên file repo nhóm. Sau kiểm tra thực tế, bản tích hợp cố định SHA các action còn dùng tag/branch, tắt persist-credentials của checkout, bổ sung concurrency/timeouts và lưu báo cáo Gitleaks đã che secret. CODEOWNERS nguồn chỉ được lưu tham khảo, chưa kích hoạt vì chưa xác minh quyền người sở hữu mã trong repo này.
 
 Chi tiết: [hướng dẫn tích hợp](docs/integration/README.vi.md).
+
+## Kết quả đã chạy
+
+Xem [bảng kết quả và liên kết từng phiên chạy](docs/integration/RESULTS.vi.md).

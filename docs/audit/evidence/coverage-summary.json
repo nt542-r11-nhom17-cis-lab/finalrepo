@@ -1,9 +1,9 @@
 {
   "controls": 120,
   "implementation_evidence_counts": {
-    "NOT_TESTED": 64,
+    "NOT_TESTED": 61,
+    "PARTIAL": 42,
     "MANUAL_REVIEW": 7,
-    "PARTIAL": 39,
     "LAB_ONLY": 10
   },
   "runbooks": 120,

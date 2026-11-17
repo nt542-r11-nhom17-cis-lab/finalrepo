@@ -1,0 +1,30 @@
+{
+  "SchemaVersion": 2,
+  "Trivy": {
+    "Version": "0.70.0"
+  },
+  "ReportID": "01a1e913-3493-7717-a08a-4cac8b270064",
+  "CreatedAt": "2026-11-17T10:35:12.40346748Z",
+  "ArtifactID": "sha256:30c33821ba0d0fd287e57c1ce9e228f70aebc78483b25aa7054024a83b4f0354",
+  "ArtifactName": ".",
+  "ArtifactType": "repository",
+  "Metadata": {
+    "RepoURL": "https://github.com/hieune-ui/finalrepo",
+    "Branch": "audit/remediate-config-and-scans",
+    "Commit": "4e1c9663acb9e9ecc89ac2233e4dcbe5d6b4001c",
+    "CommitMsg": "Remove embedded credentials and add gated source, image and container checks",
+    "Author": "hieune-ui \u003c357749923+hieune-ui@users.noreply.github.com\u003e",
+    "Committer": "hieune-ui \u003c357749923+hieune-ui@users.noreply.github.com\u003e"
+  },
+  "Results": [
+    {
+      "Target": "Dockerfile",
+      "Class": "config",
+      "Type": "dockerfile",
+      "MisconfSummary": {
+        "Successes": 20,
+        "Failures": 0
+      }
+    }
+  ]
+}

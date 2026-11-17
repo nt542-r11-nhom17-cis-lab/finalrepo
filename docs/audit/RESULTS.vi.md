@@ -1,3 +1,7 @@
+# Đợt khắc phục mới nhất
+
+Xem [REMEDIATION.vi.md](REMEDIATION.vi.md): credential HEAD đã bỏ, base image pin digest, container smoke test và source/image scan có ngưỡng chặn đã PASS. Số liệu/kết quả phía dưới là lịch sử review trước.
+
 # Kết quả mới nhất — audit/cis-complete-runbooks
 
 Code đã chạy: `574c0f16fe8b81961bcd5d16d0dd40008d31d47b`.

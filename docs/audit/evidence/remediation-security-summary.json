@@ -1,0 +1,15 @@
+{
+  "current-source-gitleaks.json": {
+    "finding_count": 0
+  },
+  "trivy-image.json": {
+    "scan_schema": 2,
+    "results": 1,
+    "findings_by_type_and_severity": {}
+  },
+  "trivy-source.json": {
+    "scan_schema": 2,
+    "results": 1,
+    "findings_by_type_and_severity": {}
+  }
+}

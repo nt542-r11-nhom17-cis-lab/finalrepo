@@ -1,0 +1,27 @@
+{
+  "checked_at": "2026-11-17T10:39:10.108083+00:00",
+  "runs": [
+    {
+      "conclusion": "success",
+      "databaseId": 44066141741,
+      "headBranch": "audit/remediate-config-and-scans",
+      "headSha": "4e1c9663acb9e9ecc89ac2233e4dcbe5d6b4001c",
+      "name": "CIS - Pipeline Input Output",
+      "status": "completed",
+      "url": "https://github.com/hieune-ui/finalrepo/actions/runs/44066141741"
+    },
+    {
+      "conclusion": "success",
+      "databaseId": 44066147171,
+      "headBranch": "audit/remediate-config-and-scans",
+      "headSha": "4e1c9663acb9e9ecc89ac2233e4dcbe5d6b4001c",
+      "name": "CIS - Pipeline Security Scan",
+      "status": "completed",
+      "url": "https://github.com/hieune-ui/finalrepo/actions/runs/44066147171"
+    }
+  ],
+  "main_sha_unchanged": "e052945db5b4a2bace480b5ab98446a8b82da02e",
+  "unit_tests": 11,
+  "artifact_content_verified": true,
+  "scope": "current source, current pinned image and branch-only lab; old history and external controls remain unresolved"
+}

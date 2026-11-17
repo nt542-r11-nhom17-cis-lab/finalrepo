@@ -1,3 +1,7 @@
+# Đợt khắc phục mới nhất
+
+Xem [REMEDIATION.vi.md](REMEDIATION.vi.md): credential HEAD đã bỏ, base image pin digest, container smoke test và source/image scan có ngưỡng chặn đã PASS. Số liệu/kết quả phía dưới là lịch sử review trước.
+
 # Đợt bổ sung toàn bộ quy trình cho 120 tiêu chí
 
 ## Phạm vi thực hiện

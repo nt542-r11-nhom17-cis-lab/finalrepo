@@ -44,3 +44,7 @@ Xem [bảng kết quả và liên kết từng phiên chạy](docs/integration/R
 ## Đợt bổ sung 120 quy trình trên nhánh mới
 
 [Đọc toàn bộ thay đổi, công cụ và giới hạn](docs/audit/COMPLETE-REVIEW.vi.md). Có Audit–Remediation–Re-audit cho từng tiêu chí; không tuyên bố tuân thủ 100% từ kết quả lab.
+
+## Khắc phục nguồn và kiểm tra container trên nhánh riêng
+
+[Báo cáo khắc phục mới nhất](docs/audit/REMEDIATION.vi.md): current-source Gitleaks sạch, cấu hình env, image pin digest, smoke test và source/image HIGH/CRITICAL gates đã PASS. Lịch sử nguồn và các hệ thống ngoài repo vẫn được ghi rõ là chưa khắc phục/xác minh đầy đủ.

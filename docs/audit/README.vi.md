@@ -1,3 +1,7 @@
+# Đợt khắc phục mới nhất
+
+Xem [REMEDIATION.vi.md](REMEDIATION.vi.md): credential HEAD đã bỏ, base image pin digest, container smoke test và source/image scan có ngưỡng chặn đã PASS. Số liệu/kết quả phía dưới là lịch sử review trước.
+
 # Cập nhật đợt bổ sung toàn bộ quy trình
 
 Xem [COMPLETE-REVIEW.vi.md](COMPLETE-REVIEW.vi.md) và [bảng 120 mục cập nhật](COVERAGE.vi.md). Đã có 120 runbook, thu thập readiness và lab bổ sung; không có tuyên bố đạt toàn benchmark. Các thống kê/kết quả phía dưới thuộc lần review trước, giữ lại để truy vết.

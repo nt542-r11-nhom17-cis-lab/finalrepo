@@ -98,3 +98,9 @@ Mỗi mục có Audit, Remediation đề xuất, Re-audit và yêu cầu bằng 
 ![Workflow sau khắc phục runtime, status Success và hai artifacts](images/run-after-runtime-update.jpg)
 
 Run 44064853230, code 574c0f1, nhánh audit/cis-complete-runbooks. Đây là screenshot GitHub thật; trang summary không còn cảnh báo checkout Node.js 20. Ảnh chỉ chứng minh trạng thái phiên chạy và artifact, không chứng minh 120 tiêu chí đạt.
+
+### Hình 2.7 — Minh chứng thực tế sau khắc phục nguồn và container
+
+![Hai job source/container và chuỗi cung ứng đều thành công, có ba artifacts](images/remediation-run.jpg)
+
+Run 44066141741, code 4e1c966, nhánh audit/remediate-config-and-scans. Job source-security dùng Gitleaks current tree; workflow full-history cũ giữ nguyên. Trivy source và image đều fail khi có HIGH/CRITICAL; artifact đã được tải/đọc. Scope source không được diễn giải như đã làm sạch lịch sử.

@@ -48,3 +48,9 @@ Báo cáo chứa khóa công khai tạm nhưng không chứa khóa riêng hoặc
 ## Đợt bổ sung trên nhánh audit/cis-complete-runbooks
 
 Bổ sung 120 runbook và control-plans.json, audit_all.py, audit_dependencies.py, registry_lab.py, scanner_selftest.py, checksum Gitleaks, hook pre-push local và 4 test bổ sung (tổng 8). Phần 2 giải thích hình/bằng chứng; tại đây chỉ ghi chữ/bảng. Các vai trò nhóm trước vẫn là đề xuất vì chưa có ba username. Không cấp quyền thật. Kết quả bổ sung có registry fixture 13 phép thử và scanner 2 phép thử; không cộng chúng thành số tiêu chí CIS đạt. Nhánh main, collaborator/settings và hai repo nguồn không được thay đổi.
+
+## Đợt khắc phục nguồn và container — nhánh audit/remediate-config-and-scans
+
+Đã bỏ secret khỏi cấu hình hiện tại, đọc env, thêm test port/secret defaults và .env.example. Đã pin Alpine 3.24.4 bằng digest chính thức, thêm source-security job làm điều kiện trước job lab. Job build container, chạy không mạng/read-only/non-root và quét source/IaC cùng image với gate HIGH/CRITICAL. Cả hai job và workflow Zizmor đã SUCCESS; 11 unit tests PASS. File JSON source/image/Gitleaks đã được tải đọc và lưu trong evidence. Hình nằm ở phần 2 (Hình 2.7).
+
+CODEOWNERS mới chỉ đề xuất trên nhánh, dùng tài khoản admin hieune-ui đã xác minh; không kích hoạt policy của main hoặc mời thêm người. Mẫu PR yêu cầu task/issue và bằng chứng before/after. Ảnh/config IdP, registry và production vẫn cần hệ thống thật và người có quyền.

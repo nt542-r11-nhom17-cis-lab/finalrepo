@@ -1,3 +1,7 @@
+# Đợt bổ sung sau chuyển Organization
+
+Xem [ORGANIZATION.vi.md](ORGANIZATION.vi.md), [bảng 120 mục mới nhất](COVERAGE.vi.md). Các kết quả/địa chỉ phía dưới được giữ như lịch sử; không dùng số liệu cũ thay kết quả mới.
+
 # Đợt khắc phục mới nhất
 
 Xem [REMEDIATION.vi.md](REMEDIATION.vi.md): credential HEAD đã bỏ, base image pin digest, container smoke test và source/image scan có ngưỡng chặn đã PASS. Số liệu/kết quả phía dưới là lịch sử review trước.

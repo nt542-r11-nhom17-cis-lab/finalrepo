@@ -24,6 +24,28 @@ jobs:
       - name: Test configuration and audit behavior
         run: python3 -m unittest discover -s tests -v
 
+      - name: Install pinned and hashed Python security tools
+        shell: bash
+        env:
+          PIP_DISABLE_PIP_VERSION_CHECK: '1'
+        run: |
+          mkdir -p reports
+          python3 -m venv "$RUNNER_TEMP/cis-python-security"
+          "$RUNNER_TEMP/cis-python-security/bin/python" -m pip install --require-hashes --cache-dir "$RUNNER_TEMP/cis-pip-cache" -r requirements-security.lock
+
+      - name: Scan Python source for HIGH severity issues
+        shell: bash
+        run: |
+          "$RUNNER_TEMP/cis-python-security/bin/bandit" -r scripts examples database_config.py -lll -f json -o reports/bandit-high.json
+
+      - name: Audit pinned scanner dependencies for known vulnerabilities
+        shell: bash
+        run: |
+          "$RUNNER_TEMP/cis-python-security/bin/pip-audit" -r requirements-security.lock --require-hashes --cache-dir "$RUNNER_TEMP/cis-pip-audit-cache" -f json -o reports/python-package-audit.json
+
+      - name: Verify locked wheel integrity and inventory license evidence
+        run: python3 scripts/audit_python_toolchain.py
+
       - name: Verify scanner archive and scan current source
         shell: bash
         run: |
@@ -96,6 +118,11 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: python3 scripts/audit_github.py
+
+      - name: Audit real organization settings without changing them
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python3 scripts/audit_organization.py
 
       - name: Exercise groups 3 to 5 in an isolated local sandbox
         run: python3 scripts/supply_chain_lab.py

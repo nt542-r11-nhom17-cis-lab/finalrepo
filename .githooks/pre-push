@@ -1,7 +1,7 @@
 #!/bin/sh
 # Local safeguard only. Does not change GitHub Settings or main.
 case "$2" in
-  https://github.com/hieune-ui/finalrepo.git|git@github.com:hieune-ui/finalrepo.git) ;;
+  https://github.com/nt542-r11-nhom17-cis-lab/finalrepo.git|git@github.com:nt542-r11-nhom17-cis-lab/finalrepo.git) ;;
   *) echo 'Refusing push: remote is outside finalrepo sandbox.' >&2; exit 1 ;;
 esac
 while read -r local_ref local_sha remote_ref remote_sha; do

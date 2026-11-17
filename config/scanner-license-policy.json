@@ -1,0 +1,7 @@
+{
+  "status": "PROPOSED_NOT_ORGANIZATION_APPROVED",
+  "scope": "Python scanner toolchain only",
+  "allowed_exact_spdx_expressions": ["Apache-2.0", "MIT", "BSD-2-Clause", "BSD-3-Clause", "ISC", "PSF-2.0", "Python-2.0", "MPL-2.0", "0BSD"],
+  "unknown_or_complex_expression": "MANUAL_REVIEW",
+  "note": "Inventory support only; a matching license is not organizational approval or legal compliance."
+}

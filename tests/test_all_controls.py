@@ -32,7 +32,7 @@ class AllControlsTests(unittest.TestCase):
 
     def test_local_push_guard(self):
         hook=ROOT/'.githooks/pre-push'
-        def push(ref,remote='https://github.com/hieune-ui/finalrepo.git'):
+        def push(ref,remote='https://github.com/nt542-r11-nhom17-cis-lab/finalrepo.git'):
             return subprocess.run(['sh',str(hook),'origin',remote],input=f'refs/heads/audit/test {"1"*40} {ref} {"0"*40}\n',text=True,capture_output=True).returncode
         self.assertNotEqual(push('refs/heads/main'),0)
         self.assertEqual(push('refs/heads/audit/test'),0)

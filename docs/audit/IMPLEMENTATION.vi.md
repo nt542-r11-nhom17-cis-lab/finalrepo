@@ -54,3 +54,7 @@ Bổ sung 120 runbook và control-plans.json, audit_all.py, audit_dependencies.p
 Đã bỏ secret khỏi cấu hình hiện tại, đọc env, thêm test port/secret defaults và .env.example. Đã pin Alpine 3.24.4 bằng digest chính thức, thêm source-security job làm điều kiện trước job lab. Job build container, chạy không mạng/read-only/non-root và quét source/IaC cùng image với gate HIGH/CRITICAL. Cả hai job và workflow Zizmor đã SUCCESS; 11 unit tests PASS. File JSON source/image/Gitleaks đã được tải đọc và lưu trong evidence. Hình nằm ở phần 2 (Hình 2.7).
 
 CODEOWNERS mới chỉ đề xuất trên nhánh, dùng tài khoản admin hieune-ui đã xác minh; không kích hoạt policy của main hoặc mời thêm người. Mẫu PR yêu cầu task/issue và bằng chứng before/after. Ảnh/config IdP, registry và production vẫn cần hệ thống thật và người có quyền.
+
+## Triển khai sau chuyển Organization — audit/organization-controls
+
+Đã cập nhật remote/hook sang nt542-r11-nhom17-cis-lab/finalrepo; main giữ nguyên. Bổ sung audit_organization.py (8 trường, 6 test), audit_python_toolchain.py, requirements-security.lock và metadata 32 wheel. Bandit HIGH gate và pip-audit được gọi trong source-security job. Tổng 17 unit tests local PASS, SAST 0 HIGH, dependency audit không báo CVE; 20 license cần review. Kết quả remote ghi riêng sau chạy. Không áp dụng Settings/MFA/roles. Phần 2 chứa hình và bằng chứng; phần 3 chỉ chữ/bảng.

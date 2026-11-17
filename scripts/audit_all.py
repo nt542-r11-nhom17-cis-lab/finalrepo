@@ -58,7 +58,7 @@ def main():
         # Counts only: no hooks URL, credential, deployment payload or collaborator PII is published.
         sources[name] = {**summary, 'available': summary['http'] == 200 and summary['complete']}
     for key, note in {
-        'organization_policy': 'Organization settings, MFA, SSO, SSH CA, approved email and audit log require owner evidence; current repo may be personal.',
+        'organization_policy': 'Organization exists; MFA/SSO/SSH CA/approved-email/audit-log evidence still requires appropriate organization scopes. See organization audit report; missing fields are unknown.',
         'identity_provider': 'Need actual IdP/MFA and role assignment evidence; do not simulate identities as production.',
         'supplier': 'Need supplier-provided SBOM, signatures, provenance, license and ownership baseline.',
         'registry': 'Need actual package registry configuration, permissions, versions and audit log.',

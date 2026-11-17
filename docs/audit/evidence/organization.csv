@@ -1,0 +1,9 @@
+cis_id,field,observed,expected,configuration_result,overall_status,note
+1.2.2,members_can_create_repositories,,False,UNKNOWN,MANUAL_REVIEW,Review exceptions and who may create repositories. Field unavailable or permission-filtered; never infer false.
+1.2.3,members_can_delete_repositories,,False,UNKNOWN,MANUAL_REVIEW,Review actual admin/deletion roles and audit trail. Field unavailable or permission-filtered; never infer false.
+1.2.4,members_can_delete_issues,,False,UNKNOWN,MANUAL_REVIEW,Review issue deletion permissions and exceptions. Field unavailable or permission-filtered; never infer false.
+1.2.6,members_can_change_repo_visibility,,False,UNKNOWN,MANUAL_REVIEW,Restriction is only partial evidence; visibility-change monitoring still required. Field unavailable or permission-filtered; never infer false.
+1.3.2,members_can_create_teams,,False,UNKNOWN,MANUAL_REVIEW,Review organization-owner exceptions. Field unavailable or permission-filtered; never infer false.
+1.3.5,two_factor_requirement_enabled,,True,UNKNOWN,MANUAL_REVIEW,"Verify enforcement, membership scope and recovery process. Field unavailable or permission-filtered; never infer false."
+1.3.8,default_repository_permission,,none,UNKNOWN,MANUAL_REVIEW,Verify effective per-team grants and exceptions. Field unavailable or permission-filtered; never infer false.
+1.3.9,is_verified,False,True,FAIL,MANUAL_REVIEW,Confirm the verified domain/badge in organization settings. Component setting only; not a full-control compliance claim.

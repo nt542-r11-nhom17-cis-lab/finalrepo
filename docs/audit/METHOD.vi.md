@@ -104,3 +104,7 @@ Run 44064853230, code 574c0f1, nhánh audit/cis-complete-runbooks. Đây là scr
 ![Hai job source/container và chuỗi cung ứng đều thành công, có ba artifacts](images/remediation-run.jpg)
 
 Run 44066141741, code 4e1c966, nhánh audit/remediate-config-and-scans. Job source-security dùng Gitleaks current tree; workflow full-history cũ giữ nguyên. Trivy source và image đều fail khi có HIGH/CRITICAL; artifact đã được tải/đọc. Scope source không được diễn giải như đã làm sạch lịch sử.
+
+## Bổ sung phương pháp cho Organization, SAST và toolchain
+
+Audit tổ chức dùng GET-only, phân biệt null/thiếu/403 với false; không xuất PII hoặc webhook secrets. SAST Bandit dùng ngưỡng HIGH. pip-audit quét 32 package pinned/hashed của scanner toolchain. Hash wheel được đối chiếu PyPI; license/tuổi wheel vẫn cần review theo scope, không suy thành supplier compliance. Xem ORGANIZATION.vi.md và kết quả remote. Ảnh Organization Settings thật vẫn cần người có quyền.

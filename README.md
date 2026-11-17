@@ -1,3 +1,9 @@
+# Repo Organization hiện tại
+
+Repo chính xác: **nt542-r11-nhom17-cis-lab/finalrepo**. Bản bổ sung mới nhất: nhánh `audit/organization-controls`, chưa merge main.
+
+[Đọc báo cáo Organization và các kiểm tra bổ sung](docs/audit/ORGANIZATION.vi.md).
+
 # CIS GitHub Benchmark — Combined Lab
 
 Bản gộp độc lập của hai lab, phục vụ thực hành CIS GitHub Benchmark v1.2.0. Hai repository nguồn không bị thay đổi.

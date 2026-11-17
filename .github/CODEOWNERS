@@ -1,0 +1,9 @@
+# Branch-only proposal. hieune-ui is the only verified repository admin.
+# This file does not grant access or enforce review by itself.
+/.github/ @hieune-ui
+/scripts/ @hieune-ui
+/config/ @hieune-ui
+/deploy/ @hieune-ui
+/Dockerfile @hieune-ui
+/database_config.py @hieune-ui
+/lab-inputs.lock.json @hieune-ui

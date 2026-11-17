@@ -1,3 +1,3 @@
-FROM alpine:3.19
+FROM alpine:3.24.4@sha256:f59abe656b692d901e184be3445e084786602108599d2a51d229c0f5a48c71bf
 USER nobody
-CMD ["echo", "CIS 1.5.3 IaC Security Test"]
+CMD ["echo", "CIS container lab"]

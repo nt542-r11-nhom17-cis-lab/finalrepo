@@ -11,7 +11,73 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
+  source-security:
+    name: Remediated source and container checks
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - name: Checkout source under review
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Test configuration and audit behavior
+        run: python3 -m unittest discover -s tests -v
+
+      - name: Verify scanner archive and scan current source
+        shell: bash
+        run: |
+          mkdir -p "$RUNNER_TEMP/cis-source-tools" reports
+          cd "$RUNNER_TEMP/cis-source-tools"
+          wget -q https://github.com/gitleaks/gitleaks/releases/download/v8.18.4/gitleaks_8.18.4_linux_x64.tar.gz
+          sha256sum --check "$GITHUB_WORKSPACE/config/gitleaks-8.18.4.sha256"
+          tar -xzf gitleaks_8.18.4_linux_x64.tar.gz
+          cd "$GITHUB_WORKSPACE"
+          "$RUNNER_TEMP/cis-source-tools/gitleaks" detect --no-git --source . --redact --report-format json --report-path reports/current-source-gitleaks.json
+
+      - name: Build the pinned container image
+        run: docker build --pull --tag "cis-demo:$GITHUB_SHA" .
+
+      - name: Smoke test with no network and read-only filesystem
+        shell: bash
+        run: |
+          actual=$(docker run --rm --network none --read-only --cap-drop ALL --security-opt no-new-privileges "cis-demo:$GITHUB_SHA")
+          test "$actual" = "CIS container lab"
+          echo "PASS: unprivileged demo container output verified"
+
+      - name: Scan source and IaC with a HIGH or CRITICAL gate
+        uses: aquasecurity/trivy-action@ed142fd0673e97e23eac54620cfb913e5ce36c25 # v0.36.0
+        with:
+          scan-type: fs
+          scan-ref: .
+          scanners: vuln,misconfig,secret,license
+          severity: HIGH,CRITICAL
+          exit-code: '1'
+          format: json
+          output: reports/trivy-source.json
+
+      - name: Scan built image packages with a HIGH or CRITICAL gate
+        uses: aquasecurity/trivy-action@ed142fd0673e97e23eac54620cfb913e5ce36c25 # v0.36.0
+        with:
+          scan-type: image
+          image-ref: cis-demo:${{ github.sha }}
+          scanners: vuln
+          severity: HIGH,CRITICAL
+          exit-code: '1'
+          format: json
+          output: reports/trivy-image.json
+
+      - name: Save remediation security evidence
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: remediation-security-${{ github.run_id }}
+          path: reports/
+          if-no-files-found: warn
+          retention-days: 7
+
   generate-and-validate:
+    needs: source-security
     name: Generate SBOM and verify signatures
     runs-on: ubuntu-24.04
     timeout-minutes: 15

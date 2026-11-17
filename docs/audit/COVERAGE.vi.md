@@ -1,0 +1,126 @@
+# Kết quả đối chiếu tất cả 120 tiêu chí
+
+PARTIAL là có một phần triển khai/bằng chứng, không phải đạt toàn tiêu chí. MANUAL_REVIEW cần xác minh bổ sung. NOT_TESTED là chưa thực hiện, không mặc định không áp dụng. Không có dòng PASS toàn diện được suy ra chỉ từ run xanh.
+
+| Mục | Nội dung | Phân loại CIS | Kết quả | Bằng chứng | Ghi chú |
+|---|---|---|---|---|---|
+| 1.1.1 | Ensure any changes to code are tracked in a version control platform | Manual | NOT_TESTED | — | Chưa có bằng chứng Settings/tài khoản/tổ chức hoặc kiểm thử hành vi; không thay cấu hình main. |
+| 1.1.2 | Ensure any change to code can be traced back to its associated task | Manual | NOT_TESTED | — | Chưa có bằng chứng Settings/tài khoản/tổ chức hoặc kiểm thử hành vi; không thay cấu hình main. |
+| 1.1.3 | Ensure any change to code receives approval of two strongly authenticated users | Automated | MANUAL_REVIEW | scripts/audit_github.py | API protection trả 403; cần quyền đọc và thử hành vi; không đổi main. |
+| 1.1.4 | Ensure previous approvals are dismissed when updates are introduced to a code change proposal | Manual | MANUAL_REVIEW | scripts/audit_github.py | API protection trả 403; cần quyền đọc và thử hành vi; không đổi main. |
+| 1.1.5 | Ensure there are restrictions on who can dismiss code change reviews | Manual | NOT_TESTED | — | Chưa có bằng chứng Settings/tài khoản/tổ chức hoặc kiểm thử hành vi; không thay cấu hình main. |
+| 1.1.6 | Ensure code owners are set for extra sensitive code or configuration | Manual | NOT_TESTED | — | Chưa có bằng chứng Settings/tài khoản/tổ chức hoặc kiểm thử hành vi; không thay cấu hình main. |
+| 1.1.7 | Ensure code owner's review is required when a change affects owned code | Manual | NOT_TESTED | — | Chưa có bằng chứng Settings/tài khoản/tổ chức hoặc kiểm thử hành vi; không thay cấu hình main. |
+| 1.1.8 | Ensure inactive branches are periodically reviewed and removed | Manual | NOT_TESTED | — | Chưa có bằng chứng Settings/tài khoản/tổ chức hoặc kiểm thử hành vi; không thay cấu hình main. |
+| 1.1.9 | Ensure all checks have passed before merging new code | Manual | MANUAL_REVIEW | scripts/audit_github.py | API protection trả 403; cần quyền đọc và thử hành vi; không đổi main. |
+| 1.1.10 | Ensure open Git branches are up to date before they can be merged into code base | Manual | NOT_TESTED | — | Chưa có bằng chứng Settings/tài khoản/tổ chức hoặc kiểm thử hành vi; không thay cấu hình main. |
+| 1.1.11 | Ensure all open comments are resolved before allowing code change merging | Manual | NOT_TESTED | — | Chưa có bằng chứng Settings/tài khoản/tổ chức hoặc kiểm thử hành vi; không thay cấu hình main. |
+| 1.1.12 | Ensure verification of signed commits for new changes before merging | Manual | NOT_TESTED | — | Chưa có bằng chứng Settings/tài khoản/tổ chức hoặc kiểm thử hành vi; không thay cấu hình main. |
+| 1.1.13 | Ensure linear history is required | Manual | NOT_TESTED | — | Chưa có bằng chứng Settings/tài khoản/tổ chức hoặc kiểm thử hành vi; không thay cấu hình main. |
+| 1.1.14 | Ensure branch protection rules are enforced for administrators | Manual | NOT_TESTED | — | Chưa có bằng chứng Settings/tài khoản/tổ chức hoặc kiểm thử hành vi; không thay cấu hình main. |
+| 1.1.15 | Ensure pushing or merging of new code is restricted to specific individuals or teams | Manual | NOT_TESTED | — | Chưa có bằng chứng Settings/tài khoản/tổ chức hoặc kiểm thử hành vi; không thay cấu hình main. |
+| 1.1.16 | Ensure force push code to branches is denied | Manual | MANUAL_REVIEW | scripts/audit_github.py | API protection trả 403; cần quyền đọc và thử hành vi; không đổi main. |
+| 1.1.17 | Ensure branch deletions are denied | Manual | MANUAL_REVIEW | scripts/audit_github.py | API protection trả 403; cần quyền đọc và thử hành vi; không đổi main. |
+| 1.1.18 | Ensure any merging of code is automatically scanned for risks | Manual | NOT_TESTED | — | Chưa có bằng chứng Settings/tài khoản/tổ chức hoặc kiểm thử hành vi; không thay cấu hình main. |
+| 1.1.19 | Ensure any changes to branch protection rules are audited | Manual | NOT_TESTED | — | Chưa có bằng chứng Settings/tài khoản/tổ chức hoặc kiểm thử hành vi; không thay cấu hình main. |
+| 1.1.20 | Ensure branch protection is enforced on the default branch | Manual | MANUAL_REVIEW | scripts/audit_github.py | API protection trả 403; cần quyền đọc và thử hành vi; không đổi main. |
+| 1.2.1 | Ensure all public repositories contain a SECURITY.md file | Manual | PARTIAL | SECURITY.md | Có policy; kênh liên hệ riêng tư chưa cụ thể. |
+| 1.2.2 | Ensure repository creation is limited to specific members | Manual | NOT_TESTED | — | Chưa có bằng chứng Settings/tài khoản/tổ chức hoặc kiểm thử hành vi; không thay cấu hình main. |
+| 1.2.3 | Ensure repository deletion is limited to specific users | Manual | NOT_TESTED | — | Chưa có bằng chứng Settings/tài khoản/tổ chức hoặc kiểm thử hành vi; không thay cấu hình main. |
+| 1.2.4 | Ensure issue deletion is limited to specific users | Manual | NOT_TESTED | — | Chưa có bằng chứng Settings/tài khoản/tổ chức hoặc kiểm thử hành vi; không thay cấu hình main. |
+| 1.2.5 | Ensure all copies (forks) of code are tracked and accounted for | Manual | NOT_TESTED | — | Chưa có bằng chứng Settings/tài khoản/tổ chức hoặc kiểm thử hành vi; không thay cấu hình main. |
+| 1.2.6 | Ensure all code projects are tracked for changes in visibility status | Manual | NOT_TESTED | — | Chưa có bằng chứng Settings/tài khoản/tổ chức hoặc kiểm thử hành vi; không thay cấu hình main. |
+| 1.2.7 | Ensure inactive repositories are reviewed and archived periodically | Manual | NOT_TESTED | — | Chưa có bằng chứng Settings/tài khoản/tổ chức hoặc kiểm thử hành vi; không thay cấu hình main. |
+| 1.3.1 | Ensure inactive users are reviewed and removed periodically | Manual | NOT_TESTED | — | Chưa có bằng chứng Settings/tài khoản/tổ chức hoặc kiểm thử hành vi; không thay cấu hình main. |
+| 1.3.2 | Ensure team creation is limited to specific members | Manual | NOT_TESTED | — | Chưa có bằng chứng Settings/tài khoản/tổ chức hoặc kiểm thử hành vi; không thay cấu hình main. |
+| 1.3.3 | Ensure minimum number of administrators are set for the organization | Manual | NOT_TESTED | — | Chưa có bằng chứng Settings/tài khoản/tổ chức hoặc kiểm thử hành vi; không thay cấu hình main. |
+| 1.3.4 | Ensure Multi-Factor Authentication (MFA) is required for contributors of new code | Manual | NOT_TESTED | — | Chưa có bằng chứng Settings/tài khoản/tổ chức hoặc kiểm thử hành vi; không thay cấu hình main. |
+| 1.3.5 | Ensure the organization is requiring members to use Multi- Factor Authentication (MFA) | Manual | NOT_TESTED | — | Chưa có bằng chứng Settings/tài khoản/tổ chức hoặc kiểm thử hành vi; không thay cấu hình main. |
+| 1.3.6 | Ensure new members are required to be invited using company-approved email | Manual | NOT_TESTED | — | Chưa có bằng chứng Settings/tài khoản/tổ chức hoặc kiểm thử hành vi; không thay cấu hình main. |
+| 1.3.7 | Ensure two administrators are set for each repository | Manual | NOT_TESTED | — | Chưa có bằng chứng Settings/tài khoản/tổ chức hoặc kiểm thử hành vi; không thay cấu hình main. |
+| 1.3.8 | Ensure strict base permissions are set for repositories | Manual | NOT_TESTED | — | Chưa có bằng chứng Settings/tài khoản/tổ chức hoặc kiểm thử hành vi; không thay cấu hình main. |
+| 1.3.9 | Ensure an organization’s identity is confirmed with a “Verified” badge | Manual | NOT_TESTED | — | Chưa có bằng chứng Settings/tài khoản/tổ chức hoặc kiểm thử hành vi; không thay cấu hình main. |
+| 1.3.10 | Ensure Source Code Management (SCM) email notifications are restricted to verified domains | Manual | NOT_TESTED | — | Chưa có bằng chứng Settings/tài khoản/tổ chức hoặc kiểm thử hành vi; không thay cấu hình main. |
+| 1.3.11 | Ensure an organization provides SSH certificates | Manual | NOT_TESTED | — | Chưa có bằng chứng Settings/tài khoản/tổ chức hoặc kiểm thử hành vi; không thay cấu hình main. |
+| 1.3.12 | Ensure Git access is limited based on IP addresses | Manual | NOT_TESTED | — | Chưa có bằng chứng Settings/tài khoản/tổ chức hoặc kiểm thử hành vi; không thay cấu hình main. |
+| 1.3.13 | Ensure anomalous code behavior is tracked | Manual | NOT_TESTED | — | Chưa có bằng chứng Settings/tài khoản/tổ chức hoặc kiểm thử hành vi; không thay cấu hình main. |
+| 1.4.1 | Ensure administrator approval is required for every installed application | Manual | NOT_TESTED | — | Chưa có bằng chứng Settings/tài khoản/tổ chức hoặc kiểm thử hành vi; không thay cấu hình main. |
+| 1.4.2 | Ensure stale applications are reviewed and inactive ones are removed | Manual | NOT_TESTED | — | Chưa có bằng chứng Settings/tài khoản/tổ chức hoặc kiểm thử hành vi; không thay cấu hình main. |
+| 1.4.3 | Ensure the access granted to each installed application is limited to the least privilege needed | Manual | NOT_TESTED | — | Chưa có bằng chứng Settings/tài khoản/tổ chức hoặc kiểm thử hành vi; không thay cấu hình main. |
+| 1.4.4 | Ensure only secured webhooks are used | Manual | NOT_TESTED | — | Chưa có bằng chứng Settings/tài khoản/tổ chức hoặc kiểm thử hành vi; không thay cấu hình main. |
+| 1.5.1 | Ensure scanners are in place to identify and prevent sensitive data in code | Manual | PARTIAL | Gitleaks workflow + artifact | Scanner chạy và có phát hiện lịch sử; chưa chứng minh ngăn merge hoặc khắc phục secret. |
+| 1.5.2 | Ensure scanners are in place to secure Continuous Integration (CI) pipeline instructions | Manual | PARTIAL | Actionlint + Zizmor | Có kiểm tra workflow; chưa chứng minh mọi pipeline và cổng chặn. |
+| 1.5.3 | Ensure scanners are in place to secure Infrastructure as Code (IaC) instructions | Manual | PARTIAL | Trivy filesystem scan | Có scanner; cần đối tượng phù hợp, report và chính sách; fs không quét image nền. |
+| 1.5.4 | Ensure scanners are in place for code vulnerabilities | Manual | MANUAL_REVIEW | CodeQL đã thấy ở repo nguồn | CodeQL default setup không tự chuyển sang finalrepo; cần cấu hình riêng, không đổi main đợt này. |
+| 1.5.5 | Ensure scanners are in place for open-source vulnerabilities in used packages | Manual | PARTIAL | Trivy filesystem scan | Có scanner; cần đối tượng phù hợp, report và chính sách; fs không quét image nền. |
+| 1.5.6 | Ensure scanners are in place for open-source license issues in used packages | Manual | PARTIAL | Trivy filesystem scan | Có scanner; cần đối tượng phù hợp, report và chính sách; fs không quét image nền. |
+| 2.1.1 | Ensure each pipeline has a single responsibility | Manual | PARTIAL | Workflow build/scanners/runner/resource-monitor | Có demo/hosted runner; cần đánh giá hạ tầng, quyền và phạm vi đầy đủ; runner scan không chặn CVE. |
+| 2.1.2 | Ensure all aspects of the pipeline infrastructure and configuration are immutable | Manual | NOT_TESTED | — | Chưa đánh giá đầy đủ hạ tầng build, quyền hoặc registry; workflow demo không đủ kết luận. |
+| 2.1.3 | Ensure the build environment is logged | Manual | NOT_TESTED | — | Chưa đánh giá đầy đủ hạ tầng build, quyền hoặc registry; workflow demo không đủ kết luận. |
+| 2.1.4 | Ensure the creation of the build environment is automated | Manual | PARTIAL | Workflow build/scanners/runner/resource-monitor | Có demo/hosted runner; cần đánh giá hạ tầng, quyền và phạm vi đầy đủ; runner scan không chặn CVE. |
+| 2.1.5 | Ensure access to build environments is limited | Manual | NOT_TESTED | — | Chưa đánh giá đầy đủ hạ tầng build, quyền hoặc registry; workflow demo không đủ kết luận. |
+| 2.1.6 | Ensure users must authenticate to access the build environment | Manual | NOT_TESTED | — | Chưa đánh giá đầy đủ hạ tầng build, quyền hoặc registry; workflow demo không đủ kết luận. |
+| 2.1.7 | Ensure build secrets are limited to the minimal necessary scope | Manual | NOT_TESTED | — | Chưa đánh giá đầy đủ hạ tầng build, quyền hoặc registry; workflow demo không đủ kết luận. |
+| 2.1.8 | Ensure the build infrastructure is automatically scanned for vulnerabilities | Manual | NOT_TESTED | — | Chưa đánh giá đầy đủ hạ tầng build, quyền hoặc registry; workflow demo không đủ kết luận. |
+| 2.1.9 | Ensure default passwords are not used | Manual | NOT_TESTED | — | Chưa đánh giá đầy đủ hạ tầng build, quyền hoặc registry; workflow demo không đủ kết luận. |
+| 2.1.10 | Ensure webhooks of the build environment are secured | Manual | NOT_TESTED | — | Chưa đánh giá đầy đủ hạ tầng build, quyền hoặc registry; workflow demo không đủ kết luận. |
+| 2.1.11 | Ensure minimum number of administrators are set for the build environment | Manual | NOT_TESTED | — | Chưa đánh giá đầy đủ hạ tầng build, quyền hoặc registry; workflow demo không đủ kết luận. |
+| 2.2.1 | Ensure build workers are single-used | Manual | PARTIAL | Workflow build/scanners/runner/resource-monitor | Có demo/hosted runner; cần đánh giá hạ tầng, quyền và phạm vi đầy đủ; runner scan không chặn CVE. |
+| 2.2.2 | Ensure build worker environments and commands are passed and not pulled | Manual | NOT_TESTED | — | Chưa đánh giá đầy đủ hạ tầng build, quyền hoặc registry; workflow demo không đủ kết luận. |
+| 2.2.3 | Ensure the duties of each build worker are segregated | Manual | PARTIAL | Workflow build/scanners/runner/resource-monitor | Có demo/hosted runner; cần đánh giá hạ tầng, quyền và phạm vi đầy đủ; runner scan không chặn CVE. |
+| 2.2.4 | Ensure build workers have minimal network connectivity | Manual | PARTIAL | Workflow build/scanners/runner/resource-monitor | Có demo/hosted runner; cần đánh giá hạ tầng, quyền và phạm vi đầy đủ; runner scan không chặn CVE. |
+| 2.2.5 | Ensure run-time security is enforced for build workers | Manual | NOT_TESTED | — | Chưa đánh giá đầy đủ hạ tầng build, quyền hoặc registry; workflow demo không đủ kết luận. |
+| 2.2.6 | Ensure build workers are automatically scanned for vulnerabilities | Manual | PARTIAL | Workflow build/scanners/runner/resource-monitor | Có demo/hosted runner; cần đánh giá hạ tầng, quyền và phạm vi đầy đủ; runner scan không chặn CVE. |
+| 2.2.7 | Ensure build workers' deployment configuration is stored in a version control platform | Manual | NOT_TESTED | — | Chưa đánh giá đầy đủ hạ tầng build, quyền hoặc registry; workflow demo không đủ kết luận. |
+| 2.2.8 | Ensure resource consumption of build workers is monitored | Manual | PARTIAL | Workflow build/scanners/runner/resource-monitor | Có demo/hosted runner; cần đánh giá hạ tầng, quyền và phạm vi đầy đủ; runner scan không chặn CVE. |
+| 2.3.1 | Ensure all build steps are defined as code | Manual | PARTIAL | YAML + Git history + pipeline-io | Có code và input/output; chưa đủ review/quy trình trên toàn hệ thống. |
+| 2.3.2 | Ensure steps have clearly defined build stage input and output | Manual | PARTIAL | YAML + Git history + pipeline-io | Có code và input/output; chưa đủ review/quy trình trên toàn hệ thống. |
+| 2.3.3 | Ensure output is written to a separate, secured storage repository | Manual | NOT_TESTED | — | Chưa đánh giá đầy đủ hạ tầng build, quyền hoặc registry; workflow demo không đủ kết luận. |
+| 2.3.4 | Ensure changes to pipeline files are tracked and reviewed | Manual | PARTIAL | YAML + Git history + pipeline-io | Có code và input/output; chưa đủ review/quy trình trên toàn hệ thống. |
+| 2.3.5 | Ensure access to build process triggering is minimized | Manual | NOT_TESTED | — | Chưa đánh giá đầy đủ hạ tầng build, quyền hoặc registry; workflow demo không đủ kết luận. |
+| 2.3.6 | Ensure pipelines are automatically scanned for misconfigurations | Manual | PARTIAL | Actionlint + Zizmor | Có kiểm tra workflow; chưa chứng minh mọi pipeline và cổng chặn. |
+| 2.3.7 | Ensure pipelines are automatically scanned for vulnerabilities | Manual | NOT_TESTED | — | Chưa đánh giá đầy đủ hạ tầng build, quyền hoặc registry; workflow demo không đủ kết luận. |
+| 2.3.8 | Ensure scanners are in place to identify and prevent sensitive data in pipeline files | Automated | NOT_TESTED | — | Chưa đánh giá đầy đủ hạ tầng build, quyền hoặc registry; workflow demo không đủ kết luận. |
+| 2.4.1 | Ensure all artifacts on all releases are signed | Manual | NOT_TESTED | — | Chưa đánh giá đầy đủ hạ tầng build, quyền hoặc registry; workflow demo không đủ kết luận. |
+| 2.4.2 | Ensure all external dependencies used in the build process are locked | Manual | PARTIAL | supply_chain_lab.py + lab-inputs.lock.json | Lab input first-party và SBOM/chữ ký; chưa supplier verification hoặc mọi phụ thuộc. |
+| 2.4.3 | Ensure dependencies are validated before being used | Manual | NOT_TESTED | — | Chưa đánh giá đầy đủ hạ tầng build, quyền hoặc registry; workflow demo không đủ kết luận. |
+| 2.4.4 | Ensure the build pipeline creates reproducible artifacts | Manual | PARTIAL | supply_chain_lab.py + lab-inputs.lock.json | Lab input first-party và SBOM/chữ ký; chưa supplier verification hoặc mọi phụ thuộc. |
+| 2.4.5 | Ensure pipeline steps produce a Software Bill of Materials (SBOM) | Manual | PARTIAL | supply_chain_lab.py + lab-inputs.lock.json | Lab input first-party và SBOM/chữ ký; chưa supplier verification hoặc mọi phụ thuộc. |
+| 2.4.6 | Ensure pipeline steps sign the Software Bill of Materials (SBOM) produced | Manual | PARTIAL | supply_chain_lab.py + lab-inputs.lock.json | Lab input first-party và SBOM/chữ ký; chưa supplier verification hoặc mọi phụ thuộc. |
+| 3.1.1 | Ensure third-party artifacts and open-source libraries are verified | Manual | NOT_TESTED | — | Chưa có supplier/package registry và bằng chứng SBOM/provenance/chính sách được phê duyệt; không tự coi không áp dụng. |
+| 3.1.2 | Ensure Software Bill of Materials (SBOM) is required from all third-party suppliers | Manual | NOT_TESTED | — | Chưa có supplier/package registry và bằng chứng SBOM/provenance/chính sách được phê duyệt; không tự coi không áp dụng. |
+| 3.1.3 | Ensure signed metadata of the build process is required and verified | Manual | NOT_TESTED | — | Chưa có supplier/package registry và bằng chứng SBOM/provenance/chính sách được phê duyệt; không tự coi không áp dụng. |
+| 3.1.4 | Ensure dependencies are monitored between open-source components | Manual | NOT_TESTED | — | Chưa có supplier/package registry và bằng chứng SBOM/provenance/chính sách được phê duyệt; không tự coi không áp dụng. |
+| 3.1.5 | Ensure trusted package managers and repositories are defined and prioritized | Manual | NOT_TESTED | — | Chưa có supplier/package registry và bằng chứng SBOM/provenance/chính sách được phê duyệt; không tự coi không áp dụng. |
+| 3.1.6 | Ensure a signed Software Bill of Materials (SBOM) of the code is supplied | Manual | NOT_TESTED | — | Chưa có supplier/package registry và bằng chứng SBOM/provenance/chính sách được phê duyệt; không tự coi không áp dụng. |
+| 3.1.7 | Ensure dependencies are pinned to a specific, verified version | Manual | PARTIAL | supply_chain_lab.py + lab-inputs.lock.json | Lab input first-party và SBOM/chữ ký; chưa supplier verification hoặc mọi phụ thuộc. |
+| 3.1.8 | Ensure all packages used are more than 60 days old | Manual | NOT_TESTED | — | Chưa có supplier/package registry và bằng chứng SBOM/provenance/chính sách được phê duyệt; không tự coi không áp dụng. |
+| 3.2.1 | Ensure an organization-wide dependency usage policy is enforced | Manual | NOT_TESTED | — | Chưa có supplier/package registry và bằng chứng SBOM/provenance/chính sách được phê duyệt; không tự coi không áp dụng. |
+| 3.2.2 | Ensure packages are automatically scanned for known vulnerabilities | Manual | NOT_TESTED | — | Chưa có supplier/package registry và bằng chứng SBOM/provenance/chính sách được phê duyệt; không tự coi không áp dụng. |
+| 3.2.3 | Ensure packages are automatically scanned for license implications | Manual | NOT_TESTED | — | Chưa có supplier/package registry và bằng chứng SBOM/provenance/chính sách được phê duyệt; không tự coi không áp dụng. |
+| 3.2.4 | Ensure packages are automatically scanned for ownership change | Manual | NOT_TESTED | — | Chưa có supplier/package registry và bằng chứng SBOM/provenance/chính sách được phê duyệt; không tự coi không áp dụng. |
+| 4.1.1 | Ensure all artifacts are signed by the build pipeline itself | Manual | PARTIAL | supply_chain_lab.py | Demo ký/mã hóa/provenance/negative tests; không có root tin cậy, registry hoặc quản trị khóa production. |
+| 4.1.2 | Ensure artifacts are encrypted before distribution | Manual | PARTIAL | supply_chain_lab.py | Demo ký/mã hóa/provenance/negative tests; không có root tin cậy, registry hoặc quản trị khóa production. |
+| 4.1.3 | Ensure only authorized platforms have decryption capabilities of artifacts | Manual | PARTIAL | supply_chain_lab.py | Demo ký/mã hóa/provenance/negative tests; không có root tin cậy, registry hoặc quản trị khóa production. |
+| 4.2.1 | Ensure the authority to certify artifacts is limited | Manual | NOT_TESTED | — | Chưa có package registry, IAM/SSO, khóa tin cậy và dữ liệu mọi release/version để kiểm tra. |
+| 4.2.2 | Ensure number of permitted users who may upload new artifacts is minimized | Manual | NOT_TESTED | — | Chưa có package registry, IAM/SSO, khóa tin cậy và dữ liệu mọi release/version để kiểm tra. |
+| 4.2.3 | Ensure user access to the package registry utilizes Multi- Factor Authentication (MFA) | Manual | NOT_TESTED | — | Chưa có package registry, IAM/SSO, khóa tin cậy và dữ liệu mọi release/version để kiểm tra. |
+| 4.2.4 | Ensure user management of the package registry is not local | Manual | NOT_TESTED | — | Chưa có package registry, IAM/SSO, khóa tin cậy và dữ liệu mọi release/version để kiểm tra. |
+| 4.2.5 | Ensure anonymous access to artifacts is revoked | Manual | NOT_TESTED | — | Chưa có package registry, IAM/SSO, khóa tin cậy và dữ liệu mọi release/version để kiểm tra. |
+| 4.2.6 | Ensure minimum number of administrators are set for the package registry | Manual | NOT_TESTED | — | Chưa có package registry, IAM/SSO, khóa tin cậy và dữ liệu mọi release/version để kiểm tra. |
+| 4.3.1 | Ensure all signed artifacts are validated upon uploading the package registry | Manual | NOT_TESTED | — | Chưa có package registry, IAM/SSO, khóa tin cậy và dữ liệu mọi release/version để kiểm tra. |
+| 4.3.2 | Ensure all versions of an existing artifact have their signatures validated | Manual | NOT_TESTED | — | Chưa có package registry, IAM/SSO, khóa tin cậy và dữ liệu mọi release/version để kiểm tra. |
+| 4.3.3 | Ensure changes in package registry configuration are audited | Manual | NOT_TESTED | — | Chưa có package registry, IAM/SSO, khóa tin cậy và dữ liệu mọi release/version để kiểm tra. |
+| 4.3.4 | Ensure webhooks of the repository are secured | Manual | NOT_TESTED | — | Chưa có package registry, IAM/SSO, khóa tin cậy và dữ liệu mọi release/version để kiểm tra. |
+| 4.4.1 | Ensure artifacts contain information about their origin | Manual | PARTIAL | supply_chain_lab.py | Demo ký/mã hóa/provenance/negative tests; không có root tin cậy, registry hoặc quản trị khóa production. |
+| 5.1.1 | Ensure deployment configuration files are separated from source code | Manual | PARTIAL | deploy/demo.json + supply_chain_lab.py | Sandbox tạm; config cùng repo, hash pin; chưa production, ACL độc lập hay môi trường tái lập đầy đủ. |
+| 5.1.2 | Ensure changes in deployment configuration are audited | Manual | PARTIAL | deploy/demo.json + supply_chain_lab.py | Sandbox tạm; config cùng repo, hash pin; chưa production, ACL độc lập hay môi trường tái lập đầy đủ. |
+| 5.1.3 | Ensure scanners are in place to identify and prevent sensitive data in deployment configuration | Manual | NOT_TESTED | — | Chưa có môi trường production và quyền đánh giá triển khai thực tế; sandbox không thay bằng chứng production. |
+| 5.1.4 | Limit access to deployment configurations | Manual | NOT_TESTED | — | Chưa có môi trường production và quyền đánh giá triển khai thực tế; sandbox không thay bằng chứng production. |
+| 5.1.5 | Scan Infrastructure as Code (IaC) | Manual | NOT_TESTED | — | Chưa có môi trường production và quyền đánh giá triển khai thực tế; sandbox không thay bằng chứng production. |
+| 5.1.6 | Ensure deployment configuration manifests are verified | Manual | PARTIAL | deploy/demo.json + supply_chain_lab.py | Sandbox tạm; config cùng repo, hash pin; chưa production, ACL độc lập hay môi trường tái lập đầy đủ. |
+| 5.1.7 | Ensure deployment configuration manifests are pinned to a specific, verified version | Manual | PARTIAL | deploy/demo.json + supply_chain_lab.py | Sandbox tạm; config cùng repo, hash pin; chưa production, ACL độc lập hay môi trường tái lập đầy đủ. |
+| 5.2.1 | Ensure deployments are automated | Manual | PARTIAL | deploy/demo.json + supply_chain_lab.py | Sandbox tạm; config cùng repo, hash pin; chưa production, ACL độc lập hay môi trường tái lập đầy đủ. |
+| 5.2.2 | Ensure the deployment environment is reproducible | Manual | PARTIAL | deploy/demo.json + supply_chain_lab.py | Sandbox tạm; config cùng repo, hash pin; chưa production, ACL độc lập hay môi trường tái lập đầy đủ. |
+| 5.2.3 | Ensure access to production environment is limited | Manual | NOT_TESTED | — | Chưa có môi trường production và quyền đánh giá triển khai thực tế; sandbox không thay bằng chứng production. |
+| 5.2.4 | Ensure default passwords are not used | Manual | NOT_TESTED | — | Chưa có môi trường production và quyền đánh giá triển khai thực tế; sandbox không thay bằng chứng production. |

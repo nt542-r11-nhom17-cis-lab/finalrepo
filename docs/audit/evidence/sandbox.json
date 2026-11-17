@@ -1,0 +1,35 @@
+{
+  "scope": "local sandbox, not production CIS compliance",
+  "checks": [
+    {
+      "check": "locked_inputs",
+      "status": "PASS",
+      "evidence": "Application source and deployment configuration match committed SHA256 values; Git review is the trust boundary.",
+      "scope": "local demo only"
+    },
+    {
+      "check": "reproducible_artifact",
+      "status": "PASS",
+      "evidence": "3c56f1ca9a220441544c315ac72a127f32ec22a9ac59d54b8d97b8b9e1f09faf",
+      "scope": "local demo only"
+    },
+    {
+      "check": "signed_artifact_sbom_provenance",
+      "status": "PASS",
+      "evidence": "Original signatures accepted; modified artifact rejected. Ephemeral lab identity only.",
+      "scope": "local demo only"
+    },
+    {
+      "check": "encrypted_roundtrip",
+      "status": "PASS",
+      "evidence": "Ciphertext signature checked before decrypt; modified ciphertext rejected. Keys removed after job.",
+      "scope": "local demo only"
+    },
+    {
+      "check": "verified_local_deployment",
+      "status": "PASS",
+      "evidence": "Verified artifact extracted to temporary private directory; fixed smoke test succeeded; no network or production changes.",
+      "scope": "local demo only"
+    }
+  ]
+}

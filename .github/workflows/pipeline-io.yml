@@ -21,6 +21,28 @@ jobs:
       OUTPUT_FILE: output/message.txt
 
     steps:
+      - name: Checkout audit branch
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+
+      - name: Audit repository through read-only GitHub API
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python3 scripts/audit_github.py
+
+      - name: Exercise groups 3 to 5 in an isolated local sandbox
+        run: python3 scripts/supply_chain_lab.py
+
+      - name: Save API and sandbox reports
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: cis-review-${{ github.run_id }}
+          path: reports/
+          if-no-files-found: warn
+          retention-days: 7
+
       - name: Generate and validate output
         shell: bash
         run: |

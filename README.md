@@ -36,3 +36,7 @@ Chi tiết: [hướng dẫn tích hợp](docs/integration/README.vi.md).
 ## Kết quả đã chạy
 
 Xem [bảng kết quả và liên kết từng phiên chạy](docs/integration/RESULTS.vi.md).
+
+## Rà soát đủ 5 nhóm CIS — nhánh review
+
+[Báo cáo và đối chiếu 120 tiêu chí](docs/audit/README.vi.md), [phương pháp Audit–Remediation](docs/audit/METHOD.vi.md), [triển khai](docs/audit/IMPLEMENTATION.vi.md). Có script API read-only và lab nhóm 3–5; các mục thiếu quyền/supplier/registry/production ghi rõ chưa kiểm chứng. Không có tuyên bố đạt toàn benchmark.

@@ -1,0 +1,96 @@
+{
+  "benchmark": "CIS GitHub Benchmark v1.2.0",
+  "repository": "hieune-ui/finalrepo",
+  "checked_at": "2026-11-17T10:07:07.202195+00:00",
+  "default_branch": "main",
+  "api_http": {
+    "repository": 200,
+    "protection": 403,
+    "rules": 200,
+    "community_profile": 200
+  },
+  "mode": "read-only",
+  "results": [
+    {
+      "cis_id": "1.1.3",
+      "configuration_result": "UNKNOWN",
+      "overall_status": "MANUAL_REVIEW",
+      "observed": {
+        "classic_http": 403,
+        "rules_http": 200,
+        "rule_count": 0
+      },
+      "note": "Review effective Rulesets, classic protection, permissions and bypass actors."
+    },
+    {
+      "cis_id": "1.1.4",
+      "configuration_result": "UNKNOWN",
+      "overall_status": "MANUAL_REVIEW",
+      "observed": {
+        "classic_http": 403,
+        "rules_http": 200,
+        "rule_count": 0
+      },
+      "note": "Review effective Rulesets, classic protection, permissions and bypass actors."
+    },
+    {
+      "cis_id": "1.1.9",
+      "configuration_result": "UNKNOWN",
+      "overall_status": "MANUAL_REVIEW",
+      "observed": {
+        "classic_http": 403,
+        "rules_http": 200,
+        "rule_count": 0
+      },
+      "note": "Review effective Rulesets, classic protection, permissions and bypass actors."
+    },
+    {
+      "cis_id": "1.1.16",
+      "configuration_result": "UNKNOWN",
+      "overall_status": "MANUAL_REVIEW",
+      "observed": {
+        "classic_http": 403,
+        "rules_http": 200,
+        "rule_count": 0
+      },
+      "note": "Review effective Rulesets, classic protection, permissions and bypass actors."
+    },
+    {
+      "cis_id": "1.1.17",
+      "configuration_result": "UNKNOWN",
+      "overall_status": "MANUAL_REVIEW",
+      "observed": {
+        "classic_http": 403,
+        "rules_http": 200,
+        "rule_count": 0
+      },
+      "note": "Review effective Rulesets, classic protection, permissions and bypass actors."
+    },
+    {
+      "cis_id": "1.1.20",
+      "configuration_result": "UNKNOWN",
+      "overall_status": "MANUAL_REVIEW",
+      "observed": {
+        "classic_http": 403,
+        "rules_http": 200,
+        "rule_count": 0
+      },
+      "note": "Review effective Rulesets, classic protection, permissions and bypass actors."
+    },
+    {
+      "cis_id": "1.2.1",
+      "configuration_result": "PASS",
+      "overall_status": "MANUAL_REVIEW",
+      "observed": {
+        "policy_path": "SECURITY.md",
+        "lookups": [
+          {
+            "path": "SECURITY.md",
+            "http": 200
+          }
+        ]
+      },
+      "note": "Applicable to public repositories. Read policy content and check inherited organization policy; absence is inconclusive."
+    }
+  ]
+}

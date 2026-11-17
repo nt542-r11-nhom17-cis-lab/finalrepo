@@ -1,0 +1,8 @@
+cis_id,configuration_result,overall_status,observed,note
+1.1.3,UNKNOWN,MANUAL_REVIEW,"{""classic_http"": 403, ""rules_http"": 200, ""rule_count"": 0}","Review effective Rulesets, classic protection, permissions and bypass actors."
+1.1.4,UNKNOWN,MANUAL_REVIEW,"{""classic_http"": 403, ""rules_http"": 200, ""rule_count"": 0}","Review effective Rulesets, classic protection, permissions and bypass actors."
+1.1.9,UNKNOWN,MANUAL_REVIEW,"{""classic_http"": 403, ""rules_http"": 200, ""rule_count"": 0}","Review effective Rulesets, classic protection, permissions and bypass actors."
+1.1.16,UNKNOWN,MANUAL_REVIEW,"{""classic_http"": 403, ""rules_http"": 200, ""rule_count"": 0}","Review effective Rulesets, classic protection, permissions and bypass actors."
+1.1.17,UNKNOWN,MANUAL_REVIEW,"{""classic_http"": 403, ""rules_http"": 200, ""rule_count"": 0}","Review effective Rulesets, classic protection, permissions and bypass actors."
+1.1.20,UNKNOWN,MANUAL_REVIEW,"{""classic_http"": 403, ""rules_http"": 200, ""rule_count"": 0}","Review effective Rulesets, classic protection, permissions and bypass actors."
+1.2.1,PASS,MANUAL_REVIEW,"{""policy_path"": ""SECURITY.md"", ""lookups"": [{""path"": ""SECURITY.md"", ""http"": 200}]}",Applicable to public repositories. Read policy content and check inherited organization policy; absence is inconclusive.

@@ -1,0 +1,722 @@
+[
+  {
+    "id": "1.1.1",
+    "title": "Ensure any changes to code are tracked in a version control platform",
+    "assessment": "Manual",
+    "page": 19
+  },
+  {
+    "id": "1.1.2",
+    "title": "Ensure any change to code can be traced back to its associated task",
+    "assessment": "Manual",
+    "page": 20
+  },
+  {
+    "id": "1.1.3",
+    "title": "Ensure any change to code receives approval of two strongly authenticated users",
+    "assessment": "Automated",
+    "page": 22
+  },
+  {
+    "id": "1.1.4",
+    "title": "Ensure previous approvals are dismissed when updates are introduced to a code change proposal",
+    "assessment": "Manual",
+    "page": 24
+  },
+  {
+    "id": "1.1.5",
+    "title": "Ensure there are restrictions on who can dismiss code change reviews",
+    "assessment": "Manual",
+    "page": 26
+  },
+  {
+    "id": "1.1.6",
+    "title": "Ensure code owners are set for extra sensitive code or configuration",
+    "assessment": "Manual",
+    "page": 28
+  },
+  {
+    "id": "1.1.7",
+    "title": "Ensure code owner's review is required when a change affects owned code",
+    "assessment": "Manual",
+    "page": 30
+  },
+  {
+    "id": "1.1.8",
+    "title": "Ensure inactive branches are periodically reviewed and removed",
+    "assessment": "Manual",
+    "page": 32
+  },
+  {
+    "id": "1.1.9",
+    "title": "Ensure all checks have passed before merging new code",
+    "assessment": "Manual",
+    "page": 34
+  },
+  {
+    "id": "1.1.10",
+    "title": "Ensure open Git branches are up to date before they can be merged into code base",
+    "assessment": "Manual",
+    "page": 36
+  },
+  {
+    "id": "1.1.11",
+    "title": "Ensure all open comments are resolved before allowing code change merging",
+    "assessment": "Manual",
+    "page": 38
+  },
+  {
+    "id": "1.1.12",
+    "title": "Ensure verification of signed commits for new changes before merging",
+    "assessment": "Manual",
+    "page": 40
+  },
+  {
+    "id": "1.1.13",
+    "title": "Ensure linear history is required",
+    "assessment": "Manual",
+    "page": 42
+  },
+  {
+    "id": "1.1.14",
+    "title": "Ensure branch protection rules are enforced for administrators",
+    "assessment": "Manual",
+    "page": 44
+  },
+  {
+    "id": "1.1.15",
+    "title": "Ensure pushing or merging of new code is restricted to specific individuals or teams",
+    "assessment": "Manual",
+    "page": 46
+  },
+  {
+    "id": "1.1.16",
+    "title": "Ensure force push code to branches is denied",
+    "assessment": "Manual",
+    "page": 48
+  },
+  {
+    "id": "1.1.17",
+    "title": "Ensure branch deletions are denied",
+    "assessment": "Manual",
+    "page": 50
+  },
+  {
+    "id": "1.1.18",
+    "title": "Ensure any merging of code is automatically scanned for risks",
+    "assessment": "Manual",
+    "page": 52
+  },
+  {
+    "id": "1.1.19",
+    "title": "Ensure any changes to branch protection rules are audited",
+    "assessment": "Manual",
+    "page": 54
+  },
+  {
+    "id": "1.1.20",
+    "title": "Ensure branch protection is enforced on the default branch",
+    "assessment": "Manual",
+    "page": 56
+  },
+  {
+    "id": "1.2.1",
+    "title": "Ensure all public repositories contain a SECURITY.md file",
+    "assessment": "Manual",
+    "page": 59
+  },
+  {
+    "id": "1.2.2",
+    "title": "Ensure repository creation is limited to specific members",
+    "assessment": "Manual",
+    "page": 61
+  },
+  {
+    "id": "1.2.3",
+    "title": "Ensure repository deletion is limited to specific users",
+    "assessment": "Manual",
+    "page": 63
+  },
+  {
+    "id": "1.2.4",
+    "title": "Ensure issue deletion is limited to specific users",
+    "assessment": "Manual",
+    "page": 66
+  },
+  {
+    "id": "1.2.5",
+    "title": "Ensure all copies (forks) of code are tracked and accounted for",
+    "assessment": "Manual",
+    "page": 68
+  },
+  {
+    "id": "1.2.6",
+    "title": "Ensure all code projects are tracked for changes in visibility status",
+    "assessment": "Manual",
+    "page": 70
+  },
+  {
+    "id": "1.2.7",
+    "title": "Ensure inactive repositories are reviewed and archived periodically",
+    "assessment": "Manual",
+    "page": 72
+  },
+  {
+    "id": "1.3.1",
+    "title": "Ensure inactive users are reviewed and removed periodically",
+    "assessment": "Manual",
+    "page": 75
+  },
+  {
+    "id": "1.3.2",
+    "title": "Ensure team creation is limited to specific members",
+    "assessment": "Manual",
+    "page": 77
+  },
+  {
+    "id": "1.3.3",
+    "title": "Ensure minimum number of administrators are set for the organization",
+    "assessment": "Manual",
+    "page": 79
+  },
+  {
+    "id": "1.3.4",
+    "title": "Ensure Multi-Factor Authentication (MFA) is required for contributors of new code",
+    "assessment": "Manual",
+    "page": 81
+  },
+  {
+    "id": "1.3.5",
+    "title": "Ensure the organization is requiring members to use Multi- Factor Authentication (MFA)",
+    "assessment": "Manual",
+    "page": 83
+  },
+  {
+    "id": "1.3.6",
+    "title": "Ensure new members are required to be invited using company-approved email",
+    "assessment": "Manual",
+    "page": 85
+  },
+  {
+    "id": "1.3.7",
+    "title": "Ensure two administrators are set for each repository",
+    "assessment": "Manual",
+    "page": 87
+  },
+  {
+    "id": "1.3.8",
+    "title": "Ensure strict base permissions are set for repositories",
+    "assessment": "Manual",
+    "page": 89
+  },
+  {
+    "id": "1.3.9",
+    "title": "Ensure an organization\u2019s identity is confirmed with a \u201cVerified\u201d badge",
+    "assessment": "Manual",
+    "page": 91
+  },
+  {
+    "id": "1.3.10",
+    "title": "Ensure Source Code Management (SCM) email notifications are restricted to verified domains",
+    "assessment": "Manual",
+    "page": 93
+  },
+  {
+    "id": "1.3.11",
+    "title": "Ensure an organization provides SSH certificates",
+    "assessment": "Manual",
+    "page": 95
+  },
+  {
+    "id": "1.3.12",
+    "title": "Ensure Git access is limited based on IP addresses",
+    "assessment": "Manual",
+    "page": 97
+  },
+  {
+    "id": "1.3.13",
+    "title": "Ensure anomalous code behavior is tracked",
+    "assessment": "Manual",
+    "page": 99
+  },
+  {
+    "id": "1.4.1",
+    "title": "Ensure administrator approval is required for every installed application",
+    "assessment": "Manual",
+    "page": 101
+  },
+  {
+    "id": "1.4.2",
+    "title": "Ensure stale applications are reviewed and inactive ones are removed",
+    "assessment": "Manual",
+    "page": 103
+  },
+  {
+    "id": "1.4.3",
+    "title": "Ensure the access granted to each installed application is limited to the least privilege needed",
+    "assessment": "Manual",
+    "page": 105
+  },
+  {
+    "id": "1.4.4",
+    "title": "Ensure only secured webhooks are used",
+    "assessment": "Manual",
+    "page": 107
+  },
+  {
+    "id": "1.5.1",
+    "title": "Ensure scanners are in place to identify and prevent sensitive data in code",
+    "assessment": "Manual",
+    "page": 110
+  },
+  {
+    "id": "1.5.2",
+    "title": "Ensure scanners are in place to secure Continuous Integration (CI) pipeline instructions",
+    "assessment": "Manual",
+    "page": 112
+  },
+  {
+    "id": "1.5.3",
+    "title": "Ensure scanners are in place to secure Infrastructure as Code (IaC) instructions",
+    "assessment": "Manual",
+    "page": 114
+  },
+  {
+    "id": "1.5.4",
+    "title": "Ensure scanners are in place for code vulnerabilities",
+    "assessment": "Manual",
+    "page": 116
+  },
+  {
+    "id": "1.5.5",
+    "title": "Ensure scanners are in place for open-source vulnerabilities in used packages",
+    "assessment": "Manual",
+    "page": 118
+  },
+  {
+    "id": "1.5.6",
+    "title": "Ensure scanners are in place for open-source license issues in used packages",
+    "assessment": "Manual",
+    "page": 120
+  },
+  {
+    "id": "2.1.1",
+    "title": "Ensure each pipeline has a single responsibility",
+    "assessment": "Manual",
+    "page": 123
+  },
+  {
+    "id": "2.1.2",
+    "title": "Ensure all aspects of the pipeline infrastructure and configuration are immutable",
+    "assessment": "Manual",
+    "page": 125
+  },
+  {
+    "id": "2.1.3",
+    "title": "Ensure the build environment is logged",
+    "assessment": "Manual",
+    "page": 127
+  },
+  {
+    "id": "2.1.4",
+    "title": "Ensure the creation of the build environment is automated",
+    "assessment": "Manual",
+    "page": 128
+  },
+  {
+    "id": "2.1.5",
+    "title": "Ensure access to build environments is limited",
+    "assessment": "Manual",
+    "page": 129
+  },
+  {
+    "id": "2.1.6",
+    "title": "Ensure users must authenticate to access the build environment",
+    "assessment": "Manual",
+    "page": 131
+  },
+  {
+    "id": "2.1.7",
+    "title": "Ensure build secrets are limited to the minimal necessary scope",
+    "assessment": "Manual",
+    "page": 132
+  },
+  {
+    "id": "2.1.8",
+    "title": "Ensure the build infrastructure is automatically scanned for vulnerabilities",
+    "assessment": "Manual",
+    "page": 134
+  },
+  {
+    "id": "2.1.9",
+    "title": "Ensure default passwords are not used",
+    "assessment": "Manual",
+    "page": 135
+  },
+  {
+    "id": "2.1.10",
+    "title": "Ensure webhooks of the build environment are secured",
+    "assessment": "Manual",
+    "page": 136
+  },
+  {
+    "id": "2.1.11",
+    "title": "Ensure minimum number of administrators are set for the build environment",
+    "assessment": "Manual",
+    "page": 137
+  },
+  {
+    "id": "2.2.1",
+    "title": "Ensure build workers are single-used",
+    "assessment": "Manual",
+    "page": 139
+  },
+  {
+    "id": "2.2.2",
+    "title": "Ensure build worker environments and commands are passed and not pulled",
+    "assessment": "Manual",
+    "page": 140
+  },
+  {
+    "id": "2.2.3",
+    "title": "Ensure the duties of each build worker are segregated",
+    "assessment": "Manual",
+    "page": 141
+  },
+  {
+    "id": "2.2.4",
+    "title": "Ensure build workers have minimal network connectivity",
+    "assessment": "Manual",
+    "page": 142
+  },
+  {
+    "id": "2.2.5",
+    "title": "Ensure run-time security is enforced for build workers",
+    "assessment": "Manual",
+    "page": 144
+  },
+  {
+    "id": "2.2.6",
+    "title": "Ensure build workers are automatically scanned for vulnerabilities",
+    "assessment": "Manual",
+    "page": 145
+  },
+  {
+    "id": "2.2.7",
+    "title": "Ensure build workers' deployment configuration is stored in a version control platform",
+    "assessment": "Manual",
+    "page": 146
+  },
+  {
+    "id": "2.2.8",
+    "title": "Ensure resource consumption of build workers is monitored",
+    "assessment": "Manual",
+    "page": 148
+  },
+  {
+    "id": "2.3.1",
+    "title": "Ensure all build steps are defined as code",
+    "assessment": "Manual",
+    "page": 150
+  },
+  {
+    "id": "2.3.2",
+    "title": "Ensure steps have clearly defined build stage input and output",
+    "assessment": "Manual",
+    "page": 151
+  },
+  {
+    "id": "2.3.3",
+    "title": "Ensure output is written to a separate, secured storage repository",
+    "assessment": "Manual",
+    "page": 152
+  },
+  {
+    "id": "2.3.4",
+    "title": "Ensure changes to pipeline files are tracked and reviewed",
+    "assessment": "Manual",
+    "page": 153
+  },
+  {
+    "id": "2.3.5",
+    "title": "Ensure access to build process triggering is minimized",
+    "assessment": "Manual",
+    "page": 154
+  },
+  {
+    "id": "2.3.6",
+    "title": "Ensure pipelines are automatically scanned for misconfigurations",
+    "assessment": "Manual",
+    "page": 155
+  },
+  {
+    "id": "2.3.7",
+    "title": "Ensure pipelines are automatically scanned for vulnerabilities",
+    "assessment": "Manual",
+    "page": 156
+  },
+  {
+    "id": "2.3.8",
+    "title": "Ensure scanners are in place to identify and prevent sensitive data in pipeline files",
+    "assessment": "Automated",
+    "page": 157
+  },
+  {
+    "id": "2.4.1",
+    "title": "Ensure all artifacts on all releases are signed",
+    "assessment": "Manual",
+    "page": 159
+  },
+  {
+    "id": "2.4.2",
+    "title": "Ensure all external dependencies used in the build process are locked",
+    "assessment": "Manual",
+    "page": 160
+  },
+  {
+    "id": "2.4.3",
+    "title": "Ensure dependencies are validated before being used",
+    "assessment": "Manual",
+    "page": 162
+  },
+  {
+    "id": "2.4.4",
+    "title": "Ensure the build pipeline creates reproducible artifacts",
+    "assessment": "Manual",
+    "page": 164
+  },
+  {
+    "id": "2.4.5",
+    "title": "Ensure pipeline steps produce a Software Bill of Materials (SBOM)",
+    "assessment": "Manual",
+    "page": 165
+  },
+  {
+    "id": "2.4.6",
+    "title": "Ensure pipeline steps sign the Software Bill of Materials (SBOM) produced",
+    "assessment": "Manual",
+    "page": 166
+  },
+  {
+    "id": "3.1.1",
+    "title": "Ensure third-party artifacts and open-source libraries are verified",
+    "assessment": "Manual",
+    "page": 169
+  },
+  {
+    "id": "3.1.2",
+    "title": "Ensure Software Bill of Materials (SBOM) is required from all third-party suppliers",
+    "assessment": "Manual",
+    "page": 171
+  },
+  {
+    "id": "3.1.3",
+    "title": "Ensure signed metadata of the build process is required and verified",
+    "assessment": "Manual",
+    "page": 173
+  },
+  {
+    "id": "3.1.4",
+    "title": "Ensure dependencies are monitored between open-source components",
+    "assessment": "Manual",
+    "page": 175
+  },
+  {
+    "id": "3.1.5",
+    "title": "Ensure trusted package managers and repositories are defined and prioritized",
+    "assessment": "Manual",
+    "page": 176
+  },
+  {
+    "id": "3.1.6",
+    "title": "Ensure a signed Software Bill of Materials (SBOM) of the code is supplied",
+    "assessment": "Manual",
+    "page": 178
+  },
+  {
+    "id": "3.1.7",
+    "title": "Ensure dependencies are pinned to a specific, verified version",
+    "assessment": "Manual",
+    "page": 180
+  },
+  {
+    "id": "3.1.8",
+    "title": "Ensure all packages used are more than 60 days old",
+    "assessment": "Manual",
+    "page": 182
+  },
+  {
+    "id": "3.2.1",
+    "title": "Ensure an organization-wide dependency usage policy is enforced",
+    "assessment": "Manual",
+    "page": 185
+  },
+  {
+    "id": "3.2.2",
+    "title": "Ensure packages are automatically scanned for known vulnerabilities",
+    "assessment": "Manual",
+    "page": 186
+  },
+  {
+    "id": "3.2.3",
+    "title": "Ensure packages are automatically scanned for license implications",
+    "assessment": "Manual",
+    "page": 187
+  },
+  {
+    "id": "3.2.4",
+    "title": "Ensure packages are automatically scanned for ownership change",
+    "assessment": "Manual",
+    "page": 189
+  },
+  {
+    "id": "4.1.1",
+    "title": "Ensure all artifacts are signed by the build pipeline itself",
+    "assessment": "Manual",
+    "page": 192
+  },
+  {
+    "id": "4.1.2",
+    "title": "Ensure artifacts are encrypted before distribution",
+    "assessment": "Manual",
+    "page": 195
+  },
+  {
+    "id": "4.1.3",
+    "title": "Ensure only authorized platforms have decryption capabilities of artifacts",
+    "assessment": "Manual",
+    "page": 196
+  },
+  {
+    "id": "4.2.1",
+    "title": "Ensure the authority to certify artifacts is limited",
+    "assessment": "Manual",
+    "page": 199
+  },
+  {
+    "id": "4.2.2",
+    "title": "Ensure number of permitted users who may upload new artifacts is minimized",
+    "assessment": "Manual",
+    "page": 200
+  },
+  {
+    "id": "4.2.3",
+    "title": "Ensure user access to the package registry utilizes Multi- Factor Authentication (MFA)",
+    "assessment": "Manual",
+    "page": 201
+  },
+  {
+    "id": "4.2.4",
+    "title": "Ensure user management of the package registry is not local",
+    "assessment": "Manual",
+    "page": 202
+  },
+  {
+    "id": "4.2.5",
+    "title": "Ensure anonymous access to artifacts is revoked",
+    "assessment": "Manual",
+    "page": 203
+  },
+  {
+    "id": "4.2.6",
+    "title": "Ensure minimum number of administrators are set for the package registry",
+    "assessment": "Manual",
+    "page": 205
+  },
+  {
+    "id": "4.3.1",
+    "title": "Ensure all signed artifacts are validated upon uploading the package registry",
+    "assessment": "Manual",
+    "page": 208
+  },
+  {
+    "id": "4.3.2",
+    "title": "Ensure all versions of an existing artifact have their signatures validated",
+    "assessment": "Manual",
+    "page": 210
+  },
+  {
+    "id": "4.3.3",
+    "title": "Ensure changes in package registry configuration are audited",
+    "assessment": "Manual",
+    "page": 212
+  },
+  {
+    "id": "4.3.4",
+    "title": "Ensure webhooks of the repository are secured",
+    "assessment": "Manual",
+    "page": 214
+  },
+  {
+    "id": "4.4.1",
+    "title": "Ensure artifacts contain information about their origin",
+    "assessment": "Manual",
+    "page": 216
+  },
+  {
+    "id": "5.1.1",
+    "title": "Ensure deployment configuration files are separated from source code",
+    "assessment": "Manual",
+    "page": 219
+  },
+  {
+    "id": "5.1.2",
+    "title": "Ensure changes in deployment configuration are audited",
+    "assessment": "Manual",
+    "page": 220
+  },
+  {
+    "id": "5.1.3",
+    "title": "Ensure scanners are in place to identify and prevent sensitive data in deployment configuration",
+    "assessment": "Manual",
+    "page": 221
+  },
+  {
+    "id": "5.1.4",
+    "title": "Limit access to deployment configurations",
+    "assessment": "Manual",
+    "page": 222
+  },
+  {
+    "id": "5.1.5",
+    "title": "Scan Infrastructure as Code (IaC)",
+    "assessment": "Manual",
+    "page": 224
+  },
+  {
+    "id": "5.1.6",
+    "title": "Ensure deployment configuration manifests are verified",
+    "assessment": "Manual",
+    "page": 225
+  },
+  {
+    "id": "5.1.7",
+    "title": "Ensure deployment configuration manifests are pinned to a specific, verified version",
+    "assessment": "Manual",
+    "page": 226
+  },
+  {
+    "id": "5.2.1",
+    "title": "Ensure deployments are automated",
+    "assessment": "Manual",
+    "page": 229
+  },
+  {
+    "id": "5.2.2",
+    "title": "Ensure the deployment environment is reproducible",
+    "assessment": "Manual",
+    "page": 230
+  },
+  {
+    "id": "5.2.3",
+    "title": "Ensure access to production environment is limited",
+    "assessment": "Manual",
+    "page": 231
+  },
+  {
+    "id": "5.2.4",
+    "title": "Ensure default passwords are not used",
+    "assessment": "Manual",
+    "page": 232
+  }
+]

@@ -1,0 +1,7 @@
+{
+  "environment": "local-sandbox-only",
+  "artifact": "application.zip",
+  "entrypoint": "app.py",
+  "network_listener": false,
+  "production": false
+}

@@ -1,0 +1,7 @@
+{
+  "scope": "reviewed first-party demo inputs; no third-party libraries",
+  "sha256": {
+    "examples/demo-app/app.py": "718bc0cbba70199409385ce9039e801a943f2ff182a7a27ef0631c8d4d393007",
+    "deploy/demo.json": "d7ee5f15dcfa20e90656858af5d20902d5ca10351056e7d85af616a3fe43991f"
+  }
+}

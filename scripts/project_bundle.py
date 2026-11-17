@@ -97,7 +97,7 @@ def generate(out):
         (out / 'source.zip').write_bytes(original)
     verify(out, trusted)
     result = {'scope': manifest['scope'], 'commit': commit, 'payloads_verified': len(PAYLOADS),
-              'tampered_payload_rejected': rejected, 'public_key_sha256_der': trusted,
+              'tampered_payload_rejected': rejected, 'signer_fingerprint_sha256_der': trusted,
               'private_key_exported': False, 'overall_cis': 'PARTIAL'}
     (out / 'verification.json').write_text(json.dumps(result, indent=2) + '\n')
     print(json.dumps(result))

@@ -3,7 +3,7 @@ name: CIS - Pipeline Security Scan
 on:
   workflow_dispatch:
   push:
-    branches: [audit/free-controls-completion]
+    branches: [audit/free-controls-completion, audit/remaining-free-integration]
 
 permissions:
   contents: read

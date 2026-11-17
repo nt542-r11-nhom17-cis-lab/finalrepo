@@ -1,0 +1,62 @@
+name: CIS - Remaining Free integrations
+
+on:
+  push:
+    branches: [audit/remaining-free-integration]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  verify-local-services:
+    name: Verify isolated TLS webhook and registry
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - name: Checkout integration branch
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Verify policy and failure-path regressions
+        run: python3 -m unittest discover -s tests -v
+
+      - name: Exercise real HTTPS webhook authentication and replay rejection
+        run: python3 scripts/webhook_integration.py
+
+      - name: Exercise pinned registry with TLS and bcrypt authentication
+        run: python3 scripts/registry_integration.py
+
+      - name: Scan pinned registry binary for known HIGH or CRITICAL vulnerabilities
+        uses: aquasecurity/trivy-action@ed142fd0673e97e23eac54620cfb913e5ce36c25 # v0.36.0
+        with:
+          scan-type: fs
+          scan-ref: ${{ runner.temp }}/cis-registry-bin
+          scanners: vuln
+          severity: HIGH,CRITICAL
+          exit-code: '1'
+          format: json
+          output: reports/registry-binary-vulnerabilities.json
+
+      - name: Inventory repositories and access without changing settings
+        if: ${{ !cancelled() }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python3 scripts/inventory_organization.py
+
+      - name: Save integration results without temporary credentials or keys
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: remaining-integration-${{ github.run_id }}
+          path: |
+            reports/webhook-integration/results.json
+            reports/registry-integration/results.json
+            reports/organization-inventory/results.json
+            reports/registry-binary-vulnerabilities.json
+          if-no-files-found: error
+          retention-days: 7

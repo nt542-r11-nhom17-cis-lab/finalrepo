@@ -29,3 +29,10 @@ Không sao chép được Settings, Secrets, Rulesets, branch protection, collab
 SBOM hiện là inventory package Ubuntu của runner, không phải SBOM ứng dụng. Chữ ký dùng khóa lab tạm, minh họa ký/xác minh và chống sửa đổi, chưa thiết lập danh tính tin cậy production.
 
 Không đưa token vào file hoặc lệnh chia sẻ. Không dùng force push hay git pull hai lịch sử không liên quan để gộp trực tiếp vào repo gốc.
+
+## Cập nhật sau khi chạy trên finalrepo
+Repo đích đã được tạo tại https://github.com/hieune-ui/finalrepo và đã nhận bản gộp. Những hướng dẫn tạo sandbox phía trên là quy trình tái lập, không phải bước còn chờ thực hiện.
+
+Lần nhập đầu giữ nguyên file nguồn nhóm. Sau kiểm tra thực tế, chỉ tại finalrepo đã chỉnh app-build.yml, cis-scanners.yml và workflow demo: cố định action SHA, persist-credentials: false, concurrency, timeout và tên job. Gitleaks tiếp tục quét đầy đủ lịch sử, dùng --redact và xuất JSON vào artifact kể cả khi báo FAIL. Không thay đổi hai repository gốc.
+
+Phát hiện Gitleaks ban đầu nằm trong database_config.py, commit nguồn fc400ea7aaa69a3386cc9c45429492e45dedf915. Chưa xác minh tính hiệu lực của credential; không nên tự kết luận mọi chuỗi đều an toàn. Báo cáo không tái xuất giá trị credential.

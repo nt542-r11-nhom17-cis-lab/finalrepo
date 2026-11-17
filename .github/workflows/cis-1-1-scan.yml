@@ -6,12 +6,20 @@ on:
 permissions:
   contents: read
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: false
+
 jobs:
   code-scanning:
+    name: Demonstrate placeholder only
+    timeout-minutes: 5
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
       - name: Run code security scan
         run: |
           echo "DEMO ONLY: no security scanner is executed by this workflow."

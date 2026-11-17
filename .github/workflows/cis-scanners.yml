@@ -8,38 +8,60 @@ on:
 permissions:
   contents: read
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: false
+
 jobs:
   secret-scanner:
+    timeout-minutes: 15
     name: Gitleaks Secret Scanner
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
         with:
+          persist-credentials: false
           fetch-depth: 0
       - name: Run Gitleaks (CIS 1.5.1)
         run: |
           wget -q https://github.com/gitleaks/gitleaks/releases/download/v8.18.4/gitleaks_8.18.4_linux_x64.tar.gz
           tar -xzf gitleaks_8.18.4_linux_x64.tar.gz
-          ./gitleaks detect --source . --verbose
+          mkdir -p reports
+          ./gitleaks detect --source . --redact --report-format json --report-path reports/gitleaks.json
+
+      - name: Save redacted Gitleaks evidence
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: gitleaks-report-${{ github.run_id }}
+          path: reports/gitleaks.json
+          if-no-files-found: warn
+          retention-days: 7
 
   ci-pipeline-scanner:
+    timeout-minutes: 15
     name: Actionlint CI Scanner
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
       - name: Run Actionlint CI Scanner (CIS 1.5.2)
-        uses: rhysd/actionlint@v1.7.1
+        uses: rhysd/actionlint@62dc61a45fc95efe8c800af7a557ab0b9165d63b # v1.7.1
 
   trivy-comprehensive-scanner:
+    timeout-minutes: 15
     name: Trivy Security Scanner
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
       - name: Run Trivy Vulnerability, IaC & License Scanner (CIS 1.5.3 - 1.5.6)
-        uses: aquasecurity/trivy-action@master
+        uses: aquasecurity/trivy-action@38b337fff0a2f984d5be173c99e3f633438167ec # master
         with:
           scan-type: 'fs'
           scanners: 'vuln,misconfig,secret,license'

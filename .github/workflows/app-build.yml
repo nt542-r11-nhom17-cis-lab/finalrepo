@@ -4,12 +4,20 @@ on:
     branches: [ "main" ]
 permissions:
   contents: read
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: false
+
 jobs:
   compile-and-package:
+    name: Build sample output
+    timeout-minutes: 10
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Source Code
-        uses: actions/checkout@v4
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
       - name: Build Artifact Only
         run: |
           mkdir -p dist

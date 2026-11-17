@@ -1,5 +1,5 @@
 {
   "actions/checkout@v4": "actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
   "rhysd/actionlint@v1.7.1": "rhysd/actionlint@62dc61a45fc95efe8c800af7a557ab0b9165d63b",
-  "aquasecurity/trivy-action@master": "aquasecurity/trivy-action@38b337fff0a2f984d5be173c99e3f633438167ec"
+  "aquasecurity/trivy-action@v0.36.0": "aquasecurity/trivy-action@ed142fd0673e97e23eac54620cfb913e5ce36c25"
 }

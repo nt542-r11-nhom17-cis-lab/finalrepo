@@ -108,3 +108,9 @@ Run 44066141741, code 4e1c966, nhánh audit/remediate-config-and-scans. Job sour
 ## Bổ sung phương pháp cho Organization, SAST và toolchain
 
 Audit tổ chức dùng GET-only, phân biệt null/thiếu/403 với false; không xuất PII hoặc webhook secrets. SAST Bandit dùng ngưỡng HIGH. pip-audit quét 32 package pinned/hashed của scanner toolchain. Hash wheel được đối chiếu PyPI; license/tuổi wheel vẫn cần review theo scope, không suy thành supplier compliance. Xem ORGANIZATION.vi.md và kết quả remote. Ảnh Organization Settings thật vẫn cần người có quyền.
+
+### Hình 2.8 — Workflow thành công trên Organization
+
+![Kết quả workflow Organization, hai job thành công và ba artifacts](images/organization-run.jpg)
+
+Ảnh thật từ run 44077094456, commit 4003107, nhánh audit/organization-controls. Security và review artifact đã được tải đọc: Bandit 0 HIGH, kiểm CVE đủ 32 package, 32 hash khớp. Ảnh summary chỉ chứng minh trạng thái job/artifact; giá trị kiểm tra lấy từ JSON trong evidence, không suy diễn từ màu xanh.

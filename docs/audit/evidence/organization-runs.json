@@ -1,0 +1,43 @@
+{
+  "checked_at": "2026-11-17T14:17:50.004901+00:00",
+  "repository": "nt542-r11-nhom17-cis-lab/finalrepo",
+  "branch": "audit/organization-controls",
+  "runs": [
+    {
+      "conclusion": "success",
+      "databaseId": 44077094456,
+      "headBranch": "audit/organization-controls",
+      "headSha": "4003107b0cda7e8b3c5f395f9911274336e98ec6",
+      "name": "CIS - Pipeline Input Output",
+      "status": "completed",
+      "url": "https://github.com/nt542-r11-nhom17-cis-lab/finalrepo/actions/runs/44077094456"
+    },
+    {
+      "conclusion": "success",
+      "databaseId": 44077100177,
+      "headBranch": "audit/organization-controls",
+      "headSha": "4003107b0cda7e8b3c5f395f9911274336e98ec6",
+      "name": "CIS - Pipeline Security Scan",
+      "status": "completed",
+      "url": "https://github.com/nt542-r11-nhom17-cis-lab/finalrepo/actions/runs/44077100177"
+    }
+  ],
+  "main_sha_unchanged": "e052945db5b4a2bace480b5ab98446a8b82da02e",
+  "unit_tests": 21,
+  "artifact_content_verified": true,
+  "summary": {
+    "bandit_high_findings": 0,
+    "audited_packages": 32,
+    "known_vulnerabilities": 0,
+    "coverage": {
+      "expected_packages": 32,
+      "audited_packages": 32,
+      "known_vulnerabilities": 0,
+      "coverage": "EXACT"
+    },
+    "wheel_hashes_matched": 32,
+    "license_manual_review": 20,
+    "org_unknown_fields": 7
+  },
+  "administrative_changes": "NONE"
+}

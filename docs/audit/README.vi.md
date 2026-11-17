@@ -1,3 +1,7 @@
+# Kết quả mới nhất đã được push và kiểm thử
+
+Nhánh `audit/organization-controls`: [bảng kết quả và bằng chứng](RESULTS.vi.md), [đánh giá Organization](ORGANIZATION.vi.md), [đối chiếu 120 mục](COVERAGE.vi.md). 21 tests và hai workflow đã thành công; còn các mục cần dữ liệu/quyền/hệ thống thật. Main không đổi.
+
 # Đợt bổ sung sau chuyển Organization
 
 Xem [ORGANIZATION.vi.md](ORGANIZATION.vi.md), [bảng 120 mục mới nhất](COVERAGE.vi.md). Các kết quả/địa chỉ phía dưới được giữ như lịch sử; không dùng số liệu cũ thay kết quả mới.

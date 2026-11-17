@@ -56,3 +56,11 @@ Registry/IdP/production/supplier thực tế vẫn chưa được cung cấp. Cr
 ## Khắc phục độ bao phủ dependency audit
 
 Lần chạy đầu c22d271 thành công nhưng report dependency chỉ liệt kê 30/32 package; pip và packaging không xuất hiện trong chế độ resolver đó. Đã kiểm tra lại bằng chế độ đọc trực tiếp lock fully-pinned/hashed (`--require-hashes --disable-pip --strict`), đủ 32/32 và 0 advisory. `--disable-pip` chỉ bỏ bước tạo môi trường resolver nội bộ, không tắt truy vấn lỗ hổng. Bước install trước đó vẫn dùng require-hashes; metadata wheel được đối chiếu PyPI độc lập. Thêm verify_dependency_coverage.py để bắt buộc tên và version trong báo cáo khớp toàn bộ lock, không có package skipped và không có advisory; báo cáo thiếu package sẽ fail. Thêm bốn regression tests (tổng 21). Kết quả remote sau sửa được ghi riêng.
+
+## Kết quả remote sau khi cài Connector cho Organization
+
+Đã push thành công và kiểm thử commit 4003107: hai workflow SUCCESS, 21 unit tests PASS, Bandit 0 HIGH, pip-audit đủ 32/32 package đúng version và 0 advisory, 32 wheel khớp hash PyPI. Đã tải/đọc artifact, không chỉ đọc metadata. Có regression guard bắt lỗi thiếu package trong báo cáo; không có flag ignore-vuln hoặc skip package để làm xanh.
+
+Ảnh thật nằm Hình 2.8 trong METHOD.vi.md; bảng chi tiết và file bằng chứng trong RESULTS.vi.md/evidence. Main vẫn giữ e052945db5b4a2bace480b5ab98446a8b82da02e.
+
+Connector hiện được cài cả Organization và đã có khả năng push vào nhánh repo. Điều này chưa cấp quyền Organization Administration/Members cho API; 7 trường chính sách vẫn UNKNOWN. Không yêu cầu người dùng gửi token hoặc mật khẩu để vượt giới hạn đó. Các ảnh Settings hiện trạng và danh tính thành viên vẫn cần người có quyền cung cấp.

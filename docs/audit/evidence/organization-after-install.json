@@ -1,0 +1,92 @@
+{
+  "repository": "nt542-r11-nhom17-cis-lab/finalrepo",
+  "organization": "nt542-r11-nhom17-cis-lab",
+  "owner_is_organization": true,
+  "checked_at": "2026-11-17T11:47:41.646389+00:00",
+  "mode": "GET-only",
+  "sources": {
+    "repository_http": 200,
+    "organization_http": 200,
+    "members_http": 200,
+    "self_membership_http": 403,
+    "webhooks_http": 403,
+    "visible_member_page_count": 0,
+    "member_inventory_scope": "API-visible first page only; not total members/admin count; membership and pagination require further evidence."
+  },
+  "results": [
+    {
+      "cis_id": "1.2.2",
+      "field": "members_can_create_repositories",
+      "observed": null,
+      "expected": false,
+      "configuration_result": "UNKNOWN",
+      "overall_status": "MANUAL_REVIEW",
+      "note": "Review exceptions and who may create repositories. Field unavailable or permission-filtered; never infer false."
+    },
+    {
+      "cis_id": "1.2.3",
+      "field": "members_can_delete_repositories",
+      "observed": null,
+      "expected": false,
+      "configuration_result": "UNKNOWN",
+      "overall_status": "MANUAL_REVIEW",
+      "note": "Review actual admin/deletion roles and audit trail. Field unavailable or permission-filtered; never infer false."
+    },
+    {
+      "cis_id": "1.2.4",
+      "field": "members_can_delete_issues",
+      "observed": null,
+      "expected": false,
+      "configuration_result": "UNKNOWN",
+      "overall_status": "MANUAL_REVIEW",
+      "note": "Review issue deletion permissions and exceptions. Field unavailable or permission-filtered; never infer false."
+    },
+    {
+      "cis_id": "1.2.6",
+      "field": "members_can_change_repo_visibility",
+      "observed": null,
+      "expected": false,
+      "configuration_result": "UNKNOWN",
+      "overall_status": "MANUAL_REVIEW",
+      "note": "Restriction is only partial evidence; visibility-change monitoring still required. Field unavailable or permission-filtered; never infer false."
+    },
+    {
+      "cis_id": "1.3.2",
+      "field": "members_can_create_teams",
+      "observed": null,
+      "expected": false,
+      "configuration_result": "UNKNOWN",
+      "overall_status": "MANUAL_REVIEW",
+      "note": "Review organization-owner exceptions. Field unavailable or permission-filtered; never infer false."
+    },
+    {
+      "cis_id": "1.3.5",
+      "field": "two_factor_requirement_enabled",
+      "observed": null,
+      "expected": true,
+      "configuration_result": "UNKNOWN",
+      "overall_status": "MANUAL_REVIEW",
+      "note": "Verify enforcement, membership scope and recovery process. Field unavailable or permission-filtered; never infer false."
+    },
+    {
+      "cis_id": "1.3.8",
+      "field": "default_repository_permission",
+      "observed": null,
+      "expected": "none",
+      "configuration_result": "UNKNOWN",
+      "overall_status": "MANUAL_REVIEW",
+      "note": "Verify effective per-team grants and exceptions. Field unavailable or permission-filtered; never infer false."
+    },
+    {
+      "cis_id": "1.3.9",
+      "field": "is_verified",
+      "observed": false,
+      "expected": true,
+      "configuration_result": "FAIL",
+      "overall_status": "MANUAL_REVIEW",
+      "note": "Confirm the verified domain/badge in organization settings. Component setting only; not a full-control compliance claim."
+    }
+  ],
+  "administrative_changes": "NONE",
+  "limitation": "Repository admin permission does not prove organization-settings visibility or permission."
+}

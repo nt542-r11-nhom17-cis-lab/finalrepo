@@ -1,0 +1,14 @@
+{
+  "bandit_high_findings": 0,
+  "audited_packages": 32,
+  "known_vulnerabilities": 0,
+  "coverage": {
+    "expected_packages": 32,
+    "audited_packages": 32,
+    "known_vulnerabilities": 0,
+    "coverage": "EXACT"
+  },
+  "wheel_hashes_matched": 32,
+  "license_manual_review": 20,
+  "org_unknown_fields": 7
+}

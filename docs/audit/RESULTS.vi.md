@@ -1,3 +1,27 @@
+# Kết quả xác minh mới nhất trên Organization
+
+Nhánh: `audit/organization-controls`. Code đã chạy: `4003107b0cda7e8b3c5f395f9911274336e98ec6`. Các commit tài liệu sau đó không thay đổi code đã kiểm tra.
+
+| Kiểm tra | Kết quả | Minh chứng |
+|---|---|---|
+| Workflow source/container, SAST/SCA, API/Organization, SBOM và lab | SUCCESS | [Run 44077094456](https://github.com/nt542-r11-nhom17-cis-lab/finalrepo/actions/runs/44077094456) |
+| Zizmor kiểm tra cấu hình workflow | SUCCESS | [Run 44077100177](https://github.com/nt542-r11-nhom17-cis-lab/finalrepo/actions/runs/44077100177) |
+| Unit tests | 21 PASS | Job source-security của workflow tổng hợp |
+| Bandit | 0 HIGH | evidence/bandit-org-run.json |
+| Package vulnerability audit | 32/32 đúng tên và phiên bản; 0 advisory | evidence/dependency-coverage-org-run.json và python-package-audit-org-run.json |
+| Hash wheel | 32/32 khớp PyPI | evidence/python-toolchain-org-run.json |
+| License | 20 mục cần review | Policy đề xuất chưa được Organization phê duyệt |
+| Organization settings | 7 trường UNKNOWN; is_verified=false | evidence/organization-after-install.json |
+| Main | SHA không đổi | e052945db5b4a2bace480b5ab98446a8b82da02e |
+
+Đã tải và đọc cả security artifact và review artifact. Không chỉ dựa vào biểu tượng xanh. Bộ kiểm tra coverage bắt buộc báo cáo đủ mọi package trong lock; không cho phép missing/skipped package hoặc sai phiên bản.
+
+Artifacts: `remediation-security-44077094456`, `cis-review-44077094456`, `pipeline-signed-output-44077094456`. Ảnh thật thuộc phần 2, METHOD.vi.md; phần 3 chỉ ghi chữ/bảng và tham chiếu ảnh.
+
+Kết quả này không chứng minh cả 120 tiêu chí đạt. Mức triển khai vẫn là 45 PARTIAL, 14 MANUAL_REVIEW, 10 LAB_ONLY, 51 NOT_TESTED. Các mục IdP/MFA, domain, thành viên, registry, supplier và production còn thiếu bằng chứng thật; lịch sử credential không bị rewrite. Không đổi Organization Settings, quyền thành viên, main hoặc hai repo nguồn.
+
+## Lịch sử các đợt kiểm tra trước
+
 # Đợt bổ sung sau chuyển Organization
 
 Xem [ORGANIZATION.vi.md](ORGANIZATION.vi.md), [bảng 120 mục mới nhất](COVERAGE.vi.md). Các kết quả/địa chỉ phía dưới được giữ như lịch sử; không dùng số liệu cũ thay kết quả mới.

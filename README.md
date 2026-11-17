@@ -1,3 +1,9 @@
+# Bản Organization đã kiểm thử
+
+Repo: **nt542-r11-nhom17-cis-lab/finalrepo**. Nhánh hiện tại: `audit/organization-controls`, chưa merge main.
+
+[Kết quả mới nhất và file bằng chứng](docs/audit/RESULTS.vi.md): hai workflow SUCCESS, 21 unit tests, Bandit 0 HIGH, đủ 32/32 package được audit và 0 advisory. 20 license và 7 trường Organization vẫn cần review/xác minh. Không tuyên bố đạt toàn benchmark.
+
 # Repo Organization hiện tại
 
 Repo chính xác: **nt542-r11-nhom17-cis-lab/finalrepo**. Bản bổ sung mới nhất: nhánh `audit/organization-controls`, chưa merge main.

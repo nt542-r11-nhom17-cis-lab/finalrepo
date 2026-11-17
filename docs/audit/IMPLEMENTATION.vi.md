@@ -58,3 +58,7 @@ CODEOWNERS mới chỉ đề xuất trên nhánh, dùng tài khoản admin hieun
 ## Triển khai sau chuyển Organization — audit/organization-controls
 
 Đã cập nhật remote/hook sang nt542-r11-nhom17-cis-lab/finalrepo; main giữ nguyên. Bổ sung audit_organization.py (8 trường, 6 test), audit_python_toolchain.py, requirements-security.lock và metadata 32 wheel. Bandit HIGH gate và pip-audit được gọi trong source-security job. Tổng 17 unit tests local PASS, SAST 0 HIGH, dependency audit không báo CVE; 20 license cần review. Kết quả remote ghi riêng sau chạy. Không áp dụng Settings/MFA/roles. Phần 2 chứa hình và bằng chứng; phần 3 chỉ chữ/bảng.
+
+## Kết quả triển khai trên Organization đã xác minh
+
+Đã push và chạy code 4003107 trên audit/organization-controls. Source-security và job tổng hợp đều thành công; Zizmor thành công. Có 21 unit tests, source/container checks, SAST/SCA và Audit Organization. Bổ sung bước kiểm tra exact lock coverage để bảo đảm đủ 32 package, đúng version, không skipped/advisory. File JSON thật đã được tải từ artifact và đưa vào evidence. Ảnh Hình 2.8 nằm phần 2. Không thay đổi main hoặc chính sách quản trị.

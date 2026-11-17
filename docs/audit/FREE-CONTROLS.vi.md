@@ -431,7 +431,7 @@ Không lấy fingerprint chỉ từ chính gói tải về để tuyên bố ngu
 
 **Re-audit:** Gửi delivery hợp lệ và payload sửa/chữ ký sai; endpoint phải từ chối trường hợp sai.
 
-**Điều kiện và bằng chứng còn thiếu:** Chưa có endpoint webhook thực; không tạo webhook gửi dữ liệu ra ngoài.
+**Điều kiện và bằng chứng còn thiếu:** Đã kiểm thử receiver HTTPS trên loopback; chưa có endpoint công khai được phê duyệt hoặc GitHub delivery.
 
 **Minh chứng cần lưu:** JSON/CSV hoặc ảnh cấu hình và kiểm thử của đúng đối tượng; ghi thời gian, username, ref, trước/sau; che email, token, endpoint nội bộ. Đối chiếu Audit gốc ở trang ghi trong catalog.json.
 
@@ -559,7 +559,7 @@ Không lấy fingerprint chỉ từ chính gói tải về để tuyên bố ngu
 
 **Re-audit:** Delivery sai chữ ký/replay bị từ chối; không lộ secret trong log.
 
-**Điều kiện và bằng chứng còn thiếu:** Không có endpoint build webhook được nhóm chỉ định.
+**Điều kiện và bằng chứng còn thiếu:** Đã kiểm thử receiver HTTPS trên loopback; chưa nối vào build trigger hoặc endpoint được nhóm phê duyệt.
 
 **Minh chứng cần lưu:** JSON/CSV hoặc ảnh cấu hình và kiểm thử của đúng đối tượng; ghi thời gian, username, ref, trước/sau; che email, token, endpoint nội bộ. Đối chiếu Audit gốc ở trang ghi trong catalog.json.
 

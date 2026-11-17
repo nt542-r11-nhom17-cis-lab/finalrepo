@@ -1,3 +1,7 @@
+# Cập nhật triển khai tích hợp HTTPS
+
+Trạng thái mới nhất nằm trong [INTEGRATION.vi.md](INTEGRATION.vi.md): registry source-build đã được khắc phục tám HIGH, 51 unit tests và 34 phép thử HTTPS thành công. Đợt triển khai trước bên dưới được giữ để mô tả topology/phân quyền nền; số liệu hiện hành dùng RESULTS.vi.md và COVERAGE.vi.md. Hình mới thuộc METHOD.vi.md phần 2; phần 3 chỉ chữ/bảng.
+
 # 3. Triển khai trên nhánh riêng
 
 ## 3.1 Mô hình và phân quyền

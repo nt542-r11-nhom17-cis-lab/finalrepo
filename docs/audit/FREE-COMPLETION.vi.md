@@ -1,3 +1,9 @@
+# Kết quả phạm vi 48 tiêu chí hướng Free
+
+Sau đợt HTTPS integration, trạng thái hiện hành của 48 mục là **24 PARTIAL, 9 MANUAL_REVIEW và 15 NOT_TESTED**, chưa có full-control PASS. Ba mục 1.2.7, 1.4.4, 2.1.10 có thêm triển khai thành phần; 5.1.4 chuyển sang cần xác minh thủ công. Xem [INTEGRATION.vi.md](INTEGRATION.vi.md), [bảng 120 mục](COVERAGE.vi.md) và [hướng dẫn từng mục](FREE-CONTROLS.vi.md).
+
+## Snapshot đợt bổ sung trước — số liệu dưới đây là lịch sử
+
 # Bổ sung 48 tiêu chí theo hướng miễn phí
 
 Nhánh `audit/free-controls-completion`, kế thừa `audit/organization-controls`; không merge vào `main`. Phạm vi là 48 mục NOT_TESTED của snapshot trước, loại ba mục Enterprise 1.3.10/1.3.11/1.3.12. Có hướng dẫn riêng Audit → Remediation → Re-audit cho **48/48 mục** trong [FREE-CONTROLS.vi.md](FREE-CONTROLS.vi.md), báo cáo được tổ chức riêng trong docs/audit.

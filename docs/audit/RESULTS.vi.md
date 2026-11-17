@@ -1,28 +1,23 @@
-# Kết quả đợt bổ sung 48 mục theo hướng miễn phí
+# Kết quả hiện hành — kiểm thử HTTPS và registry source-build
 
-Nhánh: `audit/free-controls-completion`. Code được kiểm tra: `f1df426fb33f05fbdf64f04d5068a6d6c97085bf`. Không merge vào main. Các kết quả Organization trước bên dưới là lịch sử, không thay thống kê hiện tại.
+Nhánh `audit/remaining-free-integration`; code kiểm tra `545c3a2ad044fa1292712b1c00bcb7244943fbbe`. Main vẫn `e052945db5b4a2bace480b5ab98446a8b82da02e`. Không đổi lịch sử, quyền hoặc Settings.
 
 | Kiểm tra | Kết quả | Bằng chứng |
 |---|---|---|
-| Free controls evidence | SUCCESS | [Run 44108703310](https://github.com/nt542-r11-nhom17-cis-lab/finalrepo/actions/runs/44108703310) |
-| Source/container + API/SBOM/lab | SUCCESS | [Run 44108703867](https://github.com/nt542-r11-nhom17-cis-lab/finalrepo/actions/runs/44108703867) |
-| Zizmor toàn bộ workflow | SUCCESS | [Run 44108703323](https://github.com/nt542-r11-nhom17-cis-lab/finalrepo/actions/runs/44108703323) |
-| Tests | 37 PASS | Log CI, gồm negative tests chữ ký/owner drift/phân trang/quyền/dependency |
-| Scanner toolchain | 32/32 package đúng phiên bản; zero advisory đã biết; 32 hash khớp | evidence/free-python-package-audit.json, free-dependency-coverage.json, free-python-toolchain.json |
-| License | 20 cần review | Không tự coi policy đề xuất là được nhóm duyệt |
-| Dependency relationships | 32 node, 145 cạnh khai báo, 32 active mặc định, zero lỗi | evidence/free-dependency-graph.json |
-| Bandit / Gitleaks HEAD / Trivy source-image | Zero HIGH / zero HEAD finding / zero HIGH-CRITICAL theo phạm vi | Artifact đã tải đọc; không suy lịch sử credential đã sạch |
-| Action ownership | Tám cặp repository/owner numeric ID không đổi | evidence/free-action-owners.json; chưa bao phủ PyPI maintainers |
-| Bundle | Ba payload xác minh được, sửa payload bị từ chối; fingerprint khớp log run | evidence/free-bundle-verification.json và ZIP xuất kết quả |
-| Runtime hardening | Non-root, CapEff=0, NoNewPrivs=1, ghi root filesystem bị từ chối | Log pipeline; chưa bảo vệ toàn bộ worker/host |
-| Main | SHA trước/sau không đổi | e052945db5b4a2bace480b5ab98446a8b82da02e |
+| Unit tests | 51 PASS | Log CI |
+| Webhook HTTPS | 11 PASS | HMAC, replay, event/body policy và TLS trust negative tests |
+| Registry HTTPS | 23 PASS | Auth, hai phiên bản, manifest/blob/signature download và tamper rejection |
+| Native registry binary scan | 104 package; tám HIGH trước → zero HIGH/CRITICAL sau | Rootfs scan và coverage guard; không dùng output rỗng |
+| Registry build | Pin source commit, Go 1.27.4, module locks và output SHA; mod verify thành công | config/registry-integration.lock.json, registry-source/go.mod/go.sum |
+| Source SAST/SCA | Zero Bandit HIGH; 32/32 Python packages, zero advisory đã biết | Security artifact đã tải đọc |
+| Current source secret scan | Zero finding | Không suy lịch sử main đã sạch |
+| Workflow scan | SUCCESS | Zizmor |
+| Settings và deployment | Không thay đổi | Registry/receiver chỉ ở loopback, dừng và xóa dữ liệu tạm sau test |
 
-Đã tải và đọc cả Free, security và review artifact. Bundle được kiểm tra lại bên ngoài CI bằng fingerprint lấy từ log của đúng run đã xác thực. File xuất kết quả: [free-controls-export.zip](evidence/free-controls-export.zip); JSON/CSV xem [free-controls-results.json](evidence/free-controls-results.json), [free-controls-results.csv](evidence/free-controls-results.csv). Tổng hợp có SHA ZIP: [free-completion-summary.json](evidence/free-completion-summary.json).
+Run integration [44130146471](https://github.com/nt542-r11-nhom17-cis-lab/finalrepo/actions/runs/44130146471), source/container [44130146389](https://github.com/nt542-r11-nhom17-cis-lab/finalrepo/actions/runs/44130146389), workflow scan [44130148225](https://github.com/nt542-r11-nhom17-cis-lab/finalrepo/actions/runs/44130148225) đều SUCCESS. Baseline [44127179185](https://github.com/nt542-r11-nhom17-cis-lab/finalrepo/actions/runs/44127179185) thất bại đúng ngưỡng với tám HIGH; giữ làm bằng chứng trước khắc phục.
 
-Trong 48 mục: 21 PARTIAL mới, tám MANUAL_REVIEW mới, 19 vẫn NOT_TESTED; có hướng dẫn riêng cho cả 48. Bộ readiness khác với mức triển khai: năm mục đủ nguồn thu thập khai báo, 43 còn thiếu nguồn; không gọi năm mục đó là PASS. Toàn bộ 120 mục: **66 PARTIAL, 22 MANUAL_REVIEW, 10 LAB_ONLY, 22 NOT_TESTED; zero full-control PASS**. Trong 22 NOT_TESTED gồm 19 mục hướng Free và ba mục Enterprise.
+Xem [JSON kết quả](evidence/remaining-integration-summary.json), [CSV 34 phép thử HTTPS](evidence/remaining-integration-checks.csv), [mô tả triển khai và giới hạn](INTEGRATION.vi.md). Gói ZIP đã ký của đợt trước được giữ nguyên, không thay bằng snapshot mới hoặc chỉnh chữ ký.
 
-Xem [FREE-COMPLETION.vi.md](FREE-COMPLETION.vi.md) để biết mục nào đã bổ sung, các điều kiện còn thiếu và nguyên nhân; [FREE-CONTROLS.vi.md](FREE-CONTROLS.vi.md) có thao tác Audit/Remediation/Re-audit theo từng mã. Mục PARTIAL vẫn còn giới hạn, không được báo hoàn tất. Không đổi Settings, role, secret, main hoặc hai repo nguồn. Không mua gói, tạo registry/production hay mời người. Mẫu ruleset chỉ là đề xuất cho nhánh thử, chưa áp dụng.
+Toàn bộ 120 tiêu chí: **72 PARTIAL, 23 MANUAL_REVIEW, 7 LAB_ONLY, 18 NOT_TESTED; zero full-control PASS**. Trong 48 mục hướng Free ban đầu: **24 PARTIAL, 9 MANUAL_REVIEW, 15 NOT_TESTED**. Mười tám NOT_TESTED toàn bảng gồm 15 mục hướng Free và ba mục tính năng Enterprise. Các mục PARTIAL cũng còn giới hạn/phạm vi cần hoàn thiện; kết quả thành phần không phải chứng nhận đạt CIS.
 
-## Phụ lục kết quả cũ
-
-Các đợt kiểm tra trước được giữ tại [RESULTS-HISTORY.vi.md](RESULTS-HISTORY.vi.md). Số liệu lịch sử không thay thế bảng kết quả hiện hành.
+Các số liệu cũ thuộc từng đợt đo được lưu ở [RESULTS-HISTORY.vi.md](RESULTS-HISTORY.vi.md).

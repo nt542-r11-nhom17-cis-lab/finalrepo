@@ -1,0 +1,462 @@
+{
+  "checked_at": "2026-11-17T16:54:29.756841+00:00",
+  "branch": "audit/remaining-free-integration",
+  "tested_code_sha": "545c3a2ad044fa1292712b1c00bcb7244943fbbe",
+  "main_sha": "e052945db5b4a2bace480b5ab98446a8b82da02e",
+  "main_or_org_settings_changed": false,
+  "runs": {
+    "integration": 44130146471,
+    "source_container": 44130146389,
+    "workflow_scan": 44130148225
+  },
+  "unit_tests": 51,
+  "webhook": {
+    "checked_at": "2026-11-17T16:49:42.130440+00:00",
+    "scope": "Real HTTPS loopback server and synthetic deliveries; no GitHub webhook installation or build trigger",
+    "checks": [
+      {
+        "check": "valid HMAC delivery accepted",
+        "http": 202,
+        "expected_http": 202,
+        "result": "PASS"
+      },
+      {
+        "check": "same delivery and body rejected",
+        "http": 409,
+        "expected_http": 409,
+        "result": "PASS"
+      },
+      {
+        "check": "same body with changed delivery header rejected",
+        "http": 409,
+        "expected_http": 409,
+        "result": "PASS"
+      },
+      {
+        "check": "wrong HMAC rejected",
+        "http": 401,
+        "expected_http": 401,
+        "result": "PASS"
+      },
+      {
+        "check": "modified body rejected",
+        "http": 401,
+        "expected_http": 401,
+        "result": "PASS"
+      },
+      {
+        "check": "disallowed event rejected",
+        "http": 403,
+        "expected_http": 403,
+        "result": "PASS"
+      },
+      {
+        "check": "invalid delivery ID rejected",
+        "http": 400,
+        "expected_http": 400,
+        "result": "PASS"
+      },
+      {
+        "check": "invalid JSON rejected after signature verification",
+        "http": 400,
+        "expected_http": 400,
+        "result": "PASS"
+      },
+      {
+        "check": "oversized body rejected",
+        "http": 413,
+        "expected_http": 413,
+        "result": "PASS"
+      },
+      {
+        "check": "wrong content type rejected",
+        "http": 415,
+        "expected_http": 415,
+        "result": "PASS"
+      },
+      {
+        "check": "untrusted TLS certificate rejected",
+        "result": "PASS"
+      }
+    ],
+    "credentials_exported": false,
+    "service_stopped": true,
+    "overall_cis": "PARTIAL",
+    "limits": [
+      "In-memory replay cache expires after 600 seconds and is lost on restart",
+      "Body deduplication may reject legitimate identical deliveries; deployment policy must account for this",
+      "No actual GitHub delivery, external endpoint, app permission or production rollout verified"
+    ]
+  },
+  "registry": {
+    "checked_at": "2026-11-17T16:51:19.519508+00:00",
+    "scope": "Real temporary Distribution registry on HTTPS loopback with one bcrypt publisher; no production or GitHub settings changes",
+    "checks": [
+      {
+        "check": "anonymous registry access denied",
+        "expected": 401,
+        "observed": 401,
+        "result": "PASS"
+      },
+      {
+        "check": "wrong credentials denied",
+        "expected": 401,
+        "observed": 401,
+        "result": "PASS"
+      },
+      {
+        "check": "authenticated registry access accepted",
+        "expected": 200,
+        "observed": 200,
+        "result": "PASS"
+      },
+      {
+        "check": "anonymous upload denied",
+        "expected": 401,
+        "observed": 401,
+        "result": "PASS"
+      },
+      {
+        "check": "untrusted TLS certificate denied",
+        "expected": true,
+        "observed": true,
+        "result": "PASS"
+      },
+      {
+        "check": "pipeline verifies signature before upload 0.1.0",
+        "expected": true,
+        "observed": true,
+        "result": "PASS"
+      },
+      {
+        "check": "OCI manifest upload accepted 0.1.0",
+        "expected": 201,
+        "observed": 201,
+        "result": "PASS"
+      },
+      {
+        "check": "downloaded manifest digest matches 0.1.0",
+        "expected": [
+          200,
+          "sha256:38d098338358d25babc89635f149fdfd6a1fff8b26d37c8e957754d10a60d545"
+        ],
+        "observed": [
+          200,
+          "sha256:38d098338358d25babc89635f149fdfd6a1fff8b26d37c8e957754d10a60d545"
+        ],
+        "result": "PASS"
+      },
+      {
+        "check": "downloaded blob digest matches 0.1.0",
+        "expected": [
+          200,
+          "sha256:d22ec5a4b40dc83bed3e4b8cedf21ae13ab61c2dcbf5bb70c74115a297f36fda"
+        ],
+        "observed": [
+          200,
+          "sha256:d22ec5a4b40dc83bed3e4b8cedf21ae13ab61c2dcbf5bb70c74115a297f36fda"
+        ],
+        "result": "PASS"
+      },
+      {
+        "check": "downloaded signature digest matches 0.1.0",
+        "expected": [
+          200,
+          "sha256:d8f3716038b8ed8252d0589f913f2116621f6edf101df6351d049e22c7ef20ed"
+        ],
+        "observed": [
+          200,
+          "sha256:d8f3716038b8ed8252d0589f913f2116621f6edf101df6351d049e22c7ef20ed"
+        ],
+        "result": "PASS"
+      },
+      {
+        "check": "downloaded signature verifies 0.1.0",
+        "expected": true,
+        "observed": true,
+        "result": "PASS"
+      },
+      {
+        "check": "modified downloaded artifact rejected 0.1.0",
+        "expected": false,
+        "observed": false,
+        "result": "PASS"
+      },
+      {
+        "check": "modified downloaded signature rejected 0.1.0",
+        "expected": false,
+        "observed": false,
+        "result": "PASS"
+      },
+      {
+        "check": "pipeline verifies signature before upload 0.1.1",
+        "expected": true,
+        "observed": true,
+        "result": "PASS"
+      },
+      {
+        "check": "OCI manifest upload accepted 0.1.1",
+        "expected": 201,
+        "observed": 201,
+        "result": "PASS"
+      },
+      {
+        "check": "downloaded manifest digest matches 0.1.1",
+        "expected": [
+          200,
+          "sha256:f40ff58a816e2b8f1c8c6608aaef189ddc88c0b335cecec7cef05211813bd5a9"
+        ],
+        "observed": [
+          200,
+          "sha256:f40ff58a816e2b8f1c8c6608aaef189ddc88c0b335cecec7cef05211813bd5a9"
+        ],
+        "result": "PASS"
+      },
+      {
+        "check": "downloaded blob digest matches 0.1.1",
+        "expected": [
+          200,
+          "sha256:b7c870646585d3ef8f82d52d65ce170decffc4acb32cd68666534d53ababc5db"
+        ],
+        "observed": [
+          200,
+          "sha256:b7c870646585d3ef8f82d52d65ce170decffc4acb32cd68666534d53ababc5db"
+        ],
+        "result": "PASS"
+      },
+      {
+        "check": "downloaded signature digest matches 0.1.1",
+        "expected": [
+          200,
+          "sha256:10595910d12feda11f001c817ac85ef48ca853af950fb52138561ffc0a719046"
+        ],
+        "observed": [
+          200,
+          "sha256:10595910d12feda11f001c817ac85ef48ca853af950fb52138561ffc0a719046"
+        ],
+        "result": "PASS"
+      },
+      {
+        "check": "downloaded signature verifies 0.1.1",
+        "expected": true,
+        "observed": true,
+        "result": "PASS"
+      },
+      {
+        "check": "modified downloaded artifact rejected 0.1.1",
+        "expected": false,
+        "observed": false,
+        "result": "PASS"
+      },
+      {
+        "check": "modified downloaded signature rejected 0.1.1",
+        "expected": false,
+        "observed": false,
+        "result": "PASS"
+      },
+      {
+        "check": "anonymous known-artifact download denied",
+        "expected": 401,
+        "observed": 401,
+        "result": "PASS"
+      },
+      {
+        "check": "all published test versions inventoried",
+        "expected": [
+          "0.1.0",
+          "0.1.1"
+        ],
+        "observed": [
+          "0.1.0",
+          "0.1.1"
+        ],
+        "result": "PASS"
+      }
+    ],
+    "published_versions": [
+      {
+        "version": "0.1.0",
+        "artifact_digest": "sha256:d22ec5a4b40dc83bed3e4b8cedf21ae13ab61c2dcbf5bb70c74115a297f36fda",
+        "manifest_digest": "sha256:38d098338358d25babc89635f149fdfd6a1fff8b26d37c8e957754d10a60d545"
+      },
+      {
+        "version": "0.1.1",
+        "artifact_digest": "sha256:b7c870646585d3ef8f82d52d65ce170decffc4acb32cd68666534d53ababc5db",
+        "manifest_digest": "sha256:f40ff58a816e2b8f1c8c6608aaef189ddc88c0b335cecec7cef05211813bd5a9"
+      }
+    ],
+    "service_stopped": true,
+    "credentials_exported": false,
+    "overall_cis": "PARTIAL",
+    "limits": [
+      "Basic-auth test account has no MFA or external IdP",
+      "Signature verification is in this pipeline client; registry-side signature admission is not configured",
+      "Registry permissions are not per-user read/write RBAC; no organization-wide access inventory",
+      "Two test versions and ephemeral signing key do not establish production release trust"
+    ],
+    "registry_version": "3.1.2+cis.1",
+    "binary_sha256": "06c66b1b908b420ea2ef95d97f289ab920ee3b1497bf9d52ac59a0d8c8d72585",
+    "archive_sha256": "40df2224d410f72ae425c3371873b078bbdbda3b8b612be9571f0e6751f3acc8",
+    "build": {
+      "source_commit": "3220848f15d9279c66a41aa0a257469e6aede1e9",
+      "go_version": "go1.27.4",
+      "module_locks": {
+        "go.mod": "41f5b38de08cec8d538d81617b6f497c77f369a78e82346687f651ddffd62dba",
+        "go.sum": "e3c5643c55cecc02ac54805a7b72575e8f81de5ec9321736fd6481a729373f52"
+      },
+      "patched_dependencies": {
+        "github.com/go-jose/go-jose/v4": "v4.1.6",
+        "github.com/klauspost/compress": "v1.18.7",
+        "golang.org/x/net": "v0.62.0"
+      }
+    }
+  },
+  "registry_scan": {
+    "upstream_before": {
+      "version": "3.1.2",
+      "packages": 104,
+      "high_critical": 8,
+      "findings": [
+        {
+          "VulnerabilityID": "CVE-2026-116587",
+          "PkgName": "github.com/go-jose/go-jose/v4",
+          "InstalledVersion": "v4.1.4",
+          "FixedVersion": "4.1.6",
+          "Severity": "HIGH"
+        },
+        {
+          "VulnerabilityID": "CVE-2026-63209",
+          "PkgName": "github.com/klauspost/compress",
+          "InstalledVersion": "v1.18.4",
+          "FixedVersion": "1.18.7",
+          "Severity": "HIGH"
+        },
+        {
+          "VulnerabilityID": "CVE-2026-78661",
+          "PkgName": "golang.org/x/net",
+          "InstalledVersion": "v0.59.0",
+          "FixedVersion": "0.62.0",
+          "Severity": "HIGH"
+        },
+        {
+          "VulnerabilityID": "CVE-2026-78669",
+          "PkgName": "golang.org/x/net",
+          "InstalledVersion": "v0.59.0",
+          "FixedVersion": "0.60.0",
+          "Severity": "HIGH"
+        },
+        {
+          "VulnerabilityID": "CVE-2026-111943",
+          "PkgName": "stdlib",
+          "InstalledVersion": "v1.26.8",
+          "FixedVersion": "1.26.10, 1.27.3",
+          "Severity": "HIGH"
+        },
+        {
+          "VulnerabilityID": "CVE-2026-78667",
+          "PkgName": "stdlib",
+          "InstalledVersion": "v1.26.8",
+          "FixedVersion": "1.26.9, 1.27.2",
+          "Severity": "HIGH"
+        },
+        {
+          "VulnerabilityID": "CVE-2026-78669",
+          "PkgName": "stdlib",
+          "InstalledVersion": "v1.26.8",
+          "FixedVersion": "1.26.9, 1.27.2",
+          "Severity": "HIGH"
+        },
+        {
+          "VulnerabilityID": "CVE-2026-97031",
+          "PkgName": "stdlib",
+          "InstalledVersion": "v1.26.8",
+          "FixedVersion": "1.26.9, 1.27.2",
+          "Severity": "HIGH"
+        }
+      ],
+      "run": 44127179185
+    },
+    "patched_after": {
+      "matched_binary_records": 1,
+      "inventoried_packages": 104,
+      "high_critical": 0,
+      "gate_passed": true,
+      "scope": "Pinned Distribution Go binary only; not complete host or production coverage"
+    }
+  },
+  "organization_inventory": {
+    "checked_at": "2026-11-17T16:51:28.864375+00:00",
+    "repository": "nt542-r11-nhom17-cis-lab/finalrepo",
+    "mode": "GET-only; mutations=0",
+    "repositories": {
+      "scope": {
+        "http": 200,
+        "pagination_complete": true
+      },
+      "items": [
+        {
+          "id": 1461201903,
+          "name": "finalrepo",
+          "archived": false,
+          "private": false,
+          "last_push_age_days": 0.0,
+          "decision": "OWNER_REVIEW_REQUIRED; age alone does not justify archiving"
+        }
+      ]
+    },
+    "repo_access": {
+      "visible_accounts": 2,
+      "visible_roles": {
+        "write": 1,
+        "admin": 1
+      },
+      "pagination": {
+        "http": 200,
+        "pagination_complete": true
+      },
+      "full_effective_access_verified": false,
+      "mfa": "UNKNOWN",
+      "inactive_user_decision": "OWNER_REVIEW_REQUIRED",
+      "note": "API visibility depends on caller; role counts do not prove full member/admin inventory or MFA."
+    },
+    "administrative": {
+      "organization_owners": {
+        "http": 200,
+        "overall_cis": "MANUAL_REVIEW",
+        "note": "Use owner Settings for effective policy review; API-visible data alone is insufficient."
+      },
+      "applications": {
+        "http": 403,
+        "overall_cis": "MANUAL_REVIEW",
+        "note": "Use owner Settings for effective policy review; API-visible data alone is insufficient."
+      },
+      "invitations": {
+        "http": 403,
+        "overall_cis": "MANUAL_REVIEW",
+        "note": "Use owner Settings for effective policy review; API-visible data alone is insufficient."
+      },
+      "organization_webhooks": {
+        "http": 403,
+        "overall_cis": "MANUAL_REVIEW",
+        "note": "Use owner Settings for effective policy review; API-visible data alone is insufficient."
+      }
+    },
+    "overall_cis": "MANUAL_REVIEW",
+    "limits": [
+      "No inactive users removed, repositories archived, members invited or permissions changed",
+      "No member email, MFA recovery data, hook URLs or credential values exported"
+    ]
+  },
+  "source_security": {
+    "python_packages": 32,
+    "known_advisories": 0,
+    "bandit_high": 0,
+    "gitleaks_current_source_findings": 0
+  },
+  "full_control_pass": 0,
+  "limits": [
+    "Loopback integration environment only; no production, member grants, main rules or GitHub webhook installation",
+    "Basic-auth registry has no MFA/external IdP; client signature verification is not registry-side admission",
+    "No complete supplier SBOM, package age or organization policy compliance claim"
+  ]
+}

@@ -1,0 +1,35 @@
+component,check,result,observed,expected
+webhook,valid HMAC delivery accepted,PASS,202,202
+webhook,same delivery and body rejected,PASS,409,409
+webhook,same body with changed delivery header rejected,PASS,409,409
+webhook,wrong HMAC rejected,PASS,401,401
+webhook,modified body rejected,PASS,401,401
+webhook,disallowed event rejected,PASS,403,403
+webhook,invalid delivery ID rejected,PASS,400,400
+webhook,invalid JSON rejected after signature verification,PASS,400,400
+webhook,oversized body rejected,PASS,413,413
+webhook,wrong content type rejected,PASS,415,415
+webhook,untrusted TLS certificate rejected,PASS,null,null
+registry,anonymous registry access denied,PASS,401,401
+registry,wrong credentials denied,PASS,401,401
+registry,authenticated registry access accepted,PASS,200,200
+registry,anonymous upload denied,PASS,401,401
+registry,untrusted TLS certificate denied,PASS,true,true
+registry,pipeline verifies signature before upload 0.1.0,PASS,true,true
+registry,OCI manifest upload accepted 0.1.0,PASS,201,201
+registry,downloaded manifest digest matches 0.1.0,PASS,"[200, ""sha256:38d098338358d25babc89635f149fdfd6a1fff8b26d37c8e957754d10a60d545""]","[200, ""sha256:38d098338358d25babc89635f149fdfd6a1fff8b26d37c8e957754d10a60d545""]"
+registry,downloaded blob digest matches 0.1.0,PASS,"[200, ""sha256:d22ec5a4b40dc83bed3e4b8cedf21ae13ab61c2dcbf5bb70c74115a297f36fda""]","[200, ""sha256:d22ec5a4b40dc83bed3e4b8cedf21ae13ab61c2dcbf5bb70c74115a297f36fda""]"
+registry,downloaded signature digest matches 0.1.0,PASS,"[200, ""sha256:d8f3716038b8ed8252d0589f913f2116621f6edf101df6351d049e22c7ef20ed""]","[200, ""sha256:d8f3716038b8ed8252d0589f913f2116621f6edf101df6351d049e22c7ef20ed""]"
+registry,downloaded signature verifies 0.1.0,PASS,true,true
+registry,modified downloaded artifact rejected 0.1.0,PASS,false,false
+registry,modified downloaded signature rejected 0.1.0,PASS,false,false
+registry,pipeline verifies signature before upload 0.1.1,PASS,true,true
+registry,OCI manifest upload accepted 0.1.1,PASS,201,201
+registry,downloaded manifest digest matches 0.1.1,PASS,"[200, ""sha256:f40ff58a816e2b8f1c8c6608aaef189ddc88c0b335cecec7cef05211813bd5a9""]","[200, ""sha256:f40ff58a816e2b8f1c8c6608aaef189ddc88c0b335cecec7cef05211813bd5a9""]"
+registry,downloaded blob digest matches 0.1.1,PASS,"[200, ""sha256:b7c870646585d3ef8f82d52d65ce170decffc4acb32cd68666534d53ababc5db""]","[200, ""sha256:b7c870646585d3ef8f82d52d65ce170decffc4acb32cd68666534d53ababc5db""]"
+registry,downloaded signature digest matches 0.1.1,PASS,"[200, ""sha256:10595910d12feda11f001c817ac85ef48ca853af950fb52138561ffc0a719046""]","[200, ""sha256:10595910d12feda11f001c817ac85ef48ca853af950fb52138561ffc0a719046""]"
+registry,downloaded signature verifies 0.1.1,PASS,true,true
+registry,modified downloaded artifact rejected 0.1.1,PASS,false,false
+registry,modified downloaded signature rejected 0.1.1,PASS,false,false
+registry,anonymous known-artifact download denied,PASS,401,401
+registry,all published test versions inventoried,PASS,"[""0.1.0"", ""0.1.1""]","[""0.1.0"", ""0.1.1""]"

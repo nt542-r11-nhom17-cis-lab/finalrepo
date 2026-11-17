@@ -134,3 +134,14 @@ flowchart LR
 ```
 
 Đây là sơ đồ giải thích kết quả, không phải ảnh chụp Settings. Run thực tế: 44108703310, 44108703867, 44108703323 trên code f1df426. Đã tải artifact và đối chiếu signed bundle theo fingerprint log. Ảnh run/Settings mới chưa được bổ sung; các hình chụp phía trên vẫn thuộc đúng các run cũ ghi trong chú thích. Khi owner làm thủ công, chụp cấu hình trước/sau và phép thử bị từ chối, che dữ liệu nhạy cảm, đặt ảnh ở phần 2; phần 3 chỉ tham chiếu.
+
+
+## Kiểm thử HTTPS và bản build registry đã khắc phục
+
+Quy trình: kiểm kê và xác minh input → chạy dịch vụ loopback → thử yêu cầu hợp lệ/bị từ chối → quét binary với coverage guard → khắc phục dependency/runtime → build lại và re-audit. Webhook có 11 phép thử; registry có 23 phép thử, đều qua HTTPS thực. TLS/signing keys và password chỉ ở thư mục tạm, report không chứa giá trị bí mật. Các phép thử không thay cấu hình GitHub hoặc triển khai production.
+
+### Hình 2.10 — Kết quả quét registry trước/sau khắc phục
+
+![Biểu đồ từ JSON Trivy: 104 package, tám HIGH trước và zero HIGH/CRITICAL sau](images/registry-remediation.svg)
+
+Đây là biểu đồ từ dữ liệu scanner, không phải ảnh chụp Settings. Baseline run 44127179185 có tám HIGH; run 44130146471 của code 545c3a2 xác nhận 104 package và zero HIGH/CRITICAL sau build bằng Go 1.27.4 và dependency locks đã cập nhật. Không dùng report rỗng của lần quét filesystem đầu tiên để kết luận sạch. Xem INTEGRATION.vi.md, JSON/CSV tổng hợp và artifact gốc. Ảnh GitHub Settings/delivery thực vẫn cần owner bổ sung vào phần 2 khi thực hiện thao tác thủ công.

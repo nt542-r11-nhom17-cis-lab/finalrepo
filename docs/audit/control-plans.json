@@ -1,0 +1,1967 @@
+[
+  {
+    "id": "1.1.1",
+    "title": "Ensure any changes to code are tracked in a version control platform",
+    "assessment": "Manual",
+    "page": 19,
+    "audit": "Đối chiếu nguồn đang chạy với lịch sử Git và commit của mọi thay đổi",
+    "remediation": "Đưa nguồn chưa quản lý vào VCS; bắt buộc thay đổi qua quy trình review",
+    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "evidence_sources": [
+      "repository_files",
+      "branches",
+      "pull_requests"
+    ],
+    "owner_role": "TV1 (vai trò đề xuất; cần username thật)",
+    "change_boundary": "Nhánh mới hoặc sandbox; cấu hình tổ chức/registry/production chỉ đề xuất, không áp dụng.",
+    "evidence_requirement": "Bằng chứng thật trên đúng phạm vi; ảnh phần 2, mô tả/bảng phần 3. Không dùng sơ đồ hoặc kết quả mô phỏng thay screenshot thực nghiệm."
+  },
+  {
+    "id": "1.1.2",
+    "title": "Ensure any change to code can be traced back to its associated task",
+    "assessment": "Manual",
+    "page": 20,
+    "audit": "Lấy mẫu commit/PR và truy về issue hoặc task được giao",
+    "remediation": "Yêu cầu mã task và liên kết issue trong mẫu PR, kiểm tra thủ công tính đúng của liên kết",
+    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "evidence_sources": [
+      "repository_files",
+      "branches",
+      "pull_requests"
+    ],
+    "owner_role": "TV1 (vai trò đề xuất; cần username thật)",
+    "change_boundary": "Nhánh mới hoặc sandbox; cấu hình tổ chức/registry/production chỉ đề xuất, không áp dụng.",
+    "evidence_requirement": "Bằng chứng thật trên đúng phạm vi; ảnh phần 2, mô tả/bảng phần 3. Không dùng sơ đồ hoặc kết quả mô phỏng thay screenshot thực nghiệm."
+  },
+  {
+    "id": "1.1.3",
+    "title": "Ensure any change to code receives approval of two strongly authenticated users",
+    "assessment": "Automated",
+    "page": 22,
+    "audit": "Đọc required approvals và kiểm thử PR thiếu hai reviewer độc lập; xác minh strong authentication",
+    "remediation": "Yêu cầu hai phê duyệt theo Audit và chính sách xác thực mạnh; xem xét bypass",
+    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "evidence_sources": [
+      "repository",
+      "branches",
+      "pull_requests",
+      "required_check_enforcement"
+    ],
+    "owner_role": "TV1 (vai trò đề xuất; cần username thật)",
+    "change_boundary": "Nhánh mới hoặc sandbox; cấu hình tổ chức/registry/production chỉ đề xuất, không áp dụng.",
+    "evidence_requirement": "Bằng chứng thật trên đúng phạm vi; ảnh phần 2, mô tả/bảng phần 3. Không dùng sơ đồ hoặc kết quả mô phỏng thay screenshot thực nghiệm."
+  },
+  {
+    "id": "1.1.4",
+    "title": "Ensure previous approvals are dismissed when updates are introduced to a code change proposal",
+    "assessment": "Manual",
+    "page": 24,
+    "audit": "Đọc dismiss-stale; đẩy commit thay đổi vào PR đã được duyệt",
+    "remediation": "Bật hủy phê duyệt cũ và kiểm tra yêu cầu review lại",
+    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "evidence_sources": [
+      "repository",
+      "branches",
+      "pull_requests",
+      "required_check_enforcement"
+    ],
+    "owner_role": "TV1 (vai trò đề xuất; cần username thật)",
+    "change_boundary": "Nhánh mới hoặc sandbox; cấu hình tổ chức/registry/production chỉ đề xuất, không áp dụng.",
+    "evidence_requirement": "Bằng chứng thật trên đúng phạm vi; ảnh phần 2, mô tả/bảng phần 3. Không dùng sơ đồ hoặc kết quả mô phỏng thay screenshot thực nghiệm."
+  },
+  {
+    "id": "1.1.5",
+    "title": "Ensure there are restrictions on who can dismiss code change reviews",
+    "assessment": "Manual",
+    "page": 26,
+    "audit": "Kiểm tra danh sách người/nhóm được dismiss review và bypass",
+    "remediation": "Giới hạn dismiss cho tài khoản tin cậy đã được phê duyệt",
+    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "evidence_sources": [
+      "repository",
+      "branches",
+      "pull_requests",
+      "required_check_enforcement"
+    ],
+    "owner_role": "TV1 (vai trò đề xuất; cần username thật)",
+    "change_boundary": "Nhánh mới hoặc sandbox; cấu hình tổ chức/registry/production chỉ đề xuất, không áp dụng.",
+    "evidence_requirement": "Bằng chứng thật trên đúng phạm vi; ảnh phần 2, mô tả/bảng phần 3. Không dùng sơ đồ hoặc kết quả mô phỏng thay screenshot thực nghiệm."
+  },
+  {
+    "id": "1.1.6",
+    "title": "Ensure code owners are set for extra sensitive code or configuration",
+    "assessment": "Manual",
+    "page": 28,
+    "audit": "Tìm CODEOWNERS, so đường dẫn nhạy cảm và quyền owner",
+    "remediation": "Khai báo owner có quyền phù hợp cho mã/cấu hình nhạy cảm",
+    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "evidence_sources": [
+      "repository",
+      "branches",
+      "pull_requests",
+      "required_check_enforcement"
+    ],
+    "owner_role": "TV1 (vai trò đề xuất; cần username thật)",
+    "change_boundary": "Nhánh mới hoặc sandbox; cấu hình tổ chức/registry/production chỉ đề xuất, không áp dụng.",
+    "evidence_requirement": "Bằng chứng thật trên đúng phạm vi; ảnh phần 2, mô tả/bảng phần 3. Không dùng sơ đồ hoặc kết quả mô phỏng thay screenshot thực nghiệm."
+  },
+  {
+    "id": "1.1.7",
+    "title": "Ensure code owner's review is required when a change affects owned code",
+    "assessment": "Manual",
+    "page": 30,
+    "audit": "Đọc required code-owner review và thử PR sửa file có owner",
+    "remediation": "Bắt buộc code-owner review trên quy tắc có hiệu lực",
+    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "evidence_sources": [
+      "repository",
+      "branches",
+      "pull_requests",
+      "required_check_enforcement"
+    ],
+    "owner_role": "TV1 (vai trò đề xuất; cần username thật)",
+    "change_boundary": "Nhánh mới hoặc sandbox; cấu hình tổ chức/registry/production chỉ đề xuất, không áp dụng.",
+    "evidence_requirement": "Bằng chứng thật trên đúng phạm vi; ảnh phần 2, mô tả/bảng phần 3. Không dùng sơ đồ hoặc kết quả mô phỏng thay screenshot thực nghiệm."
+  },
+  {
+    "id": "1.1.8",
+    "title": "Ensure inactive branches are periodically reviewed and removed",
+    "assessment": "Manual",
+    "page": 32,
+    "audit": "Liệt kê nhánh, ngày commit cuối, chủ sở hữu và biên bản rà soát",
+    "remediation": "Đặt lịch rà soát; chỉ xóa nhánh sau khi xác nhận không còn sử dụng",
+    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "evidence_sources": [
+      "repository_files",
+      "branches",
+      "pull_requests"
+    ],
+    "owner_role": "TV1 (vai trò đề xuất; cần username thật)",
+    "change_boundary": "Nhánh mới hoặc sandbox; cấu hình tổ chức/registry/production chỉ đề xuất, không áp dụng.",
+    "evidence_requirement": "Bằng chứng thật trên đúng phạm vi; ảnh phần 2, mô tả/bảng phần 3. Không dùng sơ đồ hoặc kết quả mô phỏng thay screenshot thực nghiệm."
+  },
+  {
+    "id": "1.1.9",
+    "title": "Ensure all checks have passed before merging new code",
+    "assessment": "Manual",
+    "page": 34,
+    "audit": "Đọc required checks; thử PR có check thất bại",
+    "remediation": "Bắt buộc checks phù hợp và kiểm soát bypass trước merge",
+    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "evidence_sources": [
+      "repository",
+      "branches",
+      "pull_requests",
+      "required_check_enforcement"
+    ],
+    "owner_role": "TV1 (vai trò đề xuất; cần username thật)",
+    "change_boundary": "Nhánh mới hoặc sandbox; cấu hình tổ chức/registry/production chỉ đề xuất, không áp dụng.",
+    "evidence_requirement": "Bằng chứng thật trên đúng phạm vi; ảnh phần 2, mô tả/bảng phần 3. Không dùng sơ đồ hoặc kết quả mô phỏng thay screenshot thực nghiệm."
+  },
+  {
+    "id": "1.1.10",
+    "title": "Ensure open Git branches are up to date before they can be merged into code base",
+    "assessment": "Manual",
+    "page": 36,
+    "audit": "Kiểm tra strict/up-to-date requirement và PR tụt sau base",
+    "remediation": "Bật yêu cầu nhánh cập nhật trước merge hoặc cơ chế tương đương",
+    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "evidence_sources": [
+      "repository",
+      "branches",
+      "pull_requests",
+      "required_check_enforcement"
+    ],
+    "owner_role": "TV1 (vai trò đề xuất; cần username thật)",
+    "change_boundary": "Nhánh mới hoặc sandbox; cấu hình tổ chức/registry/production chỉ đề xuất, không áp dụng.",
+    "evidence_requirement": "Bằng chứng thật trên đúng phạm vi; ảnh phần 2, mô tả/bảng phần 3. Không dùng sơ đồ hoặc kết quả mô phỏng thay screenshot thực nghiệm."
+  },
+  {
+    "id": "1.1.11",
+    "title": "Ensure all open comments are resolved before allowing code change merging",
+    "assessment": "Manual",
+    "page": 38,
+    "audit": "Kiểm tra conversation resolution và PR còn comment chưa giải quyết",
+    "remediation": "Bắt buộc giải quyết hội thoại trước merge",
+    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "evidence_sources": [
+      "repository",
+      "branches",
+      "pull_requests",
+      "required_check_enforcement"
+    ],
+    "owner_role": "TV1 (vai trò đề xuất; cần username thật)",
+    "change_boundary": "Nhánh mới hoặc sandbox; cấu hình tổ chức/registry/production chỉ đề xuất, không áp dụng.",
+    "evidence_requirement": "Bằng chứng thật trên đúng phạm vi; ảnh phần 2, mô tả/bảng phần 3. Không dùng sơ đồ hoặc kết quả mô phỏng thay screenshot thực nghiệm."
+  },
+  {
+    "id": "1.1.12",
+    "title": "Ensure verification of signed commits for new changes before merging",
+    "assessment": "Manual",
+    "page": 40,
+    "audit": "Kiểm tra required signatures và commit verification",
+    "remediation": "Bắt buộc commit ký được nền tảng xác minh; quản lý khóa người ký",
+    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "evidence_sources": [
+      "repository",
+      "branches",
+      "pull_requests",
+      "required_check_enforcement"
+    ],
+    "owner_role": "TV1 (vai trò đề xuất; cần username thật)",
+    "change_boundary": "Nhánh mới hoặc sandbox; cấu hình tổ chức/registry/production chỉ đề xuất, không áp dụng.",
+    "evidence_requirement": "Bằng chứng thật trên đúng phạm vi; ảnh phần 2, mô tả/bảng phần 3. Không dùng sơ đồ hoặc kết quả mô phỏng thay screenshot thực nghiệm."
+  },
+  {
+    "id": "1.1.13",
+    "title": "Ensure linear history is required",
+    "assessment": "Manual",
+    "page": 42,
+    "audit": "Đọc linear-history rule và lịch sử merge",
+    "remediation": "Bật linear history và chọn cách merge phù hợp",
+    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "evidence_sources": [
+      "repository",
+      "branches",
+      "pull_requests",
+      "required_check_enforcement"
+    ],
+    "owner_role": "TV1 (vai trò đề xuất; cần username thật)",
+    "change_boundary": "Nhánh mới hoặc sandbox; cấu hình tổ chức/registry/production chỉ đề xuất, không áp dụng.",
+    "evidence_requirement": "Bằng chứng thật trên đúng phạm vi; ảnh phần 2, mô tả/bảng phần 3. Không dùng sơ đồ hoặc kết quả mô phỏng thay screenshot thực nghiệm."
+  },
+  {
+    "id": "1.1.14",
+    "title": "Ensure branch protection rules are enforced for administrators",
+    "assessment": "Manual",
+    "page": 44,
+    "audit": "Xem enforce-admins và các bypass actor",
+    "remediation": "Áp dụng bảo vệ cho admin; giảm ngoại lệ theo chính sách",
+    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "evidence_sources": [
+      "repository",
+      "branches",
+      "pull_requests",
+      "required_check_enforcement"
+    ],
+    "owner_role": "TV1 (vai trò đề xuất; cần username thật)",
+    "change_boundary": "Nhánh mới hoặc sandbox; cấu hình tổ chức/registry/production chỉ đề xuất, không áp dụng.",
+    "evidence_requirement": "Bằng chứng thật trên đúng phạm vi; ảnh phần 2, mô tả/bảng phần 3. Không dùng sơ đồ hoặc kết quả mô phỏng thay screenshot thực nghiệm."
+  },
+  {
+    "id": "1.1.15",
+    "title": "Ensure pushing or merging of new code is restricted to specific individuals or teams",
+    "assessment": "Manual",
+    "page": 46,
+    "audit": "Đọc push restrictions và danh sách team/user",
+    "remediation": "Chỉ cho người/nhóm được phê duyệt push hoặc merge",
+    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "evidence_sources": [
+      "repository",
+      "branches",
+      "pull_requests",
+      "required_check_enforcement"
+    ],
+    "owner_role": "TV1 (vai trò đề xuất; cần username thật)",
+    "change_boundary": "Nhánh mới hoặc sandbox; cấu hình tổ chức/registry/production chỉ đề xuất, không áp dụng.",
+    "evidence_requirement": "Bằng chứng thật trên đúng phạm vi; ảnh phần 2, mô tả/bảng phần 3. Không dùng sơ đồ hoặc kết quả mô phỏng thay screenshot thực nghiệm."
+  },
+  {
+    "id": "1.1.16",
+    "title": "Ensure force push code to branches is denied",
+    "assessment": "Manual",
+    "page": 48,
+    "audit": "Đọc force-push rule; thử trên nhánh disposable được bảo vệ",
+    "remediation": "Cấm force push và xem lại bypass",
+    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "evidence_sources": [
+      "repository",
+      "branches",
+      "pull_requests",
+      "required_check_enforcement"
+    ],
+    "owner_role": "TV1 (vai trò đề xuất; cần username thật)",
+    "change_boundary": "Nhánh mới hoặc sandbox; cấu hình tổ chức/registry/production chỉ đề xuất, không áp dụng.",
+    "evidence_requirement": "Bằng chứng thật trên đúng phạm vi; ảnh phần 2, mô tả/bảng phần 3. Không dùng sơ đồ hoặc kết quả mô phỏng thay screenshot thực nghiệm."
+  },
+  {
+    "id": "1.1.17",
+    "title": "Ensure branch deletions are denied",
+    "assessment": "Manual",
+    "page": 50,
+    "audit": "Đọc deletion rule; thử xóa nhánh disposable, không main",
+    "remediation": "Cấm xóa nhánh được bảo vệ",
+    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "evidence_sources": [
+      "repository",
+      "branches",
+      "pull_requests",
+      "required_check_enforcement"
+    ],
+    "owner_role": "TV1 (vai trò đề xuất; cần username thật)",
+    "change_boundary": "Nhánh mới hoặc sandbox; cấu hình tổ chức/registry/production chỉ đề xuất, không áp dụng.",
+    "evidence_requirement": "Bằng chứng thật trên đúng phạm vi; ảnh phần 2, mô tả/bảng phần 3. Không dùng sơ đồ hoặc kết quả mô phỏng thay screenshot thực nghiệm."
+  },
+  {
+    "id": "1.1.18",
+    "title": "Ensure any merging of code is automatically scanned for risks",
+    "assessment": "Manual",
+    "page": 52,
+    "audit": "Đối chiếu mọi PR merge với scanner và kết quả chạy",
+    "remediation": "Gắn scanner vào quy trình merge, yêu cầu check thành công",
+    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "evidence_sources": [
+      "repository",
+      "branches",
+      "pull_requests",
+      "required_check_enforcement"
+    ],
+    "owner_role": "TV1 (vai trò đề xuất; cần username thật)",
+    "change_boundary": "Nhánh mới hoặc sandbox; cấu hình tổ chức/registry/production chỉ đề xuất, không áp dụng.",
+    "evidence_requirement": "Bằng chứng thật trên đúng phạm vi; ảnh phần 2, mô tả/bảng phần 3. Không dùng sơ đồ hoặc kết quả mô phỏng thay screenshot thực nghiệm."
+  },
+  {
+    "id": "1.1.19",
+    "title": "Ensure any changes to branch protection rules are audited",
+    "assessment": "Manual",
+    "page": 54,
+    "audit": "Tìm sự kiện thay đổi protection/ruleset trong audit log và cơ chế cảnh báo",
+    "remediation": "Lưu audit log, phân công người nhận và kiểm tra cảnh báo",
+    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "evidence_sources": [
+      "repository",
+      "branches",
+      "pull_requests",
+      "required_check_enforcement"
+    ],
+    "owner_role": "TV1 (vai trò đề xuất; cần username thật)",
+    "change_boundary": "Nhánh mới hoặc sandbox; cấu hình tổ chức/registry/production chỉ đề xuất, không áp dụng.",
+    "evidence_requirement": "Bằng chứng thật trên đúng phạm vi; ảnh phần 2, mô tả/bảng phần 3. Không dùng sơ đồ hoặc kết quả mô phỏng thay screenshot thực nghiệm."
+  },
+  {
+    "id": "1.1.20",
+    "title": "Ensure branch protection is enforced on the default branch",
+    "assessment": "Manual",
+    "page": 56,
+    "audit": "Lấy default branch qua API và đối chiếu effective protection",
+    "remediation": "Áp dụng protection cho đúng default branch",
+    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "evidence_sources": [
+      "repository",
+      "branches",
+      "pull_requests",
+      "required_check_enforcement"
+    ],
+    "owner_role": "TV1 (vai trò đề xuất; cần username thật)",
+    "change_boundary": "Nhánh mới hoặc sandbox; cấu hình tổ chức/registry/production chỉ đề xuất, không áp dụng.",
+    "evidence_requirement": "Bằng chứng thật trên đúng phạm vi; ảnh phần 2, mô tả/bảng phần 3. Không dùng sơ đồ hoặc kết quả mô phỏng thay screenshot thực nghiệm."
+  },
+  {
+    "id": "1.2.1",
+    "title": "Ensure all public repositories contain a SECURITY.md file",
+    "assessment": "Manual",
+    "page": 59,
+    "audit": "Đọc SECURITY.md và xác minh kênh báo cáo riêng tư",
+    "remediation": "Bổ sung policy và kênh tiếp nhận đã được chủ repo xác nhận",
+    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "evidence_sources": [
+      "repository_files"
+    ],
+    "owner_role": "TV1 (vai trò đề xuất; cần username thật)",
+    "change_boundary": "Nhánh mới hoặc sandbox; cấu hình tổ chức/registry/production chỉ đề xuất, không áp dụng.",
+    "evidence_requirement": "Bằng chứng thật trên đúng phạm vi; ảnh phần 2, mô tả/bảng phần 3. Không dùng sơ đồ hoặc kết quả mô phỏng thay screenshot thực nghiệm."
+  },
+  {
+    "id": "1.2.2",
+    "title": "Ensure repository creation is limited to specific members",
+    "assessment": "Manual",
+    "page": 61,
+    "audit": "Đọc quyền tạo repository ở cấp tổ chức",
+    "remediation": "Giới hạn tạo repository cho nhóm được phê duyệt",
+    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "evidence_sources": [
+      "repository",
+      "organization_policy"
+    ],
+    "owner_role": "TV1 (vai trò đề xuất; cần username thật)",
+    "change_boundary": "Nhánh mới hoặc sandbox; cấu hình tổ chức/registry/production chỉ đề xuất, không áp dụng.",
+    "evidence_requirement": "Bằng chứng thật trên đúng phạm vi; ảnh phần 2, mô tả/bảng phần 3. Không dùng sơ đồ hoặc kết quả mô phỏng thay screenshot thực nghiệm."
+  },
+  {
+    "id": "1.2.3",
+    "title": "Ensure repository deletion is limited to specific users",
+    "assessment": "Manual",
+    "page": 63,
+    "audit": "Đọc quyền xóa repository và phân quyền quản trị",
+    "remediation": "Giới hạn quyền xóa; có quy trình phê duyệt và khôi phục",
+    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "evidence_sources": [
+      "repository",
+      "organization_policy"
+    ],
+    "owner_role": "TV1 (vai trò đề xuất; cần username thật)",
+    "change_boundary": "Nhánh mới hoặc sandbox; cấu hình tổ chức/registry/production chỉ đề xuất, không áp dụng.",
+    "evidence_requirement": "Bằng chứng thật trên đúng phạm vi; ảnh phần 2, mô tả/bảng phần 3. Không dùng sơ đồ hoặc kết quả mô phỏng thay screenshot thực nghiệm."
+  },
+  {
+    "id": "1.2.4",
+    "title": "Ensure issue deletion is limited to specific users",
+    "assessment": "Manual",
+    "page": 66,
+    "audit": "Kiểm tra quyền xóa issue theo vai trò và audit log",
+    "remediation": "Giới hạn quyền xóa issue theo nhu cầu công việc",
+    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "evidence_sources": [
+      "repository",
+      "organization_policy"
+    ],
+    "owner_role": "TV1 (vai trò đề xuất; cần username thật)",
+    "change_boundary": "Nhánh mới hoặc sandbox; cấu hình tổ chức/registry/production chỉ đề xuất, không áp dụng.",
+    "evidence_requirement": "Bằng chứng thật trên đúng phạm vi; ảnh phần 2, mô tả/bảng phần 3. Không dùng sơ đồ hoặc kết quả mô phỏng thay screenshot thực nghiệm."
+  },
+  {
+    "id": "1.2.5",
+    "title": "Ensure all copies (forks) of code are tracked and accounted for",
+    "assessment": "Manual",
+    "page": 68,
+    "audit": "Đối chiếu danh sách forks, visibility và người chịu trách nhiệm",
+    "remediation": "Kiểm kê forks định kỳ; xử lý bản sao không còn cần thiết",
+    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "evidence_sources": [
+      "forks",
+      "organization_policy"
+    ],
+    "owner_role": "TV1 (vai trò đề xuất; cần username thật)",
+    "change_boundary": "Nhánh mới hoặc sandbox; cấu hình tổ chức/registry/production chỉ đề xuất, không áp dụng.",
+    "evidence_requirement": "Bằng chứng thật trên đúng phạm vi; ảnh phần 2, mô tả/bảng phần 3. Không dùng sơ đồ hoặc kết quả mô phỏng thay screenshot thực nghiệm."
+  },
+  {
+    "id": "1.2.6",
+    "title": "Ensure all code projects are tracked for changes in visibility status",
+    "assessment": "Manual",
+    "page": 70,
+    "audit": "Đọc audit log visibility change và cấu hình theo dõi",
+    "remediation": "Cảnh báo/lưu vết thay đổi visibility, giới hạn người được đổi",
+    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "evidence_sources": [
+      "repository",
+      "organization_policy"
+    ],
+    "owner_role": "TV1 (vai trò đề xuất; cần username thật)",
+    "change_boundary": "Nhánh mới hoặc sandbox; cấu hình tổ chức/registry/production chỉ đề xuất, không áp dụng.",
+    "evidence_requirement": "Bằng chứng thật trên đúng phạm vi; ảnh phần 2, mô tả/bảng phần 3. Không dùng sơ đồ hoặc kết quả mô phỏng thay screenshot thực nghiệm."
+  },
+  {
+    "id": "1.2.7",
+    "title": "Ensure inactive repositories are reviewed and archived periodically",
+    "assessment": "Manual",
+    "page": 72,
+    "audit": "Lấy ngày cập nhật repo và biên bản đánh giá trạng thái",
+    "remediation": "Đặt lịch rà soát và archive sau khi chủ sở hữu xác nhận",
+    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "evidence_sources": [
+      "repository",
+      "organization_policy"
+    ],
+    "owner_role": "TV1 (vai trò đề xuất; cần username thật)",
+    "change_boundary": "Nhánh mới hoặc sandbox; cấu hình tổ chức/registry/production chỉ đề xuất, không áp dụng.",
+    "evidence_requirement": "Bằng chứng thật trên đúng phạm vi; ảnh phần 2, mô tả/bảng phần 3. Không dùng sơ đồ hoặc kết quả mô phỏng thay screenshot thực nghiệm."
+  },
+  {
+    "id": "1.3.1",
+    "title": "Ensure inactive users are reviewed and removed periodically",
+    "assessment": "Manual",
+    "page": 75,
+    "audit": "Đối chiếu thành viên, hoạt động gần nhất và nhu cầu truy cập",
+    "remediation": "Thu hồi thành viên không còn nhu cầu qua quy trình đã phê duyệt",
+    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "evidence_sources": [
+      "collaborators",
+      "organization_policy",
+      "identity_provider"
+    ],
+    "owner_role": "TV1 (vai trò đề xuất; cần username thật)",
+    "change_boundary": "Nhánh mới hoặc sandbox; cấu hình tổ chức/registry/production chỉ đề xuất, không áp dụng.",
+    "evidence_requirement": "Bằng chứng thật trên đúng phạm vi; ảnh phần 2, mô tả/bảng phần 3. Không dùng sơ đồ hoặc kết quả mô phỏng thay screenshot thực nghiệm."
+  },
+  {
+    "id": "1.3.2",
+    "title": "Ensure team creation is limited to specific members",
+    "assessment": "Manual",
+    "page": 77,
+    "audit": "Kiểm tra quyền tạo team của organization members",
+    "remediation": "Chỉ cho người được giao nhiệm vụ tạo team",
+    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "evidence_sources": [
+      "collaborators",
+      "organization_policy",
+      "identity_provider"
+    ],
+    "owner_role": "TV1 (vai trò đề xuất; cần username thật)",
+    "change_boundary": "Nhánh mới hoặc sandbox; cấu hình tổ chức/registry/production chỉ đề xuất, không áp dụng.",
+    "evidence_requirement": "Bằng chứng thật trên đúng phạm vi; ảnh phần 2, mô tả/bảng phần 3. Không dùng sơ đồ hoặc kết quả mô phỏng thay screenshot thực nghiệm."
+  },
+  {
+    "id": "1.3.3",
+    "title": "Ensure minimum number of administrators are set for the organization",
+    "assessment": "Manual",
+    "page": 79,
+    "audit": "Kiểm kê organization owners/admins và lý do từng quyền",
+    "remediation": "Giảm admin tới mức cần thiết và bảo đảm phương án dự phòng",
+    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "evidence_sources": [
+      "collaborators",
+      "organization_policy",
+      "identity_provider"
+    ],
+    "owner_role": "TV1 (vai trò đề xuất; cần username thật)",
+    "change_boundary": "Nhánh mới hoặc sandbox; cấu hình tổ chức/registry/production chỉ đề xuất, không áp dụng.",
+    "evidence_requirement": "Bằng chứng thật trên đúng phạm vi; ảnh phần 2, mô tả/bảng phần 3. Không dùng sơ đồ hoặc kết quả mô phỏng thay screenshot thực nghiệm."
+  },
+  {
+    "id": "1.3.4",
+    "title": "Ensure Multi-Factor Authentication (MFA) is required for contributors of new code",
+    "assessment": "Manual",
+    "page": 81,
+    "audit": "Kiểm tra MFA bắt buộc cho người đóng góp, kể cả ngoài tổ chức",
+    "remediation": "Bật và kiểm chứng chính sách MFA theo phạm vi người đóng góp",
+    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "evidence_sources": [
+      "collaborators",
+      "organization_policy",
+      "identity_provider"
+    ],
+    "owner_role": "TV1 (vai trò đề xuất; cần username thật)",
+    "change_boundary": "Nhánh mới hoặc sandbox; cấu hình tổ chức/registry/production chỉ đề xuất, không áp dụng.",
+    "evidence_requirement": "Bằng chứng thật trên đúng phạm vi; ảnh phần 2, mô tả/bảng phần 3. Không dùng sơ đồ hoặc kết quả mô phỏng thay screenshot thực nghiệm."
+  },
+  {
+    "id": "1.3.5",
+    "title": "Ensure the organization is requiring members to use Multi- Factor Authentication (MFA)",
+    "assessment": "Manual",
+    "page": 83,
+    "audit": "Đọc yêu cầu MFA của tổ chức và trạng thái thực thi",
+    "remediation": "Bắt buộc MFA; chuẩn bị recovery trước khi áp dụng",
+    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "evidence_sources": [
+      "collaborators",
+      "organization_policy",
+      "identity_provider"
+    ],
+    "owner_role": "TV1 (vai trò đề xuất; cần username thật)",
+    "change_boundary": "Nhánh mới hoặc sandbox; cấu hình tổ chức/registry/production chỉ đề xuất, không áp dụng.",
+    "evidence_requirement": "Bằng chứng thật trên đúng phạm vi; ảnh phần 2, mô tả/bảng phần 3. Không dùng sơ đồ hoặc kết quả mô phỏng thay screenshot thực nghiệm."
+  },
+  {
+    "id": "1.3.6",
+    "title": "Ensure new members are required to be invited using company-approved email",
+    "assessment": "Manual",
+    "page": 85,
+    "audit": "Đối chiếu email lời mời với domain được công ty chấp thuận",
+    "remediation": "Dùng danh sách domain/email được phép trong quy trình mời",
+    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "evidence_sources": [
+      "collaborators",
+      "organization_policy",
+      "identity_provider"
+    ],
+    "owner_role": "TV1 (vai trò đề xuất; cần username thật)",
+    "change_boundary": "Nhánh mới hoặc sandbox; cấu hình tổ chức/registry/production chỉ đề xuất, không áp dụng.",
+    "evidence_requirement": "Bằng chứng thật trên đúng phạm vi; ảnh phần 2, mô tả/bảng phần 3. Không dùng sơ đồ hoặc kết quả mô phỏng thay screenshot thực nghiệm."
+  },
+  {
+    "id": "1.3.7",
+    "title": "Ensure two administrators are set for each repository",
+    "assessment": "Manual",
+    "page": 87,
+    "audit": "Kiểm kê repository admins và xác minh có hai quản trị viên phù hợp",
+    "remediation": "Bố trí hai quản trị viên độc lập theo yêu cầu, không chia sẻ tài khoản",
+    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "evidence_sources": [
+      "collaborators",
+      "organization_policy",
+      "identity_provider"
+    ],
+    "owner_role": "TV1 (vai trò đề xuất; cần username thật)",
+    "change_boundary": "Nhánh mới hoặc sandbox; cấu hình tổ chức/registry/production chỉ đề xuất, không áp dụng.",
+    "evidence_requirement": "Bằng chứng thật trên đúng phạm vi; ảnh phần 2, mô tả/bảng phần 3. Không dùng sơ đồ hoặc kết quả mô phỏng thay screenshot thực nghiệm."
+  },
+  {
+    "id": "1.3.8",
+    "title": "Ensure strict base permissions are set for repositories",
+    "assessment": "Manual",
+    "page": 89,
+    "audit": "Đọc default/base repository permission của tổ chức",
+    "remediation": "Chọn quyền nền tối thiểu và cấp thêm theo team",
+    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "evidence_sources": [
+      "collaborators",
+      "organization_policy",
+      "identity_provider"
+    ],
+    "owner_role": "TV1 (vai trò đề xuất; cần username thật)",
+    "change_boundary": "Nhánh mới hoặc sandbox; cấu hình tổ chức/registry/production chỉ đề xuất, không áp dụng.",
+    "evidence_requirement": "Bằng chứng thật trên đúng phạm vi; ảnh phần 2, mô tả/bảng phần 3. Không dùng sơ đồ hoặc kết quả mô phỏng thay screenshot thực nghiệm."
+  },
+  {
+    "id": "1.3.9",
+    "title": "Ensure an organization’s identity is confirmed with a “Verified” badge",
+    "assessment": "Manual",
+    "page": 91,
+    "audit": "Kiểm tra Verified badge và bằng chứng sở hữu domain",
+    "remediation": "Xác minh domain chính thức bằng quy trình GitHub",
+    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "evidence_sources": [
+      "collaborators",
+      "organization_policy",
+      "identity_provider"
+    ],
+    "owner_role": "TV1 (vai trò đề xuất; cần username thật)",
+    "change_boundary": "Nhánh mới hoặc sandbox; cấu hình tổ chức/registry/production chỉ đề xuất, không áp dụng.",
+    "evidence_requirement": "Bằng chứng thật trên đúng phạm vi; ảnh phần 2, mô tả/bảng phần 3. Không dùng sơ đồ hoặc kết quả mô phỏng thay screenshot thực nghiệm."
+  },
+  {
+    "id": "1.3.10",
+    "title": "Ensure Source Code Management (SCM) email notifications are restricted to verified domains",
+    "assessment": "Manual",
+    "page": 93,
+    "audit": "Đọc giới hạn email notification tới verified domains",
+    "remediation": "Giới hạn thông báo tới domain tổ chức đã xác minh",
+    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "evidence_sources": [
+      "collaborators",
+      "organization_policy",
+      "identity_provider"
+    ],
+    "owner_role": "TV1 (vai trò đề xuất; cần username thật)",
+    "change_boundary": "Nhánh mới hoặc sandbox; cấu hình tổ chức/registry/production chỉ đề xuất, không áp dụng.",
+    "evidence_requirement": "Bằng chứng thật trên đúng phạm vi; ảnh phần 2, mô tả/bảng phần 3. Không dùng sơ đồ hoặc kết quả mô phỏng thay screenshot thực nghiệm."
+  },
+  {
+    "id": "1.3.11",
+    "title": "Ensure an organization provides SSH certificates",
+    "assessment": "Manual",
+    "page": 95,
+    "audit": "Kiểm tra SSH CA/certificate policy và vòng đời chứng chỉ",
+    "remediation": "Cấp SSH certificate qua CA được quản lý, có thu hồi và gia hạn",
+    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "evidence_sources": [
+      "collaborators",
+      "organization_policy",
+      "identity_provider"
+    ],
+    "owner_role": "TV1 (vai trò đề xuất; cần username thật)",
+    "change_boundary": "Nhánh mới hoặc sandbox; cấu hình tổ chức/registry/production chỉ đề xuất, không áp dụng.",
+    "evidence_requirement": "Bằng chứng thật trên đúng phạm vi; ảnh phần 2, mô tả/bảng phần 3. Không dùng sơ đồ hoặc kết quả mô phỏng thay screenshot thực nghiệm."
+  },
+  {
+    "id": "1.3.12",
+    "title": "Ensure Git access is limited based on IP addresses",
+    "assessment": "Manual",
+    "page": 97,
+    "audit": "Kiểm tra IP allow list và thử nguồn truy cập được phép/không được phép",
+    "remediation": "Thiết lập allow list theo mạng công việc, giữ đường khôi phục",
+    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "evidence_sources": [
+      "collaborators",
+      "organization_policy",
+      "identity_provider"
+    ],
+    "owner_role": "TV1 (vai trò đề xuất; cần username thật)",
+    "change_boundary": "Nhánh mới hoặc sandbox; cấu hình tổ chức/registry/production chỉ đề xuất, không áp dụng.",
+    "evidence_requirement": "Bằng chứng thật trên đúng phạm vi; ảnh phần 2, mô tả/bảng phần 3. Không dùng sơ đồ hoặc kết quả mô phỏng thay screenshot thực nghiệm."
+  },
+  {
+    "id": "1.3.13",
+    "title": "Ensure anomalous code behavior is tracked",
+    "assessment": "Manual",
+    "page": 99,
+    "audit": "Đọc cơ chế phát hiện hành vi bất thường và mẫu cảnh báo",
+    "remediation": "Giám sát bất thường, có người nhận và quy trình xử lý",
+    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "evidence_sources": [
+      "collaborators",
+      "organization_policy",
+      "identity_provider"
+    ],
+    "owner_role": "TV1 (vai trò đề xuất; cần username thật)",
+    "change_boundary": "Nhánh mới hoặc sandbox; cấu hình tổ chức/registry/production chỉ đề xuất, không áp dụng.",
+    "evidence_requirement": "Bằng chứng thật trên đúng phạm vi; ảnh phần 2, mô tả/bảng phần 3. Không dùng sơ đồ hoặc kết quả mô phỏng thay screenshot thực nghiệm."
+  },
+  {
+    "id": "1.4.1",
+    "title": "Ensure administrator approval is required for every installed application",
+    "assessment": "Manual",
+    "page": 101,
+    "audit": "Liệt kê ứng dụng và quy trình owner approval",
+    "remediation": "Bắt buộc admin phê duyệt ứng dụng trước cấp quyền",
+    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "evidence_sources": [
+      "organization_policy"
+    ],
+    "owner_role": "TV1 (vai trò đề xuất; cần username thật)",
+    "change_boundary": "Nhánh mới hoặc sandbox; cấu hình tổ chức/registry/production chỉ đề xuất, không áp dụng.",
+    "evidence_requirement": "Bằng chứng thật trên đúng phạm vi; ảnh phần 2, mô tả/bảng phần 3. Không dùng sơ đồ hoặc kết quả mô phỏng thay screenshot thực nghiệm."
+  },
+  {
+    "id": "1.4.2",
+    "title": "Ensure stale applications are reviewed and inactive ones are removed",
+    "assessment": "Manual",
+    "page": 103,
+    "audit": "Đối chiếu app installation với hoạt động và chủ sở hữu",
+    "remediation": "Rà soát định kỳ, gỡ app không dùng sau xác nhận",
+    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "evidence_sources": [
+      "organization_policy"
+    ],
+    "owner_role": "TV1 (vai trò đề xuất; cần username thật)",
+    "change_boundary": "Nhánh mới hoặc sandbox; cấu hình tổ chức/registry/production chỉ đề xuất, không áp dụng.",
+    "evidence_requirement": "Bằng chứng thật trên đúng phạm vi; ảnh phần 2, mô tả/bảng phần 3. Không dùng sơ đồ hoặc kết quả mô phỏng thay screenshot thực nghiệm."
+  },
+  {
+    "id": "1.4.3",
+    "title": "Ensure the access granted to each installed application is limited to the least privilege needed",
+    "assessment": "Manual",
+    "page": 105,
+    "audit": "Đọc permissions và repository selection của từng app",
+    "remediation": "Thu hẹp app scopes và repository access theo least privilege",
+    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "evidence_sources": [
+      "organization_policy"
+    ],
+    "owner_role": "TV1 (vai trò đề xuất; cần username thật)",
+    "change_boundary": "Nhánh mới hoặc sandbox; cấu hình tổ chức/registry/production chỉ đề xuất, không áp dụng.",
+    "evidence_requirement": "Bằng chứng thật trên đúng phạm vi; ảnh phần 2, mô tả/bảng phần 3. Không dùng sơ đồ hoặc kết quả mô phỏng thay screenshot thực nghiệm."
+  },
+  {
+    "id": "1.4.4",
+    "title": "Ensure only secured webhooks are used",
+    "assessment": "Manual",
+    "page": 107,
+    "audit": "Kiểm tra HTTPS và SSL verification của webhook mà không xuất secret",
+    "remediation": "Chuyển endpoint sang HTTPS hợp lệ và bật SSL verification",
+    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "evidence_sources": [
+      "webhooks"
+    ],
+    "owner_role": "TV1 (vai trò đề xuất; cần username thật)",
+    "change_boundary": "Nhánh mới hoặc sandbox; cấu hình tổ chức/registry/production chỉ đề xuất, không áp dụng.",
+    "evidence_requirement": "Bằng chứng thật trên đúng phạm vi; ảnh phần 2, mô tả/bảng phần 3. Không dùng sơ đồ hoặc kết quả mô phỏng thay screenshot thực nghiệm."
+  },
+  {
+    "id": "1.5.1",
+    "title": "Ensure scanners are in place to identify and prevent sensitive data in code",
+    "assessment": "Manual",
+    "page": 110,
+    "audit": "Kiểm tra secret scanner, mẫu phát hiện giả và cơ chế chặn",
+    "remediation": "Bật scanner/chặn theo chính sách; thu hồi secret thật trước xử lý lịch sử",
+    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "evidence_sources": [
+      "repository_files",
+      "required_check_enforcement"
+    ],
+    "owner_role": "TV1 (vai trò đề xuất; cần username thật)",
+    "change_boundary": "Nhánh mới hoặc sandbox; cấu hình tổ chức/registry/production chỉ đề xuất, không áp dụng.",
+    "evidence_requirement": "Bằng chứng thật trên đúng phạm vi; ảnh phần 2, mô tả/bảng phần 3. Không dùng sơ đồ hoặc kết quả mô phỏng thay screenshot thực nghiệm."
+  },
+  {
+    "id": "1.5.2",
+    "title": "Ensure scanners are in place to secure Continuous Integration (CI) pipeline instructions",
+    "assessment": "Manual",
+    "page": 112,
+    "audit": "Quét mọi workflow bằng công cụ kiểm tra cấu hình CI",
+    "remediation": "Sửa insecure instructions; giữ required security check",
+    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "evidence_sources": [
+      "repository_files",
+      "required_check_enforcement"
+    ],
+    "owner_role": "TV1 (vai trò đề xuất; cần username thật)",
+    "change_boundary": "Nhánh mới hoặc sandbox; cấu hình tổ chức/registry/production chỉ đề xuất, không áp dụng.",
+    "evidence_requirement": "Bằng chứng thật trên đúng phạm vi; ảnh phần 2, mô tả/bảng phần 3. Không dùng sơ đồ hoặc kết quả mô phỏng thay screenshot thực nghiệm."
+  },
+  {
+    "id": "1.5.3",
+    "title": "Ensure scanners are in place to secure Infrastructure as Code (IaC) instructions",
+    "assessment": "Manual",
+    "page": 114,
+    "audit": "Kiểm kê IaC và xem report misconfiguration",
+    "remediation": "Quét mọi IaC được sử dụng và xử lý cấu hình mất an toàn",
+    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "evidence_sources": [
+      "repository_files",
+      "required_check_enforcement"
+    ],
+    "owner_role": "TV1 (vai trò đề xuất; cần username thật)",
+    "change_boundary": "Nhánh mới hoặc sandbox; cấu hình tổ chức/registry/production chỉ đề xuất, không áp dụng.",
+    "evidence_requirement": "Bằng chứng thật trên đúng phạm vi; ảnh phần 2, mô tả/bảng phần 3. Không dùng sơ đồ hoặc kết quả mô phỏng thay screenshot thực nghiệm."
+  },
+  {
+    "id": "1.5.4",
+    "title": "Ensure scanners are in place for code vulnerabilities",
+    "assessment": "Manual",
+    "page": 116,
+    "audit": "Kiểm tra code-scanning setup và report trên đúng commit",
+    "remediation": "Thiết lập SAST/code scanning phù hợp ngôn ngữ và xử lý findings",
+    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "evidence_sources": [
+      "repository_files",
+      "required_check_enforcement"
+    ],
+    "owner_role": "TV1 (vai trò đề xuất; cần username thật)",
+    "change_boundary": "Nhánh mới hoặc sandbox; cấu hình tổ chức/registry/production chỉ đề xuất, không áp dụng.",
+    "evidence_requirement": "Bằng chứng thật trên đúng phạm vi; ảnh phần 2, mô tả/bảng phần 3. Không dùng sơ đồ hoặc kết quả mô phỏng thay screenshot thực nghiệm."
+  },
+  {
+    "id": "1.5.5",
+    "title": "Ensure scanners are in place for open-source vulnerabilities in used packages",
+    "assessment": "Manual",
+    "page": 118,
+    "audit": "Kiểm kê dependency, Dependabot và SCA report",
+    "remediation": "Bật giám sát dependency và xử lý phiên bản có CVE",
+    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "evidence_sources": [
+      "repository_files",
+      "required_check_enforcement"
+    ],
+    "owner_role": "TV1 (vai trò đề xuất; cần username thật)",
+    "change_boundary": "Nhánh mới hoặc sandbox; cấu hình tổ chức/registry/production chỉ đề xuất, không áp dụng.",
+    "evidence_requirement": "Bằng chứng thật trên đúng phạm vi; ảnh phần 2, mô tả/bảng phần 3. Không dùng sơ đồ hoặc kết quả mô phỏng thay screenshot thực nghiệm."
+  },
+  {
+    "id": "1.5.6",
+    "title": "Ensure scanners are in place for open-source license issues in used packages",
+    "assessment": "Manual",
+    "page": 120,
+    "audit": "Đối chiếu package licenses với chính sách sử dụng",
+    "remediation": "Thiết lập license scanner và xử lý giấy phép không được phép",
+    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "evidence_sources": [
+      "repository_files",
+      "required_check_enforcement"
+    ],
+    "owner_role": "TV1 (vai trò đề xuất; cần username thật)",
+    "change_boundary": "Nhánh mới hoặc sandbox; cấu hình tổ chức/registry/production chỉ đề xuất, không áp dụng.",
+    "evidence_requirement": "Bằng chứng thật trên đúng phạm vi; ảnh phần 2, mô tả/bảng phần 3. Không dùng sơ đồ hoặc kết quả mô phỏng thay screenshot thực nghiệm."
+  },
+  {
+    "id": "2.1.1",
+    "title": "Ensure each pipeline has a single responsibility",
+    "assessment": "Manual",
+    "page": 123,
+    "audit": "Kiểm tra trách nhiệm và quyền của từng pipeline",
+    "remediation": "Tách pipeline theo mục đích và giảm quyền mỗi pipeline",
+    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "evidence_sources": [
+      "repository_files",
+      "build_platform_admin"
+    ],
+    "owner_role": "TV2 (vai trò đề xuất; cần username thật)",
+    "change_boundary": "Nhánh mới hoặc sandbox; cấu hình tổ chức/registry/production chỉ đề xuất, không áp dụng.",
+    "evidence_requirement": "Bằng chứng thật trên đúng phạm vi; ảnh phần 2, mô tả/bảng phần 3. Không dùng sơ đồ hoặc kết quả mô phỏng thay screenshot thực nghiệm."
+  },
+  {
+    "id": "2.1.2",
+    "title": "Ensure all aspects of the pipeline infrastructure and configuration are immutable",
+    "assessment": "Manual",
+    "page": 125,
+    "audit": "Đối chiếu image/infrastructure/config với phiên bản và cơ chế sửa trực tiếp",
+    "remediation": "Mã hóa cấu hình, pin image và tái tạo thay vì sửa thủ công",
+    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "evidence_sources": [
+      "repository_files",
+      "build_platform_admin"
+    ],
+    "owner_role": "TV2 (vai trò đề xuất; cần username thật)",
+    "change_boundary": "Nhánh mới hoặc sandbox; cấu hình tổ chức/registry/production chỉ đề xuất, không áp dụng.",
+    "evidence_requirement": "Bằng chứng thật trên đúng phạm vi; ảnh phần 2, mô tả/bảng phần 3. Không dùng sơ đồ hoặc kết quả mô phỏng thay screenshot thực nghiệm."
+  },
+  {
+    "id": "2.1.3",
+    "title": "Ensure the build environment is logged",
+    "assessment": "Manual",
+    "page": 127,
+    "audit": "Kiểm tra log môi trường build và chính sách giữ log",
+    "remediation": "Ghi image version, tool versions và cấu hình cần thiết, che secrets",
+    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "evidence_sources": [
+      "repository_files",
+      "build_platform_admin"
+    ],
+    "owner_role": "TV2 (vai trò đề xuất; cần username thật)",
+    "change_boundary": "Nhánh mới hoặc sandbox; cấu hình tổ chức/registry/production chỉ đề xuất, không áp dụng.",
+    "evidence_requirement": "Bằng chứng thật trên đúng phạm vi; ảnh phần 2, mô tả/bảng phần 3. Không dùng sơ đồ hoặc kết quả mô phỏng thay screenshot thực nghiệm."
+  },
+  {
+    "id": "2.1.4",
+    "title": "Ensure the creation of the build environment is automated",
+    "assessment": "Manual",
+    "page": 128,
+    "audit": "Tạo lại môi trường build từ mã trong môi trường sạch",
+    "remediation": "Tự động hóa provisioning và ghi cấu hình trong VCS",
+    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "evidence_sources": [
+      "repository_files",
+      "build_platform_admin"
+    ],
+    "owner_role": "TV2 (vai trò đề xuất; cần username thật)",
+    "change_boundary": "Nhánh mới hoặc sandbox; cấu hình tổ chức/registry/production chỉ đề xuất, không áp dụng.",
+    "evidence_requirement": "Bằng chứng thật trên đúng phạm vi; ảnh phần 2, mô tả/bảng phần 3. Không dùng sơ đồ hoặc kết quả mô phỏng thay screenshot thực nghiệm."
+  },
+  {
+    "id": "2.1.5",
+    "title": "Ensure access to build environments is limited",
+    "assessment": "Manual",
+    "page": 129,
+    "audit": "Liệt kê người/app có quyền vào môi trường build",
+    "remediation": "Giảm quyền theo vai trò, rà soát định kỳ",
+    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "evidence_sources": [
+      "repository_files",
+      "build_platform_admin"
+    ],
+    "owner_role": "TV2 (vai trò đề xuất; cần username thật)",
+    "change_boundary": "Nhánh mới hoặc sandbox; cấu hình tổ chức/registry/production chỉ đề xuất, không áp dụng.",
+    "evidence_requirement": "Bằng chứng thật trên đúng phạm vi; ảnh phần 2, mô tả/bảng phần 3. Không dùng sơ đồ hoặc kết quả mô phỏng thay screenshot thực nghiệm."
+  },
+  {
+    "id": "2.1.6",
+    "title": "Ensure users must authenticate to access the build environment",
+    "assessment": "Manual",
+    "page": 131,
+    "audit": "Thử truy cập chưa xác thực trong môi trường kiểm thử",
+    "remediation": "Bắt buộc xác thực cho mọi đường quản trị build",
+    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "evidence_sources": [
+      "repository_files",
+      "build_platform_admin"
+    ],
+    "owner_role": "TV2 (vai trò đề xuất; cần username thật)",
+    "change_boundary": "Nhánh mới hoặc sandbox; cấu hình tổ chức/registry/production chỉ đề xuất, không áp dụng.",
+    "evidence_requirement": "Bằng chứng thật trên đúng phạm vi; ảnh phần 2, mô tả/bảng phần 3. Không dùng sơ đồ hoặc kết quả mô phỏng thay screenshot thực nghiệm."
+  },
+  {
+    "id": "2.1.7",
+    "title": "Ensure build secrets are limited to the minimal necessary scope",
+    "assessment": "Manual",
+    "page": 132,
+    "audit": "Đọc metadata phạm vi secrets mà không đọc giá trị",
+    "remediation": "Giới hạn secrets theo repo/environment/job, ưu tiên credentials ngắn hạn",
+    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "evidence_sources": [
+      "repository_files",
+      "build_platform_admin"
+    ],
+    "owner_role": "TV2 (vai trò đề xuất; cần username thật)",
+    "change_boundary": "Nhánh mới hoặc sandbox; cấu hình tổ chức/registry/production chỉ đề xuất, không áp dụng.",
+    "evidence_requirement": "Bằng chứng thật trên đúng phạm vi; ảnh phần 2, mô tả/bảng phần 3. Không dùng sơ đồ hoặc kết quả mô phỏng thay screenshot thực nghiệm."
+  },
+  {
+    "id": "2.1.8",
+    "title": "Ensure the build infrastructure is automatically scanned for vulnerabilities",
+    "assessment": "Manual",
+    "page": 134,
+    "audit": "Xem scan của hạ tầng build, phạm vi và chu kỳ cập nhật",
+    "remediation": "Quét hạ tầng phù hợp và theo dõi xử lý lỗ hổng",
+    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "evidence_sources": [
+      "repository_files",
+      "build_platform_admin"
+    ],
+    "owner_role": "TV2 (vai trò đề xuất; cần username thật)",
+    "change_boundary": "Nhánh mới hoặc sandbox; cấu hình tổ chức/registry/production chỉ đề xuất, không áp dụng.",
+    "evidence_requirement": "Bằng chứng thật trên đúng phạm vi; ảnh phần 2, mô tả/bảng phần 3. Không dùng sơ đồ hoặc kết quả mô phỏng thay screenshot thực nghiệm."
+  },
+  {
+    "id": "2.1.9",
+    "title": "Ensure default passwords are not used",
+    "assessment": "Manual",
+    "page": 135,
+    "audit": "Đối chiếu cấu hình dịch vụ với danh sách default credentials, không brute-force",
+    "remediation": "Loại mật khẩu mặc định và quản lý secrets đúng quy trình",
+    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "evidence_sources": [
+      "repository_files",
+      "build_platform_admin"
+    ],
+    "owner_role": "TV2 (vai trò đề xuất; cần username thật)",
+    "change_boundary": "Nhánh mới hoặc sandbox; cấu hình tổ chức/registry/production chỉ đề xuất, không áp dụng.",
+    "evidence_requirement": "Bằng chứng thật trên đúng phạm vi; ảnh phần 2, mô tả/bảng phần 3. Không dùng sơ đồ hoặc kết quả mô phỏng thay screenshot thực nghiệm."
+  },
+  {
+    "id": "2.1.10",
+    "title": "Ensure webhooks of the build environment are secured",
+    "assessment": "Manual",
+    "page": 136,
+    "audit": "Đọc cấu hình webhook build: HTTPS, certificate verification, auth",
+    "remediation": "Bảo vệ webhook build và kiểm tra lại endpoint",
+    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "evidence_sources": [
+      "repository_files",
+      "build_platform_admin"
+    ],
+    "owner_role": "TV2 (vai trò đề xuất; cần username thật)",
+    "change_boundary": "Nhánh mới hoặc sandbox; cấu hình tổ chức/registry/production chỉ đề xuất, không áp dụng.",
+    "evidence_requirement": "Bằng chứng thật trên đúng phạm vi; ảnh phần 2, mô tả/bảng phần 3. Không dùng sơ đồ hoặc kết quả mô phỏng thay screenshot thực nghiệm."
+  },
+  {
+    "id": "2.1.11",
+    "title": "Ensure minimum number of administrators are set for the build environment",
+    "assessment": "Manual",
+    "page": 137,
+    "audit": "Kiểm kê admin của build system và lý do cấp quyền",
+    "remediation": "Giảm admin tới mức tối thiểu cần thiết",
+    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "evidence_sources": [
+      "repository_files",
+      "build_platform_admin"
+    ],
+    "owner_role": "TV2 (vai trò đề xuất; cần username thật)",
+    "change_boundary": "Nhánh mới hoặc sandbox; cấu hình tổ chức/registry/production chỉ đề xuất, không áp dụng.",
+    "evidence_requirement": "Bằng chứng thật trên đúng phạm vi; ảnh phần 2, mô tả/bảng phần 3. Không dùng sơ đồ hoặc kết quả mô phỏng thay screenshot thực nghiệm."
+  },
+  {
+    "id": "2.2.1",
+    "title": "Ensure build workers are single-used",
+    "assessment": "Manual",
+    "page": 139,
+    "audit": "Kiểm tra runner lifecycle, reuse và dữ liệu tồn dư giữa job",
+    "remediation": "Dùng runner dùng một lần hoặc tái tạo và làm sạch được kiểm chứng",
+    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "evidence_sources": [
+      "repository_files",
+      "build_platform_admin"
+    ],
+    "owner_role": "TV2 (vai trò đề xuất; cần username thật)",
+    "change_boundary": "Nhánh mới hoặc sandbox; cấu hình tổ chức/registry/production chỉ đề xuất, không áp dụng.",
+    "evidence_requirement": "Bằng chứng thật trên đúng phạm vi; ảnh phần 2, mô tả/bảng phần 3. Không dùng sơ đồ hoặc kết quả mô phỏng thay screenshot thực nghiệm."
+  },
+  {
+    "id": "2.2.2",
+    "title": "Ensure build worker environments and commands are passed and not pulled",
+    "assessment": "Manual",
+    "page": 140,
+    "audit": "Kiểm tra nguồn lệnh/config được cung cấp cho worker",
+    "remediation": "Truyền lệnh/config từ controller tin cậy, tránh worker kéo lệnh tùy ý",
+    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "evidence_sources": [
+      "repository_files",
+      "build_platform_admin"
+    ],
+    "owner_role": "TV2 (vai trò đề xuất; cần username thật)",
+    "change_boundary": "Nhánh mới hoặc sandbox; cấu hình tổ chức/registry/production chỉ đề xuất, không áp dụng.",
+    "evidence_requirement": "Bằng chứng thật trên đúng phạm vi; ảnh phần 2, mô tả/bảng phần 3. Không dùng sơ đồ hoặc kết quả mô phỏng thay screenshot thực nghiệm."
+  },
+  {
+    "id": "2.2.3",
+    "title": "Ensure the duties of each build worker are segregated",
+    "assessment": "Manual",
+    "page": 141,
+    "audit": "Đối chiếu nhiệm vụ/credentials giữa các worker",
+    "remediation": "Tách worker theo nhiệm vụ và trust boundary",
+    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "evidence_sources": [
+      "repository_files",
+      "build_platform_admin"
+    ],
+    "owner_role": "TV2 (vai trò đề xuất; cần username thật)",
+    "change_boundary": "Nhánh mới hoặc sandbox; cấu hình tổ chức/registry/production chỉ đề xuất, không áp dụng.",
+    "evidence_requirement": "Bằng chứng thật trên đúng phạm vi; ảnh phần 2, mô tả/bảng phần 3. Không dùng sơ đồ hoặc kết quả mô phỏng thay screenshot thực nghiệm."
+  },
+  {
+    "id": "2.2.4",
+    "title": "Ensure build workers have minimal network connectivity",
+    "assessment": "Manual",
+    "page": 142,
+    "audit": "Kiểm tra egress policy và thử endpoint allowed/denied",
+    "remediation": "Giới hạn mạng tối thiểu, không nới rule để làm xanh test",
+    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "evidence_sources": [
+      "repository_files",
+      "build_platform_admin"
+    ],
+    "owner_role": "TV2 (vai trò đề xuất; cần username thật)",
+    "change_boundary": "Nhánh mới hoặc sandbox; cấu hình tổ chức/registry/production chỉ đề xuất, không áp dụng.",
+    "evidence_requirement": "Bằng chứng thật trên đúng phạm vi; ảnh phần 2, mô tả/bảng phần 3. Không dùng sơ đồ hoặc kết quả mô phỏng thay screenshot thực nghiệm."
+  },
+  {
+    "id": "2.2.5",
+    "title": "Ensure run-time security is enforced for build workers",
+    "assessment": "Manual",
+    "page": 144,
+    "audit": "Kiểm tra runtime security agent/policy và sự kiện thử nghiệm",
+    "remediation": "Áp dụng runtime protection và giám sát phản hồi",
+    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "evidence_sources": [
+      "repository_files",
+      "build_platform_admin"
+    ],
+    "owner_role": "TV2 (vai trò đề xuất; cần username thật)",
+    "change_boundary": "Nhánh mới hoặc sandbox; cấu hình tổ chức/registry/production chỉ đề xuất, không áp dụng.",
+    "evidence_requirement": "Bằng chứng thật trên đúng phạm vi; ảnh phần 2, mô tả/bảng phần 3. Không dùng sơ đồ hoặc kết quả mô phỏng thay screenshot thực nghiệm."
+  },
+  {
+    "id": "2.2.6",
+    "title": "Ensure build workers are automatically scanned for vulnerabilities",
+    "assessment": "Manual",
+    "page": 145,
+    "audit": "Quét package của worker đúng image/version",
+    "remediation": "Quét định kỳ và xử lý CVE theo ngưỡng đã thống nhất",
+    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "evidence_sources": [
+      "repository_files",
+      "build_platform_admin"
+    ],
+    "owner_role": "TV2 (vai trò đề xuất; cần username thật)",
+    "change_boundary": "Nhánh mới hoặc sandbox; cấu hình tổ chức/registry/production chỉ đề xuất, không áp dụng.",
+    "evidence_requirement": "Bằng chứng thật trên đúng phạm vi; ảnh phần 2, mô tả/bảng phần 3. Không dùng sơ đồ hoặc kết quả mô phỏng thay screenshot thực nghiệm."
+  },
+  {
+    "id": "2.2.7",
+    "title": "Ensure build workers' deployment configuration is stored in a version control platform",
+    "assessment": "Manual",
+    "page": 146,
+    "audit": "Đối chiếu cấu hình triển khai worker với Git commit",
+    "remediation": "Lưu cấu hình worker trong VCS và review thay đổi",
+    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "evidence_sources": [
+      "repository_files",
+      "build_platform_admin"
+    ],
+    "owner_role": "TV2 (vai trò đề xuất; cần username thật)",
+    "change_boundary": "Nhánh mới hoặc sandbox; cấu hình tổ chức/registry/production chỉ đề xuất, không áp dụng.",
+    "evidence_requirement": "Bằng chứng thật trên đúng phạm vi; ảnh phần 2, mô tả/bảng phần 3. Không dùng sơ đồ hoặc kết quả mô phỏng thay screenshot thực nghiệm."
+  },
+  {
+    "id": "2.2.8",
+    "title": "Ensure resource consumption of build workers is monitored",
+    "assessment": "Manual",
+    "page": 148,
+    "audit": "Theo dõi CPU/RAM/disk trong tải thực tế và cảnh báo",
+    "remediation": "Thiết lập monitoring và kiểm tra đường cảnh báo",
+    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "evidence_sources": [
+      "repository_files",
+      "build_platform_admin"
+    ],
+    "owner_role": "TV2 (vai trò đề xuất; cần username thật)",
+    "change_boundary": "Nhánh mới hoặc sandbox; cấu hình tổ chức/registry/production chỉ đề xuất, không áp dụng.",
+    "evidence_requirement": "Bằng chứng thật trên đúng phạm vi; ảnh phần 2, mô tả/bảng phần 3. Không dùng sơ đồ hoặc kết quả mô phỏng thay screenshot thực nghiệm."
+  },
+  {
+    "id": "2.3.1",
+    "title": "Ensure all build steps are defined as code",
+    "assessment": "Manual",
+    "page": 150,
+    "audit": "So toàn bộ bước build với YAML/script đang version-control",
+    "remediation": "Đưa các bước build vào mã và loại bước không truy vết",
+    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "evidence_sources": [
+      "repository_files",
+      "required_check_enforcement"
+    ],
+    "owner_role": "TV2 (vai trò đề xuất; cần username thật)",
+    "change_boundary": "Nhánh mới hoặc sandbox; cấu hình tổ chức/registry/production chỉ đề xuất, không áp dụng.",
+    "evidence_requirement": "Bằng chứng thật trên đúng phạm vi; ảnh phần 2, mô tả/bảng phần 3. Không dùng sơ đồ hoặc kết quả mô phỏng thay screenshot thực nghiệm."
+  },
+  {
+    "id": "2.3.2",
+    "title": "Ensure steps have clearly defined build stage input and output",
+    "assessment": "Manual",
+    "page": 151,
+    "audit": "Kiểm tra contract input/output từng stage",
+    "remediation": "Khai báo, kiểm tra schema/hash và fail khi output không hợp lệ",
+    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "evidence_sources": [
+      "repository_files",
+      "required_check_enforcement"
+    ],
+    "owner_role": "TV2 (vai trò đề xuất; cần username thật)",
+    "change_boundary": "Nhánh mới hoặc sandbox; cấu hình tổ chức/registry/production chỉ đề xuất, không áp dụng.",
+    "evidence_requirement": "Bằng chứng thật trên đúng phạm vi; ảnh phần 2, mô tả/bảng phần 3. Không dùng sơ đồ hoặc kết quả mô phỏng thay screenshot thực nghiệm."
+  },
+  {
+    "id": "2.3.3",
+    "title": "Ensure output is written to a separate, secured storage repository",
+    "assessment": "Manual",
+    "page": 152,
+    "audit": "Xác định kho output, quyền truy cập và tách biệt nguồn",
+    "remediation": "Lưu output vào kho riêng được bảo vệ và kiểm soát quyền",
+    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "evidence_sources": [
+      "repository_files",
+      "required_check_enforcement"
+    ],
+    "owner_role": "TV2 (vai trò đề xuất; cần username thật)",
+    "change_boundary": "Nhánh mới hoặc sandbox; cấu hình tổ chức/registry/production chỉ đề xuất, không áp dụng.",
+    "evidence_requirement": "Bằng chứng thật trên đúng phạm vi; ảnh phần 2, mô tả/bảng phần 3. Không dùng sơ đồ hoặc kết quả mô phỏng thay screenshot thực nghiệm."
+  },
+  {
+    "id": "2.3.4",
+    "title": "Ensure changes to pipeline files are tracked and reviewed",
+    "assessment": "Manual",
+    "page": 153,
+    "audit": "Lấy mẫu thay đổi workflow và review tương ứng",
+    "remediation": "Bắt buộc review pipeline file, ghi lịch sử và code owner",
+    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "evidence_sources": [
+      "repository_files",
+      "required_check_enforcement"
+    ],
+    "owner_role": "TV2 (vai trò đề xuất; cần username thật)",
+    "change_boundary": "Nhánh mới hoặc sandbox; cấu hình tổ chức/registry/production chỉ đề xuất, không áp dụng.",
+    "evidence_requirement": "Bằng chứng thật trên đúng phạm vi; ảnh phần 2, mô tả/bảng phần 3. Không dùng sơ đồ hoặc kết quả mô phỏng thay screenshot thực nghiệm."
+  },
+  {
+    "id": "2.3.5",
+    "title": "Ensure access to build process triggering is minimized",
+    "assessment": "Manual",
+    "page": 154,
+    "audit": "Kiểm kê ai có thể dispatch/rerun/trigger qua token hoặc event",
+    "remediation": "Giới hạn trigger, runner và quyền token theo nhu cầu",
+    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "evidence_sources": [
+      "repository_files",
+      "required_check_enforcement"
+    ],
+    "owner_role": "TV2 (vai trò đề xuất; cần username thật)",
+    "change_boundary": "Nhánh mới hoặc sandbox; cấu hình tổ chức/registry/production chỉ đề xuất, không áp dụng.",
+    "evidence_requirement": "Bằng chứng thật trên đúng phạm vi; ảnh phần 2, mô tả/bảng phần 3. Không dùng sơ đồ hoặc kết quả mô phỏng thay screenshot thực nghiệm."
+  },
+  {
+    "id": "2.3.6",
+    "title": "Ensure pipelines are automatically scanned for misconfigurations",
+    "assessment": "Manual",
+    "page": 155,
+    "audit": "Quét misconfiguration toàn bộ pipeline files",
+    "remediation": "Bổ sung scanner và sửa cấu hình không an toàn",
+    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "evidence_sources": [
+      "repository_files",
+      "required_check_enforcement"
+    ],
+    "owner_role": "TV2 (vai trò đề xuất; cần username thật)",
+    "change_boundary": "Nhánh mới hoặc sandbox; cấu hình tổ chức/registry/production chỉ đề xuất, không áp dụng.",
+    "evidence_requirement": "Bằng chứng thật trên đúng phạm vi; ảnh phần 2, mô tả/bảng phần 3. Không dùng sơ đồ hoặc kết quả mô phỏng thay screenshot thực nghiệm."
+  },
+  {
+    "id": "2.3.7",
+    "title": "Ensure pipelines are automatically scanned for vulnerabilities",
+    "assessment": "Manual",
+    "page": 156,
+    "audit": "Kiểm tra vulnerability scanner cho pipeline và tools được dùng",
+    "remediation": "Quét thành phần pipeline và xử lý lỗ hổng",
+    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "evidence_sources": [
+      "repository_files",
+      "required_check_enforcement"
+    ],
+    "owner_role": "TV2 (vai trò đề xuất; cần username thật)",
+    "change_boundary": "Nhánh mới hoặc sandbox; cấu hình tổ chức/registry/production chỉ đề xuất, không áp dụng.",
+    "evidence_requirement": "Bằng chứng thật trên đúng phạm vi; ảnh phần 2, mô tả/bảng phần 3. Không dùng sơ đồ hoặc kết quả mô phỏng thay screenshot thực nghiệm."
+  },
+  {
+    "id": "2.3.8",
+    "title": "Ensure scanners are in place to identify and prevent sensitive data in pipeline files",
+    "assessment": "Automated",
+    "page": 157,
+    "audit": "Đưa dữ liệu giả vào pipeline fixture và xác minh secret scanner phát hiện",
+    "remediation": "Quét mọi pipeline, chặn theo chính sách và không dùng secret thật để thử",
+    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "evidence_sources": [
+      "repository_files",
+      "required_check_enforcement"
+    ],
+    "owner_role": "TV2 (vai trò đề xuất; cần username thật)",
+    "change_boundary": "Nhánh mới hoặc sandbox; cấu hình tổ chức/registry/production chỉ đề xuất, không áp dụng.",
+    "evidence_requirement": "Bằng chứng thật trên đúng phạm vi; ảnh phần 2, mô tả/bảng phần 3. Không dùng sơ đồ hoặc kết quả mô phỏng thay screenshot thực nghiệm."
+  },
+  {
+    "id": "2.4.1",
+    "title": "Ensure all artifacts on all releases are signed",
+    "assessment": "Manual",
+    "page": 159,
+    "audit": "Kiểm kê mọi release và mọi artifact có chữ ký hợp lệ",
+    "remediation": "Ký tất cả release artifacts và xác minh trước phân phối",
+    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "evidence_sources": [
+      "sandbox",
+      "supplier"
+    ],
+    "owner_role": "TV2 (vai trò đề xuất; cần username thật)",
+    "change_boundary": "Nhánh mới hoặc sandbox; cấu hình tổ chức/registry/production chỉ đề xuất, không áp dụng.",
+    "evidence_requirement": "Bằng chứng thật trên đúng phạm vi; ảnh phần 2, mô tả/bảng phần 3. Không dùng sơ đồ hoặc kết quả mô phỏng thay screenshot thực nghiệm."
+  },
+  {
+    "id": "2.4.2",
+    "title": "Ensure all external dependencies used in the build process are locked",
+    "assessment": "Manual",
+    "page": 160,
+    "audit": "Kiểm kê dependency và lock/version/hash thực tế",
+    "remediation": "Khóa mọi external dependency theo phiên bản xác minh",
+    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "evidence_sources": [
+      "sandbox",
+      "supplier"
+    ],
+    "owner_role": "TV2 (vai trò đề xuất; cần username thật)",
+    "change_boundary": "Nhánh mới hoặc sandbox; cấu hình tổ chức/registry/production chỉ đề xuất, không áp dụng.",
+    "evidence_requirement": "Bằng chứng thật trên đúng phạm vi; ảnh phần 2, mô tả/bảng phần 3. Không dùng sơ đồ hoặc kết quả mô phỏng thay screenshot thực nghiệm."
+  },
+  {
+    "id": "2.4.3",
+    "title": "Ensure dependencies are validated before being used",
+    "assessment": "Manual",
+    "page": 162,
+    "audit": "Đối chiếu hash/chữ ký với trusted source trước sử dụng",
+    "remediation": "Xác minh checksum/signature/attestation trước chạy công cụ",
+    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "evidence_sources": [
+      "sandbox",
+      "supplier"
+    ],
+    "owner_role": "TV2 (vai trò đề xuất; cần username thật)",
+    "change_boundary": "Nhánh mới hoặc sandbox; cấu hình tổ chức/registry/production chỉ đề xuất, không áp dụng.",
+    "evidence_requirement": "Bằng chứng thật trên đúng phạm vi; ảnh phần 2, mô tả/bảng phần 3. Không dùng sơ đồ hoặc kết quả mô phỏng thay screenshot thực nghiệm."
+  },
+  {
+    "id": "2.4.4",
+    "title": "Ensure the build pipeline creates reproducible artifacts",
+    "assessment": "Manual",
+    "page": 164,
+    "audit": "Build lặp lại cùng input trong môi trường đã kiểm soát",
+    "remediation": "Loại yếu tố không xác định và so byte/hash đầu ra",
+    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "evidence_sources": [
+      "sandbox",
+      "supplier"
+    ],
+    "owner_role": "TV2 (vai trò đề xuất; cần username thật)",
+    "change_boundary": "Nhánh mới hoặc sandbox; cấu hình tổ chức/registry/production chỉ đề xuất, không áp dụng.",
+    "evidence_requirement": "Bằng chứng thật trên đúng phạm vi; ảnh phần 2, mô tả/bảng phần 3. Không dùng sơ đồ hoặc kết quả mô phỏng thay screenshot thực nghiệm."
+  },
+  {
+    "id": "2.4.5",
+    "title": "Ensure pipeline steps produce a Software Bill of Materials (SBOM)",
+    "assessment": "Manual",
+    "page": 165,
+    "audit": "Đọc SBOM, kiểm package coverage và liên kết artifact digest",
+    "remediation": "Sinh SBOM mỗi build đúng phạm vi và định dạng được chấp nhận",
+    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "evidence_sources": [
+      "sandbox",
+      "supplier"
+    ],
+    "owner_role": "TV2 (vai trò đề xuất; cần username thật)",
+    "change_boundary": "Nhánh mới hoặc sandbox; cấu hình tổ chức/registry/production chỉ đề xuất, không áp dụng.",
+    "evidence_requirement": "Bằng chứng thật trên đúng phạm vi; ảnh phần 2, mô tả/bảng phần 3. Không dùng sơ đồ hoặc kết quả mô phỏng thay screenshot thực nghiệm."
+  },
+  {
+    "id": "2.4.6",
+    "title": "Ensure pipeline steps sign the Software Bill of Materials (SBOM) produced",
+    "assessment": "Manual",
+    "page": 166,
+    "audit": "Kiểm chữ ký SBOM và danh tính signer",
+    "remediation": "Ký SBOM bằng danh tính tin cậy và xác minh khi sử dụng",
+    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "evidence_sources": [
+      "sandbox",
+      "supplier"
+    ],
+    "owner_role": "TV2 (vai trò đề xuất; cần username thật)",
+    "change_boundary": "Nhánh mới hoặc sandbox; cấu hình tổ chức/registry/production chỉ đề xuất, không áp dụng.",
+    "evidence_requirement": "Bằng chứng thật trên đúng phạm vi; ảnh phần 2, mô tả/bảng phần 3. Không dùng sơ đồ hoặc kết quả mô phỏng thay screenshot thực nghiệm."
+  },
+  {
+    "id": "3.1.1",
+    "title": "Ensure third-party artifacts and open-source libraries are verified",
+    "assessment": "Manual",
+    "page": 169,
+    "audit": "Đối chiếu third-party package với checksum/chữ ký/nguồn tin cậy",
+    "remediation": "Chỉ nhận package đã xác minh, ghi lại trust root",
+    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "evidence_sources": [
+      "supplier",
+      "organization_policy"
+    ],
+    "owner_role": "TV3 (vai trò đề xuất; cần username thật)",
+    "change_boundary": "Nhánh mới hoặc sandbox; cấu hình tổ chức/registry/production chỉ đề xuất, không áp dụng.",
+    "evidence_requirement": "Bằng chứng thật trên đúng phạm vi; ảnh phần 2, mô tả/bảng phần 3. Không dùng sơ đồ hoặc kết quả mô phỏng thay screenshot thực nghiệm."
+  },
+  {
+    "id": "3.1.2",
+    "title": "Ensure Software Bill of Materials (SBOM) is required from all third-party suppliers",
+    "assessment": "Manual",
+    "page": 171,
+    "audit": "Kiểm kê nhà cung cấp và SBOM cho từng thành phần",
+    "remediation": "Yêu cầu supplier SBOM trong quy trình tiếp nhận",
+    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "evidence_sources": [
+      "supplier",
+      "organization_policy"
+    ],
+    "owner_role": "TV3 (vai trò đề xuất; cần username thật)",
+    "change_boundary": "Nhánh mới hoặc sandbox; cấu hình tổ chức/registry/production chỉ đề xuất, không áp dụng.",
+    "evidence_requirement": "Bằng chứng thật trên đúng phạm vi; ảnh phần 2, mô tả/bảng phần 3. Không dùng sơ đồ hoặc kết quả mô phỏng thay screenshot thực nghiệm."
+  },
+  {
+    "id": "3.1.3",
+    "title": "Ensure signed metadata of the build process is required and verified",
+    "assessment": "Manual",
+    "page": 173,
+    "audit": "Kiểm signed build metadata và đối chiếu artifact digest",
+    "remediation": "Yêu cầu provenance ký, xác minh signer và nội dung",
+    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "evidence_sources": [
+      "supplier",
+      "organization_policy"
+    ],
+    "owner_role": "TV3 (vai trò đề xuất; cần username thật)",
+    "change_boundary": "Nhánh mới hoặc sandbox; cấu hình tổ chức/registry/production chỉ đề xuất, không áp dụng.",
+    "evidence_requirement": "Bằng chứng thật trên đúng phạm vi; ảnh phần 2, mô tả/bảng phần 3. Không dùng sơ đồ hoặc kết quả mô phỏng thay screenshot thực nghiệm."
+  },
+  {
+    "id": "3.1.4",
+    "title": "Ensure dependencies are monitored between open-source components",
+    "assessment": "Manual",
+    "page": 175,
+    "audit": "Đọc dependency graph và thay đổi quan hệ/transitive dependencies",
+    "remediation": "Theo dõi graph, cập nhật và xử lý thay đổi bất thường",
+    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "evidence_sources": [
+      "supplier",
+      "organization_policy"
+    ],
+    "owner_role": "TV3 (vai trò đề xuất; cần username thật)",
+    "change_boundary": "Nhánh mới hoặc sandbox; cấu hình tổ chức/registry/production chỉ đề xuất, không áp dụng.",
+    "evidence_requirement": "Bằng chứng thật trên đúng phạm vi; ảnh phần 2, mô tả/bảng phần 3. Không dùng sơ đồ hoặc kết quả mô phỏng thay screenshot thực nghiệm."
+  },
+  {
+    "id": "3.1.5",
+    "title": "Ensure trusted package managers and repositories are defined and prioritized",
+    "assessment": "Manual",
+    "page": 176,
+    "audit": "Đọc cấu hình package manager, registry precedence và namespace",
+    "remediation": "Chỉ cho nguồn tin cậy, ưu tiên đúng registry để giảm dependency confusion",
+    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "evidence_sources": [
+      "supplier",
+      "organization_policy"
+    ],
+    "owner_role": "TV3 (vai trò đề xuất; cần username thật)",
+    "change_boundary": "Nhánh mới hoặc sandbox; cấu hình tổ chức/registry/production chỉ đề xuất, không áp dụng.",
+    "evidence_requirement": "Bằng chứng thật trên đúng phạm vi; ảnh phần 2, mô tả/bảng phần 3. Không dùng sơ đồ hoặc kết quả mô phỏng thay screenshot thực nghiệm."
+  },
+  {
+    "id": "3.1.6",
+    "title": "Ensure a signed Software Bill of Materials (SBOM) of the code is supplied",
+    "assessment": "Manual",
+    "page": 178,
+    "audit": "Kiểm SBOM của mã giao cho bên nhận và chữ ký",
+    "remediation": "Cung cấp signed SBOM gắn với phiên bản artifact",
+    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "evidence_sources": [
+      "supplier",
+      "organization_policy"
+    ],
+    "owner_role": "TV3 (vai trò đề xuất; cần username thật)",
+    "change_boundary": "Nhánh mới hoặc sandbox; cấu hình tổ chức/registry/production chỉ đề xuất, không áp dụng.",
+    "evidence_requirement": "Bằng chứng thật trên đúng phạm vi; ảnh phần 2, mô tả/bảng phần 3. Không dùng sơ đồ hoặc kết quả mô phỏng thay screenshot thực nghiệm."
+  },
+  {
+    "id": "3.1.7",
+    "title": "Ensure dependencies are pinned to a specific, verified version",
+    "assessment": "Manual",
+    "page": 180,
+    "audit": "Kiểm mọi dependency pinned và bằng chứng verified version",
+    "remediation": "Pin phiên bản/hash đã được xác minh qua review",
+    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "evidence_sources": [
+      "supplier",
+      "organization_policy"
+    ],
+    "owner_role": "TV3 (vai trò đề xuất; cần username thật)",
+    "change_boundary": "Nhánh mới hoặc sandbox; cấu hình tổ chức/registry/production chỉ đề xuất, không áp dụng.",
+    "evidence_requirement": "Bằng chứng thật trên đúng phạm vi; ảnh phần 2, mô tả/bảng phần 3. Không dùng sơ đồ hoặc kết quả mô phỏng thay screenshot thực nghiệm."
+  },
+  {
+    "id": "3.1.8",
+    "title": "Ensure all packages used are more than 60 days old",
+    "assessment": "Manual",
+    "page": 182,
+    "audit": "Tính tuổi phiên bản từ ngày phát hành tin cậy tới ngày kiểm tra",
+    "remediation": "Chọn phiên bản hơn 60 ngày theo yêu cầu, xử lý ngoại lệ theo chính sách",
+    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "evidence_sources": [
+      "supplier",
+      "organization_policy"
+    ],
+    "owner_role": "TV3 (vai trò đề xuất; cần username thật)",
+    "change_boundary": "Nhánh mới hoặc sandbox; cấu hình tổ chức/registry/production chỉ đề xuất, không áp dụng.",
+    "evidence_requirement": "Bằng chứng thật trên đúng phạm vi; ảnh phần 2, mô tả/bảng phần 3. Không dùng sơ đồ hoặc kết quả mô phỏng thay screenshot thực nghiệm."
+  },
+  {
+    "id": "3.2.1",
+    "title": "Ensure an organization-wide dependency usage policy is enforced",
+    "assessment": "Manual",
+    "page": 185,
+    "audit": "Đối chiếu chính sách dependency đã phê duyệt với enforcement",
+    "remediation": "Áp dụng policy toàn tổ chức và quản lý ngoại lệ có hạn",
+    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "evidence_sources": [
+      "supplier",
+      "organization_policy"
+    ],
+    "owner_role": "TV3 (vai trò đề xuất; cần username thật)",
+    "change_boundary": "Nhánh mới hoặc sandbox; cấu hình tổ chức/registry/production chỉ đề xuất, không áp dụng.",
+    "evidence_requirement": "Bằng chứng thật trên đúng phạm vi; ảnh phần 2, mô tả/bảng phần 3. Không dùng sơ đồ hoặc kết quả mô phỏng thay screenshot thực nghiệm."
+  },
+  {
+    "id": "3.2.2",
+    "title": "Ensure packages are automatically scanned for known vulnerabilities",
+    "assessment": "Manual",
+    "page": 186,
+    "audit": "Kiểm lịch SCA scan và freshness của vulnerability database",
+    "remediation": "Quét CVE tự động định kỳ và trước phát hành",
+    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "evidence_sources": [
+      "supplier",
+      "organization_policy"
+    ],
+    "owner_role": "TV3 (vai trò đề xuất; cần username thật)",
+    "change_boundary": "Nhánh mới hoặc sandbox; cấu hình tổ chức/registry/production chỉ đề xuất, không áp dụng.",
+    "evidence_requirement": "Bằng chứng thật trên đúng phạm vi; ảnh phần 2, mô tả/bảng phần 3. Không dùng sơ đồ hoặc kết quả mô phỏng thay screenshot thực nghiệm."
+  },
+  {
+    "id": "3.2.3",
+    "title": "Ensure packages are automatically scanned for license implications",
+    "assessment": "Manual",
+    "page": 187,
+    "audit": "Đọc license inventory, policy và mẫu vi phạm",
+    "remediation": "Quét license tự động và buộc xử lý vi phạm",
+    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "evidence_sources": [
+      "supplier",
+      "organization_policy"
+    ],
+    "owner_role": "TV3 (vai trò đề xuất; cần username thật)",
+    "change_boundary": "Nhánh mới hoặc sandbox; cấu hình tổ chức/registry/production chỉ đề xuất, không áp dụng.",
+    "evidence_requirement": "Bằng chứng thật trên đúng phạm vi; ảnh phần 2, mô tả/bảng phần 3. Không dùng sơ đồ hoặc kết quả mô phỏng thay screenshot thực nghiệm."
+  },
+  {
+    "id": "3.2.4",
+    "title": "Ensure packages are automatically scanned for ownership change",
+    "assessment": "Manual",
+    "page": 189,
+    "audit": "Đối chiếu package owner hiện tại với baseline đáng tin",
+    "remediation": "Giám sát ownership change, cảnh báo và review trước dùng bản mới",
+    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "evidence_sources": [
+      "supplier",
+      "organization_policy"
+    ],
+    "owner_role": "TV3 (vai trò đề xuất; cần username thật)",
+    "change_boundary": "Nhánh mới hoặc sandbox; cấu hình tổ chức/registry/production chỉ đề xuất, không áp dụng.",
+    "evidence_requirement": "Bằng chứng thật trên đúng phạm vi; ảnh phần 2, mô tả/bảng phần 3. Không dùng sơ đồ hoặc kết quả mô phỏng thay screenshot thực nghiệm."
+  },
+  {
+    "id": "4.1.1",
+    "title": "Ensure all artifacts are signed by the build pipeline itself",
+    "assessment": "Manual",
+    "page": 192,
+    "audit": "Xác minh artifact do pipeline ký và gắn đúng commit",
+    "remediation": "Ký trong pipeline bằng danh tính quản lý được và kiểm chứng",
+    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "evidence_sources": [
+      "registry",
+      "identity_provider"
+    ],
+    "owner_role": "TV4 (vai trò đề xuất; cần username thật)",
+    "change_boundary": "Nhánh mới hoặc sandbox; cấu hình tổ chức/registry/production chỉ đề xuất, không áp dụng.",
+    "evidence_requirement": "Bằng chứng thật trên đúng phạm vi; ảnh phần 2, mô tả/bảng phần 3. Không dùng sơ đồ hoặc kết quả mô phỏng thay screenshot thực nghiệm."
+  },
+  {
+    "id": "4.1.2",
+    "title": "Ensure artifacts are encrypted before distribution",
+    "assessment": "Manual",
+    "page": 195,
+    "audit": "Kiểm plaintext/ciphertext ở đường phân phối và thử sửa ciphertext",
+    "remediation": "Mã hóa trước phân phối, xác thực integrity trước giải mã",
+    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "evidence_sources": [
+      "registry",
+      "identity_provider"
+    ],
+    "owner_role": "TV4 (vai trò đề xuất; cần username thật)",
+    "change_boundary": "Nhánh mới hoặc sandbox; cấu hình tổ chức/registry/production chỉ đề xuất, không áp dụng.",
+    "evidence_requirement": "Bằng chứng thật trên đúng phạm vi; ảnh phần 2, mô tả/bảng phần 3. Không dùng sơ đồ hoặc kết quả mô phỏng thay screenshot thực nghiệm."
+  },
+  {
+    "id": "4.1.3",
+    "title": "Ensure only authorized platforms have decryption capabilities of artifacts",
+    "assessment": "Manual",
+    "page": 196,
+    "audit": "Đối chiếu quyền giải mã, nơi giữ khóa và nền tảng được phép",
+    "remediation": "Giới hạn khóa giải mã cho nền tảng được ủy quyền",
+    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "evidence_sources": [
+      "registry",
+      "identity_provider"
+    ],
+    "owner_role": "TV4 (vai trò đề xuất; cần username thật)",
+    "change_boundary": "Nhánh mới hoặc sandbox; cấu hình tổ chức/registry/production chỉ đề xuất, không áp dụng.",
+    "evidence_requirement": "Bằng chứng thật trên đúng phạm vi; ảnh phần 2, mô tả/bảng phần 3. Không dùng sơ đồ hoặc kết quả mô phỏng thay screenshot thực nghiệm."
+  },
+  {
+    "id": "4.2.1",
+    "title": "Ensure the authority to certify artifacts is limited",
+    "assessment": "Manual",
+    "page": 199,
+    "audit": "Kiểm ai được ký/chứng nhận artifact và key policy",
+    "remediation": "Giới hạn signer, bảo vệ khóa và audit mọi lần dùng",
+    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "evidence_sources": [
+      "registry",
+      "identity_provider"
+    ],
+    "owner_role": "TV4 (vai trò đề xuất; cần username thật)",
+    "change_boundary": "Nhánh mới hoặc sandbox; cấu hình tổ chức/registry/production chỉ đề xuất, không áp dụng.",
+    "evidence_requirement": "Bằng chứng thật trên đúng phạm vi; ảnh phần 2, mô tả/bảng phần 3. Không dùng sơ đồ hoặc kết quả mô phỏng thay screenshot thực nghiệm."
+  },
+  {
+    "id": "4.2.2",
+    "title": "Ensure number of permitted users who may upload new artifacts is minimized",
+    "assessment": "Manual",
+    "page": 200,
+    "audit": "Kiểm registry uploader roles và nhu cầu công việc",
+    "remediation": "Giảm người được upload theo least privilege",
+    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "evidence_sources": [
+      "registry",
+      "identity_provider"
+    ],
+    "owner_role": "TV4 (vai trò đề xuất; cần username thật)",
+    "change_boundary": "Nhánh mới hoặc sandbox; cấu hình tổ chức/registry/production chỉ đề xuất, không áp dụng.",
+    "evidence_requirement": "Bằng chứng thật trên đúng phạm vi; ảnh phần 2, mô tả/bảng phần 3. Không dùng sơ đồ hoặc kết quả mô phỏng thay screenshot thực nghiệm."
+  },
+  {
+    "id": "4.2.3",
+    "title": "Ensure user access to the package registry utilizes Multi- Factor Authentication (MFA)",
+    "assessment": "Manual",
+    "page": 201,
+    "audit": "Kiểm MFA/SSO của người truy cập registry và ngoại lệ",
+    "remediation": "Bắt buộc MFA theo khả năng registry, quản lý recovery",
+    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "evidence_sources": [
+      "registry",
+      "identity_provider"
+    ],
+    "owner_role": "TV4 (vai trò đề xuất; cần username thật)",
+    "change_boundary": "Nhánh mới hoặc sandbox; cấu hình tổ chức/registry/production chỉ đề xuất, không áp dụng.",
+    "evidence_requirement": "Bằng chứng thật trên đúng phạm vi; ảnh phần 2, mô tả/bảng phần 3. Không dùng sơ đồ hoặc kết quả mô phỏng thay screenshot thực nghiệm."
+  },
+  {
+    "id": "4.2.4",
+    "title": "Ensure user management of the package registry is not local",
+    "assessment": "Manual",
+    "page": 202,
+    "audit": "Xác định registry identity provider và local accounts",
+    "remediation": "Dùng quản lý danh tính tập trung, giảm tài khoản local theo policy",
+    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "evidence_sources": [
+      "registry",
+      "identity_provider"
+    ],
+    "owner_role": "TV4 (vai trò đề xuất; cần username thật)",
+    "change_boundary": "Nhánh mới hoặc sandbox; cấu hình tổ chức/registry/production chỉ đề xuất, không áp dụng.",
+    "evidence_requirement": "Bằng chứng thật trên đúng phạm vi; ảnh phần 2, mô tả/bảng phần 3. Không dùng sơ đồ hoặc kết quả mô phỏng thay screenshot thực nghiệm."
+  },
+  {
+    "id": "4.2.5",
+    "title": "Ensure anonymous access to artifacts is revoked",
+    "assessment": "Manual",
+    "page": 203,
+    "audit": "Thử anonymous download của artifact cần bảo vệ",
+    "remediation": "Tắt anonymous access theo phạm vi và kiểm tra lại",
+    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "evidence_sources": [
+      "registry",
+      "identity_provider"
+    ],
+    "owner_role": "TV4 (vai trò đề xuất; cần username thật)",
+    "change_boundary": "Nhánh mới hoặc sandbox; cấu hình tổ chức/registry/production chỉ đề xuất, không áp dụng.",
+    "evidence_requirement": "Bằng chứng thật trên đúng phạm vi; ảnh phần 2, mô tả/bảng phần 3. Không dùng sơ đồ hoặc kết quả mô phỏng thay screenshot thực nghiệm."
+  },
+  {
+    "id": "4.2.6",
+    "title": "Ensure minimum number of administrators are set for the package registry",
+    "assessment": "Manual",
+    "page": 205,
+    "audit": "Kiểm kê registry admins và lý do cấp quyền",
+    "remediation": "Giảm admin và định kỳ review",
+    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "evidence_sources": [
+      "registry",
+      "identity_provider"
+    ],
+    "owner_role": "TV4 (vai trò đề xuất; cần username thật)",
+    "change_boundary": "Nhánh mới hoặc sandbox; cấu hình tổ chức/registry/production chỉ đề xuất, không áp dụng.",
+    "evidence_requirement": "Bằng chứng thật trên đúng phạm vi; ảnh phần 2, mô tả/bảng phần 3. Không dùng sơ đồ hoặc kết quả mô phỏng thay screenshot thực nghiệm."
+  },
+  {
+    "id": "4.3.1",
+    "title": "Ensure all signed artifacts are validated upon uploading the package registry",
+    "assessment": "Manual",
+    "page": 208,
+    "audit": "Thử upload artifact ký hợp lệ và artifact bị sửa vào registry lab",
+    "remediation": "Xác minh chữ ký trước chấp nhận upload, fail closed",
+    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "evidence_sources": [
+      "registry",
+      "identity_provider"
+    ],
+    "owner_role": "TV4 (vai trò đề xuất; cần username thật)",
+    "change_boundary": "Nhánh mới hoặc sandbox; cấu hình tổ chức/registry/production chỉ đề xuất, không áp dụng.",
+    "evidence_requirement": "Bằng chứng thật trên đúng phạm vi; ảnh phần 2, mô tả/bảng phần 3. Không dùng sơ đồ hoặc kết quả mô phỏng thay screenshot thực nghiệm."
+  },
+  {
+    "id": "4.3.2",
+    "title": "Ensure all versions of an existing artifact have their signatures validated",
+    "assessment": "Manual",
+    "page": 210,
+    "audit": "Kiểm mọi version và chữ ký, thử downgrade hoặc overwrite",
+    "remediation": "Xác minh mọi phiên bản và cấm overwrite không được phê duyệt",
+    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "evidence_sources": [
+      "registry",
+      "identity_provider"
+    ],
+    "owner_role": "TV4 (vai trò đề xuất; cần username thật)",
+    "change_boundary": "Nhánh mới hoặc sandbox; cấu hình tổ chức/registry/production chỉ đề xuất, không áp dụng.",
+    "evidence_requirement": "Bằng chứng thật trên đúng phạm vi; ảnh phần 2, mô tả/bảng phần 3. Không dùng sơ đồ hoặc kết quả mô phỏng thay screenshot thực nghiệm."
+  },
+  {
+    "id": "4.3.3",
+    "title": "Ensure changes in package registry configuration are audited",
+    "assessment": "Manual",
+    "page": 212,
+    "audit": "Đọc audit log thay đổi registry configuration",
+    "remediation": "Bật audit và cảnh báo thay đổi cấu hình",
+    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "evidence_sources": [
+      "registry",
+      "identity_provider"
+    ],
+    "owner_role": "TV4 (vai trò đề xuất; cần username thật)",
+    "change_boundary": "Nhánh mới hoặc sandbox; cấu hình tổ chức/registry/production chỉ đề xuất, không áp dụng.",
+    "evidence_requirement": "Bằng chứng thật trên đúng phạm vi; ảnh phần 2, mô tả/bảng phần 3. Không dùng sơ đồ hoặc kết quả mô phỏng thay screenshot thực nghiệm."
+  },
+  {
+    "id": "4.3.4",
+    "title": "Ensure webhooks of the repository are secured",
+    "assessment": "Manual",
+    "page": 214,
+    "audit": "Đọc webhook registry HTTPS/verification/auth metadata",
+    "remediation": "Bảo vệ webhook registry, kiểm tra certificate và nhận sự kiện",
+    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "evidence_sources": [
+      "registry",
+      "identity_provider"
+    ],
+    "owner_role": "TV4 (vai trò đề xuất; cần username thật)",
+    "change_boundary": "Nhánh mới hoặc sandbox; cấu hình tổ chức/registry/production chỉ đề xuất, không áp dụng.",
+    "evidence_requirement": "Bằng chứng thật trên đúng phạm vi; ảnh phần 2, mô tả/bảng phần 3. Không dùng sơ đồ hoặc kết quả mô phỏng thay screenshot thực nghiệm."
+  },
+  {
+    "id": "4.4.1",
+    "title": "Ensure artifacts contain information about their origin",
+    "assessment": "Manual",
+    "page": 216,
+    "audit": "Đọc provenance repo/commit/build/run và xác minh chữ ký",
+    "remediation": "Gắn thông tin nguồn gốc xác thực với digest artifact",
+    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "evidence_sources": [
+      "registry",
+      "identity_provider"
+    ],
+    "owner_role": "TV4 (vai trò đề xuất; cần username thật)",
+    "change_boundary": "Nhánh mới hoặc sandbox; cấu hình tổ chức/registry/production chỉ đề xuất, không áp dụng.",
+    "evidence_requirement": "Bằng chứng thật trên đúng phạm vi; ảnh phần 2, mô tả/bảng phần 3. Không dùng sơ đồ hoặc kết quả mô phỏng thay screenshot thực nghiệm."
+  },
+  {
+    "id": "5.1.1",
+    "title": "Ensure deployment configuration files are separated from source code",
+    "assessment": "Manual",
+    "page": 219,
+    "audit": "Kiểm vị trí quản lý config deploy và trust boundary với source",
+    "remediation": "Tách config theo kiến trúc/quyền phù hợp, không chỉ đổi thư mục",
+    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "evidence_sources": [
+      "production",
+      "identity_provider"
+    ],
+    "owner_role": "TV4 (vai trò đề xuất; cần username thật)",
+    "change_boundary": "Nhánh mới hoặc sandbox; cấu hình tổ chức/registry/production chỉ đề xuất, không áp dụng.",
+    "evidence_requirement": "Bằng chứng thật trên đúng phạm vi; ảnh phần 2, mô tả/bảng phần 3. Không dùng sơ đồ hoặc kết quả mô phỏng thay screenshot thực nghiệm."
+  },
+  {
+    "id": "5.1.2",
+    "title": "Ensure changes in deployment configuration are audited",
+    "assessment": "Manual",
+    "page": 220,
+    "audit": "Lấy mẫu thay đổi deploy config và audit/review trail",
+    "remediation": "Version-control cấu hình và ghi review/approval",
+    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "evidence_sources": [
+      "production",
+      "identity_provider"
+    ],
+    "owner_role": "TV4 (vai trò đề xuất; cần username thật)",
+    "change_boundary": "Nhánh mới hoặc sandbox; cấu hình tổ chức/registry/production chỉ đề xuất, không áp dụng.",
+    "evidence_requirement": "Bằng chứng thật trên đúng phạm vi; ảnh phần 2, mô tả/bảng phần 3. Không dùng sơ đồ hoặc kết quả mô phỏng thay screenshot thực nghiệm."
+  },
+  {
+    "id": "5.1.3",
+    "title": "Ensure scanners are in place to identify and prevent sensitive data in deployment configuration",
+    "assessment": "Manual",
+    "page": 221,
+    "audit": "Quét config deployment với secret scanner và fixture giả",
+    "remediation": "Ngăn secret plaintext, dùng secret manager và scanner",
+    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "evidence_sources": [
+      "production",
+      "identity_provider"
+    ],
+    "owner_role": "TV4 (vai trò đề xuất; cần username thật)",
+    "change_boundary": "Nhánh mới hoặc sandbox; cấu hình tổ chức/registry/production chỉ đề xuất, không áp dụng.",
+    "evidence_requirement": "Bằng chứng thật trên đúng phạm vi; ảnh phần 2, mô tả/bảng phần 3. Không dùng sơ đồ hoặc kết quả mô phỏng thay screenshot thực nghiệm."
+  },
+  {
+    "id": "5.1.4",
+    "title": "Limit access to deployment configurations",
+    "assessment": "Manual",
+    "page": 222,
+    "audit": "Đọc quyền thay config deployment và danh sách approver",
+    "remediation": "Giới hạn quyền theo môi trường, review độc lập",
+    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "evidence_sources": [
+      "production",
+      "identity_provider"
+    ],
+    "owner_role": "TV4 (vai trò đề xuất; cần username thật)",
+    "change_boundary": "Nhánh mới hoặc sandbox; cấu hình tổ chức/registry/production chỉ đề xuất, không áp dụng.",
+    "evidence_requirement": "Bằng chứng thật trên đúng phạm vi; ảnh phần 2, mô tả/bảng phần 3. Không dùng sơ đồ hoặc kết quả mô phỏng thay screenshot thực nghiệm."
+  },
+  {
+    "id": "5.1.5",
+    "title": "Scan Infrastructure as Code (IaC)",
+    "assessment": "Manual",
+    "page": 224,
+    "audit": "Kiểm kê deployment IaC và report misconfiguration",
+    "remediation": "Quét mọi IaC thực dùng và xử lý phát hiện",
+    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "evidence_sources": [
+      "production",
+      "identity_provider"
+    ],
+    "owner_role": "TV4 (vai trò đề xuất; cần username thật)",
+    "change_boundary": "Nhánh mới hoặc sandbox; cấu hình tổ chức/registry/production chỉ đề xuất, không áp dụng.",
+    "evidence_requirement": "Bằng chứng thật trên đúng phạm vi; ảnh phần 2, mô tả/bảng phần 3. Không dùng sơ đồ hoặc kết quả mô phỏng thay screenshot thực nghiệm."
+  },
+  {
+    "id": "5.1.6",
+    "title": "Ensure deployment configuration manifests are verified",
+    "assessment": "Manual",
+    "page": 225,
+    "audit": "Kiểm chữ ký/hash deployment manifest trước áp dụng",
+    "remediation": "Xác minh manifest theo trust root trước sử dụng",
+    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "evidence_sources": [
+      "production",
+      "identity_provider"
+    ],
+    "owner_role": "TV4 (vai trò đề xuất; cần username thật)",
+    "change_boundary": "Nhánh mới hoặc sandbox; cấu hình tổ chức/registry/production chỉ đề xuất, không áp dụng.",
+    "evidence_requirement": "Bằng chứng thật trên đúng phạm vi; ảnh phần 2, mô tả/bảng phần 3. Không dùng sơ đồ hoặc kết quả mô phỏng thay screenshot thực nghiệm."
+  },
+  {
+    "id": "5.1.7",
+    "title": "Ensure deployment configuration manifests are pinned to a specific, verified version",
+    "assessment": "Manual",
+    "page": 226,
+    "audit": "Đối chiếu deployment manifest với phiên bản/digest đã phê duyệt",
+    "remediation": "Pin manifest và dependency phiên bản được xác minh",
+    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "evidence_sources": [
+      "production",
+      "identity_provider"
+    ],
+    "owner_role": "TV4 (vai trò đề xuất; cần username thật)",
+    "change_boundary": "Nhánh mới hoặc sandbox; cấu hình tổ chức/registry/production chỉ đề xuất, không áp dụng.",
+    "evidence_requirement": "Bằng chứng thật trên đúng phạm vi; ảnh phần 2, mô tả/bảng phần 3. Không dùng sơ đồ hoặc kết quả mô phỏng thay screenshot thực nghiệm."
+  },
+  {
+    "id": "5.2.1",
+    "title": "Ensure deployments are automated",
+    "assessment": "Manual",
+    "page": 229,
+    "audit": "Theo dõi pipeline triển khai và thao tác thủ công còn lại",
+    "remediation": "Mã hóa deployment và kiểm tra smoke/rollback",
+    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "evidence_sources": [
+      "production",
+      "identity_provider"
+    ],
+    "owner_role": "TV4 (vai trò đề xuất; cần username thật)",
+    "change_boundary": "Nhánh mới hoặc sandbox; cấu hình tổ chức/registry/production chỉ đề xuất, không áp dụng.",
+    "evidence_requirement": "Bằng chứng thật trên đúng phạm vi; ảnh phần 2, mô tả/bảng phần 3. Không dùng sơ đồ hoặc kết quả mô phỏng thay screenshot thực nghiệm."
+  },
+  {
+    "id": "5.2.2",
+    "title": "Ensure the deployment environment is reproducible",
+    "assessment": "Manual",
+    "page": 230,
+    "audit": "Tái tạo môi trường từ input/config đã khóa và so cấu hình",
+    "remediation": "Khóa môi trường, tự động provisioning, kiểm chứng tái lập môi trường",
+    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "evidence_sources": [
+      "production",
+      "identity_provider"
+    ],
+    "owner_role": "TV4 (vai trò đề xuất; cần username thật)",
+    "change_boundary": "Nhánh mới hoặc sandbox; cấu hình tổ chức/registry/production chỉ đề xuất, không áp dụng.",
+    "evidence_requirement": "Bằng chứng thật trên đúng phạm vi; ảnh phần 2, mô tả/bảng phần 3. Không dùng sơ đồ hoặc kết quả mô phỏng thay screenshot thực nghiệm."
+  },
+  {
+    "id": "5.2.3",
+    "title": "Ensure access to production environment is limited",
+    "assessment": "Manual",
+    "page": 231,
+    "audit": "Kiểm kê production identities, roles, network và break-glass",
+    "remediation": "Giới hạn quyền production và audit truy cập",
+    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "evidence_sources": [
+      "production",
+      "identity_provider"
+    ],
+    "owner_role": "TV4 (vai trò đề xuất; cần username thật)",
+    "change_boundary": "Nhánh mới hoặc sandbox; cấu hình tổ chức/registry/production chỉ đề xuất, không áp dụng.",
+    "evidence_requirement": "Bằng chứng thật trên đúng phạm vi; ảnh phần 2, mô tả/bảng phần 3. Không dùng sơ đồ hoặc kết quả mô phỏng thay screenshot thực nghiệm."
+  },
+  {
+    "id": "5.2.4",
+    "title": "Ensure default passwords are not used",
+    "assessment": "Manual",
+    "page": 232,
+    "audit": "Kiểm tra cấu hình production không còn default password, không đăng nhập thử tùy tiện",
+    "remediation": "Thay default credentials, quản lý bí mật và vòng đời rotation",
+    "re_audit": "Lặp lại Audit trên cùng đối tượng sau khắc phục; ghi before/after, người thực hiện, thời điểm, ref, bằng chứng và thử trường hợp bị từ chối. Không sửa main hoặc settings trong đợt này.",
+    "evidence_sources": [
+      "production",
+      "identity_provider"
+    ],
+    "owner_role": "TV4 (vai trò đề xuất; cần username thật)",
+    "change_boundary": "Nhánh mới hoặc sandbox; cấu hình tổ chức/registry/production chỉ đề xuất, không áp dụng.",
+    "evidence_requirement": "Bằng chứng thật trên đúng phạm vi; ảnh phần 2, mô tả/bảng phần 3. Không dùng sơ đồ hoặc kết quả mô phỏng thay screenshot thực nghiệm."
+  }
+]

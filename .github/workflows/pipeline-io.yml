@@ -34,6 +34,33 @@ jobs:
       - name: Exercise groups 3 to 5 in an isolated local sandbox
         run: python3 scripts/supply_chain_lab.py
 
+      - name: Validate all-control plans and main push safeguard
+        run: python3 -m unittest discover -s tests -v
+
+      - name: Exercise offline registry deny and verification policies
+        run: python3 scripts/registry_lab.py
+
+      - name: Inventory pinned action versions and package age evidence
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python3 scripts/audit_dependencies.py
+
+      - name: Verify secret-scanner detection with synthetic fixtures
+        shell: bash
+        run: |
+          mkdir -p "$RUNNER_TEMP/cis-tools"
+          cd "$RUNNER_TEMP/cis-tools"
+          wget -q https://github.com/gitleaks/gitleaks/releases/download/v8.18.4/gitleaks_8.18.4_linux_x64.tar.gz
+          sha256sum --check "$GITHUB_WORKSPACE/config/gitleaks-8.18.4.sha256"
+          tar -xzf gitleaks_8.18.4_linux_x64.tar.gz
+          cd "$GITHUB_WORKSPACE"
+          python3 scripts/scanner_selftest.py --gitleaks "$RUNNER_TEMP/cis-tools/gitleaks"
+
+      - name: Collect evidence readiness for all 120 controls
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python3 scripts/audit_all.py
+
       - name: Save API and sandbox reports
         if: always()
         uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2

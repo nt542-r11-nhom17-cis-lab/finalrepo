@@ -1,0 +1,11 @@
+{
+  "controls": 120,
+  "implementation_evidence_counts": {
+    "NOT_TESTED": 64,
+    "MANUAL_REVIEW": 7,
+    "PARTIAL": 39,
+    "LAB_ONLY": 10
+  },
+  "runbooks": 120,
+  "full_control_pass": 0
+}

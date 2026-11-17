@@ -97,7 +97,7 @@ def main():
               'mode': 'read-only', 'results': results}
     (out / 'results.json').write_text(json.dumps(report, indent=2) + '\n')
     with (out / 'results.csv').open('w', newline='') as handle:
-        writer = csv.DictWriter(handle, fieldnames=['cis_id', 'configuration_result', 'overall_status', 'observed', 'note'])
+        writer = csv.DictWriter(handle, fieldnames=['cis_id', 'configuration_result', 'overall_status', 'observed', 'note'], lineterminator='\n')
         writer.writeheader()
         for row in results:
             writer.writerow({**row, 'observed': json.dumps(row['observed'])})

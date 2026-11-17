@@ -1,0 +1,16 @@
+#!/bin/sh
+# Local safeguard only. Does not change GitHub Settings or main.
+case "$2" in
+  https://github.com/hieune-ui/finalrepo.git|git@github.com:hieune-ui/finalrepo.git) ;;
+  *) echo 'Refusing push: remote is outside finalrepo sandbox.' >&2; exit 1 ;;
+esac
+while read -r local_ref local_sha remote_ref remote_sha; do
+  case "$remote_ref" in
+    refs/heads/audit/*) ;;
+    *) echo 'Refusing push: only audit/* branches are permitted here; main is protected locally.' >&2; exit 1 ;;
+  esac
+  case "$local_sha" in
+    0000000000000000000000000000000000000000) echo 'Refusing branch deletion.' >&2; exit 1 ;;
+  esac
+done
+exit 0

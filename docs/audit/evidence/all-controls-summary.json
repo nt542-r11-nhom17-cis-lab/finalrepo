@@ -1,0 +1,7 @@
+{
+  "controls": 120,
+  "evidence_collected": 4,
+  "blocked_prerequisite": 116,
+  "compliance_pass": 0,
+  "mode": "GET-only evidence readiness, no administrative mutations"
+}

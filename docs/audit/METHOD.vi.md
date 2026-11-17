@@ -82,3 +82,7 @@ flowchart LR
 Tên nhánh được percent-encode, host cố định api.github.com, có timeout và phiên bản API. Token chỉ đọc từ biến môi trường, không ghi file. Các endpoint có danh sách lớn phải xử lý phân trang trước khi dùng để thống kê toàn tổ chức; script hiện chỉ kiểm tra một repository, không tuyên bố bao phủ cả tổ chức.
 
 Quy trình khắc phục từ xa của đợt này chỉ sửa mã và tài liệu trên nhánh. Remediation cấu hình main, thành viên, production, registry hay cấp quyền chưa được thực hiện. Re-audit trên nhánh kiểm chứng script/workflow, không chứng minh cấu hình main đã đổi.
+
+## Bổ sung phương pháp cho toàn bộ 120 mục
+
+Mỗi mục có Audit, Remediation đề xuất, Re-audit và yêu cầu bằng chứng trong [runbooks](COMPLETE-REVIEW.vi.md). Bộ thu thập readiness thực hiện GET metadata; 403, thiếu IdP/registry/production được ghi BLOCKED_PREREQUISITE. Registry fixture chỉ kiểm thử logic ủy quyền, claim MFA giả, chữ ký, phiên bản bất biến, từ chối anonymous/tampering và log; không chứng minh MFA/SSO thật. Inventory dependency ghi SHA, tag, release date và tuổi, không suy từ tuổi commit sang tuổi phiên bản. Scanner self-test dùng credential tổng hợp trong thư mục tạm, kiểm cả trường hợp sạch và có phát hiện.

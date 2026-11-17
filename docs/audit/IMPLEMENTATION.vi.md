@@ -44,3 +44,7 @@ Các file mới gồm scripts/audit_github.py, scripts/supply_chain_lab.py, lab-
 | Rà soát workflow remote | Dispatch pipeline-security.yml cùng ref | Zizmor logs | Xem RESULTS.vi.md |
 
 Báo cáo chứa khóa công khai tạm nhưng không chứa khóa riêng hoặc password giải mã. File encrypted là minh họa; artifact zip plaintext cùng được lưu phục vụ lab nên không tuyên bố bảo mật phân phối production. Workflow sandbox không chứng minh registry riêng đã xác minh upload hoặc giới hạn truy cập artifact.
+
+## Đợt bổ sung trên nhánh audit/cis-complete-runbooks
+
+Bổ sung 120 runbook và control-plans.json, audit_all.py, audit_dependencies.py, registry_lab.py, scanner_selftest.py, checksum Gitleaks, hook pre-push local và 4 test bổ sung (tổng 8). Phần 2 giải thích hình/bằng chứng; tại đây chỉ ghi chữ/bảng. Các vai trò nhóm trước vẫn là đề xuất vì chưa có ba username. Không cấp quyền thật. Kết quả bổ sung có registry fixture 13 phép thử và scanner 2 phép thử; không cộng chúng thành số tiêu chí CIS đạt. Nhánh main, collaborator/settings và hai repo nguồn không được thay đổi.

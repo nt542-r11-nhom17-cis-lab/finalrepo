@@ -1,0 +1,68 @@
+{
+  "scope": "offline policy fixture, no real IdP, MFA, CA, package registry or production control",
+  "tests": [
+    {
+      "test": "anonymous upload",
+      "result": "PASS",
+      "expectation": "operation rejected"
+    },
+    {
+      "test": "reader upload",
+      "result": "PASS",
+      "expectation": "operation rejected"
+    },
+    {
+      "test": "upload without MFA claim",
+      "result": "PASS",
+      "expectation": "operation rejected"
+    },
+    {
+      "test": "version path traversal",
+      "result": "PASS",
+      "expectation": "operation rejected"
+    },
+    {
+      "test": "valid signed uploads, two immutable versions",
+      "result": "PASS"
+    },
+    {
+      "test": "overwrite existing version",
+      "result": "PASS",
+      "expectation": "operation rejected"
+    },
+    {
+      "test": "anonymous download",
+      "result": "PASS",
+      "expectation": "operation rejected"
+    },
+    {
+      "test": "all stored versions verified on read",
+      "result": "PASS"
+    },
+    {
+      "test": "tampered upload",
+      "result": "PASS",
+      "expectation": "operation rejected"
+    },
+    {
+      "test": "tampered stored version download",
+      "result": "PASS",
+      "expectation": "operation rejected"
+    },
+    {
+      "test": "reader configuration change",
+      "result": "PASS",
+      "expectation": "operation rejected"
+    },
+    {
+      "test": "unencrypted webhook configuration",
+      "result": "PASS",
+      "expectation": "operation rejected"
+    },
+    {
+      "test": "admin HTTPS-only configuration and chained audit events",
+      "result": "PASS"
+    }
+  ],
+  "real_world_compliance": "NOT_ASSESSED"
+}

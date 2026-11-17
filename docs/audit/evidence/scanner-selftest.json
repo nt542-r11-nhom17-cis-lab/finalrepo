@@ -1,0 +1,18 @@
+{
+  "scope": "scanner behavior test only; does not prove branch protection or real secret remediation",
+  "checks": [
+    {
+      "test": "benign configuration accepted",
+      "status": "PASS"
+    },
+    {
+      "test": "synthetic credential rejected",
+      "status": "PASS",
+      "finding_count": 2,
+      "rules": [
+        "generic-api-key",
+        "github-pat"
+      ]
+    }
+  ]
+}

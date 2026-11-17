@@ -40,3 +40,7 @@ Xem [bảng kết quả và liên kết từng phiên chạy](docs/integration/R
 ## Rà soát đủ 5 nhóm CIS — nhánh review
 
 [Báo cáo và đối chiếu 120 tiêu chí](docs/audit/README.vi.md), [phương pháp Audit–Remediation](docs/audit/METHOD.vi.md), [triển khai](docs/audit/IMPLEMENTATION.vi.md). Có script API read-only và lab nhóm 3–5; các mục thiếu quyền/supplier/registry/production ghi rõ chưa kiểm chứng. Không có tuyên bố đạt toàn benchmark.
+
+## Đợt bổ sung 120 quy trình trên nhánh mới
+
+[Đọc toàn bộ thay đổi, công cụ và giới hạn](docs/audit/COMPLETE-REVIEW.vi.md). Có Audit–Remediation–Re-audit cho từng tiêu chí; không tuyên bố tuân thủ 100% từ kết quả lab.

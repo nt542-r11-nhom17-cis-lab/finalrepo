@@ -2,6 +2,8 @@ name: CIS - Pipeline Input Output
 
 on:
   workflow_dispatch:
+  push:
+    branches: [audit/free-controls-completion]
 
 permissions:
   contents: read
@@ -49,6 +51,12 @@ jobs:
       - name: Verify locked wheel integrity and inventory license evidence
         run: python3 scripts/audit_python_toolchain.py
 
+      - name: Inventory actual installed dependency relationships
+        run: '"$RUNNER_TEMP/cis-python-security/bin/python" scripts/dependency_graph.py'
+
+      - name: Verify graph and signature rejection tests with locked tools
+        run: '"$RUNNER_TEMP/cis-python-security/bin/python" -m unittest discover -s tests -v'
+
       - name: Verify scanner archive and scan current source
         shell: bash
         run: |
@@ -69,6 +77,20 @@ jobs:
           actual=$(docker run --rm --network none --read-only --cap-drop ALL --security-opt no-new-privileges "cis-demo:$GITHUB_SHA")
           test "$actual" = "CIS container lab"
           echo "PASS: unprivileged demo container output verified"
+
+      - name: Verify runtime privilege restrictions and rejected writes
+        shell: bash
+        run: |
+          docker run --rm --network none --read-only --cap-drop ALL --security-opt no-new-privileges "cis-demo:$GITHUB_SHA" sh -ec '
+            test "$(id -u)" != 0
+            test "$(awk "/^CapEff:/ {print \$2}" /proc/self/status)" = 0000000000000000
+            test "$(awk "/^NoNewPrivs:/ {print \$2}" /proc/self/status)" = 1
+            if touch /cis-disallowed-write 2>/dev/null; then
+              echo "ERROR: unexpected root filesystem write"
+              exit 1
+            fi
+            echo "PASS: non-root, zero effective capabilities, no-new-privileges, write denied"
+          '
 
       - name: Scan source and IaC with a HIGH or CRITICAL gate
         uses: aquasecurity/trivy-action@ed142fd0673e97e23eac54620cfb913e5ce36c25 # v0.36.0

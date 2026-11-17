@@ -1,0 +1,570 @@
+[
+  {
+    "id": "1.1.1",
+    "title": "Ensure any changes to code are tracked in a version control platform",
+    "sources": [
+      "source"
+    ],
+    "audit": "Đối chiếu git ls-files, commit và manifest source.zip; tìm mã/cấu hình đang nằm ngoài Git.",
+    "remediation": "Đưa mã/cấu hình hợp lệ vào nhánh audit; không commit secret hoặc dữ liệu cá nhân.",
+    "re_audit": "Tạo một thay đổi thử trên nhánh audit, kiểm tra diff/commit rồi đối chiếu SHA trong provenance.",
+    "remaining": "Chưa xác minh mọi dự án/thiết bị của nhóm đều quản lý mã bằng Git."
+  },
+  {
+    "id": "1.1.5",
+    "title": "Ensure there are restrictions on who can dismiss code change reviews",
+    "sources": [
+      "protection",
+      "behavior_test"
+    ],
+    "audit": "Settings → Rules → Rulesets hoặc Branches: kiểm tra người/team được dismiss review và bypass.",
+    "remediation": "Trên nhánh thử audit/protection-sandbox, cấu hình giới hạn dismiss review cho reviewer được chỉ định. Không sửa rule đang áp dụng main.",
+    "re_audit": "Dùng tài khoản có quyền và không có quyền thử dismiss; lưu kết quả chấp nhận/từ chối.",
+    "remaining": "API protection 403; cần owner và hai tài khoản thử thật."
+  },
+  {
+    "id": "1.1.7",
+    "title": "Ensure code owner's review is required when a change affects owned code",
+    "sources": [
+      "source",
+      "protection",
+      "behavior_test"
+    ],
+    "audit": "Đọc .github/CODEOWNERS; xác minh người được khai báo có quyền phù hợp và rule Require review from Code Owners.",
+    "remediation": "Tạo rule riêng cho audit/protection-sandbox; bật Code Owner review. Chưa biết 3 username còn lại nên không tự thêm.",
+    "re_audit": "PR sửa file thuộc sở hữu phải bị chặn khi chưa có Code Owner approval.",
+    "remaining": "CODEOWNERS chưa chứng minh rule có hiệu lực; thiếu username/thử nghiệm."
+  },
+  {
+    "id": "1.1.8",
+    "title": "Ensure inactive branches are periodically reviewed and removed",
+    "sources": [
+      "branches",
+      "organization_admin"
+    ],
+    "audit": "Repo → Branches: rà từng nhánh, commit cuối và PR liên quan; thống nhất ngưỡng không hoạt động (ví dụ 90 ngày là đề xuất, không phải CIS).",
+    "remediation": "Lập danh sách đề nghị xóa, sao lưu ref và xin chủ nhánh xác nhận; giữ mọi nhánh main/audit hiện có trong đợt này.",
+    "re_audit": "Đối chiếu danh sách trước/sau và lịch rà soát tháng tiếp theo.",
+    "remaining": "Không tự xóa nhánh vì có thể chứa bài làm chưa gộp."
+  },
+  {
+    "id": "1.1.10",
+    "title": "Ensure open Git branches are up to date before they can be merged into code base",
+    "sources": [
+      "protection",
+      "behavior_test"
+    ],
+    "audit": "Kiểm tra Require status checks và Require branches to be up to date trong rule có hiệu lực.",
+    "remediation": "Bật yêu cầu cập nhật trước merge trên nhánh thử riêng.",
+    "re_audit": "Cập nhật base branch thử sau khi CI xanh; PR cũ phải yêu cầu cập nhật/chạy lại.",
+    "remaining": "Cần quyền Settings và PR thử; không áp dụng main."
+  },
+  {
+    "id": "1.1.11",
+    "title": "Ensure all open comments are resolved before allowing code change merging",
+    "sources": [
+      "protection",
+      "behavior_test"
+    ],
+    "audit": "Kiểm tra Require conversation resolution before merging.",
+    "remediation": "Bật giải quyết hội thoại trước merge cho nhánh thử.",
+    "re_audit": "Để một review thread chưa resolve: merge bị chặn; resolve rồi kiểm tra lại.",
+    "remaining": "Thiếu hiệu lực rule và kiểm thử nhiều tài khoản."
+  },
+  {
+    "id": "1.1.12",
+    "title": "Ensure verification of signed commits for new changes before merging",
+    "sources": [
+      "protection",
+      "behavior_test"
+    ],
+    "audit": "Kiểm tra Require signed commits và trạng thái Verified; đọc chữ ký trên commit thử.",
+    "remediation": "Cấu hình ký GPG/SSH cho tài khoản của bạn; bật yêu cầu trên nhánh thử. Không gửi private key cho trợ lý.",
+    "re_audit": "Commit không ký phải bị từ chối; commit ký hợp lệ phải được nhận khi đủ điều kiện còn lại.",
+    "remaining": "Git author hoặc hash commit không thay bằng chứng chữ ký."
+  },
+  {
+    "id": "1.1.13",
+    "title": "Ensure linear history is required",
+    "sources": [
+      "protection",
+      "behavior_test"
+    ],
+    "audit": "Kiểm tra Require linear history và merge methods; xem graph lịch sử.",
+    "remediation": "Bật linear history trên nhánh thử; dùng squash hoặc rebase theo policy nhóm.",
+    "re_audit": "Thử merge commit vào nhánh thử phải bị chặn; squash/rebase đúng policy được nhận.",
+    "remaining": "Chưa đổi rule hoặc rewrite lịch sử."
+  },
+  {
+    "id": "1.1.14",
+    "title": "Ensure branch protection rules are enforced for administrators",
+    "sources": [
+      "protection",
+      "behavior_test"
+    ],
+    "audit": "Kiểm tra Do not allow bypassing / enforce_admins và toàn bộ bypass actors.",
+    "remediation": "Áp dụng hạn chế cho cả admin trên nhánh thử, giữ lối khôi phục đã được owner phê duyệt.",
+    "re_audit": "Admin thử push/merge thiếu điều kiện trên nhánh thử phải bị chặn.",
+    "remaining": "Không thử trên main để tránh khóa công việc nhóm."
+  },
+  {
+    "id": "1.1.15",
+    "title": "Ensure pushing or merging of new code is restricted to specific individuals or teams",
+    "sources": [
+      "protection",
+      "collaborators",
+      "behavior_test"
+    ],
+    "audit": "Settings → Collaborators and teams và rule restrict who can push/bypass.",
+    "remediation": "Dùng team theo nhiệm vụ, chỉ cấp người cần push/merge trên nhánh thử.",
+    "re_audit": "Tài khoản ngoài danh sách thử push/merge bị từ chối; người hợp lệ vẫn cần đủ review/CI.",
+    "remaining": "Không tự thay quyền hoặc mời người chưa được xác định."
+  },
+  {
+    "id": "1.1.18",
+    "title": "Ensure any merging of code is automatically scanned for risks",
+    "sources": [
+      "source",
+      "protection",
+      "behavior_test"
+    ],
+    "audit": "Đọc trigger push/PR, ngưỡng lỗi scanner và required checks.",
+    "remediation": "Đợt này bật scan tự động cho đúng nhánh audit/free-controls-completion; muốn mọi merge cần owner cấu hình PR scan + required checks trên nhánh đích sau review.",
+    "re_audit": "Kiểm tra CI trên commit nhánh mới; sau đó thử PR có lỗi mẫu an toàn trên nhánh thử và xác nhận bị chặn.",
+    "remaining": "Scan nhánh audit chưa đồng nghĩa mọi merge trên main đều được quét/chặn."
+  },
+  {
+    "id": "1.1.19",
+    "title": "Ensure any changes to branch protection rules are audited",
+    "sources": [
+      "organization_admin"
+    ],
+    "audit": "Organization Settings → Audit log: lọc hành động đổi bảo vệ nhánh/ruleset, repo và thời gian.",
+    "remediation": "Thống nhất người rà log và lịch rà; xuất log đã che thông tin nhạy cảm. UI dùng Free; GitHub audit-log API cần Enterprise Cloud.",
+    "re_audit": "Owner đổi một rule của nhánh thử, tìm đúng actor/time/action trong log rồi phục hồi cấu hình thử.",
+    "remaining": "Không dùng API Enterprise làm điều kiện bắt buộc của phương án Free; cần ảnh/log UI."
+  },
+  {
+    "id": "1.2.5",
+    "title": "Ensure all copies (forks) of code are tracked and accounted for",
+    "sources": [
+      "forks",
+      "organization_admin"
+    ],
+    "audit": "Repo → Forks và API /forks; đối chiếu owner, mục đích và dữ liệu có trong fork.",
+    "remediation": "Ghi sổ fork được phép; yêu cầu người sở hữu xử lý fork không hợp lệ theo quy định nhóm.",
+    "re_audit": "So sánh số fork API với danh sách đã rà; lưu ngày và người duyệt.",
+    "remaining": "Không có fork lúc kiểm tra không chứng minh có quy trình quản lý fork."
+  },
+  {
+    "id": "1.2.7",
+    "title": "Ensure inactive repositories are reviewed and archived periodically",
+    "sources": [
+      "organization_admin"
+    ],
+    "audit": "Organization → Repositories: xem lần cập nhật và chủ sở hữu; xác định repo còn cần giữ hoạt động.",
+    "remediation": "Ghi lịch rà định kỳ; chỉ archive sau xác nhận của chủ repo, không archive finalrepo trong đợt này.",
+    "re_audit": "Kiểm tra trạng thái Archived của repo thử được phép và biên bản rà soát.",
+    "remaining": "Đổi trạng thái repo thật cần quyết định nhóm."
+  },
+  {
+    "id": "1.3.1",
+    "title": "Ensure inactive users are reviewed and removed periodically",
+    "sources": [
+      "organization_admin"
+    ],
+    "audit": "Organization → People: owner rà last activity/audit log, thành viên ngoài và nhu cầu công việc.",
+    "remediation": "Lập đề xuất thu hồi quyền người không còn nhiệm vụ; không tự xóa người.",
+    "re_audit": "Người được thu hồi không còn truy cập repo riêng thử; lưu danh sách trước/sau đã che PII.",
+    "remaining": "Thiếu danh tính thật và owner review; không suy tổng thành viên từ public members."
+  },
+  {
+    "id": "1.3.3",
+    "title": "Ensure minimum number of administrators are set for the organization",
+    "sources": [
+      "organization_admin"
+    ],
+    "audit": "Organization → People → Role Owner: đối chiếu từng owner với nhiệm vụ.",
+    "remediation": "Giữ số owner tối thiểu cần cho vận hành và khôi phục theo policy được duyệt; không tự hạ quyền ai.",
+    "re_audit": "Xuất bảng vai trò đã che PII và giải thích từng owner.",
+    "remaining": "Chưa có quyết định vai trò của nhóm; không bịa số người."
+  },
+  {
+    "id": "1.3.4",
+    "title": "Ensure Multi-Factor Authentication (MFA) is required for contributors of new code",
+    "sources": [
+      "organization_admin",
+      "collaborators"
+    ],
+    "audit": "Kiểm tra Require two-factor authentication và danh sách outside collaborators/contributors có quyền ghi.",
+    "remediation": "Mỗi người tự bật MFA, lưu recovery codes riêng; owner đánh giá ảnh hưởng rồi bật yêu cầu Organization.",
+    "re_audit": "Tài khoản không MFA không được cấp/giữ quyền đóng góp theo policy; lưu ảnh xác nhận không lộ recovery codes.",
+    "remaining": "Thay đổi yêu cầu MFA có thể ảnh hưởng thành viên, cần owner thao tác sau rà soát."
+  },
+  {
+    "id": "1.3.6",
+    "title": "Ensure new members are required to be invited using company-approved email",
+    "sources": [
+      "organization_admin"
+    ],
+    "audit": "People → Invite member: đối chiếu email mời với danh sách email được nhóm/phòng học phê duyệt.",
+    "remediation": "Lập danh sách được duyệt; owner mời bằng đúng email thay vì username; không cần mua SAML chỉ để làm quy trình thủ công này.",
+    "re_audit": "Đối chiếu invitation/audit log với email được duyệt, che địa chỉ trong báo cáo công khai.",
+    "remaining": "Cần email và đồng ý của các thành viên; chưa có thông tin nên không mời."
+  },
+  {
+    "id": "1.3.7",
+    "title": "Ensure two administrators are set for each repository",
+    "sources": [
+      "collaborators",
+      "organization_admin"
+    ],
+    "audit": "Repo Settings → Collaborators and teams: xác định hai admin thực tế và MFA của họ.",
+    "remediation": "Owner chọn hai người có nhiệm vụ quản trị, cấp quyền theo quyết định nhóm; không cấp Admin cho cả nhóm mặc định.",
+    "re_audit": "Hai người tự đăng nhập kiểm tra đúng quyền; tài khoản developer không có admin.",
+    "remaining": "Thiếu username thứ hai và phê duyệt phân công thực tế."
+  },
+  {
+    "id": "1.3.13",
+    "title": "Ensure anomalous code behavior is tracked",
+    "sources": [
+      "organization_admin",
+      "source"
+    ],
+    "audit": "Xác định tín hiệu: push bất thường, thay rule, thay workflow, secret detection; kiểm tra ai nhận cảnh báo.",
+    "remediation": "Thiết lập quy trình đọc audit log UI và thông báo CI; bổ sung công cụ phát hiện phù hợp. Không gọi quét tĩnh là phát hiện mọi hành vi bất thường.",
+    "re_audit": "Tạo sự kiện an toàn trên nhánh thử, xác nhận cảnh báo đến người trực và ghi xử lý.",
+    "remaining": "Chưa có kênh nhận cảnh báo, ngưỡng hành vi và vận hành thực tế."
+  },
+  {
+    "id": "1.4.1",
+    "title": "Ensure administrator approval is required for every installed application",
+    "sources": [
+      "organization_admin"
+    ],
+    "audit": "Organization Settings → Third-party access / GitHub Apps: kiểm tra người được cài/phê duyệt app.",
+    "remediation": "Owner giới hạn cài app theo policy; phê duyệt từng app và repo cần dùng.",
+    "re_audit": "Thành viên thường yêu cầu cài app thử, owner phải phê duyệt trước khi app có quyền.",
+    "remaining": "Connector không có quyền quản lý policy app."
+  },
+  {
+    "id": "1.4.2",
+    "title": "Ensure stale applications are reviewed and inactive ones are removed",
+    "sources": [
+      "organization_admin"
+    ],
+    "audit": "Settings → Installed GitHub Apps / OAuth app policy: rà app, owner, lần dùng và mục đích.",
+    "remediation": "Lập lịch rà hàng tháng; gỡ app không cần sau đánh giá ảnh hưởng.",
+    "re_audit": "Đối chiếu sổ app trước/sau; xác nhận CI cần thiết vẫn hoạt động.",
+    "remaining": "Không tự gỡ Connector hoặc app có thể đang dùng."
+  },
+  {
+    "id": "1.4.3",
+    "title": "Ensure the access granted to each installed application is limited to the least privilege needed",
+    "sources": [
+      "organization_admin"
+    ],
+    "audit": "Mở Configure từng app; kiểm tra quyền read/write và Only select repositories.",
+    "remediation": "Giới hạn app vào repo cần thiết và quyền tối thiểu mà nhà cung cấp cho phép.",
+    "re_audit": "Thử đọc repo không được cấp phải thất bại; repo được cấp vẫn hoạt động.",
+    "remaining": "Cần ảnh cấu hình cài đặt; không suy least privilege từ quyền admin của user."
+  },
+  {
+    "id": "1.4.4",
+    "title": "Ensure only secured webhooks are used",
+    "sources": [
+      "hooks",
+      "organization_admin"
+    ],
+    "audit": "Repo Settings → Webhooks và Organization Settings → Webhooks: HTTPS, TLS verify, secret, sự kiện tối thiểu.",
+    "remediation": "Dùng endpoint HTTPS xác minh X-Hub-Signature-256, chống replay và chỉ nhận event cần dùng; secret lưu ngoài Git.",
+    "re_audit": "Gửi delivery hợp lệ và payload sửa/chữ ký sai; endpoint phải từ chối trường hợp sai.",
+    "remaining": "Chưa có endpoint webhook thực; không tạo webhook gửi dữ liệu ra ngoài."
+  },
+  {
+    "id": "2.1.2",
+    "title": "Ensure all aspects of the pipeline infrastructure and configuration are immutable",
+    "sources": [
+      "source",
+      "build_admin"
+    ],
+    "audit": "Đối chiếu workflow SHA pins, Dockerfile digest và khả năng sửa trực tiếp runner.",
+    "remediation": "Dùng runner tái tạo và config trong Git; đợt này giữ digest/image và tool lock, không coi ubuntu-24.04 là image bất biến tuyệt đối.",
+    "re_audit": "Đối chiếu source tree, image digest và log trước/sau mỗi lần tạo lại.",
+    "remaining": "GitHub-hosted image cập nhật; cần lifecycle/provisioning evidence đầy đủ."
+  },
+  {
+    "id": "2.1.3",
+    "title": "Ensure the build environment is logged",
+    "sources": [
+      "source"
+    ],
+    "audit": "Đọc reports/runtime.json: OS, Python/OpenSSL, runner image version, commit và run URL; không xuất toàn bộ env.",
+    "remediation": "Ghi allowlist metadata trong job và lưu artifact với retention 7 ngày; nếu yêu cầu lưu lâu hơn owner quyết định kho riêng.",
+    "re_audit": "Tải artifact, đối chiếu commit/run ID; kiểm tra không có token, secret hoặc home path.",
+    "remaining": "Log thuộc run nhánh thử; cần chính sách retention được nhóm duyệt."
+  },
+  {
+    "id": "2.1.5",
+    "title": "Ensure access to build environments is limited",
+    "sources": [
+      "actions_policy",
+      "collaborators",
+      "build_admin"
+    ],
+    "audit": "Settings → Actions và quyền repo: xác định ai sửa workflow, chạy workflow và truy cập runner.",
+    "remediation": "Giảm quyền contributor theo nhiệm vụ; giữ contents:read, persist-credentials:false trong workflow.",
+    "re_audit": "Tài khoản Read không được sửa/kích hoạt trái phép; Write chỉ làm nhiệm vụ cần thiết.",
+    "remaining": "API quản trị Actions 403; cần owner kiểm tra UI."
+  },
+  {
+    "id": "2.1.6",
+    "title": "Ensure users must authenticate to access the build environment",
+    "sources": [
+      "actions_policy",
+      "build_admin"
+    ],
+    "audit": "Kiểm tra đăng nhập GitHub, MFA và runner tự host nếu có; xác định đường truy cập build.",
+    "remediation": "Chỉ truy cập bằng danh tính được quản lý; không mở runner/SSH công khai.",
+    "re_audit": "Tài khoản chưa đăng nhập/không được cấp quyền không thể điều khiển build.",
+    "remaining": "Chưa có bằng chứng thực về mọi đường truy cập; repo public cho phép đọc log không phải quyền điều khiển."
+  },
+  {
+    "id": "2.1.7",
+    "title": "Ensure build secrets are limited to the minimal necessary scope",
+    "sources": [
+      "secrets",
+      "workflow_token_policy",
+      "source"
+    ],
+    "audit": "Settings → Secrets and variables → Actions/Environments: owner xem phạm vi, thời hạn và nơi sử dụng; không chụp giá trị.",
+    "remediation": "Không đưa production secret vào audit; dùng GITHUB_TOKEN quyền đọc và key ký tạm chỉ nằm trong temp.",
+    "re_audit": "Kiểm tra job không dùng secret ngoài phạm vi; artifact không chứa private key.",
+    "remaining": "API chỉ cho metadata/số lượng; không chứng minh mọi secret đều tối thiểu."
+  },
+  {
+    "id": "2.1.8",
+    "title": "Ensure the build infrastructure is automatically scanned for vulnerabilities",
+    "sources": [
+      "source",
+      "build_admin"
+    ],
+    "audit": "Xem Trivy image scan và runner/toolchain inventory; phân biệt container build với toàn bộ host runner.",
+    "remediation": "Giữ quét image/source và toolchain; self-hosted runner cần scanner host được owner cho phép.",
+    "re_audit": "Đọc JSON scanner, kiểm tra coverage và lỗi kết nối phải được báo; không chỉ nhìn CI xanh.",
+    "remaining": "Container scan không thay kiểm tra toàn hạ tầng GitHub-hosted."
+  },
+  {
+    "id": "2.1.9",
+    "title": "Ensure default passwords are not used",
+    "sources": [
+      "source",
+      "build_admin"
+    ],
+    "audit": "Kiểm tra cấu hình dịch vụ build/runner có tài khoản mặc định hay không; rà secret ở HEAD và lịch sử.",
+    "remediation": "Source hiện dùng biến môi trường; owner đổi/thu hồi credential cũ đã từng xuất hiện trong lịch sử nếu còn hiệu lực.",
+    "re_audit": "Xác nhận credential cũ bị từ chối; scanner HEAD/lịch sử có phạm vi ghi rõ.",
+    "remaining": "Không thể tự xoay credential dịch vụ chưa được cung cấp; không rewrite history."
+  },
+  {
+    "id": "2.1.10",
+    "title": "Ensure webhooks of the build environment are secured",
+    "sources": [
+      "hooks",
+      "build_admin"
+    ],
+    "audit": "Kiểm kê webhook kích hoạt build, token, TLS và xác minh chữ ký.",
+    "remediation": "Áp dụng HTTPS + HMAC secret + event allowlist; GitHub Actions event native phải được phân biệt với webhook tự triển khai.",
+    "re_audit": "Delivery sai chữ ký/replay bị từ chối; không lộ secret trong log.",
+    "remaining": "Không có endpoint build webhook được nhóm chỉ định."
+  },
+  {
+    "id": "2.1.11",
+    "title": "Ensure minimum number of administrators are set for the build environment",
+    "sources": [
+      "collaborators",
+      "build_admin"
+    ],
+    "audit": "Xác định owner/admin repo và admin self-hosted runner/build platform.",
+    "remediation": "Lập bảng quyền TV1–TV4, chỉ người quản trị có admin; developer dùng Write theo nhu cầu.",
+    "re_audit": "Owner duyệt danh sách và thử bằng tài khoản không admin.",
+    "remaining": "Thiếu username và cấu hình build platform; không tự hạ quyền."
+  },
+  {
+    "id": "2.2.2",
+    "title": "Ensure build worker environments and commands are passed and not pulled",
+    "sources": [
+      "source",
+      "build_admin"
+    ],
+    "audit": "Đọc lệnh worker và điểm tải từ mạng; kiểm tra môi trường được truyền sẵn hay cài lúc chạy.",
+    "remediation": "Container demo chạy --network none, truyền lệnh/env từ workflow; tool tải trong CI phải khóa hash.",
+    "re_audit": "Đối chiếu smoke test không mạng; thử tác vụ cần mạng phải thất bại trong container thử.",
+    "remaining": "Các job scanner vẫn tải package/tool; chưa đáp ứng cho mọi worker."
+  },
+  {
+    "id": "2.2.5",
+    "title": "Ensure run-time security is enforced for build workers",
+    "sources": [
+      "source",
+      "build_admin"
+    ],
+    "audit": "Đọc docker run flags, user và runtime controls; xác định phạm vi host/container.",
+    "remediation": "Demo dùng read-only FS, no-new-privileges, cap-drop ALL, non-root, network none; không tự cài runtime agent vào máy không sở hữu.",
+    "re_audit": "Thử ghi root FS/mở mạng trong container thử phải thất bại; kiểm tra log run.",
+    "remaining": "Hardening demo không thay runtime threat detection cho toàn bộ worker."
+  },
+  {
+    "id": "2.2.7",
+    "title": "Ensure build workers' deployment configuration is stored in a version control platform",
+    "sources": [
+      "source",
+      "build_admin"
+    ],
+    "audit": "Kiểm tra workflow, Dockerfile và cấu hình runner thực có được Git quản lý không.",
+    "remediation": "Đã quản lý config của nhánh bằng Git; thêm IaC self-hosted nếu nhóm có hạ tầng thật.",
+    "re_audit": "Đối chiếu archive HEAD với cấu hình worker được triển khai và commit/tree trong provenance.",
+    "remaining": "GitHub-hosted provisioning do nhà cung cấp quản lý, chưa có đối chiếu đầy đủ."
+  },
+  {
+    "id": "2.3.3",
+    "title": "Ensure output is written to a separate, secured storage repository",
+    "sources": [
+      "bundle",
+      "registry"
+    ],
+    "audit": "Kiểm tra artifact storage, quyền đọc/tải, retention và tách biệt khỏi worker.",
+    "remediation": "Đợt này upload bundle sang Actions artifact tách khỏi đĩa runner; muốn kho riêng bảo mật cần storage/registry do nhóm sở hữu.",
+    "re_audit": "Tải artifact từ run, xác minh fingerprint/chữ ký; thử quyền truy cập bằng user phù hợp.",
+    "remaining": "Repo public không thể chứng minh output storage riêng tư; chưa tạo registry thật."
+  },
+  {
+    "id": "2.3.5",
+    "title": "Ensure access to build process triggering is minimized",
+    "sources": [
+      "actions_policy",
+      "collaborators",
+      "build_admin"
+    ],
+    "audit": "Kiểm tra trigger push/workflow_dispatch, quyền Write/Admin và fork policy.",
+    "remediation": "Workflow mới chỉ push đúng audit/free-controls-completion, không pull_request_target, không main; owner cần rà ai có Write.",
+    "re_audit": "Push nhánh đúng tạo run; nhánh khác không kích hoạt workflow bổ sung; tài khoản Read không điều khiển được build.",
+    "remaining": "Không tự đổi quyền repo hoặc org workflow settings."
+  },
+  {
+    "id": "2.3.7",
+    "title": "Ensure pipelines are automatically scanned for vulnerabilities",
+    "sources": [
+      "source"
+    ],
+    "audit": "Kiểm tra workflow Zizmor có đọc toàn bộ .github/workflows và thực sự chạy trên commit mới.",
+    "remediation": "Bật Zizmor tự động trên nhánh audit mới; dùng ngưỡng lỗi của scanner, không bỏ qua finding để làm xanh.",
+    "re_audit": "Đọc report/log run; thêm fixture không an toàn chỉ trong unit/offline hoặc nhánh thử riêng để xác nhận scanner bắt lỗi.",
+    "remaining": "Đã có pipeline scan; required check/main enforcement chưa áp dụng."
+  },
+  {
+    "id": "2.4.1",
+    "title": "Ensure all artifacts on all releases are signed",
+    "sources": [
+      "bundle",
+      "releases"
+    ],
+    "audit": "Đọc inventory releases/assets và signed manifest của bundle run này.",
+    "remediation": "Ký source.zip, SBOM, provenance bằng manifest trong CI nhánh; production cần signing identity tin cậy và release gate riêng.",
+    "re_audit": "Xác minh mọi payload trong manifest; sửa một byte hoặc thay key phải thất bại.",
+    "remaining": "Key tạm cùng job không thay release authority; chưa ký mọi artifact/mọi release."
+  },
+  {
+    "id": "3.1.2",
+    "title": "Ensure Software Bill of Materials (SBOM) is required from all third-party suppliers",
+    "sources": [
+      "supplier"
+    ],
+    "audit": "Kiểm kê từng nhà cung cấp: Actions, wheel, scanner binary, base OS; yêu cầu SBOM gốc có version/digest.",
+    "remediation": "Lưu SBOM do supplier phát hành và phương pháp xác minh; không đổi SBOM tự tạo thành SBOM của supplier.",
+    "re_audit": "Đối chiếu package/digest được dùng với SBOM supplier; supplier không cung cấp phải ghi thiếu.",
+    "remaining": "Chưa có bộ SBOM gốc từ mọi nhà cung cấp."
+  },
+  {
+    "id": "3.1.3",
+    "title": "Ensure signed metadata of the build process is required and verified",
+    "sources": [
+      "bundle",
+      "supplier"
+    ],
+    "audit": "Đọc provenance có commit/tree/source digest và chữ ký; xác định nguồn tin cậy của key.",
+    "remediation": "Bundle nhánh tạo/ký metadata; supplier cần attestation riêng và policy xác minh identity được owner duyệt.",
+    "re_audit": "Kiểm tra metadata signature + hash; sửa manifest/key phải bị từ chối.",
+    "remaining": "Same-job ephemeral key không phải chứng thực build độc lập của supplier."
+  },
+  {
+    "id": "3.1.4",
+    "title": "Ensure dependencies are monitored between open-source components",
+    "sources": [
+      "source",
+      "supplier"
+    ],
+    "audit": "Đối chiếu requirements-security.lock và quan hệ Requires-Dist thực; phân biệt danh sách phẳng với dependency graph.",
+    "remediation": "Đã bổ sung dependency_graph.py xuất metadata quan hệ từ đúng 32 distribution cài bằng lock/hash; giữ marker và extra nguyên văn, không suy quan hệ từ thứ tự lock.",
+    "re_audit": "Xác minh mọi cạnh phụ thuộc và phiên bản được giải quyết; không tự suy cạnh từ thứ tự lock.",
+    "remaining": "Đã có graph scanner toolchain; còn graph cho Actions, OS, binary tải và xác minh extras/path giải dependency đầy đủ."
+  },
+  {
+    "id": "3.1.6",
+    "title": "Ensure a signed Software Bill of Materials (SBOM) of the code is supplied",
+    "sources": [
+      "bundle"
+    ],
+    "audit": "Đọc project.spdx.json của đúng commit: 32 scanner wheels với SHA256 và phạm vi loại trừ.",
+    "remediation": "Đợt này ký SBOM trong manifest cùng source/provenance, lưu public key; không đưa private key vào artifact.",
+    "re_audit": "Dùng fingerprint từ log run đã kiểm tra để verify; sửa SBOM một byte phải thất bại.",
+    "remaining": "Chưa bao phủ OS, mọi binary tải, application graph và supplier SBOM."
+  },
+  {
+    "id": "3.2.4",
+    "title": "Ensure packages are automatically scanned for ownership change",
+    "sources": [
+      "owners",
+      "supplier"
+    ],
+    "audit": "So numeric repository ID/owner ID của từng pinned action với config/action-owners.json.",
+    "remediation": "Đã có monitor fail-closed khi ID đổi, action mới/thiếu hoặc API lỗi; baseline chỉ khởi tạo một lần, thay đổi cần review.",
+    "re_audit": "Chạy đối chiếu thật; unit test đổi owner, xóa entry và lỗi API phải chặn.",
+    "remaining": "Chỉ theo dõi repository owner của Actions; chưa theo dõi người duy trì 32 package PyPI."
+  },
+  {
+    "id": "5.1.4",
+    "title": "Limit access to deployment configurations",
+    "sources": [
+      "source",
+      "protection",
+      "production"
+    ],
+    "audit": "Xác định file deployment/IaC và ai có thể sửa; xem CODEOWNERS và rule enforcement.",
+    "remediation": "Đặt deployment config trong Git; cần owner review bắt buộc trên nhánh thử rồi mới quyết định áp dụng thật.",
+    "re_audit": "Tài khoản không có quyền không được sửa config; PR thiếu owner review bị chặn trên nhánh thử.",
+    "remaining": "Chưa có deployment target/quyền thật; CODEOWNERS chưa là enforcement."
+  },
+  {
+    "id": "5.2.3",
+    "title": "Ensure access to production environment is limited",
+    "sources": [
+      "production"
+    ],
+    "audit": "Liệt kê danh tính được vào production, MFA, RBAC, đường mạng và audit log; không dùng registry fixture làm production.",
+    "remediation": "Nhóm cung cấp môi trường được phép; owner cấp quyền tối thiểu và tài khoản riêng, không gửi mật khẩu qua chat.",
+    "re_audit": "Thử người không được cấp bị từ chối và người hợp lệ đúng phạm vi; lưu log đã che dữ liệu.",
+    "remaining": "Không có production được nhóm chỉ định; không tự triển khai cloud trả phí."
+  },
+  {
+    "id": "5.2.4",
+    "title": "Ensure default passwords are not used",
+    "sources": [
+      "production"
+    ],
+    "audit": "Kiểm tra dịch vụ production, tài khoản khởi tạo và secret manager; xác minh tài khoản mặc định đã vô hiệu/đổi.",
+    "remediation": "Owner đổi mật khẩu mặc định, xoay credential cũ và lưu secret ngoài Git; không ghi giá trị trong báo cáo.",
+    "re_audit": "Đăng nhập bằng credential mặc định/cũ phải bị từ chối trong kiểm thử được phép.",
+    "remaining": "Không có production/secret manager; không bịa kết quả đăng nhập."
+  }
+]

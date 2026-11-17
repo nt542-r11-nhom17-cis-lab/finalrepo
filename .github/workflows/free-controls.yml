@@ -33,6 +33,11 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: python3 scripts/monitor_action_owners.py
 
+      - name: Inventory branches and forks without deleting resources
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python3 scripts/inventory_governance.py
+
       - name: Package committed source and sign scoped SBOM and provenance
         run: python3 scripts/project_bundle.py
 

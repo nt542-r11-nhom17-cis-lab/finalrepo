@@ -22,6 +22,7 @@ flowchart LR
 ```bash
 python3 -m unittest discover -s tests -v
 python3 scripts/monitor_action_owners.py
+python3 scripts/inventory_governance.py
 python3 scripts/project_bundle.py
 python3 scripts/audit_free_controls.py --repo nt542-r11-nhom17-cis-lab/finalrepo
 ```
@@ -98,7 +99,7 @@ Không lấy fingerprint chỉ từ chính gói tải về để tuyên bố ngu
 
 **Audit:** Repo → Branches: rà từng nhánh, commit cuối và PR liên quan; thống nhất ngưỡng không hoạt động (ví dụ 90 ngày là đề xuất, không phải CIS).
 
-**Remediation:** Lập danh sách đề nghị xóa, sao lưu ref và xin chủ nhánh xác nhận; giữ mọi nhánh main/audit hiện có trong đợt này.
+**Remediation:** Đã bổ sung inventory_governance.py lấy branch, SHA và tuổi commit; chủ nhánh cần xác nhận mục đích/hoạt động trước khi đề nghị xóa. Giữ mọi nhánh main/audit trong đợt này.
 
 **Re-audit:** Đối chiếu danh sách trước/sau và lịch rà soát tháng tiếp theo.
 
@@ -224,7 +225,7 @@ Không lấy fingerprint chỉ từ chính gói tải về để tuyên bố ngu
 
 **Audit:** Repo → Forks và API /forks; đối chiếu owner, mục đích và dữ liệu có trong fork.
 
-**Remediation:** Ghi sổ fork được phép; yêu cầu người sở hữu xử lý fork không hợp lệ theo quy định nhóm.
+**Remediation:** Đã bổ sung inventory_governance.py xuất sổ numeric ID/full name và phân trang fork; nhóm cần bổ sung mục đích/người phê duyệt. Không tự xử lý fork của người khác.
 
 **Re-audit:** So sánh số fork API với danh sách đã rà; lưu ngày và người duyệt.
 
@@ -312,7 +313,7 @@ Không lấy fingerprint chỉ từ chính gói tải về để tuyên bố ngu
 
 **Re-audit:** Hai người tự đăng nhập kiểm tra đúng quyền; tài khoản developer không có admin.
 
-**Còn cần bạn thực hiện/cung cấp:** Thiếu username thứ hai và phê duyệt phân công thực tế.
+**Còn cần bạn thực hiện/cung cấp:** Snapshot người dùng thấy một admin (hieune-ui); cần owner xác minh toàn bộ quyền kế thừa và nhóm quyết định admin thứ hai. Không tự cấp quyền.
 
 **Minh chứng cần lưu:** JSON/CSV hoặc ảnh cấu hình và kiểm thử của đúng đối tượng; ghi thời gian, username, ref, trước/sau; che email, token, endpoint nội bộ. Đối chiếu Audit gốc ở trang ghi trong catalog.json.
 

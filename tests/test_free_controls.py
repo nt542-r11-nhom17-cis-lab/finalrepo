@@ -1,4 +1,5 @@
 import json
+import datetime
 from pathlib import Path
 import shutil
 import subprocess
@@ -11,9 +12,22 @@ sys.path.insert(0, str(ROOT / 'scripts'))
 import audit_free_controls
 import monitor_action_owners
 import project_bundle
+import inventory_governance
 
 
 class FreeEvidenceTests(unittest.TestCase):
+    def test_mid_pagination_denial_retains_partial_and_never_claims_complete(self):
+        replies = iter([{'http': 200, 'data': [{}] * 100}, {'http': 403}])
+        items, complete, http = inventory_governance.pages('a/b', '/branches', None, fetch=lambda *args: next(replies))
+        self.assertEqual(len(items), 100)
+        self.assertFalse(complete)
+        self.assertEqual(http, 403)
+
+    def test_missing_and_future_commit_dates_stay_unknown(self):
+        now = datetime.datetime(2026, 1, 1, tzinfo=datetime.timezone.utc)
+        self.assertIsNone(inventory_governance.commit_age({'http': 403}, now))
+        self.assertIsNone(inventory_governance.commit_age({'http': 200, 'data': {'commit': {'committer': {'date': '2027-01-01T00:00:00Z'}}}}, now))
+
     def test_exact_scope_excludes_enterprise_controls(self):
         plans = json.loads((ROOT / 'docs/audit/free-controls.json').read_text())
         ids = [p['id'] for p in plans]

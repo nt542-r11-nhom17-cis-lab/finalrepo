@@ -43,7 +43,7 @@
       "organization_admin"
     ],
     "audit": "Repo → Branches: rà từng nhánh, commit cuối và PR liên quan; thống nhất ngưỡng không hoạt động (ví dụ 90 ngày là đề xuất, không phải CIS).",
-    "remediation": "Lập danh sách đề nghị xóa, sao lưu ref và xin chủ nhánh xác nhận; giữ mọi nhánh main/audit hiện có trong đợt này.",
+    "remediation": "Đã bổ sung inventory_governance.py lấy từng branch, SHA, tuổi commit và trạng thái bảo vệ nhìn thấy qua API; mọi quyết định vẫn OWNER_REVIEW_REQUIRED, không xóa nhánh.",
     "re_audit": "Đối chiếu danh sách trước/sau và lịch rà soát tháng tiếp theo.",
     "remaining": "Không tự xóa nhánh vì có thể chứa bài làm chưa gộp."
   },
@@ -152,7 +152,7 @@
       "organization_admin"
     ],
     "audit": "Repo → Forks và API /forks; đối chiếu owner, mục đích và dữ liệu có trong fork.",
-    "remediation": "Ghi sổ fork được phép; yêu cầu người sở hữu xử lý fork không hợp lệ theo quy định nhóm.",
+    "remediation": "Đã bổ sung inventory_governance.py xuất sổ fork gồm numeric ID/full name và kiểm tra phân trang; nhóm cần bổ sung mục đích/người phê duyệt.",
     "re_audit": "So sánh số fork API với danh sách đã rà; lưu ngày và người duyệt.",
     "remaining": "Không có fork lúc kiểm tra không chứng minh có quy trình quản lý fork."
   },

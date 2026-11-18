@@ -672,4 +672,3 @@ Trong repository, các tệp nằm ở docs/audit/evidence/, riêng COVERAGE.csv
 [5] Repository thực nghiệm: <https://github.com/nt542-r11-nhom17-cis-lab/finalrepo>. Các phiên chạy, commit và artifact được tham chiếu riêng trong bảng kết quả.
 
 [6] Hai nguồn tích hợp: <https://github.com/NT542-R11-Nhom-17-D-an/NT542.R11---Nhom-17---Do-an> và <https://github.com/dtk01062006/cis-github-actions-lab>. Phạm vi tích hợp và commit nguồn được lưu trong docs/integration/sources.json.
-

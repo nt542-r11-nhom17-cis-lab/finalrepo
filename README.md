@@ -4,6 +4,8 @@ Thực nghiệm đánh giá theo **CIS GitHub Benchmark v1.2.0**, gồm 120 tiê
 
 Repository: `nt542-r11-nhom17-cis-lab/finalrepo`. Nhánh thực nghiệm tổng hợp: **`audit/remaining-free-integration`**. `main` và hai repository nguồn được giữ nguyên.
 
+**Báo cáo hoàn chỉnh:** [Báo cáo thực nghiệm CIS GitHub Benchmark](docs/report/BAO-CAO.vi.md), gồm bốn phần, danh mục và bảng đối chiếu đủ 120 tiêu chí.
+
 ## Báo cáo
 
 | Nội dung | Tài liệu |

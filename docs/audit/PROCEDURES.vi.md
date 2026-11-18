@@ -1,8 +1,8 @@
 # Phụ lục: quy trình thực hành các tiêu chí trong phạm vi Free
 
-Phạm vi bổ sung gồm 48 mục NOT_TESTED của lần đánh giá trước, sau khi loại 1.3.10/1.3.11/1.3.12 cần tính năng Enterprise Cloud tương ứng. Việc đáp ứng đầy đủ 48 mục còn phụ thuộc điều kiện triển khai: một số cần môi trường, domain, danh tính hoặc supplier thật. Không thay nhãn Manual/Automated của CIS.
+Tài liệu mô tả thao tác kiểm tra cho 48 tiêu chí được lựa chọn trong phạm vi GitHub Free. Kết quả hiện hành nằm trong [COVERAGE.vi.md](COVERAGE.vi.md). Ba mục 1.3.10/1.3.11/1.3.12 thuộc tính năng Enterprise không nằm trong phạm vi triển khai này. Phân loại Manual/Automated giữ nguyên theo CIS.
 
-Nhánh thực hiện: `audit/free-controls-completion`; chỉ thêm code/tài liệu trên nhánh này. Không sửa `main`, Organization Settings, quyền người dùng, hai repo nguồn; không xóa nhánh, xoay credential hay triển khai production. Phần nào cần owner thực hiện được nêu cụ thể bên dưới. Trước khi đổi Settings, chụp cấu hình cũ, ghi phạm vi tác động và dùng nhánh thử có rule chỉ khớp `audit/protection-sandbox`; tuyệt đối không dùng wildcard áp lên `main`. Tạo nhánh từ commit nhánh audit đã kiểm tra, không từ code chưa review.
+Nhánh thực nghiệm tổng hợp: `audit/remaining-free-integration`. Các script API chỉ đọc; thay đổi Settings phải do người có quyền thực hiện trên phạm vi đã xác định và lưu bằng chứng trước/sau. Kiểm thử bảo vệ nhánh dùng riêng `audit/protection-sandbox`, không dùng wildcard áp lên main. Không triển khai production hoặc tác động hai repo nguồn trong các phép thử lab.
 
 ## Workflow chung
 

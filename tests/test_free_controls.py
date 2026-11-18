@@ -6,6 +6,9 @@ import subprocess
 import sys
 import tempfile
 import unittest
+from unittest.mock import patch
+import contextlib
+import io
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / 'scripts'))
@@ -67,7 +70,7 @@ class BundleIntegrityTests(unittest.TestCase):
         cls.temp = tempfile.TemporaryDirectory()
         cls.original = Path(cls.temp.name) / 'original'
         project_bundle.generate(cls.original)
-        cls.trusted = project_bundle.fingerprint(cls.original / 'public.pem')
+        cls.trusted = project_bundle.public_signing_digest(cls.original / 'public.pem')
 
     @classmethod
     def tearDownClass(cls):
@@ -84,6 +87,35 @@ class BundleIntegrityTests(unittest.TestCase):
         manifest = project_bundle.verify(self.original, self.trusted)
         self.assertEqual(set(manifest['sha256']), set(project_bundle.PAYLOADS))
         self.assertFalse(list(self.original.glob('*private*')))
+
+    def test_generated_signing_material_never_reaches_files_or_log(self):
+        native_run = project_bundle.run
+        generated = []
+        key_paths = []
+
+        def observe(*args):
+            result = native_run(*args)
+            if args[:2] == ('openssl', 'genpkey'):
+                path = Path(args[args.index('-out') + 1])
+                generated.append(path.read_bytes())
+                key_paths.append(path)
+            return result
+
+        with tempfile.TemporaryDirectory() as directory:
+            output = Path(directory) / 'output'
+            log = io.StringIO()
+            with patch.object(project_bundle, 'run', side_effect=observe), contextlib.redirect_stdout(log):
+                project_bundle.generate(output)
+            self.assertEqual(len(generated), 1)
+            exported = [p.read_bytes() for p in output.iterdir() if p.is_file()]
+            exported.append(log.getvalue().encode())
+            encoded_body = b''.join(generated[0].splitlines()[1:-1])
+            leaked = any(generated[0] in data or encoded_body in data for data in exported)
+            self.assertFalse(leaked, 'Signing material must stay outside exported data')
+            self.assertFalse(any(path.exists() for path in key_paths))
+            report = json.loads((output / 'verification.json').read_text())
+            self.assertEqual(report['signer_fingerprint_sha256_der'],
+                             project_bundle.public_signing_digest(output / 'public.pem'))
 
     def test_payload_tampering_rejected(self):
         for name in project_bundle.PAYLOADS:

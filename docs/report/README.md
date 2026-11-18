@@ -1,11 +1,9 @@
-# Báo cáo thực nghiệm
+# Báo cáo thực nghiệm CIS GitHub Benchmark
 
-[Báo cáo đầy đủ](BAO-CAO.vi.md) trình bày bốn phần: giới thiệu benchmark; phương pháp Audit → Remediation → Re-audit; triển khai; kết quả đối chiếu 120 tiêu chí.
+[Bản nguồn](BAO-CAO.vi.md) gồm bốn phần: giới thiệu, phương pháp, triển khai và kết quả.
 
-Hình minh họa và ảnh gốc được đặt trong phần 2. Phần 3 chỉ dùng chữ/bảng và liên kết tới file xuất. Các kết quả được gắn phạm vi, phiên chạy và giới hạn; không suy kiểm thử lab thành tuân thủ production.
+Danh mục giữ 118 Manual và 2 Automated. Bảng kết quả dùng bốn nhãn: Đạt, Đạt một phần, Không đạt, Chưa làm. Mỗi ghi chú có tối đa 25 từ.
 
-Danh mục có 118 Manual và 2 Automated, giữ nhãn CIS. Bảng kết quả phân biệt bằng chứng thành phần, cần xác minh thủ công, mô hình lab và chưa triển khai. JSON/CSV/SPDX gốc nằm trong `../audit/evidence/`; bảng máy đọc được ở `../audit/COVERAGE.csv`.
+COVERAGE.csv giữ mã bằng chứng nguồn trong result và nhãn trình bày trong result_label. Các mục chờ xác minh, mới thử mô hình hoặc chưa triển khai được ghi Chưa làm. Số đếm trình bày: 0 Đạt, 82 Đạt một phần, 0 Không đạt, 38 Chưa làm; nhóm Free: 34 Đạt một phần và 14 Chưa làm.
 
-## Quy ước và bằng chứng bổ sung
-
-Báo cáo dùng nhãn tiếng Việt theo bảng ánh xạ ở mục 4.1; CSV giữ mã máy ở result và nhãn hiển thị ở result_label. Phụ lục B liệt kê 10 ảnh Settings/terminal VM cần chụp, cùng hồ sơ quản trị/MFA/supplier còn thiếu. Snapshot kiểm thử và tài liệu được phân biệt trong mục 4.2.
+Hình nằm trong phần 2. Ba trang phương pháp mô tả Audit → Remediation → Re-audit. Phần 3 chỉ dùng chữ và bảng. JSON/CSV/SPDX gốc nằm trong ../audit/evidence/.

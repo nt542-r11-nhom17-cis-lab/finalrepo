@@ -32,37 +32,37 @@ header-includes:
   - \renewcommand{\section}{\clearpage\oldsection}
 ---
 
-
 # 1. Giới thiệu benchmark
 
-## 1.1. Tổng quan
+## 1.1. Tóm tắt
 
-CIS GitHub Benchmark là bộ khuyến nghị cấu hình và kiểm tra bảo mật do Center for Internet Security (CIS) phát hành cho môi trường phát triển phần mềm sử dụng GitHub. Báo cáo này áp dụng phiên bản **1.2.0, ngày 18/02/2026**, theo tài liệu benchmark dùng trong đề tài [1]. CIS ở đây là tổ chức xây dựng hướng dẫn bảo mật, không phải Cisco. Benchmark cung cấp một cơ sở đối chiếu có cấu trúc để đánh giá hiện trạng, xác định khoảng thiếu và lựa chọn biện pháp khắc phục phù hợp với phạm vi hệ thống.
+CIS GitHub Benchmark là bộ khuyến nghị bảo mật do Center for Internet Security phát hành. Nhóm dùng phiên bản 1.2.0, ngày 18/02/2026. Bộ khuyến nghị giúp kiểm tra cách quản lý mã, build, dependency, artifact và triển khai phần mềm. CIS trong đề tài là tổ chức xây dựng hướng dẫn bảo mật, không phải Cisco.
 
-GitHub tham gia nhiều công đoạn của chuỗi cung ứng phần mềm: quản lý mã, cộng tác và review, chạy pipeline, tiếp nhận dependency, lưu artifact và hỗ trợ triển khai. Một thay đổi thiếu kiểm soát ở đầu chuỗi có thể ảnh hưởng sản phẩm cuối cùng. Chẳng hạn, action tham chiếu theo nhánh có thể thay đổi ngoài dự kiến; token pipeline có quyền quá lớn có thể bị sử dụng sai mục đích; artifact không được xác minh có thể bị thay sau build. Việc đánh giá vì vậy xem đồng thời cấu hình, hành vi kiểm thử và phạm vi bằng chứng.
+GitHub tham gia nhiều bước của quá trình phát triển. Thành viên đẩy mã, tạo PR, review thay đổi và chạy pipeline trên cùng nền tảng. Vì vậy, một cấu hình thiếu kiểm soát có thể ảnh hưởng nhiều bước tiếp theo. Ví dụ, token có quyền quá lớn hoặc action thay đổi ngoài dự kiến có thể làm tăng rủi ro cho sản phẩm.
 
-Benchmark được chia thành năm nhóm: **Source Code, Build Pipelines, Dependencies, Artifacts và Deployment**. Nhóm Source Code xem xét truy vết thay đổi, phê duyệt, bảo vệ nhánh, quyền cộng tác và ứng dụng kết nối. Nhóm Build Pipelines tập trung vào quyền truy cập môi trường build, an toàn chỉ dẫn pipeline, runner, input/output và tính toàn vẹn của quá trình build. Nhóm Dependencies đánh giá nguồn gốc, phiên bản, metadata, SBOM và quản lý thành phần bên ngoài. Nhóm Artifacts quan tâm đến chữ ký, mã hóa, registry và xác minh các phiên bản được phân phối. Nhóm Deployment xem xét cấu hình, quyền truy cập và credential tại môi trường triển khai.
+Benchmark chia thành năm nhóm. Source Code có 50 tiêu chí về mã nguồn, review, quyền cộng tác và scanner. Build Pipelines có 33 tiêu chí về môi trường build, runner và các bước xử lý. Dependencies có 12 tiêu chí về thành phần bên ngoài. Artifacts có 14 tiêu chí về ký, mã hóa và phân phối. Deployment có 11 tiêu chí về cấu hình, quyền và tài khoản triển khai.
 
-Mỗi khuyến nghị được nhận diện bằng mã, tên và phân loại đánh giá; nội dung chi tiết gồm mô tả, lý do, hướng dẫn Audit và Remediation. **Audit** chỉ ra đối tượng, cấu hình hoặc hành vi cần kiểm tra. **Remediation** nêu hướng khắc phục khi hiện trạng chưa đáp ứng. Trong thực nghiệm, sau khắc phục cần kiểm tra lại trên cùng đối tượng và ghi bằng chứng trước/sau. Một giá trị cấu hình đúng chỉ là một phần bằng chứng; còn phải xét hiệu lực, ngoại lệ, phạm vi người dùng và khả năng bypass.
+Tổng cộng có 120 tiêu chí, gồm 118 Manual và 2 Automated. Nhóm giữ cách phân loại này khi lập danh mục. Với Manual, người kiểm tra cần đọc cấu hình, xem hồ sơ hoặc thử hành vi. Với Automated, nhóm có thể dùng công cụ để kiểm tra điều kiện kỹ thuật. Script cũng hỗ trợ các mục Manual bằng cách thu dữ liệu và xuất kết quả.
 
-Danh mục được đối chiếu trong đề tài gồm **120 tiêu chí: 118 Manual và 2 Automated**. Đây là nhãn do benchmark quy định, phân biệt với cách chạy công cụ của nhóm. Manual cần người đánh giá ý nghĩa cấu hình, danh tính hoặc hồ sơ quản trị; Automated có điều kiện kiểm tra kỹ thuật có thể tự động hóa. Script có thể hỗ trợ cả hai nhóm. Ví dụ, yêu cầu hai approval phải được xem cùng danh tính reviewer và xác thực mạnh; kiểm tra scanner cần xem cả khả năng phát hiện lẫn cơ chế chặn.
+Mỗi tiêu chí có mã, tên, mô tả, lý do, hướng dẫn Audit và Remediation. Audit chỉ ra nội dung cần kiểm tra. Remediation hướng dẫn cách sửa khi cấu hình chưa đáp ứng. Nhóm kiểm tra lại sau thay đổi để xem kết quả thực tế. Ví dụ, sau khi sửa SSH, nhóm mở phiên đăng nhập mới để kiểm tra kết nối.
 
-Các mức profile giúp lựa chọn phạm vi tăng cường: Level 2 mở rộng yêu cầu của Level 1. Báo cáo trình bày theo từng mã và bằng chứng thực nghiệm. Quy ước kết luận, phạm vi bằng chứng và điều kiện chốt toàn tiêu chí được thống nhất tại mục 4.1.
+Các profile giúp chọn mức tăng cường phù hợp. Level 2 mở rộng yêu cầu của Level 1. Nhóm chọn các mục có hướng dẫn Audit rõ và có thể kiểm tra trong lab. Với mục cần quyền cao hơn, nhóm ghi lý do và công việc còn lại. Nhãn kết quả được giải thích ở phần 4.
 
-**Phạm vi và giới hạn.** Môi trường thực hành là Organization GitHub Free và repository public `nt542-r11-nhom17-cis-lab/finalrepo`. Mã và cấu hình thực nghiệm được tổng hợp trên nhánh `audit/remaining-free-integration`; nhánh main và hai repository nguồn được giữ nguyên. Hệ thống còn gồm GitHub-hosted runner, container demo, receiver/registry chạy loopback và VM VMware Ubuntu. Các môi trường này cho phép kiểm tra những hướng dẫn Audit rõ ràng, nhưng không đại diện mọi thành phần hạ tầng do GitHub vận hành hoặc production của một tổ chức.
+Môi trường chính là organization GitHub Free và repository public finalrepo của nhóm. Mã thực nghiệm nằm trên nhánh audit/remaining-free-integration. Nhóm giữ nguyên main và hai repository nguồn. GitHub-hosted runner chạy các tác vụ kiểm tra. Một VM VMware riêng được dùng cho tài khoản OS, SSH và thư mục triển khai.
 
-Phạm vi Free có ý nghĩa thực tiễn đối với lab sinh viên. Các chức năng được phép và sẵn có được sử dụng trước; không mua, dùng thử hoặc mô phỏng tính năng Enterprise để gán kết quả đạt. Ba tiêu chí 1.3.10, 1.3.11 và 1.3.12 về hạn chế email notification theo verified domain, SSH CA và IP allow list chưa được triển khai trong phạm vi này. Chúng vẫn được giữ trong bảng 120 tiêu chí với lý do rõ ràng, thay vì bị loại khỏi thống kê toàn benchmark hoặc mặc định không áp dụng.
+Trong phạm vi Free, nhóm triển khai các chức năng hiện có. Ba mục 1.3.10, 1.3.11 và 1.3.12 cần tính năng Enterprise nên chưa làm. Nhóm vẫn liệt kê ba mục trong bảng kết quả. Cách này giúp thấy đầy đủ nội dung đã kiểm tra và nội dung còn thiếu.
 
-Quyền nhìn thấy của API cũng giới hạn phạm vi đánh giá: metadata repository có thể đọc được trong khi protection hoặc invitations bị chặn. Báo cáo giữ nguyên trạng thái thiếu dữ liệu và phân biệt public inventory với toàn bộ danh tính thực tế. Cách xử lý HTTP, phân trang và field thiếu được mô tả ở mục 2.3.
+Quyền API ảnh hưởng đến việc thu bằng chứng. Nhóm có thể đọc metadata repository nhưng bị chặn ở một số cấu hình quản trị. Khi API trả 403, nhóm ghi rõ cần kiểm tra Settings. Danh sách thành viên công khai cũng có thể ít hơn số người thực tế. Nhóm đối chiếu thêm quyền repository và xác nhận của thành viên.
 
-Đề tài chọn **Audit → Remediation → Re-audit** làm phương pháp xuyên suốt và thực hiện theo ba chế độ: thủ công, tự động cục bộ và tự động từ xa. Kết quả được lưu bằng JSON, CSV, SPDX, SARIF, log và ảnh gốc có nguồn phiên chạy. Các phép thử từ chối được ưu tiên khi an toàn: sai chữ ký, dữ liệu bị sửa, replay, người không được cấp quyền và context build không hợp lệ. Không thử phá hủy repository, dùng credential thực để kiểm tra tùy tiện hoặc đổi bảo vệ main nhằm tạo bằng chứng.
+Đề tài chọn Audit → Remediation → Re-audit làm phương pháp chung. Nhóm thực hiện theo ba cách: thủ công, tự động hóa và tự động từ xa. Dữ liệu đầu ra gồm JSON, CSV, SPDX, SARIF, log và ảnh workflow. Các tệp giúp kiểm tra lại phát hiện, cấu hình và kết quả của từng lần chạy.
 
-Giá trị của thực nghiệm nằm ở khả năng lặp lại kiểm tra, liên kết phát hiện với biện pháp khắc phục và phân biệt điều đã chứng minh với điều còn thiếu. Báo cáo vì vậy giữ riêng kết quả công cụ, kết quả thành phần và kết luận toàn tiêu chí. Các xác nhận từ người thực hiện trên VM cũng được phân biệt với phép đo CI/API và signed attestation. Cách trình bày này giúp kết quả có thể được kiểm tra lại và tránh đánh đồng môi trường lab với môi trường production.
+Ngoài trường hợp hợp lệ, nhóm thử cả trường hợp cần bị từ chối. Các ví dụ gồm chữ ký sai, dữ liệu bị sửa, yêu cầu phát lại và tài khoản không được cấp quyền. Nhóm cũng kiểm tra việc từ chối người chạy build ngoài danh sách. Những phép thử này giúp đánh giá hành vi cụ thể thay vì chỉ xem trạng thái job.
 
+Kết quả được gắn với môi trường và thời điểm đo. Trong lab, nhóm kiểm tra được nhiều thành phần của chuỗi cung ứng phần mềm. Các yêu cầu còn thiếu thường liên quan đến quyền quản trị, hồ sơ nhóm, dữ liệu supplier hoặc production. Bảng 120 tiêu chí ở phần 4 nêu riêng kết quả và lý do của từng mục.
 
 ## 1.2. Nội dung benchmark
 
-Bảng danh mục bên dưới giữ mã, tên và nhãn Manual/Automated của CIS. “Mô tả ngắn” diễn giải nội dung cần kiểm tra; đây chưa phải kết quả triển khai. Kết quả thực nghiệm được trình bày riêng tại phần 3 và 4.
+Nhóm giữ mã, tên và phân loại của CIS trong hai bảng dưới. Cột mô tả ngắn nêu nội dung kiểm tra. Phần 4 ghi kết quả thực nghiệm.
 
 
 | Nhóm | Nội dung | Số tiêu chí |
@@ -208,511 +208,413 @@ Bảng danh mục bên dưới giữ mã, tên và nhãn Manual/Automated của 
 | 1 | 1.1.3 — Ensure any change to code receives approval of two strongly authenticated users | Kiểm tra yêu cầu hai người phê duyệt độc lập có xác thực mạnh và hiệu lực ngăn merge khi thiếu điều kiện. |
 | 2 | 2.3.8 — Ensure scanners are in place to identify and prevent sensitive data in pipeline files | Kiểm tra scanner nhận diện và ngăn dữ liệu nhạy cảm trong pipeline files; đối chiếu phạm vi và cơ chế chặn. |
 
-
 # 2. Phương pháp làm việc
 
-Phương pháp được lựa chọn là **đánh giá cấu hình theo Audit, khắc phục theo Remediation và kiểm tra lại sau thay đổi**. Manual, Automated và Remote Automated là ba cách thực hiện cùng phương pháp. Ưu tiên các mục có hướng dẫn Audit rõ, đầu vào quan sát được và phép thử an toàn; không đổi phân loại gốc của benchmark khi thêm script.
+Nhóm dùng Audit → Remediation → Re-audit cho từng mục. Audit xác định hiện trạng. Remediation xử lý điểm cần sửa. Re-audit kiểm tra lại sau thay đổi.
 
 ## 2.1. Manual
 
-Manual được dùng khi kết luận phụ thuộc ý nghĩa cấu hình, danh tính, phân công, hồ sơ phê duyệt hoặc quan sát hành vi. Đầu tiên chọn mã CIS, xác định repository/organization/máy đích và đọc chính xác Audit. Người kiểm tra ghi hiện trạng trước khi đổi: giá trị Settings, vai trò được cấp, nội dung policy hoặc đầu ra lệnh. Cần phân biệt quyền trực tiếp với kế thừa và cấu hình hiển thị với cấu hình thực sự có hiệu lực.
+Nhóm bắt đầu bằng cách đọc hướng dẫn Audit và chọn đối tượng kiểm tra. Đối tượng có thể là repository, organization, tài khoản hoặc VM. Sau đó, nhóm ghi lại cấu hình ban đầu và so với yêu cầu của tiêu chí. Với quyền truy cập, nhóm xem cả quyền trực tiếp và quyền kế thừa.
 
-Ở bước Remediation, chỉ thay đổi phần được phép và có cách kiểm tra lại. Ví dụ, đổi base permissions cần tải lại trang; tạo tài khoản triển khai phải giữ phiên quản trị đang mở; chỉnh SSH cần kiểm tra cú pháp trước reload. Không xóa repository, thay visibility hoặc sửa rule của main để tạo tình huống thử. Các quyết định như chọn admin dự phòng, lịch rà thành viên và nguồn email được duyệt phải được nhóm xác nhận, không được tự điền thành việc đã hoàn tất.
+Ở bước Remediation, nhóm sửa cấu hình trong phạm vi được phép. Ví dụ, nhóm đổi base permissions thành No permission và bật Push protection trên finalrepo. Với VM, nhóm tạo tài khoản cisdeploy không có sudo và đặt thư mục triển khai ở mode 700. Các thay đổi đều có bước kiểm tra lại.
 
-Re-audit ưu tiên một trường hợp hợp lệ và một trường hợp bị từ chối. Trong VM, cisdeploy tạo được file tại thư mục triển khai còn nobody bị từ chối; sau reload SSH, các phiên đăng nhập mới của user/cisdeploy vẫn hoạt động. Bằng chứng phải ghi rõ đối tượng, thời điểm, lệnh/cấu hình, kết quả và giới hạn. Trạng thái mật khẩu P chỉ cho biết có mật khẩu; chưa chứng minh mật khẩu khác mặc định. Thiếu ảnh gốc hoặc quyền đọc phải được nêu trong kết luận.
+Re-audit gồm kiểm tra cấu hình sau lưu và thử hành vi nếu an toàn. Nhóm dùng cisdeploy tạo tệp trong thư mục triển khai. Tiếp đó, nhóm dùng nobody thử tạo tệp và nhận Permission denied. Khi sửa SSH, nhóm giữ phiên quản trị cũ rồi thử đăng nhập từ PowerShell mới.
 
-Workflow chung gồm các bước lớn trong Hình 2.1. Với mỗi tiêu chí, hồ sơ cuối cùng nối hiện trạng → thiếu hụt → thay đổi được phép → kết quả kiểm tra lại. Một mục chỉ được kết luận đầy đủ khi bằng chứng bao phủ toàn yêu cầu; tài liệu dự thảo hoặc xác nhận cá nhân không thay bằng chứng enforcement.
+Nhóm ghi lệnh, kết quả, mã tiêu chí và đối tượng kiểm tra. Những mục cần quyết định quản trị phải có xác nhận của người có quyền. Ví dụ, số admin dự phòng và lịch rà thành viên phải được nhóm thống nhất. Tên người duyệt và thời gian rà chỉ được ghi khi có hoạt động thật.
 
+Khi thiếu quyền đọc, nhóm nêu rõ bước chưa thực hiện. Với ảnh Settings và terminal VM còn thiếu tệp gốc, nhóm giữ kết quả theo đầu ra đã nhận. Công việc bổ sung được ghi trong bảng kết quả.
 
-![Hình 2.1. Workflow Manual dùng chung cho các tiêu chí được kiểm tra.](images/manual.png){width=95%}
+Workflow Manual chỉ gồm các bước lớn dưới đây. Nhóm áp dụng cùng chu trình cho các mục có hướng dẫn Audit rõ.
 
+![Hình 2.1. Workflow Manual: chọn mục, kiểm tra, khắc phục và kiểm tra lại.](images/manual.png){width=95%}
 
 \newpage
-
 
 ## 2.2. Automated
 
-Tự động hóa được dùng cho các tác vụ lặp lại: kiểm hash, kiểm cấu trúc báo cáo, quét mã/dependency, xác minh chữ ký và chạy negative tests. Audit bắt đầu bằng xác định input, phiên bản công cụ, ngưỡng thất bại và loại đầu ra. Remediation sửa nguồn hoặc cấu hình có phát hiện; Re-audit chạy lại cùng phép kiểm và đối chiếu điều kiện trước/sau. Việc thay scanner, tắt rule hoặc bỏ qua lỗi để làm job xanh không được dùng thay khắc phục.
+Nhóm tự động hóa các tác vụ lặp lại như kiểm hash, quét mã và xác minh chữ ký. Trước khi chạy, nhóm xác định đầu vào, phiên bản công cụ và điều kiện lỗi. Action được ghim bằng SHA; image và wheel có digest hoặc hash tương ứng.
 
-Workflow chỉ thể hiện các giai đoạn lớn trong Hình 2.2. Đầu vào được ghim bằng commit, digest hoặc wheel hash. Sau kiểm quyền chạy, pipeline quét, build và xác minh; cuối cùng xuất kết quả có cấu trúc. Với artifact, bản gốc phải xác minh được và bản bị sửa phải thất bại. Với scanner, báo cáo rỗng hoặc không nhận diện package mục tiêu không đủ cơ sở kết luận sạch.
+Sau bước Audit, nhóm sửa nguồn hoặc cấu hình có phát hiện. Re-audit chạy lại cùng phép kiểm để so kết quả trước và sau. Với artifact, bản gốc phải xác minh được. Bản bị sửa và chữ ký sai phải bị từ chối.
 
+Trường hợp registry cho thấy cần đọc kỹ đầu ra scanner. Lần quét filesystem đầu tiên không nhận diện binary Go. Nhóm chuyển sang quét rootfs và kiểm tra danh sách package. Lần quét này nhận diện 104 package và 8 HIGH. Sau khắc phục, kết quả còn 0 HIGH/CRITICAL ở thời điểm đo.
 
-![Hình 2.2. Workflow tự động hóa các tác vụ quan trọng.](images/automated.png){width=95%}
+![Hình 2.2. Workflow tự động hóa: kiểm đầu vào, quét, build, xác minh và xuất kết quả.](images/automated.png){width=95%}
 
-
-| Tool / step | Kết quả | Điều kiện diễn giải |
+| Tool / step | Kết quả | Nội dung nhóm kiểm tra |
 | --- | --- | --- |
-| Bandit / pip-audit | Finding SAST và advisory theo lock | Giới hạn ở ngôn ngữ/package đã quét |
-| Trivy + coverage guard | Finding binary/image và inventory | Từ chối scan rỗng hoặc sai binary |
-| OpenSSL + negative tests | Bản gốc hợp lệ, bản sửa bị từ chối | Khóa tạm không thay danh tính supplier |
-| JSON / CSV / SPDX / SARIF | Báo cáo máy đọc được theo phạm vi | Job thành công chưa phải full-control PASS |
+| Bandit / pip-audit | Lỗi mã và advisory | Đúng phạm vi Python và package đã khóa |
+| Trivy và kiểm kê package | CVE, image và binary | Danh sách package phải nhận diện đúng đối tượng |
+| OpenSSL và phép thử từ chối | Chữ ký và dữ liệu gốc | Bản sửa hoặc khóa sai phải thất bại |
+| JSON / CSV / SPDX / SARIF | Tệp kết quả | Đối chiếu số liệu, phạm vi và lỗi công cụ |
 
-
-Đối chiếu đầu ra là bước bắt buộc. Trường configuration_result mô tả giá trị cấu hình thành phần; overall_cis được trình bày theo bảng ánh xạ ở mục 4.1 như Một phần hoặc Cần xác minh. Hai cảnh báo CodeQL về public digest được rà data flow và phân tích lại với cùng 43 rule, không dùng suppression để xóa cảnh báo. Các mục Manual được hỗ trợ bằng công cụ vẫn giữ nhãn Manual của CIS.
-
+Nhóm đọc nội dung tệp trước khi kết luận. CodeQL được kiểm tra bằng SARIF và đường truyền dữ liệu của cảnh báo. Các test hồi quy giúp phát hiện lỗi xử lý quyền, dữ liệu sửa và chữ ký sai. Kết quả từng công cụ được đưa vào bảng triển khai.
 
 \newpage
 
+## 2.3. Remote automated
 
-## 2.3. Remote Automated và GitHub API
+Nhóm chạy các script trên GitHub-hosted runner bằng push hoặc thao tác chạy workflow thủ công. Các job chỉ dùng nhánh audit được phép. Trước tác vụ chính, nhóm kiểm repository ID, actor ID và người yêu cầu chạy lại. Checkout không lưu credential vào cấu hình Git.
 
-Remote Automated thực thi các script trên GitHub-hosted runner, gắn kết quả với ref, commit và run ID. Push/dispatch chỉ dùng nhánh audit được cho phép. Job condition và guard đối chiếu repository ID, actor ID, triggering actor và event trước các tác vụ kiểm tra. Checkout không lưu credential; token mặc định contents:read, riêng job CodeQL có security-events:write để upload SARIF. Không thêm token mới hoặc gửi credential vào báo cáo.
+Token mặc định chỉ có quyền đọc nội dung. Riêng job CodeQL được ghi kết quả phân tích bảo mật. Nhóm đặt token trong biến môi trường và loại giá trị bí mật khỏi báo cáo đầu ra. Các job có thời hạn chạy và kho artifact theo từng phiên.
 
-Audit từ xa dùng HTTPS GET tới api.github.com, header phiên bản API và timeout. Danh sách phải được phân trang; response chỉ được dùng khi có kiểu dữ liệu phù hợp. Token đọc từ biến môi trường và không được xuất ra JSON. HTTP 403/404, field vắng hoặc danh sách nhìn thấy giới hạn không được đổi thành PASS/FAIL cấu hình.
+GitHub API cung cấp dữ liệu cho bước Audit. Nhóm dùng HTTPS GET, phiên bản API và timeout. Với danh sách dài, script đọc phân trang trước khi đếm. Nếu field thiếu hoặc API chặn đọc, nhóm ghi việc cần kiểm tra bằng Settings.
 
+![Hình 2.3. Workflow từ xa: chạy nhánh audit, kiểm quyền, gọi API và thu artifact.](images/remote.png){width=95%}
 
-![Hình 2.3. Workflow Remote Automated trên nhánh audit.](images/remote.png){width=95%}
-
-
-| Endpoint GET | Dữ liệu phục vụ Audit | Giới hạn |
+| Endpoint GET | Dữ liệu nhóm thu | Cách đối chiếu |
 | --- | --- | --- |
-| /repos/{owner}/{repo} | Metadata và default branch | Không bao phủ mọi quyền quản trị |
-| /branches/{branch}/protection; /rulesets | Protection hoặc snapshot rule | 403/thiếu field → UNKNOWN |
-| /collaborators; org members | Role counts, inventory phân trang | Caller-visible khác toàn bộ thành viên |
-| /actions/permissions; /actions/runners | Cấu hình quyền và runner | Có thể thiếu Administration read |
+| /repos/{owner}/{repo} | Metadata, nhánh mặc định | Đúng repository cần đánh giá |
+| /branches/{branch}/protection; /rulesets | Quy tắc nhánh | Đọc quyền truy cập và cấu hình hiệu lực |
+| /collaborators; org members | Vai trò, danh sách thành viên | Phân trang và đối chiếu phạm vi đọc |
+| /actions/permissions; /actions/runners | Quyền Actions và runner | Ghi mã HTTP nếu bị chặn |
 
-
-Remediation của code được push lên nhánh audit rồi runner chạy lại. Với Settings cần owner, script chỉ ghi thiếu bằng chứng, không tự POST cấu hình. Artifact được tải và đọc nội dung, không suy kết quả từ màu xanh. Không dùng Organization Audit Log API Enterprise trong phương án Free. So digest ruleset chỉ phát hiện khác snapshot, không thay event có actor/time. Runner không tự kết nối VM: báo cáo VM được chuyển qua SCP và cung cấp riêng.
-
+Nhóm tải artifact và đọc JSON, CSV hoặc SARIF để chốt kết quả. Các thay đổi mã được đẩy lên nhánh audit rồi chạy lại. VM VMware được vận hành riêng qua SSH từ Windows. Nhóm chuyển báo cáo VM bằng SCP, sau đó đối chiếu các phép kiểm trong tệp.
 
 \newpage
 
+![Hình 2.4. Mô hình thực nghiệm. Nét đứt thể hiện chuyển báo cáo VM bằng thao tác thủ công.](images/topology.png){width=95%}
 
-## Hình minh họa bổ sung
-
-Hình 2.4 minh họa các thành phần được giải thích chi tiết bằng chữ trong mục 3.1. Sơ đồ là hình phương pháp, không phải screenshot cấu hình. Nhánh audit và runner là một luồng; VM VMware được người thực nghiệm vận hành riêng. Đường chuyển báo cáo VM không biểu diễn một kết nối triển khai tự động hoặc quyền production.
-
-
-![Hình 2.4. Topology thực nghiệm; đường nét đứt là chuyển báo cáo thủ công.](images/topology.png){width=95%}
-
-
-![Hình 2.5. Biểu đồ dữ liệu Trivy: 104 package; 8 HIGH trước và zero HIGH/CRITICAL sau khắc phục. Nguồn: runs 44127179185 và 44130146471; không phải screenshot Settings.](images/registry-remediation.png){width=95%}
-
+![Hình 2.5. Kết quả quét 104 package: 8 HIGH trước, 0 HIGH/CRITICAL sau. Nguồn: runs 44127179185 và 44130146471.](images/registry-remediation.png){width=95%}
 
 \newpage
 
+![Hình 2.6. Run 44064408467, commit a355912: workflow thành công, còn cảnh báo runtime Node.js 20.](images/run-before-runtime-update.jpg){width=95%}
 
-![Hình 2.6. Screenshot gốc run 44064408467, commit a355912: workflow thành công nhưng còn cảnh báo runtime Node.js 20. Đây là snapshot lịch sử trước khắc phục.](images/run-before-runtime-update.jpg){width=95%}
-
-
-![Hình 2.7. Screenshot gốc run 44064853230, code 574c0f1: kiểm tra sau cập nhật runtime checkout. Ảnh summary chỉ xác nhận phiên chạy/artifact.](images/run-after-runtime-update.jpg){width=95%}
-
+![Hình 2.7. Run 44064853230, commit 574c0f1: nhóm kiểm tra sau khi cập nhật runtime của checkout.](images/run-after-runtime-update.jpg){width=95%}
 
 \newpage
 
-
-![Hình 2.8. Screenshot gốc run 44077094456, commit 4003107 trên Organization. Các giá trị kiểm tra phải đọc từ JSON, không suy từ trạng thái Success.](images/organization-run.jpg){width=95%}
-
-
-Các hình 2.6–2.8 có nguồn run/commit lịch sử ghi trong chú thích. Thời điểm chụp ảnh không được lưu trong bằng chứng hiện có, vì vậy không gán thời gian run hoặc mtime của tệp thành thời điểm chụp. Bản gốc nằm trong repository. Các ảnh Settings và terminal cung cấp trong quá trình hướng dẫn chưa có bộ file ảnh gốc riêng trong gói này; kết quả được ghi theo JSON/biên bản và nêu nguồn. Không tạo ảnh giả để thay phần bằng chứng còn thiếu. Toàn bộ hình của báo cáo được đặt ở phần 2; phần 3 chỉ dùng chữ và bảng.
-
+![Hình 2.8. Run 44077094456, commit 4003107: hai job thành công và có artifact trên Organization.](images/organization-run.jpg){width=95%}
 
 # 3. Triển khai
 
 ## 3.1. Mô hình (Topology)
 
-### 3.1.1. Repository và Organization
+Nhóm triển khai mô hình trong Hình 2.4. Các thành phần chính gồm GitHub Organization, repository, runner, dịch vụ thử và VM VMware.
 
-Organization Free quản lý repository public finalrepo. Nhánh tổng hợp hiện tại là audit/remaining-free-integration; main giữ tại e052945db5b4a2bace480b5ab98446a8b82da02e. Hai repository nguồn không thay đổi. Sáu nhánh audit trung gian đã được kiểm tra là tổ tiên của nhánh tổng hợp, sao lưu và xóa ref dư; các commit lịch sử vẫn nằm trong nhánh hiện tại. Hình 2.4 mô tả luồng tổng thể.
+### 3.1.1. GitHub Organization và repository
 
-### 3.1.2. Thành viên và quyền truy cập
+Organization Free quản lý repository public finalrepo. Nhóm dùng nhánh audit/remaining-free-integration để tổng hợp mã thực nghiệm. Sáu nhánh trung gian đã được sao lưu rồi xóa sau khi kiểm tra lịch sử. Các commit cũ vẫn nằm trong nhánh tổng hợp. Main và hai repository nguồn được giữ nguyên.
 
-API đọc được bốn collaborator; quyền dưới đây được đối chiếu thêm với xác nhận của người thực nghiệm. Bảng không chứng minh toàn bộ quyền kế thừa, danh sách Org Owners hoặc enforcement MFA.
+### 3.1.2. Thành viên và quyền
 
+Nhóm đối chiếu bốn tài khoản qua API repository và xác nhận của thành viên. Bảng dưới ghi quyền hiện có và tình trạng MFA đã được cung cấp.
 
-| Tài khoản | Quyền repository | Trạng thái liên quan |
+| Tài khoản | Quyền repository | Tình trạng |
 | --- | --- | --- |
-| hieune-ui | Admin | MFA theo xác nhận: đã bật; tài khoản quản trị chính |
-| Vuongdlx | Write | MFA theo xác nhận: đã bật; có quyền phù hợp để review |
-| HiepTran01 | Write | MFA theo xác nhận: đã bật; có quyền phù hợp để review |
-| dtk0106 | Read | MFA chưa hoàn tất; không tính approval Read vào required Write+ reviewers |
+| hieune-ui | Admin | Đã xác nhận bật MFA |
+| Vuongdlx | Write | Đã xác nhận bật MFA |
+| HiepTran01 | Write | Đã xác nhận bật MFA |
+| dtk0106 | Read | Chưa hoàn tất MFA |
 
+Repository hiện có một Admin, hai Write và một Read. Nhóm chưa chốt admin dự phòng. CODEOWNERS đã khai báo tệp nhạy cảm. Việc yêu cầu hai reviewer độc lập còn cần PR thử và cấu hình bảo vệ nhánh.
 
-Chưa có phê duyệt phân công admin dự phòng hoặc PR thử được hai reviewer độc lập phê duyệt. CODEOWNERS có vai trò mô tả sở hữu mã, không tự cấp quyền hoặc cưỡng chế review. Danh sách public members/owners rỗng không được dùng làm tổng số thành viên thực tế.
+### 3.1.3. Runner và dịch vụ thử
 
-### 3.1.3. Runner, công cụ và kho kết quả
+GitHub-hosted runner dùng Ubuntu 24.04. Runner checkout mã, kiểm quyền chạy, thực hiện unit test và chạy scanner. Artifact lưu JSON, CSV, SPDX, SARIF và gói có chữ ký. Nhóm lưu khóa ký tạm ngoài thư mục đầu ra và xóa sau phép thử.
 
-GitHub-hosted runner Ubuntu 24.04 checkout nguồn, thực hiện guard quyền chạy, unit tests, scanner và kiểm thử dịch vụ. Input được ghim bằng SHA/digest/hash. Khóa ký và mật khẩu lab được sinh trong thư mục tạm, không nằm trong output upload. Artifact lưu JSON, CSV, SPDX, SARIF và signed bundle để đối chiếu ngoài đĩa runner; retention có giới hạn, không phải kho production riêng có ACL đã được kiểm thử.
+Receiver Python chạy HTTPS trên loopback. Nhóm thử HMAC, phát lại yêu cầu, loại sự kiện và kích thước dữ liệu. Registry Distribution cũng chạy loopback với TLS và tài khoản bcrypt. Nhóm tải lên hai phiên bản, tải lại manifest/blob/chữ ký và kiểm tra dữ liệu sửa.
 
-Receiver Python và Distribution custom registry chạy thành tiến trình riêng, chỉ bind loopback qua TLS. Webhook xác thực HMAC, giới hạn event/body và chống replay trong bộ nhớ. Registry dùng bcrypt account thử nghiệm; pipeline/client kiểm chữ ký artifact tải lên/tải xuống. Chưa có IdP, MFA thật hoặc admission policy của registry để chặn mọi upload không ký.
+### 3.1.4. VM VMware
 
-### 3.1.4. VMware và ranh giới triển khai
+VM dùng Ubuntu 22.04.4 LTS, Python 3.10.12 và 2 vCPU. Đầu ra ban đầu ghi RAM khoảng 2 GiB và phân vùng root còn 4.3 GiB. Nhóm chưa có số đo sau hướng dẫn tăng RAM lên 4 GiB.
 
-VM dùng Ubuntu 22.04.4 LTS, Python 3.10.12 và 2 vCPU. Đầu ra ban đầu ghi RAM khoảng 2 GiB; việc tăng lên 4 GiB đã được hướng dẫn nhưng chưa có số liệu đo xác nhận. Phân vùng root ban đầu còn khoảng 4.3 GiB. Người thực nghiệm dùng SSH từ Windows qua mạng VMware NAT; tài khoản user giữ đường quản trị, cisdeploy làm tài khoản triển khai không có sudo.
+Thành viên dùng SSH từ Windows qua mạng NAT. Tài khoản user giữ quyền quản trị VM. Tài khoản cisdeploy chỉ thuộc nhóm riêng và không có sudo. Thư mục /opt/cis-deploy-lab thuộc cisdeploy, mode 700.
 
-Thư mục /opt/cis-deploy-lab thuộc cisdeploy, mode 700. Người được cấp quyền ghi được, nobody bị từ chối. Cấu hình SSH root login và empty passwords là no; user/cisdeploy đăng nhập được sau reload. Đây là kiểm chứng OS/thư mục trong lab, không phải production hay kiểm kê mọi service credential. Báo cáo VM là đầu ra được cung cấp, không có signed remote attestation ràng buộc nguồn thực thi với commit.
-
+Nhóm dùng cisdeploy tạo tệp thành công, còn nobody bị từ chối. Sau reload SSH, user và cisdeploy đăng nhập được từ phiên mới. Root có trạng thái mật khẩu L; user và cisdeploy có trạng thái P. Nhóm ghi nhận PermitRootLogin no và PermitEmptyPasswords no.
 
 ## 3.2. Triển khai Manual
 
-Cột kết luận dùng ba mức: **Đạt**, **Đạt một phần**, **Không đạt / Chưa kết luận**. “Đạt” yêu cầu đủ bằng chứng toàn tiêu chí trong phạm vi đánh giá; hiện chưa có dòng nào đáp ứng mức này. “Đạt một phần” ghi nhận kết quả thành phần đã chứng minh. “Không đạt / Chưa kết luận” được dùng khi điều kiện còn thiếu hoặc quyền quan sát chưa cho phép chốt; ghi chú phân biệt từng trường hợp.
+Nhóm ghi thao tác, kết quả và trạng thái theo bằng chứng hiện có. Hình 2.6–2.8 là ảnh workflow; ảnh Settings và terminal VM cần được bổ sung riêng.
 
-| Mục | Kết quả — điều đã chứng minh và việc còn lại | Kết luận |
+| Mục | Kết quả | Đạt hay không đạt |
 | --- | --- | --- |
-| 1.2.1 — SECURITY.md | Đã có policy trong repository. Còn cần kênh báo cáo riêng tư cụ thể. | Đạt một phần |
-| 1.2.3 — Xóa/chuyển repo | Quan sát Settings: tùy chọn cho thành viên delete/transfer tắt. Cần ảnh gốc sau tải lại và đối chiếu hiệu lực theo vai trò. | Đạt một phần |
-| 1.2.4 — Xóa issue | Quan sát Settings: tùy chọn cho repo admin xóa issue tắt. Cần ảnh gốc và kiểm tra hiệu lực theo vai trò. | Đạt một phần |
-| 1.2.6 — Visibility | Đã hạn chế quyền đổi visibility; audit log thấy transfer/add/remove. Cần visibility event và hồ sơ rà định kỳ. | Đạt một phần |
-| 1.3.2 — Tạo team | Quan sát Settings: Allow members to create teams bỏ chọn. Cần ảnh lưu/tải lại và re-audit hành vi. | Đạt một phần |
-| 1.3.4/1.3.5 — MFA | Ba người xác nhận đã bật MFA; Dương chưa hoàn tất; field API UNKNOWN. Policy bắt buộc và phạm vi enforcement cần owner xác minh. | Không đạt / Chưa kết luận |
-| 1.3.7 — Repo admins | API nhìn thấy một Admin, hai Write, một Read. Cần xác minh full effective access và quyết định admin dự phòng. | Không đạt / Chưa kết luận |
-| 1.3.8 — Base permissions | Đã đổi thành No permission và có quan sát sau tải lại. Cần tệp ảnh gốc và đối chiếu quyền kế thừa. | Đạt một phần |
-| 1.4.1 — App approval | Đã rà giới hạn cài app cho repo admin trong giao diện. Cần saved-state và hồ sơ approval trail đầy đủ. | Đạt một phần |
-| 1.4.2 — Rà ứng dụng | Đã rà app hiện tại và mục đích sử dụng. Cần nhóm duyệt chu kỳ/người rà và ghi kỳ rà thực tế. | Đạt một phần |
-| 1.4.3 — Least privilege app | ChatGPT Codex Connector giới hạn vào finalrepo; đã xem permission. Cần biện minh bộ quyền tối thiểu, gồm issues/PR. | Đạt một phần |
-| 1.4.4 — Webhook | Trang repo/org không có hook tại thời điểm quan sát; receiver HTTPS thử riêng đã chạy. Cần delivery GitHub thật khi có endpoint được duyệt. | Đạt một phần |
-| 1.5.1 — Secret scanning | Đã quan sát Secret Protection và Push protection bật; zero native open alert tại thời điểm xem. Cần ảnh gốc và hồ sơ xử lý credential lịch sử. | Đạt một phần |
-| 1.5.5/3.2.2 — Dependency alerts | Đã quan sát graph/alerts bật, hai auto-dismiss presets tắt, zero open alert. Cần ảnh gốc và đối chiếu phạm vi dependency/supplier. | Đạt một phần |
-| 3.1.4 — Native SBOM | Đã xuất SPDX 2.3: repo và 9 action/version entries của 8 repo Actions. Phạm vi là main tại lúc xuất; còn Python/Go và các đầu vào khác. | Đạt một phần |
-| 5.2.3 — Quyền triển khai | Đầu ra terminal xác nhận cisdeploy không sudo, thư mục 700, nobody bị từ chối và SSH hợp lệ thành công. Cần ảnh terminal gốc; phạm vi production còn mở. | Đạt một phần |
-| 5.2.4 — Mật khẩu mặc định | Đầu ra/xác nhận ghi root L, user/cisdeploy P, root SSH no và empty passwords no. Cần ảnh gốc, xác nhận nguồn mật khẩu user và kiểm kê service credential. | Đạt một phần |
-
-**Phạm vi và giới hạn.** Các quan sát Settings và đầu ra VM được cung cấp trong phiên thực nghiệm; chưa tìm thấy tệp ảnh gốc tương ứng trong repo. Danh sách cần chụp nằm ở Phụ lục B. Hình 2.6–2.8 minh họa phiên chạy CI lịch sử, không được dùng thay ảnh Settings/VM. Quyền mode 700 bảo vệ tài khoản thông thường; root và quản trị viên có sudo vẫn có quyền quản lý. Các quyết định admin, email được duyệt, lịch rà và license cần phê duyệt thật. Kết quả OS/thư mục lab được tách khỏi production.
-
+| 1.2.1 — SECURITY.md | Nhóm có policy; kênh báo cáo riêng tư còn cần địa chỉ cụ thể. | Đạt một phần |
+| 1.2.3 — Xóa/chuyển repository | Nhóm thấy tùy chọn cho thành viên xóa/chuyển repository đã tắt; cần ảnh sau lưu. | Chưa làm |
+| 1.2.4 — Xóa issue | Tùy chọn cho repo admin xóa issue đã tắt theo quan sát; nhóm cần ảnh gốc. | Chưa làm |
+| 1.2.6 — Visibility | Nhóm hạn chế đổi visibility; chưa kiểm tra sự kiện đổi visibility và kỳ rà. | Chưa làm |
+| 1.3.2 — Tạo team | Nhóm thấy quyền tạo team đã tắt; cần ảnh sau tải lại và phép thử quyền. | Chưa làm |
+| 1.3.4/1.3.5 — MFA | Ba người xác nhận đã bật; dtk0106 chưa hoàn tất; nhóm cần kiểm cơ chế bắt buộc. | Chưa làm |
+| 1.3.7 — Admin repository | Nhóm thấy một Admin; quyết định quản trị viên dự phòng còn thiếu. | Chưa làm |
+| 1.3.8 — Quyền nền | Nhóm đổi thành No permission; cần ảnh sau tải lại và kiểm tra quyền kế thừa. | Chưa làm |
+| 1.4.1 — Phê duyệt ứng dụng | Nhóm rà giới hạn cài app; hồ sơ phê duyệt và trạng thái sau lưu còn thiếu. | Đạt một phần |
+| 1.4.2 — Rà ứng dụng | Nhóm kiểm tra ứng dụng đang dùng; lịch rà và tiêu chí gỡ chưa được duyệt. | Đạt một phần |
+| 1.4.3 — Quyền ứng dụng | ChatGPT Codex Connector giới hạn vào finalrepo; nhóm cần giải trình quyền issues và PR. | Đạt một phần |
+| 1.4.4 — Webhook | Nhóm chưa cài hook GitHub; receiver riêng đã qua 11 phép thử HTTPS. | Đạt một phần |
+| 1.5.1 — Secret scanning | Nhóm bật Secret Protection và Push protection; lịch sử credential còn cần xử lý. | Đạt một phần |
+| 1.5.5/3.2.2 — Dependency alerts | Nhóm bật Dependency graph và Dependabot alerts; hai quy tắc tự đóng cảnh báo đã tắt. | Đạt một phần |
+| 3.1.4 — SBOM GitHub | Nhóm xuất SPDX 2.3: 10 package, gồm repository và 9 mục action/phiên bản của 8 action repo. | Đạt một phần |
+| 5.2.3 — Quyền triển khai | cisdeploy không sudo, thư mục mode 700; nobody bị từ chối và phiên SSH hợp lệ thành công. | Đạt một phần |
+| 5.2.4 — Mật khẩu | Root bị khóa mật khẩu và chặn SSH; nhóm cần xác nhận mật khẩu user và tài khoản dịch vụ. | Đạt một phần |
 
 ## 3.3. Triển khai tự động hóa
 
-### 3.3.1. Các workflow chính
+Nhóm chạy bốn workflow chính. Pipeline Input Output kiểm tra mã, container và dữ liệu đầu ra. Pipeline Security Scan quét cấu hình workflow. Remaining Free integrations thử dịch vụ HTTPS và thu dữ liệu. CodeQL Python Audit phân tích mã Python.
 
-Các workflow hiện hành chỉ chạy phần thực nghiệm trên nhánh audit được cho phép. Những bước thu thập bằng chứng từ workflow gắn với nhánh cũ đã được chuyển vào workflow tích hợp. Bảng Tool/step ở mục 2.2 mô tả các giai đoạn lớn; bảng dưới liên kết công cụ với mã CIS và file xuất thực tế.
+### 3.3.1. Công cụ và file xuất kết quả
 
-
-| Mục / nhóm | Tool / step và kết quả thành phần | File xuất / nguồn |
+| Mục / nhóm | Tool / step → Kết quả | File xuất |
 | --- | --- | --- |
-| 1.1.3 và protection liên quan | audit_github.py: GET protection/rules; 403 giữ UNKNOWN | [github-api.json](../audit/evidence/github-api.json), [CSV](../audit/evidence/github-api.csv) |
-| 1.1.19; 1.3.1/.3/.4/.6; 2.1.11 | Collector 12 mục: phân trang, policy digest, missing evidence | [pending-free-baseline.json](../audit/evidence/pending-free-baseline.json) |
-| 1.3.13 | Monitor code/workflow; ghi sensitive paths và selected-pattern findings | Artifact run 44259692512: code-monitor/results.json |
-| 2.1.5/2.1.6 | Job condition + guard repository/ref/actor/rerun; negative tests | Artifact run 44259692512: build-access/results.json |
-| 1.1.8/1.2.5/1.2.7 | Inventory branch/fork/repository; không tự xóa tài nguyên | [governance-review](../audit/evidence/governance-review-2026-11-18.json), [organization-review](../audit/evidence/organization-review-2026-11-18.json) |
-| 1.5.1/2.3.8 | Gitleaks current source và scanner self-test với dữ liệu tổng hợp | [current-source-gitleaks.json](../audit/evidence/current-source-gitleaks.json), [scanner-selftest.json](../audit/evidence/scanner-selftest.json) |
-| 1.5.2/2.3.7 | Actionlint/Zizmor quét chỉ dẫn pipeline | Log Pipeline Security Scan 44259692655 |
-| 1.5.4 | Bandit HIGH gate; CodeQL đối chiếu public digest | [bandit-org-run.json](../audit/evidence/bandit-org-run.json), [codeql-review-summary.json](../audit/evidence/codeql-review-summary.json) |
-| 1.5.3/1.5.5/2.1.8 | Trivy source/image/binary, kiểm inventory và HIGH/CRITICAL gate | [trivy-source.json](../audit/evidence/trivy-source.json), [trivy-image.json](../audit/evidence/trivy-image.json), integration artifact |
-| 3.2.2 | pip-audit exact lock; kiểm coverage version/hash | [python audit](../audit/evidence/python-package-audit-org-run.json), [coverage](../audit/evidence/dependency-coverage-org-run.json) |
-| 3.1.2 | Ledger 43 đầu vào trực tiếp, ghi supplier SBOM thiếu | [supplier-intake-review.json](../audit/evidence/supplier-intake-review.json) |
-| 3.1.4/3.1.6 | Dependency graph, scoped SPDX và native export | [free-dependency-graph.json](../audit/evidence/free-dependency-graph.json), [native SPDX](../audit/evidence/github-native-sbom.spdx.json) |
-| 3.2.4 | So numeric repository/owner IDs của 9 Actions | [action-owners review](../audit/evidence/action-owners-review-2026-11-18.json) |
-| 2.4.1; 3.1.3; nhóm 4/5 lab | Signed source bundle; original/tampered/wrong-key tests | [free-bundle-verification.json](../audit/evidence/free-bundle-verification.json), [signed export](../audit/evidence/free-controls-export.zip) |
-| 1.4.4/2.1.10 | 11 kiểm thử receiver HTTPS thực trên loopback | [webhook-reaudit](../audit/evidence/webhook-reaudit-2026-11-18.json) |
-| 4.2.2/4.2.5/4.3.2 | 23 kiểm thử registry HTTPS, hai phiên bản, tải và kiểm chữ ký | [registry-reaudit](../audit/evidence/registry-reaudit-2026-11-18.json), [CSV 34 tests](../audit/evidence/remaining-integration-checks.csv) |
-| 5.2.3/5.2.4 | Host preflight chỉ đọc; VM OS kiểm thủ công riêng | [cloud preflight](../audit/evidence/pending-cloud-preflight.json), [VM access review](../audit/evidence/vm-access-review.json) |
+| 1.1.3 và bảo vệ nhánh | Nhóm gọi API protection và rules; API quản trị có trả 403. | [github-api.json](../audit/evidence/github-api.json), [CSV](../audit/evidence/github-api.csv) |
+| 1.1.19; 1.3; 2.1.11 | Nhóm thu dữ liệu cho 12 mục và so cấu hình ruleset. | [pending-free-baseline.json](../audit/evidence/pending-free-baseline.json) |
+| 1.3.13 | Nhóm ghi thay đổi tệp nhạy cảm và mẫu workflow nguy hiểm. | Artifact run 44259692512: code-monitor/results.json |
+| 2.1.5/2.1.6 | Nhóm kiểm repository, actor, nhánh và lần chạy lại. | Artifact run 44259692512: build-access/results.json |
+| 1.1.8/1.2.5/1.2.7 | Nhóm kiểm kê nhánh, fork và repository. | [governance](../audit/evidence/governance-review-2026-11-18.json), [organization](../audit/evidence/organization-review-2026-11-18.json) |
+| 1.5.1/2.3.8 | Gitleaks quét mã hiện tại và phát hiện mẫu nhạy cảm. | [Gitleaks](../audit/evidence/current-source-gitleaks.json), [phép thử scanner](../audit/evidence/scanner-selftest.json) |
+| 1.5.2/2.3.7 | Nhóm dùng Actionlint và Zizmor kiểm tra workflow. | Log Pipeline Security Scan 44259692655 |
+| 1.5.4 | Bandit ghi 0 HIGH; CodeQL ghi 0 cảnh báo với 43 quy tắc. | [Bandit](../audit/evidence/bandit-org-run.json), [CodeQL](../audit/evidence/codeql-review-summary.json) |
+| 1.5.3/1.5.5/2.1.8 | Nhóm quét mã, image và binary, có bước kiểm kê package. | [Trivy mã nguồn](../audit/evidence/trivy-source.json), [Trivy image](../audit/evidence/trivy-image.json) |
+| 3.2.2 | Nhóm quét đúng 32/32 package, ghi 0 advisory tại thời điểm đo. | [pip-audit](../audit/evidence/python-package-audit-org-run.json), [coverage](../audit/evidence/dependency-coverage-org-run.json) |
+| 3.1.2 | Nhóm kiểm kê 43 đầu vào; còn thiếu SBOM từ nhà cung cấp. | [supplier-intake-review.json](../audit/evidence/supplier-intake-review.json) |
+| 3.1.4/3.1.6 | Nhóm xuất 32 nút, 145 quan hệ; 32 quan hệ hoạt động ở môi trường mặc định. | [dependency graph](../audit/evidence/free-dependency-graph.json), [SPDX GitHub](../audit/evidence/github-native-sbom.spdx.json) |
+| 3.2.4 | Nhóm đối chiếu ID của chín repository action và chủ sở hữu. | [action-owners-review](../audit/evidence/action-owners-review-2026-11-18.json) |
+| 2.4.1; 3.1.3; nhóm 4/5 | Nhóm ký gói nguồn và thử dữ liệu sửa, chữ ký sai. | [xác minh bundle](../audit/evidence/free-bundle-verification.json), [gói có chữ ký](../audit/evidence/free-controls-export.zip) |
+| 1.4.4/2.1.10 | Receiver hoàn thành 11 phép thử HTTPS. | [webhook-reaudit](../audit/evidence/webhook-reaudit-2026-11-18.json) |
+| 4.2.2/4.2.5/4.3.2 | Registry hoàn thành 23 phép thử với hai phiên bản. | [registry-reaudit](../audit/evidence/registry-reaudit-2026-11-18.json), [CSV 34 phép thử](../audit/evidence/remaining-integration-checks.csv) |
+| 5.2.3/5.2.4 | Nhóm kiểm tài khoản, SSH và thư mục VM theo thao tác riêng. | [VM access review](../audit/evidence/vm-access-review.json), [preflight](../audit/evidence/pending-cloud-preflight.json) |
 
+### 3.3.2. Các trường hợp khắc phục
 
-### 3.3.2. Ví dụ chu trình khắc phục có kiểm tra lại
+**Registry.** Nhóm chuyển từ quét filesystem sang rootfs khi binary Go không được nhận diện. Bản quét đúng ghi 104 package và 8 HIGH. Nhóm build lại Distribution 3.1.2 thành 3.1.2+cis.1 bằng Go 1.27.4 và dependency đã khóa. Lần kiểm tra sau ghi 0 HIGH/CRITICAL. Hình 2.5 thể hiện hai kết quả.
 
-**Registry binary.** Bản quét filesystem đầu tiên không nhận diện binary Go nên không được chấp nhận làm bằng chứng sạch. Chuyển sang rootfs/list-all-packages và coverage guard nhận diện 104 package cùng 8 HIGH. Bản custom build 3.1.2+cis.1 cập nhật dependency và Go SDK theo lock; re-audit nhận diện 104 package, zero HIGH/CRITICAL tại lần đo. Đây là kết quả theo database/time của scanner, không phải khẳng định mọi mức độ lỗ hổng bằng zero. Chi tiết và Hình 2.5 gắn với runs 44127179185/44130146471.
+**CodeQL.** Nhóm nhận hai cảnh báo lưu và ghi log dữ liệu nhạy cảm. Dữ liệu thực tế là SHA256 của public key. Nhóm làm rõ tên biến rồi chạy lại cùng 43 quy tắc. SARIF ghi 0 cảnh báo và quá trình phân tích hoàn tất. Nhóm cũng thử để vật liệu khóa riêng không xuất hiện trong tệp hoặc log.
 
-**CodeQL public digest.** Hai cảnh báo clear-text storage/logging được truy data flow tới SHA256 của public key, không phải private key. Tên biến và helper được làm rõ theo ý nghĩa dữ liệu; có regression tests bảo đảm private signing material không vào output/log. Re-audit cùng 43 rule ghi zero result và executionSuccessful=true. Không exclude query, suppress hoặc dismiss để làm sạch bảng cảnh báo.
+**Artifact.** Nhóm tạo ZIP hai lần và so byte. Gói kết quả gồm ba tệp được ký cùng metadata về mã nguồn. Bản gốc xác minh được. Tệp bị sửa, manifest bị sửa hoặc khóa đối chiếu sai đều bị từ chối. Phép thử mã hóa kiểm chữ ký trước giải mã và từ chối ciphertext bị sửa.
 
-**Input/output và chữ ký.** Bundle gắn commit/tree, hash các payload, scoped SBOM và provenance. Bản gốc xác minh được; payload hoặc manifest bị sửa và expected digest sai bị từ chối. Kết quả chứng minh kiểm tra toàn vẹn của phiên thử. Trust root độc lập, danh tính supplier và toàn bộ release/production artifacts thuộc phạm vi cần đánh giá tiếp.
+**VM.** Nhóm nhận ba báo cáo từ Ubuntu: 5 phép thử supply chain, 13 phép thử registry mô hình và 11 phép thử webhook. Cả 29 phép thử thành công. Các bước tài khoản và SSH được kiểm tra riêng trên VM. Registry mô hình dùng dữ liệu vai trò và MFA mẫu.
 
-### 3.3.3. Cách lặp lại và lấy kết quả
+### 3.3.3. Chạy lại các phép kiểm
 
-Các script cần chạy từ thư mục repository. Các collector GET dùng quyền hiện có; thiếu quyền phải được giữ trong báo cáo. Không gửi token vào chat hoặc hardcode vào lệnh. Native registry phải đúng executable SHA256 trong lock; không tự thay bằng bản tải bất kỳ.
-
+Nhóm chạy lệnh từ thư mục repository. Registry integration cần binary đúng SHA256 trong tệp khóa. Các kết quả mới được ghi vào reports/.
 
 ```bash
 python3 -m unittest discover -s tests -v
 python3 scripts/audit_free_controls.py --repo nt542-r11-nhom17-cis-lab/finalrepo
-python3 scripts/audit_pending_free.py --previous docs/audit/evidence/pending-free-baseline.json
 python3 scripts/webhook_integration.py
 python3 scripts/registry_integration.py --registry /duong-dan/registry-da-xac-minh
 ```
 
-Các output mới nằm trong reports/; artifact CI được gắn run ID và thời hạn lưu. Gói bằng chứng kèm báo cáo giữ nguyên JSON/CSV đã có và hash manifest để kiểm tra tính toàn vẹn bản sao. Không gọi test unit là kiểm thử bằng tài khoản thật, không gọi registry fixture là xác thực IdP và không gọi cloud workspace preflight là kiểm production của VM.
-
+Nhóm lưu output theo từng công cụ và phiên chạy. JSON chứa dữ liệu kiểm tra, CSV hỗ trợ thống kê, SPDX mô tả thành phần phần mềm. SARIF ghi kết quả CodeQL. Các tệp hiện có nằm trong danh mục cuối phần 4.
 
 # 4. Kết quả
 
-## 4.1. Quy ước đánh giá
+## 4.1. Cách ghi kết quả
 
-Báo cáo và cột `result_label` của COVERAGE.csv dùng thống nhất nhãn tiếng Việt. Cột `result` giữ mã kỹ thuật gốc để công cụ tiếp tục đọc dữ liệu và truy vết; các file bằng chứng gốc giữ nguyên nội dung. Bảng ánh xạ là:
+Nhóm dùng bốn nhãn dưới đây. Với các mục thiếu ảnh hoặc quyền xác minh, nhóm ghi công việc còn lại trong cột Ghi chú.
 
-| Mã kỹ thuật | Nhãn hiển thị | Ý nghĩa |
+| Nhãn | Cách hiểu | Điều kiện |
 | --- | --- | --- |
-| PARTIAL | Một phần | Có triển khai hoặc bằng chứng thành phần; còn điều kiện toàn tiêu chí. |
-| MANUAL_REVIEW | Cần xác minh | Cần quyền đọc, quyết định hoặc kiểm chứng thủ công để kết luận. |
-| LAB_ONLY | Giới hạn lab | Bằng chứng thuộc mô hình hoặc phạm vi lab được nêu. |
-| NOT_TESTED | Chưa triển khai | Chưa có triển khai thực tế theo phạm vi yêu cầu. |
+| Đạt | Nhóm đã kiểm chứng đầy đủ yêu cầu. | Có bằng chứng phù hợp cho toàn tiêu chí. |
+| Đạt một phần | Nhóm đã kiểm tra được một phần yêu cầu. | Còn phạm vi hoặc bước kiểm tra khác. |
+| Không đạt | Phép kiểm cho thấy yêu cầu không được đáp ứng. | Có kết quả thực tế để kết luận. |
+| Chưa làm | Bước xác minh yêu cầu chưa được thực hiện. | Ghi lý do cần quyền, ảnh, quyết định hoặc môi trường. |
 
-Mức “Đạt” toàn tiêu chí (Full-control PASS) hiện bằng 0. Ba kết luận ở mục 3.2 là cách trình bày kết luận thủ công, không tạo thêm trạng thái đánh giá hoặc đổi mã của CIS. Các dòng “Đạt một phần” tương ứng mức bằng chứng “Một phần”; nhóm “Không đạt / Chưa kết luận” phải đọc kèm điều kiện còn thiếu.
+## 4.2. Phiên chạy và mốc mã nguồn
 
-**Phạm vi và giới hạn.** Kết quả phản ánh phép đo theo đối tượng, thời điểm và quyền nhìn thấy. Thiếu quyền đọc chưa chứng minh cấu hình sai; CI thành công xác nhận các phép kiểm đã chạy. Hai mục deployment có bằng chứng OS/thư mục trong VM, còn production và nguồn mật khẩu được ghi riêng. Điều kiện cụ thể còn lại nằm ở cột Ghi chú của từng mục.
+Nhóm gắn kết quả với các mốc trong bảng. Số 71 test và bốn workflow thành công thuộc mốc mã kiểm thử. Các phép đo registry, CodeQL và VM có nguồn riêng.
 
-## 4.2. Kết quả theo môi trường
-
-**Snapshot chính thức của báo cáo.** Mã kiểm thử/workflow: [09aeae0](https://github.com/nt542-r11-nhom17-cis-lab/finalrepo/commit/09aeae0f04e9724a30acdf60e3810a5614d2d18c); bản tài liệu làm cơ sở cho lần hiệu đính này: [6cbf635](https://github.com/nt542-r11-nhom17-cis-lab/finalrepo/commit/6cbf6352d9d67696e365161fe825b5e56c2e6777), xác minh bằng git log. Commit 4df397d là bản hướng dẫn trước khi thêm báo cáo, không phải bản báo cáo mới nhất. Số 71 test và bốn run CI trong bảng gắn với 09aeae0. Thống kê 82/28/7/3 và nhóm Free 34/14/0/0 lấy từ COVERAGE.csv của snapshot tài liệu; lần hiệu đính giữ nguyên mã kết quả. Các phép đo CodeQL 43 rule, registry 104 package, hash wheel và 29 test VM giữ commit/run/time riêng trong nguồn bằng chứng, không gộp thành phép đo mới.
-
-
-| Phạm vi | Kết quả | Giới hạn |
+| Đối tượng | Commit | Dữ liệu liên quan |
 | --- | --- | --- |
-| CI kiểm thử | 71 unit/negative tests; bốn workflow thành công | Code/workflow snapshot 09aeae0; không thay CIS enforcement |
-| CodeQL | Zero result, 43 rule ở phiên đã đối chiếu SARIF | Không suy mọi loại lỗ hổng đều không tồn tại |
-| HTTPS độc lập | 11 webhook + 23 registry checks PASS | Loopback/synthetic deliveries, không production |
-| VM reports | 5 supply chain + 13 registry fixture + 11 webhook = 29 PASS | Báo cáo được cung cấp, không remote attestation |
-| VM accounts/SSH | Least-privilege account, thư mục 700, root SSH no/empty password no | Chưa full production/service credential audit |
-| Dependency metadata | 32/32 wheel hash khớp; 9 action owner IDs không đổi | 20 license cần review; supplier SBOM chưa đủ |
+| Mã kiểm thử/workflow | [09aeae0](https://github.com/nt542-r11-nhom17-cis-lab/finalrepo/commit/09aeae0f04e9724a30acdf60e3810a5614d2d18c) | 71 test và bốn workflow trong bảng phiên chạy. |
+| Tài liệu và dữ liệu nguồn | [6cbf635](https://github.com/nt542-r11-nhom17-cis-lab/finalrepo/commit/6cbf6352d9d67696e365161fe825b5e56c2e6777) | Danh mục tiêu chí và số liệu nguồn. |
+| Hướng dẫn thực hành | 4df397d | Quy trình thao tác trên nhánh audit. |
+| Main được giữ nguyên | [e052945](https://github.com/nt542-r11-nhom17-cis-lab/finalrepo/commit/e052945db5b4a2bace480b5ab98446a8b82da02e) | Nhóm không sửa main trong thực nghiệm. |
 
-
-| Workflow / snapshot | Run ID | Kết quả |
+| Workflow | Run ID | Kết quả chạy |
 | --- | --- | --- |
-| Pipeline Security Scan / 09aeae0 | 44259692655 | SUCCESS |
-| CodeQL Python Audit / 09aeae0 | 44259692668 | SUCCESS |
-| Pipeline Input Output / 09aeae0 | 44259692722 | SUCCESS |
-| Remaining Free integrations / 09aeae0 | 44259692512 | SUCCESS |
+| Pipeline Security Scan | 44259692655 | Thành công |
+| CodeQL Python Audit | 44259692668 | Thành công |
+| Pipeline Input Output | 44259692722 | Thành công |
+| Remaining Free integrations | 44259692512 | Thành công |
 
+| Phép kiểm | Kết quả | Nguồn |
+| --- | --- | --- |
+| CodeQL | 0 cảnh báo, 43 quy tắc; phân tích hoàn tất. | SARIF và dữ liệu đối chiếu CodeQL. |
+| HTTPS | 11 webhook và 23 registry thành công. | Báo cáo dịch vụ loopback. |
+| Registry trước/sau | 104 package; 8 HIGH trước, 0 HIGH/CRITICAL sau. | Runs 44127179185 và 44130146471. |
+| VM | 5 supply chain + 13 registry mô hình + 11 webhook thành công. | Ba JSON do nhóm chuyển từ VM. |
+| Wheel và giấy phép | 32/32 hash khớp; 20 giấy phép cần xét thủ công. | Metadata PyPI và danh mục công cụ. |
+| Actions | ID của chín action và chủ sở hữu không đổi. | Bản đối chiếu ID trong evidence. |
 
-Các run ID trong bảng có thể tra tại [trang GitHub Actions của repository](https://github.com/nt542-r11-nhom17-cis-lab/finalrepo/actions). Chỉnh tài liệu thuần túy ở commit 4df397d không thay mã kiểm thử; các số liệu gắn đúng snapshot của chúng.
+## 4.3. Thống kê
 
-## 4.3. Thống kê theo mức bằng chứng
+Nhóm có bằng chứng thành phần cho 82 tiêu chí. 38 mục còn lại cần kiểm tra thực tế, quyền truy cập hoặc tính năng Enterprise.
 
-
-| Phạm vi | Một phần | Cần xác minh | Giới hạn lab | Chưa triển khai |
+| Phạm vi | Đạt | Đạt một phần | Không đạt | Chưa làm |
 | --- | --- | --- | --- | --- |
-| Toàn bộ 120 tiêu chí | 82 | 28 | 7 | 3 |
-| 48 tiêu chí Free được lựa chọn | 34 | 14 | 0 | 0 |
+| Toàn bộ 120 tiêu chí | 0 | 82 | 0 | 38 |
+| 48 tiêu chí Free được chọn | 0 | 34 | 0 | 14 |
 
+Tổng bảng là 120 mục; nhóm Free có 48 mục. Nhóm chưa có mục Đạt. Các mục có quan sát ban đầu nhưng thiếu ảnh hoặc kiểm tra hiệu lực vẫn nêu kết quả quan sát trong ghi chú.
 
-Số full-control PASS hiện bằng **0**. Nhóm 48 có 34 mục Một phần và 14 mục Cần xác minh; các điều kiện hoàn thiện nằm ở từng dòng. Ba mục Chưa triển khai toàn bảng là 1.3.10/1.3.11/1.3.12 thuộc phạm vi Enterprise chưa triển khai. Các mục còn lại được đánh giá theo mức bằng chứng thực có, không cộng số test vào số tiêu chí đạt.
-
-## 4.4. Bảng đối chiếu toàn bộ 120 tiêu chí
-
-Cột “Mục” giữ mã và tên; cột “Kết quả” nêu mức bằng chứng; cột “Ghi chú” cho biết đã làm được gì và nguyên nhân chưa đủ. Bản máy đọc được nằm trong COVERAGE.csv kèm gói xuất. Bảng không bỏ các mục chưa làm.
-
+## 4.4. Đối chiếu 120 tiêu chí
 
 ### Nhóm 1. Source Code
 
-
 | Mục | Kết quả | Ghi chú |
 | --- | --- | --- |
-| 1.1.1 — Ensure any changes to code are tracked in a version control platform | Một phần | Đã đóng gói đúng commit/tree từ Git; chưa chứng minh mọi thay đổi ngoài checkout đều được quản lý. |
-| 1.1.2 — Ensure any change to code can be traced back to its associated task | Một phần | Mẫu PR yêu cầu task/issue và mã CIS; chưa có enforcement và mẫu PR thật để kết luận toàn mục. |
-| 1.1.3 — Ensure any change to code receives approval of two strongly authenticated users | Cần xác minh | API protection trả 403; cần quyền đọc và thử hành vi; không đổi main. |
-| 1.1.4 — Ensure previous approvals are dismissed when updates are introduced to a code change proposal | Cần xác minh | API protection trả 403; cần quyền đọc và thử hành vi; không đổi main. |
-| 1.1.5 — Ensure there are restrictions on who can dismiss code change reviews | Cần xác minh | Đã thử đọc classic protection: HTTP 403; mẫu ruleset chỉ cho nhánh thử đã chuẩn bị nhưng chưa áp dụng. Cần owner thao tác và kiểm thử hành vi theo PROCEDURES.vi.md. |
-| 1.1.6 — Ensure code owners are set for extra sensitive code or configuration | Một phần | Có CODEOWNERS cho cấu hình nhạy cảm; bốn username đã được người dùng xác nhận nhưng chưa có quyết định phân công Code Owner mới; không đồng nghĩa required review. |
-| 1.1.7 — Ensure code owner's review is required when a change affects owned code | Một phần | Có Code Owner được xác định; protection API 403, chưa chứng minh bắt buộc review. |
-| 1.1.8 — Ensure inactive branches are periodically reviewed and removed | Một phần | Đã lấy branch/SHA/tuổi commit; chưa có owner review định kỳ và quyết định xóa. Không tự xóa. |
-| 1.1.9 — Ensure all checks have passed before merging new code | Cần xác minh | API protection trả 403; cần quyền đọc và thử hành vi; không đổi main. |
-| 1.1.10 — Ensure open Git branches are up to date before they can be merged into code base | Cần xác minh | Đã thử đọc classic protection: HTTP 403; mẫu ruleset chỉ cho nhánh thử đã chuẩn bị nhưng chưa áp dụng. Cần owner thao tác và kiểm thử hành vi theo PROCEDURES.vi.md. |
-| 1.1.11 — Ensure all open comments are resolved before allowing code change merging | Cần xác minh | Đã thử đọc classic protection: HTTP 403; mẫu ruleset chỉ cho nhánh thử đã chuẩn bị nhưng chưa áp dụng. Cần owner thao tác và kiểm thử hành vi theo PROCEDURES.vi.md. |
-| 1.1.12 — Ensure verification of signed commits for new changes before merging | Cần xác minh | Đã thử đọc classic protection: HTTP 403; mẫu ruleset chỉ cho nhánh thử đã chuẩn bị nhưng chưa áp dụng. Cần owner thao tác và kiểm thử hành vi theo PROCEDURES.vi.md. |
-| 1.1.13 — Ensure linear history is required | Cần xác minh | Đã thử đọc classic protection: HTTP 403; mẫu ruleset chỉ cho nhánh thử đã chuẩn bị nhưng chưa áp dụng. Cần owner thao tác và kiểm thử hành vi theo PROCEDURES.vi.md. |
-| 1.1.14 — Ensure branch protection rules are enforced for administrators | Cần xác minh | Đã thử đọc classic protection: HTTP 403; mẫu ruleset chỉ cho nhánh thử đã chuẩn bị nhưng chưa áp dụng. Cần owner thao tác và kiểm thử hành vi theo PROCEDURES.vi.md. |
-| 1.1.15 — Ensure pushing or merging of new code is restricted to specific individuals or teams | Cần xác minh | Đã thử đọc classic protection: HTTP 403; mẫu ruleset chỉ cho nhánh thử đã chuẩn bị nhưng chưa áp dụng. Cần owner thao tác và kiểm thử hành vi theo PROCEDURES.vi.md. |
-| 1.1.16 — Ensure force push code to branches is denied | Cần xác minh | API protection trả 403; cần quyền đọc và thử hành vi; không đổi main. |
-| 1.1.17 — Ensure branch deletions are denied | Cần xác minh | API protection trả 403; cần quyền đọc và thử hành vi; không đổi main. |
-| 1.1.18 — Ensure any merging of code is automatically scanned for risks | Một phần | Đã tự động quét push nhánh audit; chưa bắt buộc mọi merge hoặc áp rule main. |
-| 1.1.19 — Ensure any changes to branch protection rules are audited | Một phần | Đã thu snapshot classic protection/rulesets và thêm so sánh digest. Classic HTTP 403 là UNKNOWN; rulesets nhìn thấy là danh sách rỗng. Chưa có audit event actor/time hoặc thử đổi rule thật. |
-| 1.1.20 — Ensure branch protection is enforced on the default branch | Cần xác minh | API protection trả 403; cần quyền đọc và thử hành vi; không đổi main. |
-| 1.2.1 — Ensure all public repositories contain a SECURITY.md file | Một phần | Có policy; kênh liên hệ riêng tư chưa cụ thể. |
-| 1.2.2 — Ensure repository creation is limited to specific members | Cần xác minh | Đã thu thập trên Organization thật. Trường cấu hình không có/HTTP 403 phải UNKNOWN; cần evidence Settings và đúng quyền, không thay main. |
-| 1.2.3 — Ensure repository deletion is limited to specific users | Cần xác minh | Đã thu thập trên Organization thật. Trường cấu hình không có/HTTP 403 phải UNKNOWN; cần evidence Settings và đúng quyền, không thay main. Bổ sung UI: Allow members to delete or transfer repositories unchecked. Do not test destruction of finalrepo; saved-state and permission scope require review. |
-| 1.2.4 — Ensure issue deletion is limited to specific users | Cần xác minh | Đã thu thập trên Organization thật. Trường cấu hình không có/HTTP 403 phải UNKNOWN; cần evidence Settings và đúng quyền, không thay main. Bổ sung UI: Allow repository administrators to delete issues unchecked. Saved-state and role scope require review. |
-| 1.2.5 — Ensure all copies (forks) of code are tracked and accounted for | Một phần | Đã kiểm kê fork qua API có phân trang; cần ledger mục đích/người phê duyệt và lịch rà soát. |
-| 1.2.6 — Ensure all code projects are tracked for changes in visibility status | Cần xác minh | Đã thu thập trên Organization thật. Trường cấu hình không có/HTTP 403 phải UNKNOWN; cần evidence Settings và đúng quyền, không thay main. Bổ sung UI: Allow members to change repository visibility unchecked; transfer/add-remove events visible in audit log. No visibility-change event or recurring review verified. |
-| 1.2.7 — Ensure inactive repositories are reviewed and archived periodically | Một phần | Kiểm kê Organization qua GET API: một repo nhìn thấy, trạng thái archive và tuổi lần push; chưa có owner review định kỳ hoặc quyết định archive. |
-| 1.3.1 — Ensure inactive users are reviewed and removed periodically | Một phần | Đã kiểm kê phân trang người nhìn thấy và quyền repo để chuẩn bị rà: 4 collaborator. Member API chỉ thấy 0 public/visible entry, không phải tổng thành viên. Chưa có last-login, quyết định thu hồi hay lịch rà đã duyệt. |
-| 1.3.2 — Ensure team creation is limited to specific members | Cần xác minh | Đã thu thập trên Organization thật. Trường cấu hình không có/HTTP 403 phải UNKNOWN; cần evidence Settings và đúng quyền, không thay main. Bổ sung UI: Allow members to create teams unchecked. Saved-state re-audit and authorized/unauthorized behavior not verified. |
-| 1.3.3 — Ensure minimum number of administrators are set for the organization | Cần xác minh | Đã thử kiểm kê owners phân trang; kết quả 0 chỉ là caller-visible, không suy organization không có owner. Repo có 1 Admin; full org owner count, lý do quyền và phương án dự phòng cần owner xác minh. |
-| 1.3.4 — Ensure Multi-Factor Authentication (MFA) is required for contributors of new code | Cần xác minh | Đã thử đọc yêu cầu MFA và filter 2fa_disabled: field UNKNOWN, filter HTTP 422. Người dùng xác nhận 3 tài khoản đã bật, Dương chưa hoàn tất. Không thay enforcement hoặc dùng mô phỏng thay MFA thật. |
-| 1.3.5 — Ensure the organization is requiring members to use Multi- Factor Authentication (MFA) | Cần xác minh | Đã thu thập trên Organization thật. Trường cấu hình không có/HTTP 403 phải UNKNOWN; cần evidence Settings và đúng quyền, không thay main. |
-| 1.3.6 — Ensure new members are required to be invited using company-approved email | Cần xác minh | Đã thử đọc lời mời: HTTP 403; không xuất email hoặc gửi lời mời. Đã có dự thảo quy trình nhưng chưa có approved-email list/quyết định nhóm và invitation comparison thực. |
-| 1.3.7 — Ensure two administrators are set for each repository | Cần xác minh | Snapshot API người dùng thấy một admin; workflow token thấy tập con. Cần owner xác minh full access và quyết định admin thứ hai, không tự cấp quyền. |
-| 1.3.8 — Ensure strict base permissions are set for repositories | Cần xác minh | Đã đổi base permissions thành No permission và có quan sát sau tải lại. Còn thiếu kiểm kê toàn bộ quyền trực tiếp/kế thừa và ngoại lệ; chưa kết luận toàn mục. |
-| 1.3.9 — Ensure an organization’s identity is confirmed with a “Verified” badge | Cần xác minh | API is_verified=false: phát hiện cấu hình chưa Verified. Cần domain thật và quyền DNS; không giả lập xác minh hoặc đánh dấu đạt. |
-| 1.3.10 — Ensure Source Code Management (SCM) email notifications are restricted to verified domains | Chưa triển khai | Chưa có bằng chứng Settings/tài khoản/tổ chức hoặc kiểm thử hành vi; không thay cấu hình main. |
-| 1.3.11 — Ensure an organization provides SSH certificates | Chưa triển khai | Chưa có bằng chứng Settings/tài khoản/tổ chức hoặc kiểm thử hành vi; không thay cấu hình main. |
-| 1.3.12 — Ensure Git access is limited based on IP addresses | Chưa triển khai | Chưa có bằng chứng Settings/tài khoản/tổ chức hoặc kiểm thử hành vi; không thay cấu hình main. |
-| 1.3.13 — Ensure anomalous code behavior is tracked | Một phần | Đã triển khai code_change_monitor: ghi thay đổi đường dẫn nhạy cảm/hash workflow, từ chối một số mẫu workflow nguy hiểm, lưu artifact CI. Không thay phát hiện hành vi toàn diện hoặc bằng chứng người nhận xử lý cảnh báo. |
-| 1.4.1 — Ensure administrator approval is required for every installed application | Một phần | Đã xem tùy chọn giới hạn cài app của repo admin và rà app hiện có. Chưa xác minh độc lập trạng thái lưu/tải lại và hồ sơ phê duyệt cho mọi app. |
-| 1.4.2 — Ensure stale applications are reviewed and inactive ones are removed | Một phần | Đã rà ChatGPT Codex Connector đang dùng trong phạm vi công việc. Thiếu chu kỳ/người rà và tiêu chí nhận diện app không hoạt động được nhóm phê duyệt. |
-| 1.4.3 — Ensure the access granted to each installed application is limited to the least privilege needed | Một phần | Connector được giới hạn vào finalrepo; đã xem quyền hiển thị. Cần biện minh đầy đủ các quyền, gồm issues/PR, và xác định bộ quyền tối thiểu thực sự cần thiết. |
-| 1.4.4 — Ensure only secured webhooks are used | Một phần | Receiver HTTPS thật trên loopback: HMAC SHA256, event allowlist, giới hạn body và chống replay đã kiểm thử; chưa cài GitHub webhook hoặc endpoint công khai. Bổ sung UI: Organization and repository webhook pages empty at screenshot time. Actual GitHub delivery not performed; local receiver is a separate integration. Có thêm báo cáo lab do người dùng chạy trên VMware; giới hạn phạm vi giữ nguyên, không phải bằng chứng production. |
-| 1.5.1 — Ensure scanners are in place to identify and prevent sensitive data in code | Một phần | Secret Protection và Push protection bật theo quan sát giao diện; Gitleaks current tree ghi 0 phát hiện và credential cứng đã được bỏ khỏi cây mã hiện tại. Giới hạn: lịch sử còn phát hiện; việc thu hồi credential cũ và bao phủ toàn lịch sử chưa được xác minh. |
-| 1.5.2 — Ensure scanners are in place to secure Continuous Integration (CI) pipeline instructions | Một phần | Có kiểm tra workflow; chưa chứng minh mọi pipeline và cổng chặn. |
-| 1.5.3 — Ensure scanners are in place to secure Infrastructure as Code (IaC) instructions | Một phần | Đã quét source/IaC và chặn HIGH/CRITICAL; 0 phát hiện trong ngưỡng tại commit kiểm tra. Không suy ra mọi IaC đều an toàn. |
-| 1.5.4 — Ensure scanners are in place for code vulnerabilities | Một phần | Bandit SAST Python ghi 0 HIGH; CodeQL sau đối chiếu public SHA256 ghi zero result với cùng 43 rule. Giới hạn: phạm vi Python/snapshot đã đo, chưa xác minh mọi loại lỗ hổng và enforcement trên toàn hệ thống. |
-| 1.5.5 — Ensure scanners are in place for open-source vulnerabilities in used packages | Một phần | Đã build và quét package của image Alpine pin digest; 0 HIGH/CRITICAL tại thời điểm kiểm tra; chưa supplier/Dependabot toàn tổ chức. Bổ sung UI: Dependency graph and Dependabot alerts On; security/version updates not enabled. Alert scope and dependency coverage remain limited. |
-| 1.5.6 — Ensure scanners are in place for open-source license issues in used packages | Một phần | Có scanner; cần đối tượng phù hợp, report và chính sách; fs không quét image nền. Có inventory license scanner toolchain; các mục unknown vẫn cần xử lý thủ công. |
-
+| 1.1.1 — Ensure any changes to code are tracked in a version control platform | Đạt một phần | Nhóm đóng gói mã theo cây Git; còn mã ngoài repository chưa được kiểm kê. |
+| 1.1.2 — Ensure any change to code can be traced back to its associated task | Đạt một phần | Nhóm thêm mã công việc vào mẫu PR; cần PR thật để kiểm tra liên kết nhiệm vụ. |
+| 1.1.3 — Ensure any change to code receives approval of two strongly authenticated users | Chưa làm | API chặn đọc branch protection; nhóm cần ảnh Settings và PR thử với hai người phê duyệt. |
+| 1.1.4 — Ensure previous approvals are dismissed when updates are introduced to a code change proposal | Chưa làm | Nhóm chưa kiểm thử việc hủy phê duyệt cũ vì API chặn đọc quy tắc. |
+| 1.1.5 — Ensure there are restrictions on who can dismiss code change reviews | Chưa làm | Mẫu giới hạn người hủy review đã có; nhóm cần áp dụng trên nhánh thử và kiểm tra quyền. |
+| 1.1.6 — Ensure code owners are set for extra sensitive code or configuration | Đạt một phần | Nhóm khai báo CODEOWNERS cho tệp nhạy cảm; phân công người sở hữu mới còn chờ xác nhận. |
+| 1.1.7 — Ensure code owner's review is required when a change affects owned code | Đạt một phần | Nhóm xác định người sở hữu mã; cần kiểm tra PR bị chặn khi thiếu phê duyệt của họ. |
+| 1.1.8 — Ensure inactive branches are periodically reviewed and removed | Đạt một phần | Nhóm kiểm kê nhánh và xóa sáu nhánh đã gộp; lịch rà định kỳ còn chờ duyệt. |
+| 1.1.9 — Ensure all checks have passed before merging new code | Chưa làm | Nhóm cần đọc quy tắc bắt buộc kiểm tra và thử PR lỗi; API hiện trả 403. |
+| 1.1.10 — Ensure open Git branches are up to date before they can be merged into code base | Chưa làm | Nhóm chưa thử PR chậm hơn nhánh đích; cần quyền đọc và cấu hình nhánh thử. |
+| 1.1.11 — Ensure all open comments are resolved before allowing code change merging | Chưa làm | Quy tắc giải quyết hội thoại chưa được kiểm chứng; nhóm cần PR có nhận xét còn mở. |
+| 1.1.12 — Ensure verification of signed commits for new changes before merging | Chưa làm | Nhóm cần thử commit có chữ ký và không có chữ ký; quyền đọc cấu hình còn bị chặn. |
+| 1.1.13 — Ensure linear history is required | Chưa làm | Lịch sử tuyến tính chưa được thử; nhóm cần đối chiếu quy tắc và thao tác gộp trên nhánh riêng. |
+| 1.1.14 — Ensure branch protection rules are enforced for administrators | Chưa làm | Nhóm chưa thử quyền vượt quy tắc của quản trị viên; cần kiểm tra nhánh thử bằng tài khoản thật. |
+| 1.1.15 — Ensure pushing or merging of new code is restricted to specific individuals or teams | Chưa làm | Danh sách được phép đẩy mã chưa được kiểm chứng; nhóm cần Settings và thử tài khoản ngoài danh sách. |
+| 1.1.16 — Ensure force push code to branches is denied | Chưa làm | API trả 403 khi đọc bảo vệ nhánh; nhóm chưa thử từ chối force push. |
+| 1.1.17 — Ensure branch deletions are denied | Chưa làm | Nhóm chưa thử chặn xóa nhánh; cần nhánh dùng một lần với cấu hình bảo vệ rõ ràng. |
+| 1.1.18 — Ensure any merging of code is automatically scanned for risks | Đạt một phần | Nhóm quét tự động khi đẩy lên nhánh audit; việc bắt buộc quét trước mọi lần gộp còn thiếu. |
+| 1.1.19 — Ensure any changes to branch protection rules are audited | Đạt một phần | Nhóm lưu và so sánh cấu hình ruleset; còn thiếu sự kiện thay đổi có người thực hiện và thời gian. |
+| 1.1.20 — Ensure branch protection is enforced on the default branch | Chưa làm | Nhóm chưa xác nhận bảo vệ nhánh mặc định vì API không cho đọc cấu hình. |
+| 1.2.1 — Ensure all public repositories contain a SECURITY.md file | Đạt một phần | Nhóm có SECURITY.md; cần bổ sung kênh tiếp nhận báo cáo riêng tư cụ thể. |
+| 1.2.2 — Ensure repository creation is limited to specific members | Chưa làm | Tùy chọn tạo repository còn bị giới hạn theo gói; nhóm cần owner xác nhận quyền tạo thực tế. |
+| 1.2.3 — Ensure repository deletion is limited to specific users | Chưa làm | Nhóm thấy quyền xóa/chuyển repository đã tắt; cần ảnh sau lưu để chốt kiểm tra. |
+| 1.2.4 — Ensure issue deletion is limited to specific users | Chưa làm | Quyền xóa issue đã tắt theo quan sát; nhóm cần ảnh gốc và đối chiếu vai trò. |
+| 1.2.5 — Ensure all copies (forks) of code are tracked and accounted for | Đạt một phần | Nhóm kiểm kê fork bằng API có phân trang; sổ mục đích và người duyệt còn thiếu. |
+| 1.2.6 — Ensure all code projects are tracked for changes in visibility status | Chưa làm | Nhóm hạn chế đổi visibility; chưa ghi nhận sự kiện đổi visibility và kỳ rà tương ứng. |
+| 1.2.7 — Ensure inactive repositories are reviewed and archived periodically | Đạt một phần | Nhóm kiểm kê một repository và tuổi lần đẩy mã; quyết định lưu trữ định kỳ chưa có. |
+| 1.3.1 — Ensure inactive users are reviewed and removed periodically | Đạt một phần | Nhóm đọc được bốn cộng tác viên; hoạt động đăng nhập và quyết định thu hồi quyền còn thiếu. |
+| 1.3.2 — Ensure team creation is limited to specific members | Chưa làm | Nhóm thấy quyền tạo team đã tắt; cần ảnh sau tải lại và thử theo vai trò. |
+| 1.3.3 — Ensure minimum number of administrators are set for the organization | Chưa làm | Danh sách owner qua API chưa đầy đủ; nhóm cần xác nhận số quản trị viên và lý do cấp quyền. |
+| 1.3.4 — Ensure Multi-Factor Authentication (MFA) is required for contributors of new code | Chưa làm | Ba người xác nhận bật MFA; dtk0106 chưa hoàn tất, cơ chế bắt buộc chưa được kiểm chứng. |
+| 1.3.5 — Ensure the organization is requiring members to use Multi- Factor Authentication (MFA) | Chưa làm | Nhóm chưa đọc được yêu cầu MFA toàn organization; cần ảnh Settings sau xác nhận của owner. |
+| 1.3.6 — Ensure new members are required to be invited using company-approved email | Chưa làm | API lời mời trả 403; nhóm cần danh sách email được duyệt và hồ sơ lời mời thực tế. |
+| 1.3.7 — Ensure two administrators are set for each repository | Chưa làm | Nhóm thấy một quản trị viên repository; cần xác nhận quyền đầy đủ và quyết định người dự phòng. |
+| 1.3.8 — Ensure strict base permissions are set for repositories | Chưa làm | Nhóm đổi quyền nền thành No permission; cần ảnh gốc sau tải lại và kiểm tra quyền kế thừa. |
+| 1.3.9 — Ensure an organization’s identity is confirmed with a “Verified” badge | Chưa làm | API ghi organization chưa có Verified; nhóm cần tên miền thật và quyền DNS để xác minh. |
+| 1.3.10 — Ensure Source Code Management (SCM) email notifications are restricted to verified domains | Chưa làm | Nhóm chưa giới hạn email thông báo theo tên miền vì tính năng thuộc phạm vi Enterprise. |
+| 1.3.11 — Ensure an organization provides SSH certificates | Chưa làm | Chứng chỉ SSH của organization chưa được triển khai; lab không dùng gói Enterprise. |
+| 1.3.12 — Ensure Git access is limited based on IP addresses | Chưa làm | Nhóm chưa cấu hình danh sách IP được phép vì chưa triển khai tính năng Enterprise. |
+| 1.3.13 — Ensure anomalous code behavior is tracked | Đạt một phần | Nhóm ghi thay đổi tệp nhạy cảm và mẫu workflow nguy hiểm; còn thiếu xác nhận tiếp nhận cảnh báo. |
+| 1.4.1 — Ensure administrator approval is required for every installed application | Đạt một phần | Nhóm rà giới hạn cài ứng dụng của quản trị viên repository; hồ sơ phê duyệt còn thiếu. |
+| 1.4.2 — Ensure stale applications are reviewed and inactive ones are removed | Đạt một phần | Nhóm rà ứng dụng đang dùng; chu kỳ rà và tiêu chí gỡ ứng dụng chưa được phê duyệt. |
+| 1.4.3 — Ensure the access granted to each installed application is limited to the least privilege needed | Đạt một phần | Nhóm giới hạn connector vào finalrepo; cần giải trình các quyền issues và PR đã cấp. |
+| 1.4.4 — Ensure only secured webhooks are used | Đạt một phần | Nhóm thử HTTPS, HMAC và chống phát lại; webhook từ GitHub tới điểm nhận thật chưa được cấu hình. |
+| 1.5.1 — Ensure scanners are in place to identify and prevent sensitive data in code | Đạt một phần | Nhóm bật Secret Protection và Push protection; Gitleaks ghi 0 phát hiện hiện tại, credential lịch sử còn cần xử lý. |
+| 1.5.2 — Ensure scanners are in place to secure Continuous Integration (CI) pipeline instructions | Đạt một phần | Nhóm quét workflow bằng Zizmor; phạm vi cưỡng chế trên toàn bộ pipeline còn cần kiểm tra. |
+| 1.5.3 — Ensure scanners are in place to secure Infrastructure as Code (IaC) instructions | Đạt một phần | Nhóm quét mã và IaC, ghi 0 HIGH/CRITICAL; các cấu hình ngoài mẫu chưa được đánh giá. |
+| 1.5.4 — Ensure scanners are in place for code vulnerabilities | Đạt một phần | Bandit ghi 0 HIGH; CodeQL còn 0 cảnh báo với 43 quy tắc, phạm vi kiểm tra là Python. |
+| 1.5.5 — Ensure scanners are in place for open-source vulnerabilities in used packages | Đạt một phần | Nhóm quét image Alpine và bật Dependabot alerts; phần mềm từ mọi nhà cung cấp chưa được bao phủ. |
+| 1.5.6 — Ensure scanners are in place for open-source license issues in used packages | Đạt một phần | Nhóm thu metadata giấy phép; chính sách cho phép sử dụng vẫn chờ phê duyệt. |
 
 ### Nhóm 2. Build Pipelines
 
-
 | Mục | Kết quả | Ghi chú |
 | --- | --- | --- |
-| 2.1.1 — Ensure each pipeline has a single responsibility | Một phần | Có demo/hosted runner; cần đánh giá hạ tầng, quyền và phạm vi đầy đủ; runner scan không chặn CVE. |
-| 2.1.2 — Ensure all aspects of the pipeline infrastructure and configuration are immutable | Một phần | Có digest/SHA/hash pins và source commit; GitHub-hosted runner image vẫn do nhà cung cấp cập nhật. |
-| 2.1.3 — Ensure the build environment is logged | Một phần | Đã ghi allowlist OS/tool/runner image/commit/run metadata; retention 7 ngày, chưa có policy lưu log được nhóm duyệt. |
-| 2.1.4 — Ensure the creation of the build environment is automated | Một phần | Có demo/hosted runner; cần đánh giá hạ tầng, quyền và phạm vi đầy đủ; runner scan không chặn CVE. |
-| 2.1.5 — Ensure access to build environments is limited | Một phần | Bốn workflow audit có job condition kiểm repository ID/ref/actor và bước guard actor ID/rerun actor; chỉ 3 tài khoản Write/Admin hiện tại. Không cấp quyền mới. Workflow writer vẫn có thể sửa policy; chưa kiểm toàn bộ host/platform ACL. |
-| 2.1.6 — Ensure users must authenticate to access the build environment | Một phần | Guard yêu cầu context Actions, actor ID và rerun identity; anonymous GET runner metadata bị HTTP 403. Có negative unit tests cho thiếu/giả context, Read actor, fork và main. Đây không phải thử đăng nhập thật hay xác nhận mọi đường quản trị build. |
-| 2.1.7 — Ensure build secrets are limited to the minimal necessary scope | Một phần | Token contents:read; khóa ký tạm không xuất; chưa xác minh mọi secret/credential của nền tảng. |
-| 2.1.8 — Ensure the build infrastructure is automatically scanned for vulnerabilities | Một phần | Đã quét image/toolchain; không thay quét toàn hạ tầng host runner. |
-| 2.1.9 — Ensure default passwords are not used | Một phần | Source dùng env, không hardcode credential ở HEAD; chưa xoay credential cũ hoặc chứng minh mọi tài khoản build không mặc định. |
-| 2.1.10 — Ensure webhooks of the build environment are secured | Một phần | Đã kiểm thử receiver HTTPS/HMAC và từ chối request sai; receiver không chạy lệnh build, chưa nối webhook vào nền tảng build thực. Có thêm báo cáo lab do người dùng chạy trên VMware; giới hạn phạm vi giữ nguyên, không phải bằng chứng production. |
-| 2.1.11 — Ensure minimum number of administrators are set for the build environment | Cần xác minh | Đã kiểm kê repo: 1 Admin/2 Write/1 Read; API runner/Actions admin bị hạn chế. Chưa xác minh quản trị viên nền tảng hosted hoặc quyết định số admin tối thiểu. |
-| 2.2.1 — Ensure build workers are single-used | Một phần | Có demo/hosted runner; cần đánh giá hạ tầng, quyền và phạm vi đầy đủ; runner scan không chặn CVE. |
-| 2.2.2 — Ensure build worker environments and commands are passed and not pulled | Một phần | Demo truyền lệnh cục bộ, không mạng; job scanner khác vẫn tải tool/package nên chưa đạt mọi worker. |
-| 2.2.3 — Ensure the duties of each build worker are segregated | Một phần | Có demo/hosted runner; cần đánh giá hạ tầng, quyền và phạm vi đầy đủ; runner scan không chặn CVE. |
-| 2.2.4 — Ensure build workers have minimal network connectivity | Một phần | Có demo/hosted runner; cần đánh giá hạ tầng, quyền và phạm vi đầy đủ; runner scan không chặn CVE. |
-| 2.2.5 — Ensure run-time security is enforced for build workers | Một phần | Đã kiểm tra non-root, CapEff=0, NoNewPrivs=1 và từ chối ghi; chưa có runtime detection cho mọi worker. |
-| 2.2.6 — Ensure build workers are automatically scanned for vulnerabilities | Một phần | Có demo/hosted runner; cần đánh giá hạ tầng, quyền và phạm vi đầy đủ; runner scan không chặn CVE. |
-| 2.2.7 — Ensure build workers' deployment configuration is stored in a version control platform | Một phần | Cấu hình demo/worker workflow nằm trong Git; chưa đối chiếu provisioning bên nhà cung cấp. |
-| 2.2.8 — Ensure resource consumption of build workers is monitored | Một phần | Có demo/hosted runner; cần đánh giá hạ tầng, quyền và phạm vi đầy đủ; runner scan không chặn CVE. |
-| 2.3.1 — Ensure all build steps are defined as code | Một phần | Có code và input/output; chưa đủ review/quy trình trên toàn hệ thống. |
-| 2.3.2 — Ensure steps have clearly defined build stage input and output | Một phần | Có code và input/output; chưa đủ review/quy trình trên toàn hệ thống. |
-| 2.3.3 — Ensure output is written to a separate, secured storage repository | Một phần | Có artifact ngoài đĩa runner và retention; repo public, chưa có kho riêng an toàn với kiểm thử ACL. |
-| 2.3.4 — Ensure changes to pipeline files are tracked and reviewed | Một phần | Có code và input/output; chưa đủ review/quy trình trên toàn hệ thống. |
-| 2.3.5 — Ensure access to build process triggering is minimized | Một phần | Trigger bổ sung chỉ đúng nhánh audit, không cấp token write; chưa áp least privilege cho toàn bộ người kích hoạt build. |
-| 2.3.6 — Ensure pipelines are automatically scanned for misconfigurations | Một phần | Zizmor và Trivy source đã chạy thành công trên nhánh; required checks của main chưa thay đổi. |
-| 2.3.7 — Ensure pipelines are automatically scanned for vulnerabilities | Một phần | Đã tự động quét mọi workflow của nhánh; chưa có required check thực thi trên main. |
-| 2.3.8 — Ensure scanners are in place to identify and prevent sensitive data in pipeline files | Một phần | Chưa đánh giá đầy đủ hạ tầng build, quyền hoặc registry; workflow demo không đủ kết luận. Fixture giả được phát hiện; chưa chứng minh required check hay mọi deployment config. |
-| 2.4.1 — Ensure all artifacts on all releases are signed | Một phần | Đã ký ba payload bundle của run và thử chống sửa; không phải mọi artifact/mọi release, khóa chưa có trust authority production. Có thêm báo cáo lab do người dùng chạy trên VMware; giới hạn phạm vi giữ nguyên, không phải bằng chứng production. |
-| 2.4.2 — Ensure all external dependencies used in the build process are locked | Một phần | Đã pin digest base image và action SHAs; chưa khóa/xác minh toàn bộ toolchain và transitive dependency. |
-| 2.4.3 — Ensure dependencies are validated before being used | Một phần | Checksum Gitleaks được đối chiếu trước chạy; chưa xác minh mọi dependency hoặc trust root độc lập. |
-| 2.4.4 — Ensure the build pipeline creates reproducible artifacts | Một phần | Lab input first-party và SBOM/chữ ký; chưa supplier verification hoặc mọi phụ thuộc. |
-| 2.4.5 — Ensure pipeline steps produce a Software Bill of Materials (SBOM) | Một phần | Lab input first-party và SBOM/chữ ký; chưa supplier verification hoặc mọi phụ thuộc. |
-| 2.4.6 — Ensure pipeline steps sign the Software Bill of Materials (SBOM) produced | Một phần | Lab input first-party và SBOM/chữ ký; chưa supplier verification hoặc mọi phụ thuộc. |
-
+| 2.1.1 — Ensure each pipeline has a single responsibility | Đạt một phần | Nhóm tách các workflow theo nhiệm vụ; trách nhiệm của mọi pipeline bên ngoài lab chưa được rà. |
+| 2.1.2 — Ensure all aspects of the pipeline infrastructure and configuration are immutable | Đạt một phần | Nhóm khóa image, action và wheel bằng hash; image runner do GitHub cập nhật. |
+| 2.1.3 — Ensure the build environment is logged | Đạt một phần | Nhóm lưu metadata môi trường và phiên chạy trong bảy ngày; thời hạn lưu chính thức chưa được duyệt. |
+| 2.1.4 — Ensure the creation of the build environment is automated | Đạt một phần | GitHub tạo runner khi chạy workflow; nhóm chưa kiểm tra toàn bộ quy trình tạo hạ tầng nhà cung cấp. |
+| 2.1.5 — Ensure access to build environments is limited | Đạt một phần | Nhóm giới hạn ba tài khoản chạy build; người có quyền sửa workflow vẫn có thể sửa chính sách. |
+| 2.1.6 — Ensure users must authenticate to access the build environment | Đạt một phần | Nhóm kiểm danh tính và lần chạy lại; yêu cầu đọc runner ẩn danh bị từ chối bằng HTTP 403. |
+| 2.1.7 — Ensure build secrets are limited to the minimal necessary scope | Đạt một phần | Token chỉ đọc nội dung; nhóm giữ khóa ký tạm ngoài đầu ra, còn quyền bí mật khác chưa được rà. |
+| 2.1.8 — Ensure the build infrastructure is automatically scanned for vulnerabilities | Đạt một phần | Nhóm quét image và công cụ build; hệ điều hành của toàn bộ hạ tầng runner chưa được kiểm tra. |
+| 2.1.9 — Ensure default passwords are not used | Đạt một phần | Nhóm chuyển credential sang biến môi trường; credential cũ chưa được xác nhận đã thu hồi. |
+| 2.1.10 — Ensure webhooks of the build environment are secured | Đạt một phần | Nhóm thử receiver HTTPS/HMAC và yêu cầu sai; receiver chưa nối vào hệ thống build thật. |
+| 2.1.11 — Ensure minimum number of administrators are set for the build environment | Chưa làm | Nhóm thấy một Admin, hai Write, một Read; quản trị nền tảng build cần owner xác minh. |
+| 2.2.1 — Ensure build workers are single-used | Đạt một phần | Nhóm dùng runner theo từng phiên; vòng đời mọi worker ngoài lab chưa được kiểm tra. |
+| 2.2.2 — Ensure build worker environments and commands are passed and not pulled | Đạt một phần | Demo nhận lệnh cục bộ và tắt mạng; các bước quét vẫn tải công cụ bên ngoài. |
+| 2.2.3 — Ensure the duties of each build worker are segregated | Đạt một phần | Nhóm chia tác vụ thành các job; cơ chế tách nhiệm vụ trên mọi worker còn cần rà. |
+| 2.2.4 — Ensure build workers have minimal network connectivity | Đạt một phần | Nhóm tắt mạng container thử; quyền kết nối của các job còn lại chưa được giới hạn đầy đủ. |
+| 2.2.5 — Ensure run-time security is enforced for build workers | Đạt một phần | Container chạy không phải root, CapEff=0, NoNewPrivs=1 và bị chặn ghi; còn thiếu giám sát thời gian chạy. |
+| 2.2.6 — Ensure build workers are automatically scanned for vulnerabilities | Đạt một phần | Nhóm quét worker mẫu; phạm vi quét định kỳ trên mọi worker chưa được xác nhận. |
+| 2.2.7 — Ensure build workers' deployment configuration is stored in a version control platform | Đạt một phần | Nhóm lưu cấu hình worker mẫu trong Git; cấu hình cấp phát phía GitHub chưa được đối chiếu. |
+| 2.2.8 — Ensure resource consumption of build workers is monitored | Đạt một phần | Nhóm có workflow theo dõi tài nguyên; ngưỡng cảnh báo và phạm vi mọi worker chưa được xác minh. |
+| 2.3.1 — Ensure all build steps are defined as code | Đạt một phần | Nhóm định nghĩa bước build bằng workflow; các quy trình ngoài repository chưa được kiểm kê. |
+| 2.3.2 — Ensure steps have clearly defined build stage input and output | Đạt một phần | Nhóm xác định đầu vào và đầu ra của demo; các bước khác còn cần đối chiếu riêng. |
+| 2.3.3 — Ensure output is written to a separate, secured storage repository | Đạt một phần | Artifact nằm ngoài đĩa runner; nhóm chưa kiểm thử kho riêng và quyền truy cập đầu ra. |
+| 2.3.4 — Ensure changes to pipeline files are tracked and reviewed | Đạt một phần | Thay đổi pipeline có lịch sử Git; nhóm chưa kiểm chứng yêu cầu review bắt buộc. |
+| 2.3.5 — Ensure access to build process triggering is minimized | Đạt một phần | Nhóm giới hạn nhánh và người kích hoạt; các đường khởi chạy khác cần kiểm tra quyền. |
+| 2.3.6 — Ensure pipelines are automatically scanned for misconfigurations | Đạt một phần | Zizmor và Trivy đã chạy; nhóm chưa kiểm chứng cơ chế chặn gộp khi cấu hình sai. |
+| 2.3.7 — Ensure pipelines are automatically scanned for vulnerabilities | Đạt một phần | Nhóm quét workflow tự động; yêu cầu bắt buộc kết quả quét trên main chưa được thay đổi. |
+| 2.3.8 — Ensure scanners are in place to identify and prevent sensitive data in pipeline files | Đạt một phần | Scanner phát hiện dữ liệu mẫu nhạy cảm; nhóm chưa thử cơ chế chặn mọi thay đổi pipeline. |
+| 2.4.1 — Ensure all artifacts on all releases are signed | Đạt một phần | Nhóm ký ba tệp trong gói kết quả; mọi artifact của mọi bản phát hành chưa được kiểm kê. |
+| 2.4.2 — Ensure all external dependencies used in the build process are locked | Đạt một phần | Nhóm khóa image và action; các phụ thuộc bắc cầu chưa được xác minh đầy đủ. |
+| 2.4.3 — Ensure dependencies are validated before being used | Đạt một phần | Nhóm kiểm checksum Gitleaks trước chạy; các dependency khác cần nguồn tin cậy được phê duyệt. |
+| 2.4.4 — Ensure the build pipeline creates reproducible artifacts | Đạt một phần | Nhóm tạo artifact hai lần và so byte; tính tái lập của toàn bộ sản phẩm chưa được thử. |
+| 2.4.5 — Ensure pipeline steps produce a Software Bill of Materials (SBOM) | Đạt một phần | Nhóm sinh SBOM cho phạm vi lab; các thành phần ngoài bộ công cụ còn thiếu. |
+| 2.4.6 — Ensure pipeline steps sign the Software Bill of Materials (SBOM) produced | Đạt một phần | Nhóm ký SBOM bằng khóa tạm; danh tính ký phát hành chính thức chưa được thiết lập. |
 
 ### Nhóm 3. Dependencies
 
-
 | Mục | Kết quả | Ghi chú |
 | --- | --- | --- |
-| 3.1.1 — Ensure third-party artifacts and open-source libraries are verified | Một phần | Chưa có supplier/package registry và bằng chứng SBOM/provenance/chính sách được phê duyệt; không tự coi không áp dụng. Có inventory SHA/tag/release age cho action, chưa supplier hoặc policy toàn tổ chức. |
-| 3.1.2 — Ensure Software Bill of Materials (SBOM) is required from all third-party suppliers | Cần xác minh | Đã lập ledger 43 đầu vào trực tiếp: 32 PyPI, 9 Actions, base image và registry binary. Supplier-issued SBOM chưa được xác minh cho cả 43; GitHub export và SBOM tự sinh không thay supplier evidence. Không đủ đạt yêu cầu. |
-| 3.1.3 — Ensure signed metadata of the build process is required and verified | Một phần | Đã ký metadata commit/tree/source hash; chưa phải signed provenance độc lập từ mọi supplier. Có thêm báo cáo lab do người dùng chạy trên VMware; giới hạn phạm vi giữ nguyên, không phải bằng chứng production. |
-| 3.1.4 — Ensure dependencies are monitored between open-source components | Một phần | Đã xuất 32 node/145 quan hệ khai báo (32 active ở môi trường mặc định); còn Actions/OS/binary/extras resolution. Đã đọc SPDX GitHub native: 10 package (repo + 9 action/version entries), snapshot main, không bao phủ toàn bộ audit branch. |
-| 3.1.5 — Ensure trusted package managers and repositories are defined and prioritized | Một phần | Chưa có supplier/package registry và bằng chứng SBOM/provenance/chính sách được phê duyệt; không tự coi không áp dụng. Có inventory SHA/tag/release age cho action, chưa supplier hoặc policy toàn tổ chức. |
-| 3.1.6 — Ensure a signed Software Bill of Materials (SBOM) of the code is supplied | Một phần | Đã ký SBOM 32 scanner wheels của đúng commit; chưa bao phủ mọi thành phần phần mềm. Có thêm báo cáo lab do người dùng chạy trên VMware; giới hạn phạm vi giữ nguyên, không phải bằng chứng production. |
-| 3.1.7 — Ensure dependencies are pinned to a specific, verified version | Một phần | Lab input first-party và SBOM/chữ ký; chưa supplier verification hoặc mọi phụ thuộc. Có inventory SHA/tag/release age cho action, chưa supplier hoặc policy toàn tổ chức. |
-| 3.1.8 — Ensure all packages used are more than 60 days old | Một phần | Chưa có supplier/package registry và bằng chứng SBOM/provenance/chính sách được phê duyệt; không tự coi không áp dụng. Có inventory SHA/tag/release age cho action, chưa supplier hoặc policy toàn tổ chức. |
-| 3.2.1 — Ensure an organization-wide dependency usage policy is enforced | Một phần | Chưa có supplier/package registry và bằng chứng SBOM/provenance/chính sách được phê duyệt; không tự coi không áp dụng. Có inventory SHA/tag/release age cho action, chưa supplier hoặc policy toàn tổ chức. |
-| 3.2.2 — Ensure packages are automatically scanned for known vulnerabilities | Một phần | Đã audit đủ 32/32 package đúng version trong scanner lock, ghi 0 advisory tại thời điểm đo; Dependabot alerts bật và hai auto-dismiss presets tắt theo quan sát giao diện. Giới hạn: scanner toolchain và dependency được nhận diện, chưa bao phủ mọi thành phần/supplier. |
-| 3.2.3 — Ensure packages are automatically scanned for license implications | Một phần | Inventory metadata license của 32 scanner packages; 20 mục cần review, policy chưa được Organization phê duyệt. Không đánh dấu đạt. |
-| 3.2.4 — Ensure packages are automatically scanned for ownership change | Một phần | Đã theo dõi numeric repo/owner ID cho 8 Actions và chặn drift/lỗi; chưa theo dõi maintainers của 32 PyPI packages. |
-
+| 3.1.1 — Ensure third-party artifacts and open-source libraries are verified | Đạt một phần | Nhóm kiểm kê SHA và tuổi bản phát hành của action; chữ ký từ nhà cung cấp còn thiếu. |
+| 3.1.2 — Ensure Software Bill of Materials (SBOM) is required from all third-party suppliers | Chưa làm | Nhóm kiểm kê 43 đầu vào; SBOM do nhà cung cấp phát hành chưa được xác minh cho các đầu vào này. |
+| 3.1.3 — Ensure signed metadata of the build process is required and verified | Đạt một phần | Nhóm ký metadata về mã nguồn; nguồn gốc build từ mọi nhà cung cấp chưa được xác minh. |
+| 3.1.4 — Ensure dependencies are monitored between open-source components | Đạt một phần | Nhóm xuất 32 nút, 145 quan hệ và SPDX GitHub; còn các thành phần ngoài hai danh mục. |
+| 3.1.5 — Ensure trusted package managers and repositories are defined and prioritized | Đạt một phần | Nhóm ghi nguồn tải công cụ; danh sách kho phần mềm được tổ chức duyệt chưa có. |
+| 3.1.6 — Ensure a signed Software Bill of Materials (SBOM) of the code is supplied | Đạt một phần | Nhóm ký SBOM của 32 wheel; SBOM toàn bộ phần mềm chưa được hoàn thiện. |
+| 3.1.7 — Ensure dependencies are pinned to a specific, verified version | Đạt một phần | Nhóm ghim phiên bản và hash các đầu vào chính; phụ thuộc bắc cầu còn cần đối chiếu. |
+| 3.1.8 — Ensure all packages used are more than 60 days old | Đạt một phần | Nhóm thu tuổi phiên bản; điều kiện mọi package trên 60 ngày chưa được xác nhận. |
+| 3.2.1 — Ensure an organization-wide dependency usage policy is enforced | Đạt một phần | Nhóm có dự thảo quản lý dependency; chính sách áp dụng toàn organization chưa được duyệt. |
+| 3.2.2 — Ensure packages are automatically scanned for known vulnerabilities | Đạt một phần | Nhóm quét đủ 32/32 package, ghi 0 advisory lúc đo; còn dependency ngoài bộ công cụ. |
+| 3.2.3 — Ensure packages are automatically scanned for license implications | Đạt một phần | Nhóm thu giấy phép của 32 package; 20 mục cần xét thủ công theo chính sách chưa duyệt. |
+| 3.2.4 — Ensure packages are automatically scanned for ownership change | Đạt một phần | Nhóm theo dõi chín action bằng ID; người duy trì của 32 package PyPI chưa được giám sát. |
 
 ### Nhóm 4. Artifacts
 
-
 | Mục | Kết quả | Ghi chú |
 | --- | --- | --- |
-| 4.1.1 — Ensure all artifacts are signed by the build pipeline itself | Một phần | Demo ký/mã hóa/provenance/negative tests; không có root tin cậy, registry hoặc quản trị khóa production. |
-| 4.1.2 — Ensure artifacts are encrypted before distribution | Một phần | Demo ký/mã hóa/provenance/negative tests; không có root tin cậy, registry hoặc quản trị khóa production. |
-| 4.1.3 — Ensure only authorized platforms have decryption capabilities of artifacts | Một phần | Demo ký/mã hóa/provenance/negative tests; không có root tin cậy, registry hoặc quản trị khóa production. |
-| 4.2.1 — Ensure the authority to certify artifacts is limited | Giới hạn lab | Chưa có package registry, IAM/SSO, khóa tin cậy và dữ liệu mọi release/version để kiểm tra. Bổ sung policy fixture offline (vai trò/MFA là dữ liệu giả, không phải kiểm soát registry thật). |
-| 4.2.2 — Ensure number of permitted users who may upload new artifacts is minimized | Một phần | Registry Distribution thật có một tài khoản publisher bcrypt trong môi trường tạm; chưa có RBAC và rà quyền toàn tổ chức. |
-| 4.2.3 — Ensure user access to the package registry utilizes Multi- Factor Authentication (MFA) | Giới hạn lab | Chưa có package registry, IAM/SSO, khóa tin cậy và dữ liệu mọi release/version để kiểm tra. Bổ sung policy fixture offline (vai trò/MFA là dữ liệu giả, không phải kiểm soát registry thật). Registry HTTPS bổ sung dùng Basic auth, chưa triển khai MFA. |
-| 4.2.4 — Ensure user management of the package registry is not local | Giới hạn lab | Chưa có package registry, IAM/SSO, khóa tin cậy và dữ liệu mọi release/version để kiểm tra. Bổ sung policy fixture offline (vai trò/MFA là dữ liệu giả, không phải kiểm soát registry thật). Registry HTTPS bổ sung dùng htpasswd cục bộ, chưa kết nối IdP ngoài. |
-| 4.2.5 — Ensure anonymous access to artifacts is revoked | Một phần | Registry HTTPS trả HTTP 401 cho truy cập, upload và download ẩn danh trong các phép thử. Giới hạn: registry tạm trên loopback; chưa kiểm toàn bộ registry/identity của production. |
-| 4.2.6 — Ensure minimum number of administrators are set for the package registry | Giới hạn lab | Chưa có package registry, IAM/SSO, khóa tin cậy và dữ liệu mọi release/version để kiểm tra. Bổ sung policy fixture offline (vai trò/MFA là dữ liệu giả, không phải kiểm soát registry thật). |
-| 4.3.1 — Ensure all signed artifacts are validated upon uploading the package registry | Giới hạn lab | Chưa có package registry, IAM/SSO, khóa tin cậy và dữ liệu mọi release/version để kiểm tra. Bổ sung policy fixture offline (vai trò/MFA là dữ liệu giả, không phải kiểm soát registry thật). Chữ ký trong integration mới được kiểm tra phía pipeline client; chưa có registry-side admission. |
-| 4.3.2 — Ensure all versions of an existing artifact have their signatures validated | Một phần | Đã upload hai phiên bản thử, kiểm kê tags, tải manifest/blob/chữ ký và xác minh; dữ liệu hoặc chữ ký bị sửa bị client từ chối. Giới hạn: hai phiên bản lab; registry-side admission chưa được cưỡng chế. |
-| 4.3.3 — Ensure changes in package registry configuration are audited | Giới hạn lab | Chưa có package registry, IAM/SSO, khóa tin cậy và dữ liệu mọi release/version để kiểm tra. Bổ sung policy fixture offline (vai trò/MFA là dữ liệu giả, không phải kiểm soát registry thật). |
-| 4.3.4 — Ensure webhooks of the repository are secured | Giới hạn lab | Chưa có package registry, IAM/SSO, khóa tin cậy và dữ liệu mọi release/version để kiểm tra. Bổ sung policy fixture offline (vai trò/MFA là dữ liệu giả, không phải kiểm soát registry thật). |
-| 4.4.1 — Ensure artifacts contain information about their origin | Một phần | Demo ký/mã hóa/provenance/negative tests; không có root tin cậy, registry hoặc quản trị khóa production. |
-
+| 4.1.1 — Ensure all artifacts are signed by the build pipeline itself | Đạt một phần | Pipeline ký artifact và thử sửa dữ liệu; khóa ký phát hành được tin cậy chưa có. |
+| 4.1.2 — Ensure artifacts are encrypted before distribution | Đạt một phần | Nhóm mã hóa rồi giải mã thành công; quy trình phân phối artifact thực tế chưa được đánh giá. |
+| 4.1.3 — Ensure only authorized platforms have decryption capabilities of artifacts | Đạt một phần | Nhóm thử kiểm soát giải mã trong lab; quyền giải mã trên nền tảng phân phối chưa được triển khai. |
+| 4.2.1 — Ensure the authority to certify artifacts is limited | Chưa làm | Nhóm mới thử quyền chứng nhận bằng mô hình; quyền ký trên registry thật chưa được cấu hình. |
+| 4.2.2 — Ensure number of permitted users who may upload new artifacts is minimized | Đạt một phần | Registry thử có một tài khoản tải lên bằng bcrypt; nhóm chưa rà quyền theo vai trò toàn hệ thống. |
+| 4.2.3 — Ensure user access to the package registry utilizes Multi- Factor Authentication (MFA) | Chưa làm | Registry HTTPS dùng Basic auth; nhóm chưa triển khai MFA cho tài khoản registry. |
+| 4.2.4 — Ensure user management of the package registry is not local | Chưa làm | Nhóm dùng htpasswd cục bộ; registry chưa kết nối nhà cung cấp danh tính bên ngoài. |
+| 4.2.5 — Ensure anonymous access to artifacts is revoked | Đạt một phần | Registry trả HTTP 401 cho truy cập ẩn danh; nhóm mới kiểm tra registry tạm trên loopback. |
+| 4.2.6 — Ensure minimum number of administrators are set for the package registry | Chưa làm | Nhóm chưa xác định quản trị viên tối thiểu cho registry thật; hiện mới có phép thử mô hình. |
+| 4.3.1 — Ensure all signed artifacts are validated upon uploading the package registry | Chưa làm | Client kiểm chữ ký trước tải lên; registry chưa tự chặn artifact không có chữ ký. |
+| 4.3.2 — Ensure all versions of an existing artifact have their signatures validated | Đạt một phần | Nhóm xác minh hai phiên bản và từ chối dữ liệu sửa; còn thiếu kiểm tra mọi phiên bản thực tế. |
+| 4.3.3 — Ensure changes in package registry configuration are audited | Chưa làm | Nhóm thử chuỗi sự kiện trong mô hình; nhật ký thay đổi cấu hình registry thật chưa được thu thập. |
+| 4.3.4 — Ensure webhooks of the repository are secured | Chưa làm | Nhóm chưa thử webhook của registry thật; bài thử HTTPS hiện dành cho receiver riêng. |
+| 4.4.1 — Ensure artifacts contain information about their origin | Đạt một phần | Artifact thử có metadata nguồn gốc; thông tin nguồn của mọi sản phẩm phân phối chưa được kiểm kê. |
 
 ### Nhóm 5. Deployment
 
-
 | Mục | Kết quả | Ghi chú |
 | --- | --- | --- |
-| 5.1.1 — Ensure deployment configuration files are separated from source code | Một phần | Sandbox tạm; config cùng repo, hash pin; chưa production, ACL độc lập hay môi trường tái lập đầy đủ. Có thêm báo cáo lab do người dùng chạy trên VMware; giới hạn phạm vi giữ nguyên, không phải bằng chứng production. |
-| 5.1.2 — Ensure changes in deployment configuration are audited | Một phần | Sandbox tạm; config cùng repo, hash pin; chưa production, ACL độc lập hay môi trường tái lập đầy đủ. |
-| 5.1.3 — Ensure scanners are in place to identify and prevent sensitive data in deployment configuration | Một phần | Chưa có môi trường production và quyền đánh giá triển khai thực tế; sandbox không thay bằng chứng production. Fixture giả được phát hiện; chưa chứng minh required check hay mọi deployment config. |
-| 5.1.4 — Limit access to deployment configurations | Cần xác minh | Đã rà quyền repo qua API và file CODEOWNERS; token CI chỉ thấy một tập con tài khoản, protection API 403. Cần owner xác minh quyền hiệu lực và review bắt buộc cho deployment config. |
-| 5.1.5 — Scan Infrastructure as Code (IaC) | Một phần | IaC container lab được quét và chạy smoke test; chưa deployment IaC/production độc lập. |
-| 5.1.6 — Ensure deployment configuration manifests are verified | Một phần | Sandbox tạm; config cùng repo, hash pin; chưa production, ACL độc lập hay môi trường tái lập đầy đủ. |
-| 5.1.7 — Ensure deployment configuration manifests are pinned to a specific, verified version | Một phần | Sandbox tạm; config cùng repo, hash pin; chưa production, ACL độc lập hay môi trường tái lập đầy đủ. |
-| 5.2.1 — Ensure deployments are automated | Một phần | Sandbox tạm; config cùng repo, hash pin; chưa production, ACL độc lập hay môi trường tái lập đầy đủ. |
-| 5.2.2 — Ensure the deployment environment is reproducible | Một phần | Sandbox tạm; config cùng repo, hash pin; chưa production, ACL độc lập hay môi trường tái lập đầy đủ. |
-| 5.2.3 — Ensure access to production environment is limited | Một phần | VM lab: cisdeploy không sudo; thư mục thuộc cisdeploy, mode 700; cisdeploy ghi được, nobody bị từ chối và phiên SSH mới đăng nhập thành công. Giới hạn: đầu ra do người thực nghiệm cung cấp, chưa đánh giá toàn bộ effective access hoặc production. |
-| 5.2.4 — Ensure default passwords are not used | Một phần | VM lab: root có trạng thái mật khẩu L; user/cisdeploy P; PermitRootLogin no, PermitEmptyPasswords no; user/cisdeploy vẫn đăng nhập được sau reload. Giới hạn: P chỉ xác nhận có mật khẩu; nguồn mật khẩu user, credential dịch vụ và production chưa được xác minh. |
+| 5.1.1 — Ensure deployment configuration files are separated from source code | Đạt một phần | Nhóm tách tệp cấu hình khỏi mã demo trong cùng repository; quyền quản lý độc lập chưa được kiểm tra. |
+| 5.1.2 — Ensure changes in deployment configuration are audited | Đạt một phần | Cấu hình triển khai có lịch sử Git; nhóm chưa thu sự kiện thay đổi ở môi trường thật. |
+| 5.1.3 — Ensure scanners are in place to identify and prevent sensitive data in deployment configuration | Đạt một phần | Nhóm phát hiện dữ liệu nhạy cảm mẫu; cơ chế chặn cấu hình triển khai thật chưa được thử. |
+| 5.1.4 — Limit access to deployment configurations | Chưa làm | Nhóm rà quyền repository và CODEOWNERS; cần owner xác nhận quyền hiệu lực với cấu hình triển khai. |
+| 5.1.5 — Scan Infrastructure as Code (IaC) | Đạt một phần | Nhóm quét IaC container và chạy thử; IaC triển khai production chưa được đánh giá. |
+| 5.1.6 — Ensure deployment configuration manifests are verified | Đạt một phần | Nhóm kiểm hash cấu hình trước triển khai mẫu; manifest của hệ thống thật chưa được xác minh. |
+| 5.1.7 — Ensure deployment configuration manifests are pinned to a specific, verified version | Đạt một phần | Nhóm ghim cấu hình mẫu bằng hash; phiên bản manifest production chưa được đối chiếu. |
+| 5.2.1 — Ensure deployments are automated | Đạt một phần | Nhóm tự động triển khai vào thư mục tạm; quy trình triển khai production chưa được thực hiện. |
+| 5.2.2 — Ensure the deployment environment is reproducible | Đạt một phần | Nhóm tái tạo artifact và môi trường tạm; toàn bộ môi trường production chưa được tái lập. |
+| 5.2.3 — Ensure access to production environment is limited | Đạt một phần | cisdeploy không sudo; thư mục mode 700, nobody bị từ chối; nhóm mới kiểm tra quyền trên VM lab. |
+| 5.2.4 — Ensure default passwords are not used | Đạt một phần | Root bị khóa mật khẩu và chặn SSH; nhóm còn cần xác nhận mật khẩu user và tài khoản dịch vụ. |
 
+## 4.5. Hạn chế
 
-## 4.5. Nhận xét và điều kiện hoàn thiện
+Nhóm mới kiểm tra một repository, các dịch vụ loopback và VM lab. Ảnh Settings/VM gốc, policy nhóm và bằng chứng supplier còn thiếu. Một số API quản trị chặn đọc; bảy yêu cầu registry mới thử bằng mô hình. Production và toàn bộ tài khoản dịch vụ chưa được đánh giá.
 
-Thực nghiệm đã tạo được chu trình lặp lại từ Audit đến Remediation và Re-audit, với kiểm đầu vào, quét, ký/xác minh, negative tests, báo cáo có cấu trúc và thao tác quyền trên VM. Những trường hợp như scan binary rỗng, public digest bị heuristic nhận diện nhầm hoặc role inventory thiếu quyền cho thấy cần đọc nội dung kết quả thay vì dựa vào trạng thái workflow.
+## 4.6. File kết quả và tài liệu tham khảo
 
-Để kết luận thêm các mục đầy đủ, cần hoàn thiện bằng chứng effective protection và PR thật; xác nhận MFA enforcement theo người đóng góp; phê duyệt và thực hiện kỳ rà thành viên/app; đối chiếu lời mời với email được duyệt; thu supplier SBOM/provenance phù hợp; rà đầy đủ quyền và credential ở production được phép. Một số việc thuộc quyền hoặc quyết định của nhóm, không thể được thay bằng code hoặc dữ liệu mô phỏng.
+Nhóm lưu các file dưới đây để đối chiếu kết quả.
 
-**Phạm vi và giới hạn.** Bằng chứng triển khai bao phủ OS/thư mục của VM lab. Production, toàn bộ dịch vụ và credential vẫn cần đánh giá trên target được phép. Root được bảo vệ bằng cả trạng thái mật khẩu khóa và PermitRootLogin no; trạng thái P của tài khoản chỉ xác nhận có mật khẩu. Các giới hạn riêng khác được ghi theo từng mục ở bảng 4.4.
-
-
-# Phụ lục A. Danh mục file xuất và nguồn bằng chứng
-
-Bản nộp kèm Word/PDF có gói evidence JSON/CSV/SPDX/tar và SHA256 manifest. Bản sao được giữ nguyên nội dung gốc; tên file lịch sử không phải chỉ báo kết quả hiện hành. Các tệp signed export vẫn giữ chữ ký/hash riêng và không được sửa để cập nhật nội dung. Không kèm benchmark PDF gốc hoặc credential.
-
-
-| File | Nội dung | Phạm vi |
+| File | Nội dung | Vị trí |
 | --- | --- | --- |
-| COVERAGE.csv | Đối chiếu 120 mục hiện hành | Xem scope/checked_at/commit trong tệp; không trộn các snapshot |
-| pending-free-baseline.json | GET scope, counts và policy digests | Xem scope/checked_at/commit trong tệp; không trộn các snapshot |
-| supplier-intake-review.json | 43 đầu vào, supplier SBOM còn thiếu | Xem scope/checked_at/commit trong tệp; không trộn các snapshot |
-| vm-lab-review.json | Review 29 phép thử VM và archive/report hashes | Xem scope/checked_at/commit trong tệp; không trộn các snapshot |
-| vm-lab-results.tar.gz | Ba báo cáo VM gốc | Xem scope/checked_at/commit trong tệp; không trộn các snapshot |
-| vm-access-review.json | Biên bản account/SSH/thư mục lab | Xem scope/checked_at/commit trong tệp; không trộn các snapshot |
-| manual-settings-review.json | Quan sát giao diện và giới hạn saved-state | Xem scope/checked_at/commit trong tệp; không trộn các snapshot |
-| github-native-sbom.spdx.json | SPDX export GitHub native | Xem scope/checked_at/commit trong tệp; không trộn các snapshot |
-| github-native-sbom-review.json | Đối chiếu phạm vi native SPDX | Xem scope/checked_at/commit trong tệp; không trộn các snapshot |
-| remaining-integration-summary.json | Registry/webhook và before-after scan snapshot | Xem scope/checked_at/commit trong tệp; không trộn các snapshot |
-| remaining-integration-checks.csv | 34 phép thử HTTPS snapshot | Xem scope/checked_at/commit trong tệp; không trộn các snapshot |
-| codeql-review-summary.json | SARIF trước/sau public digest review | Xem scope/checked_at/commit trong tệp; không trộn các snapshot |
-| free-controls-export.zip | Gói bằng chứng lịch sử có signed source bundle | Xem scope/checked_at/commit trong tệp; không trộn các snapshot |
+| COVERAGE.csv | Danh mục và kết quả 120 mục. | docs/audit/ |
+| pending-free-baseline.json | Dữ liệu API và cấu hình nhánh. | docs/audit/evidence/ |
+| supplier-intake-review.json | 43 đầu vào và tình trạng SBOM. | docs/audit/evidence/ |
+| vm-lab-results.tar.gz | Ba báo cáo gốc từ VM. | docs/audit/evidence/ |
+| vm-lab-review.json | Đối chiếu 29 phép thử VM. | docs/audit/evidence/ |
+| vm-access-review.json | Tài khoản, SSH và quyền thư mục. | docs/audit/evidence/ |
+| github-native-sbom.spdx.json | SPDX GitHub với 10 package. | docs/audit/evidence/ |
+| remaining-integration-checks.csv | 34 phép thử HTTPS. | docs/audit/evidence/ |
+| codeql-review-summary.json | Hai cảnh báo ban đầu và kết quả sau kiểm tra. | docs/audit/evidence/ |
+| free-controls-export.zip | Gói nguồn và kết quả có chữ ký. | docs/audit/evidence/ |
 
+Nhóm dùng tài liệu CIS GitHub Benchmark v1.2.0 làm cơ sở đánh giá. Các tài liệu kỹ thuật chính gồm [GitHub REST API](https://docs.github.com/en/rest), [GitHub Actions security](https://docs.github.com/en/actions/security-for-github-actions) và [GitHub Code security](https://docs.github.com/en/code-security).
 
-Trong repository, các tệp nằm ở docs/audit/evidence/, riêng COVERAGE.csv ở docs/audit/. Signed export và các báo cáo chi tiết bổ sung được giữ trong gói bằng chứng. Những output chỉ có trong artifact hoặc log được ghi đúng nguồn run ID, không tạo file giả để lấp khoảng thiếu.
-
-# Tài liệu tham khảo
-
-[1] Center for Internet Security. *CIS GitHub Benchmark*, phiên bản 1.2.0, ngày 18/02/2026. Tài liệu benchmark dùng để đối chiếu trong đề tài; không phân phối lại bản PDF gốc.
-
-[2] GitHub Docs. REST API documentation: <https://docs.github.com/en/rest>. Tra cứu endpoint, authentication, permissions, pagination và API version.
-
-[3] GitHub Docs. GitHub Actions security: <https://docs.github.com/en/actions/security-for-github-actions>. Phạm vi token, untrusted input và an toàn workflow.
-
-[4] GitHub Docs. Code security: <https://docs.github.com/en/code-security>. Code scanning, secret scanning và Dependabot.
-
-[5] Repository thực nghiệm: <https://github.com/nt542-r11-nhom17-cis-lab/finalrepo>. Các phiên chạy, commit và artifact được tham chiếu riêng trong bảng kết quả.
-
-[6] Hai nguồn tích hợp: <https://github.com/NT542-R11-Nhom-17-D-an/NT542.R11---Nhom-17---Do-an> và <https://github.com/dtk01062006/cis-github-actions-lab>. Phạm vi tích hợp và commit nguồn được lưu trong docs/integration/sources.json.
-
-# Phụ lục B. Ảnh cần chụp bổ sung
-
-Đã tìm ảnh trong docs/, evidence/ và các thư mục ảnh của repository. Các ảnh gốc hiện có là ảnh workflow CI; không có tệp ảnh Settings hoặc terminal VM phù hợp với các phép kiểm của mục 3.2. Bảng dưới là danh sách cần bổ sung, không phải hồ sơ đã chụp. Không gán người chụp hoặc thời điểm khi chưa có nguồn.
-
-| STT | Ảnh cần chụp | Nội dung và điều kiện ghi nhận |
-| --- | --- | --- |
-| 1 | Base permissions | Organization Settings sau tải lại: No permission; ghi repo/org và thời điểm thực chụp. |
-| 2 | Quyền delete/transfer repository | Allow members to delete or transfer repositories tắt; ảnh sau Save/tải lại. |
-| 3 | Quyền xóa issue | Allow repository administrators to delete issues tắt; ảnh sau tải lại. |
-| 4 | Quyền tạo team | Allow members to create teams tắt; ảnh sau tải lại. |
-| 5 | Secret Protection và Push protection | Secret Protection đã bật và Push protection On; không hiển thị secret. |
-| 6 | Dependency graph và Dependabot alerts | Cả hai On; thể hiện đúng repository và thời điểm chụp. |
-| 7 | Quyền thư mục VM | `ls -ld /opt/cis-deploy-lab`; thể hiện owner/group cisdeploy và quyền 700. |
-| 8 | Quyền sudo VM | `sudo -l -U cisdeploy`; ghi đầy đủ kết quả từ chối. |
-| 9 | Cấu hình SSH VM | Dùng lệnh kiểm tra hiệu lực bên dưới; cần permitrootlogin no và permitemptypasswords no. |
-| 10 | Trạng thái mật khẩu VM | Chạy passwd -S riêng từng tài khoản bằng các lệnh dưới đây; không thu password/hash. |
-
-Lệnh kiểm tra SSH cho ngữ cảnh root đã dùng trong lab:
-
-```bash
-sudo /usr/sbin/sshd -T -C user=root,host=hieuhuy,addr=192.168.88.1 | grep -E '^(permitrootlogin|permitemptypasswords) '
-```
-
-`passwd -S` nhận một tên tài khoản mỗi lần; không dùng `passwd -S root user cisdeploy` như một lệnh chung:
-
-```bash
-sudo passwd -S root
-sudo passwd -S user
-sudo passwd -S cisdeploy
-```
-
-Ảnh mới cần giữ tệp gốc, nguồn, người thực hiện và thời điểm chụp thực tế; dữ liệu nhạy cảm phải được che phù hợp. Khi nhận được ảnh, đặt vào cuối phần 2 dưới Hình minh họa bổ sung, đánh số tiếp từ Hình 2.9 rồi tham chiếu bằng chữ từ mục 3.2. Phần 3 không chèn hình. Hiện chưa có các ảnh này nên không tạo tham chiếu tới số hình chưa tồn tại.
-
-Ngoài ảnh, hồ sơ còn cần quyết định admin dự phòng/số admin tối thiểu; lịch rà và biên bản kỳ rà được phê duyệt; danh sách email mời được duyệt lưu riêng và invitation comparison; xác nhận MFA của dtk0106 và policy enforcement; supplier SBOM/provenance theo artifact; xác nhận nguồn mật khẩu user và kiểm kê service credential trên target được phép.
+Repository thực nghiệm: [nt542-r11-nhom17-cis-lab/finalrepo](https://github.com/nt542-r11-nhom17-cis-lab/finalrepo). Hai nguồn tích hợp là [repository đồ án nhóm](https://github.com/NT542-R11-Nhom-17-D-an/NT542.R11---Nhom-17---Do-an) và [cis-github-actions-lab](https://github.com/dtk01062006/cis-github-actions-lab).

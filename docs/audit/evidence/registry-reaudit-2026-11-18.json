@@ -1,0 +1,223 @@
+{
+  "checked_at": "2026-11-18T06:19:36.265205+00:00",
+  "scope": "Real temporary Distribution registry on HTTPS loopback with one bcrypt publisher; no production or GitHub settings changes",
+  "checks": [
+    {
+      "check": "anonymous registry access denied",
+      "expected": 401,
+      "observed": 401,
+      "result": "PASS"
+    },
+    {
+      "check": "wrong credentials denied",
+      "expected": 401,
+      "observed": 401,
+      "result": "PASS"
+    },
+    {
+      "check": "authenticated registry access accepted",
+      "expected": 200,
+      "observed": 200,
+      "result": "PASS"
+    },
+    {
+      "check": "anonymous upload denied",
+      "expected": 401,
+      "observed": 401,
+      "result": "PASS"
+    },
+    {
+      "check": "untrusted TLS certificate denied",
+      "expected": true,
+      "observed": true,
+      "result": "PASS"
+    },
+    {
+      "check": "pipeline verifies signature before upload 0.1.0",
+      "expected": true,
+      "observed": true,
+      "result": "PASS"
+    },
+    {
+      "check": "OCI manifest upload accepted 0.1.0",
+      "expected": 201,
+      "observed": 201,
+      "result": "PASS"
+    },
+    {
+      "check": "downloaded manifest digest matches 0.1.0",
+      "expected": [
+        200,
+        "sha256:620f9c3fec41c14fdbd7d010a24eafe0dcc87c7dfcaa9d6ff1398d04fa7fc95c"
+      ],
+      "observed": [
+        200,
+        "sha256:620f9c3fec41c14fdbd7d010a24eafe0dcc87c7dfcaa9d6ff1398d04fa7fc95c"
+      ],
+      "result": "PASS"
+    },
+    {
+      "check": "downloaded blob digest matches 0.1.0",
+      "expected": [
+        200,
+        "sha256:d22ec5a4b40dc83bed3e4b8cedf21ae13ab61c2dcbf5bb70c74115a297f36fda"
+      ],
+      "observed": [
+        200,
+        "sha256:d22ec5a4b40dc83bed3e4b8cedf21ae13ab61c2dcbf5bb70c74115a297f36fda"
+      ],
+      "result": "PASS"
+    },
+    {
+      "check": "downloaded signature digest matches 0.1.0",
+      "expected": [
+        200,
+        "sha256:2c5fd204e81d030ce1bf3479198548ebf03601d9b5529b400d09c523cdda9460"
+      ],
+      "observed": [
+        200,
+        "sha256:2c5fd204e81d030ce1bf3479198548ebf03601d9b5529b400d09c523cdda9460"
+      ],
+      "result": "PASS"
+    },
+    {
+      "check": "downloaded signature verifies 0.1.0",
+      "expected": true,
+      "observed": true,
+      "result": "PASS"
+    },
+    {
+      "check": "modified downloaded artifact rejected 0.1.0",
+      "expected": false,
+      "observed": false,
+      "result": "PASS"
+    },
+    {
+      "check": "modified downloaded signature rejected 0.1.0",
+      "expected": false,
+      "observed": false,
+      "result": "PASS"
+    },
+    {
+      "check": "pipeline verifies signature before upload 0.1.1",
+      "expected": true,
+      "observed": true,
+      "result": "PASS"
+    },
+    {
+      "check": "OCI manifest upload accepted 0.1.1",
+      "expected": 201,
+      "observed": 201,
+      "result": "PASS"
+    },
+    {
+      "check": "downloaded manifest digest matches 0.1.1",
+      "expected": [
+        200,
+        "sha256:acccd3ce0961b50ce3896ba4ab25bf404ccd21818930531ff0f59d88a3f98141"
+      ],
+      "observed": [
+        200,
+        "sha256:acccd3ce0961b50ce3896ba4ab25bf404ccd21818930531ff0f59d88a3f98141"
+      ],
+      "result": "PASS"
+    },
+    {
+      "check": "downloaded blob digest matches 0.1.1",
+      "expected": [
+        200,
+        "sha256:b7c870646585d3ef8f82d52d65ce170decffc4acb32cd68666534d53ababc5db"
+      ],
+      "observed": [
+        200,
+        "sha256:b7c870646585d3ef8f82d52d65ce170decffc4acb32cd68666534d53ababc5db"
+      ],
+      "result": "PASS"
+    },
+    {
+      "check": "downloaded signature digest matches 0.1.1",
+      "expected": [
+        200,
+        "sha256:ef5bb19b01be7d0c73e962c634e46c23686fe3ccc97b03f74aace35fbce619bc"
+      ],
+      "observed": [
+        200,
+        "sha256:ef5bb19b01be7d0c73e962c634e46c23686fe3ccc97b03f74aace35fbce619bc"
+      ],
+      "result": "PASS"
+    },
+    {
+      "check": "downloaded signature verifies 0.1.1",
+      "expected": true,
+      "observed": true,
+      "result": "PASS"
+    },
+    {
+      "check": "modified downloaded artifact rejected 0.1.1",
+      "expected": false,
+      "observed": false,
+      "result": "PASS"
+    },
+    {
+      "check": "modified downloaded signature rejected 0.1.1",
+      "expected": false,
+      "observed": false,
+      "result": "PASS"
+    },
+    {
+      "check": "anonymous known-artifact download denied",
+      "expected": 401,
+      "observed": 401,
+      "result": "PASS"
+    },
+    {
+      "check": "all published test versions inventoried",
+      "expected": [
+        "0.1.0",
+        "0.1.1"
+      ],
+      "observed": [
+        "0.1.0",
+        "0.1.1"
+      ],
+      "result": "PASS"
+    }
+  ],
+  "published_versions": [
+    {
+      "version": "0.1.0",
+      "artifact_digest": "sha256:d22ec5a4b40dc83bed3e4b8cedf21ae13ab61c2dcbf5bb70c74115a297f36fda",
+      "manifest_digest": "sha256:620f9c3fec41c14fdbd7d010a24eafe0dcc87c7dfcaa9d6ff1398d04fa7fc95c"
+    },
+    {
+      "version": "0.1.1",
+      "artifact_digest": "sha256:b7c870646585d3ef8f82d52d65ce170decffc4acb32cd68666534d53ababc5db",
+      "manifest_digest": "sha256:acccd3ce0961b50ce3896ba4ab25bf404ccd21818930531ff0f59d88a3f98141"
+    }
+  ],
+  "service_stopped": true,
+  "credentials_exported": false,
+  "overall_cis": "PARTIAL",
+  "limits": [
+    "Basic-auth test account has no MFA or external IdP",
+    "Signature verification is in this pipeline client; registry-side signature admission is not configured",
+    "Registry permissions are not per-user read/write RBAC; no organization-wide access inventory",
+    "Two test versions and ephemeral signing key do not establish production release trust"
+  ],
+  "registry_version": "3.1.2+cis.1",
+  "binary_sha256": "06c66b1b908b420ea2ef95d97f289ab920ee3b1497bf9d52ac59a0d8c8d72585",
+  "archive_sha256": "40df2224d410f72ae425c3371873b078bbdbda3b8b612be9571f0e6751f3acc8",
+  "build": {
+    "source_commit": "3220848f15d9279c66a41aa0a257469e6aede1e9",
+    "go_version": "go1.27.4",
+    "module_locks": {
+      "go.mod": "41f5b38de08cec8d538d81617b6f497c77f369a78e82346687f651ddffd62dba",
+      "go.sum": "e3c5643c55cecc02ac54805a7b72575e8f81de5ec9321736fd6481a729373f52"
+    },
+    "patched_dependencies": {
+      "github.com/go-jose/go-jose/v4": "v4.1.6",
+      "github.com/klauspost/compress": "v1.18.7",
+      "golang.org/x/net": "v0.62.0"
+    }
+  }
+}

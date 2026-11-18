@@ -1,0 +1,84 @@
+{
+  "recorded_on": "2026-11-18",
+  "source": "Conversation screenshots and user confirmations; screenshots are not duplicated as local image files",
+  "repository": "nt542-r11-nhom17-cis-lab/finalrepo",
+  "validation": "Observed UI/user statements, not a privileged API attestation or independent saved-state re-audit",
+  "settings": {
+    "1.4.1": {
+      "observed": "Repository-admin installation permission unchecked; installed app reviewed",
+      "remaining": "Persistence after save/reload and full app approval trail not independently verified"
+    },
+    "1.4.2": {
+      "observed": "ChatGPT Codex Connector identified as the installed app; user needs connector for current work",
+      "remaining": "Periodic review cadence/owner and inactivity criteria need group approval"
+    },
+    "1.4.3": {
+      "observed": "Connector restricted to selected finalrepo; displayed permissions reviewed",
+      "remaining": "Justify all granted permissions, including issues and pull requests; minimal required permission set not established"
+    },
+    "1.4.4": {
+      "observed": "Organization and repository webhook pages empty at screenshot time",
+      "remaining": "Actual GitHub delivery not performed; local receiver is a separate integration"
+    },
+    "1.3.8": {
+      "observed": "Base permissions changed to No permission and reload screenshot provided",
+      "remaining": "Full effective inherited access review still required"
+    },
+    "1.3.2": {
+      "observed": "Allow members to create teams unchecked",
+      "remaining": "Saved-state re-audit and authorized/unauthorized behavior not verified"
+    },
+    "1.2.3": {
+      "observed": "Allow members to delete or transfer repositories unchecked",
+      "remaining": "Do not test destruction of finalrepo; saved-state and permission scope require review"
+    },
+    "1.2.4": {
+      "observed": "Allow repository administrators to delete issues unchecked",
+      "remaining": "Saved-state and role scope require review"
+    },
+    "1.2.6": {
+      "observed": "Allow members to change repository visibility unchecked; transfer/add-remove events visible in audit log",
+      "remaining": "No visibility-change event or recurring review verified"
+    },
+    "1.5.1": {
+      "observed": "Secret Protection enabled; Push protection On; zero open/closed native secret alerts",
+      "remaining": "Zero alerts does not establish complete history coverage or revoke historical credentials"
+    },
+    "1.5.5": {
+      "observed": "Dependency graph and Dependabot alerts On; security/version updates not enabled",
+      "remaining": "Alert scope and dependency coverage remain limited"
+    },
+    "3.2.2": {
+      "observed": "Dependabot alerts On; both auto-dismiss presets Disabled; no open or auto-dismissed alerts shown",
+      "remaining": "No conclusion of vulnerability absence across all dependencies"
+    }
+  },
+  "roles_user_confirmed": [
+    {
+      "login": "hieune-ui",
+      "repo_role": "admin",
+      "mfa_user_reported": "enabled"
+    },
+    {
+      "login": "Vuongdlx",
+      "repo_role": "write",
+      "mfa_user_reported": "enabled"
+    },
+    {
+      "login": "HiepTran01",
+      "repo_role": "write",
+      "mfa_user_reported": "enabled"
+    },
+    {
+      "login": "dtk0106",
+      "repo_role": "read",
+      "mfa_user_reported": "not completed"
+    }
+  ],
+  "role_api_summary": "Current GET inventory returns one admin, two write, one read; full effective access and MFA remain unverified",
+  "constraints": [
+    "No MFA enforcement change while member setup is incomplete",
+    "No permission elevations or CODEOWNERS assignments without group decision",
+    "No Enterprise purchase/trial, no main change, no destructive tests"
+  ]
+}

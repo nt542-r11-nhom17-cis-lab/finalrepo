@@ -1,0 +1,64 @@
+{
+  "checked_at": "2026-11-18T06:16:42.316357+00:00",
+  "repository": "nt542-r11-nhom17-cis-lab/finalrepo",
+  "mode": "GET-only; mutations=0",
+  "repositories": {
+    "scope": {
+      "http": 200,
+      "pagination_complete": true
+    },
+    "items": [
+      {
+        "id": 1461201903,
+        "name": "finalrepo",
+        "archived": false,
+        "private": false,
+        "last_push_age_days": 0.2,
+        "decision": "OWNER_REVIEW_REQUIRED; age alone does not justify archiving"
+      }
+    ]
+  },
+  "repo_access": {
+    "visible_accounts": 4,
+    "visible_roles": {
+      "write": 2,
+      "read": 1,
+      "admin": 1
+    },
+    "pagination": {
+      "http": 200,
+      "pagination_complete": true
+    },
+    "full_effective_access_verified": false,
+    "mfa": "UNKNOWN",
+    "inactive_user_decision": "OWNER_REVIEW_REQUIRED",
+    "note": "API visibility depends on caller; role counts do not prove full member/admin inventory or MFA."
+  },
+  "administrative": {
+    "organization_owners": {
+      "http": 200,
+      "overall_cis": "MANUAL_REVIEW",
+      "note": "Use owner Settings for effective policy review; API-visible data alone is insufficient."
+    },
+    "applications": {
+      "http": 403,
+      "overall_cis": "MANUAL_REVIEW",
+      "note": "Use owner Settings for effective policy review; API-visible data alone is insufficient."
+    },
+    "invitations": {
+      "http": 403,
+      "overall_cis": "MANUAL_REVIEW",
+      "note": "Use owner Settings for effective policy review; API-visible data alone is insufficient."
+    },
+    "organization_webhooks": {
+      "http": 403,
+      "overall_cis": "MANUAL_REVIEW",
+      "note": "Use owner Settings for effective policy review; API-visible data alone is insufficient."
+    }
+  },
+  "overall_cis": "MANUAL_REVIEW",
+  "limits": [
+    "No inactive users removed, repositories archived, members invited or permissions changed",
+    "No member email, MFA recovery data, hook URLs or credential values exported"
+  ]
+}

@@ -1,0 +1,78 @@
+{
+  "checked_at": "2026-11-18T06:19:27.602878+00:00",
+  "scope": "Real HTTPS loopback server and synthetic deliveries; no GitHub webhook installation or build trigger",
+  "checks": [
+    {
+      "check": "valid HMAC delivery accepted",
+      "http": 202,
+      "expected_http": 202,
+      "result": "PASS"
+    },
+    {
+      "check": "same delivery and body rejected",
+      "http": 409,
+      "expected_http": 409,
+      "result": "PASS"
+    },
+    {
+      "check": "same body with changed delivery header rejected",
+      "http": 409,
+      "expected_http": 409,
+      "result": "PASS"
+    },
+    {
+      "check": "wrong HMAC rejected",
+      "http": 401,
+      "expected_http": 401,
+      "result": "PASS"
+    },
+    {
+      "check": "modified body rejected",
+      "http": 401,
+      "expected_http": 401,
+      "result": "PASS"
+    },
+    {
+      "check": "disallowed event rejected",
+      "http": 403,
+      "expected_http": 403,
+      "result": "PASS"
+    },
+    {
+      "check": "invalid delivery ID rejected",
+      "http": 400,
+      "expected_http": 400,
+      "result": "PASS"
+    },
+    {
+      "check": "invalid JSON rejected after signature verification",
+      "http": 400,
+      "expected_http": 400,
+      "result": "PASS"
+    },
+    {
+      "check": "oversized body rejected",
+      "http": 413,
+      "expected_http": 413,
+      "result": "PASS"
+    },
+    {
+      "check": "wrong content type rejected",
+      "http": 415,
+      "expected_http": 415,
+      "result": "PASS"
+    },
+    {
+      "check": "untrusted TLS certificate rejected",
+      "result": "PASS"
+    }
+  ],
+  "credentials_exported": false,
+  "service_stopped": true,
+  "overall_cis": "PARTIAL",
+  "limits": [
+    "In-memory replay cache expires after 600 seconds and is lost on restart",
+    "Body deduplication may reject legitimate identical deliveries; deployment policy must account for this",
+    "No actual GitHub delivery, external endpoint, app permission or production rollout verified"
+  ]
+}

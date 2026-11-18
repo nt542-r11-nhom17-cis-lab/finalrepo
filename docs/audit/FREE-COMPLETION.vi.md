@@ -1,6 +1,6 @@
 # Kết quả phạm vi 48 tiêu chí hướng Free
 
-Sau đợt HTTPS integration, trạng thái hiện hành của 48 mục là **24 PARTIAL, 9 MANUAL_REVIEW và 15 NOT_TESTED**, chưa có full-control PASS. Ba mục 1.2.7, 1.4.4, 2.1.10 có thêm triển khai thành phần; 5.1.4 chuyển sang cần xác minh thủ công. Xem [INTEGRATION.vi.md](INTEGRATION.vi.md), [bảng 120 mục](COVERAGE.vi.md) và [hướng dẫn từng mục](FREE-CONTROLS.vi.md).
+Sau đợt HTTPS integration, trạng thái hiện hành của 48 mục là **27 PARTIAL, 9 MANUAL_REVIEW và 12 NOT_TESTED**, chưa có full-control PASS. Bổ sung UI cho 1.4.1–1.4.3 theo CURRENT-REVIEW.vi.md; ba mục 1.2.7, 1.4.4, 2.1.10 có triển khai thành phần; 5.1.4 chuyển sang cần xác minh thủ công. Xem [INTEGRATION.vi.md](INTEGRATION.vi.md), [bảng 120 mục](COVERAGE.vi.md) và [hướng dẫn từng mục](FREE-CONTROLS.vi.md).
 
 ## Snapshot đợt bổ sung trước — số liệu dưới đây là lịch sử
 

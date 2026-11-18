@@ -1,0 +1,29 @@
+{
+  "checked_on": "2026-11-18",
+  "source_commit_before_changes": "44b1b19f79d5ab3f2b6e647ab563068e9cd4851d",
+  "execution_environment": "Assistant cloud workspace, not user VMware VM",
+  "local_unit_tests": 58,
+  "local_unit_tests_result": "PASS",
+  "webhook_https_checks": 11,
+  "registry_https_checks": 23,
+  "registry_versions": 2,
+  "python_wheel_hashes_matched": 32,
+  "python_packages": 32,
+  "licenses_still_manual_review": 20,
+  "action_owners_unchanged": 9,
+  "actions_monitored": 9,
+  "bandit_high_findings": 0,
+  "vm_supplied_reports": {
+    "checks": 29,
+    "passed": 29,
+    "attestation": "USER_SUPPLIED_NOT_REMOTE_ATTESTED"
+  },
+  "overall_cis": "PARTIAL",
+  "main_sha": "e052945db5b4a2bace480b5ab98446a8b82da02e",
+  "mutations_to_settings_permissions_main": 0,
+  "limits": [
+    "Scanner and API observations have time and caller visibility limits",
+    "License review and group process approval remain pending",
+    "Local test counts do not replace full-control CIS evidence"
+  ]
+}

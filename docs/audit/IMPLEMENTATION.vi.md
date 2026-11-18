@@ -1,3 +1,7 @@
+# Cập nhật ngày 18/11/2026
+
+Xem [CURRENT-REVIEW.vi.md](CURRENT-REVIEW.vi.md): HiepTran01 hiện có Write theo người dùng xác nhận, API tổng hợp trả 1 Admin/2 Write/1 Read. Đã nhận ba báo cáo VMware (29 phép thử), SBOM native và đối chiếu Settings. Bảng phân quyền/thiết lập bên dưới là snapshot cũ, không thay trạng thái hiện hành. [Dự thảo quy trình](GOVERNANCE-DRAFT.vi.md) chưa được nhóm phê duyệt.
+
 # Cập nhật triển khai tích hợp HTTPS
 
 Trạng thái mới nhất nằm trong [INTEGRATION.vi.md](INTEGRATION.vi.md): registry source-build đã được khắc phục tám HIGH, 51 unit tests và 34 phép thử HTTPS thành công. Đợt triển khai trước bên dưới được giữ để mô tả topology/phân quyền nền; số liệu hiện hành dùng RESULTS.vi.md và COVERAGE.vi.md. Hình mới thuộc METHOD.vi.md phần 2; phần 3 chỉ chữ/bảng.

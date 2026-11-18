@@ -1,0 +1,159 @@
+{
+  "schema": "user-vm-evidence-review-v1",
+  "archive_sha256": "8f52e28f4fa6fd066d88ce982c0bde5d8e022349e52adea25a3a3020bd2120e9",
+  "source": "User-uploaded reports; no authenticated remote execution attestation",
+  "reports": [
+    {
+      "file": "registry-lab/results.json",
+      "sha256": "6bf02f0c329006f6531182edd49fc734c5c18fb5822b4fb929593259a4216881",
+      "scope": "offline policy fixture, no real IdP, MFA, CA, package registry or production control",
+      "checks": [
+        {
+          "check": "anonymous upload",
+          "result": "PASS"
+        },
+        {
+          "check": "reader upload",
+          "result": "PASS"
+        },
+        {
+          "check": "upload without MFA claim",
+          "result": "PASS"
+        },
+        {
+          "check": "version path traversal",
+          "result": "PASS"
+        },
+        {
+          "check": "valid signed uploads, two immutable versions",
+          "result": "PASS"
+        },
+        {
+          "check": "overwrite existing version",
+          "result": "PASS"
+        },
+        {
+          "check": "anonymous download",
+          "result": "PASS"
+        },
+        {
+          "check": "all stored versions verified on read",
+          "result": "PASS"
+        },
+        {
+          "check": "tampered upload",
+          "result": "PASS"
+        },
+        {
+          "check": "tampered stored version download",
+          "result": "PASS"
+        },
+        {
+          "check": "reader configuration change",
+          "result": "PASS"
+        },
+        {
+          "check": "unencrypted webhook configuration",
+          "result": "PASS"
+        },
+        {
+          "check": "admin HTTPS-only configuration and chained audit events",
+          "result": "PASS"
+        }
+      ],
+      "passed": 13,
+      "total": 13
+    },
+    {
+      "file": "supply-chain/results.json",
+      "sha256": "5ab94979bcf2245b34f2431ec0c2ec37d318ae7c792e2bee789a3d850f9b3732",
+      "scope": "local sandbox, not production CIS compliance",
+      "checks": [
+        {
+          "check": "locked_inputs",
+          "result": "PASS"
+        },
+        {
+          "check": "reproducible_artifact",
+          "result": "PASS"
+        },
+        {
+          "check": "signed_artifact_sbom_provenance",
+          "result": "PASS"
+        },
+        {
+          "check": "encrypted_roundtrip",
+          "result": "PASS"
+        },
+        {
+          "check": "verified_local_deployment",
+          "result": "PASS"
+        }
+      ],
+      "passed": 5,
+      "total": 5
+    },
+    {
+      "file": "webhook-https/results.json",
+      "sha256": "dd85f75c2f289ac0d6d9ee6086e1e800a18b51580c1d8f4cc63637045e50a908",
+      "scope": "Real HTTPS loopback server and synthetic deliveries; no GitHub webhook installation or build trigger",
+      "checks": [
+        {
+          "check": "valid HMAC delivery accepted",
+          "result": "PASS"
+        },
+        {
+          "check": "same delivery and body rejected",
+          "result": "PASS"
+        },
+        {
+          "check": "same body with changed delivery header rejected",
+          "result": "PASS"
+        },
+        {
+          "check": "wrong HMAC rejected",
+          "result": "PASS"
+        },
+        {
+          "check": "modified body rejected",
+          "result": "PASS"
+        },
+        {
+          "check": "disallowed event rejected",
+          "result": "PASS"
+        },
+        {
+          "check": "invalid delivery ID rejected",
+          "result": "PASS"
+        },
+        {
+          "check": "invalid JSON rejected after signature verification",
+          "result": "PASS"
+        },
+        {
+          "check": "oversized body rejected",
+          "result": "PASS"
+        },
+        {
+          "check": "wrong content type rejected",
+          "result": "PASS"
+        },
+        {
+          "check": "untrusted TLS certificate rejected",
+          "result": "PASS"
+        }
+      ],
+      "passed": 11,
+      "total": 11
+    }
+  ],
+  "passed": 29,
+  "total": 29,
+  "overall_cis": "PARTIAL",
+  "limits": [
+    "Report contents are supplied evidence, not independently observed VM execution",
+    "Registry policy fixture does not verify real MFA, IdP or registry deployment",
+    "HTTPS delivery uses loopback and synthetic payloads, not actual GitHub delivery",
+    "No production access, default-password audit or full CIS control is established"
+  ]
+}

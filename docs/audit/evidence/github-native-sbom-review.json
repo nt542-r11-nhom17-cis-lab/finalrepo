@@ -1,0 +1,21 @@
+{
+  "source": "User-uploaded native GitHub dependency graph export",
+  "sha256": "e008e30e7c28c589d5cc60b67e4c41aaa3deca8485d25212cd40c76781e37be9",
+  "created": "2026-11-17T18:11:52Z",
+  "spdx_version": "SPDX-2.3",
+  "packages": 10,
+  "action_version_entries": 9,
+  "unique_action_repositories": 8,
+  "relationships": {
+    "DEPENDS_ON": 9,
+    "DESCRIBES": 1
+  },
+  "scope": "Export describes finalrepo@main at export time, not the current audit checkout or all suppliers",
+  "overall_cis": "PARTIAL",
+  "limits": [
+    "No signature of this export verified",
+    "Does not cover 32 Python scanner wheels or 104 Go binary components",
+    "Does not replace supplier-issued SBOM for all third parties",
+    "No package license or checksum fields in uploaded package records"
+  ]
+}

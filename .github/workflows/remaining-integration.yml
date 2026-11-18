@@ -25,6 +25,11 @@ jobs:
       - name: Verify policy and failure-path regressions
         run: python3 -m unittest discover -s tests -v
 
+      - name: Validate supplied VM evidence without treating it as remote attestation
+        run: |
+          python3 scripts/import_vm_evidence.py docs/audit/evidence/vm-lab-results.tar.gz
+          cmp reports/vm-evidence/results.json docs/audit/evidence/vm-lab-review.json
+
       - name: Exercise real HTTPS webhook authentication and replay rejection
         run: python3 scripts/webhook_integration.py
 
@@ -59,6 +64,7 @@ jobs:
         with:
           name: remaining-integration-${{ github.run_id }}
           path: |
+            reports/vm-evidence/results.json
             reports/webhook-integration/results.json
             reports/registry-integration/results.json
             reports/organization-inventory/results.json

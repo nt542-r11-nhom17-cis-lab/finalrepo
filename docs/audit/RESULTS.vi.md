@@ -1,3 +1,15 @@
+# Kết quả bổ sung ngày 18/11/2026
+
+Đã lưu ba báo cáo do người dùng chạy trên VMware: **29/29 kiểm tra lab PASS** (5 supply chain, 13 registry mô phỏng, 11 webhook HTTPS). Đây là bằng chứng người dùng cung cấp, chưa có attestation thực thi từ xa. GET API mới: một repo, bốn tài khoản nhìn thấy (1 Admin, 2 Write, 1 Read), tám nhánh và zero fork nhìn thấy; không đổi quyền hoặc xóa tài nguyên.
+
+Re-audit trong workspace độc lập: **58 unit tests, 34 phép thử HTTPS PASS**, 32/32 hash wheel khớp PyPI, 9/9 action owner không đổi, zero Bandit HIGH. Hai mươi license còn cần review; không tự duyệt policy nhóm.
+
+Đã lưu SBOM GitHub native và đối chiếu ảnh/xác nhận Settings. Ba mục ứng dụng 1.4.1–1.4.3 có bằng chứng thành phần, chuyển NOT_TESTED → PARTIAL. Tổng hiện hành: **75 PARTIAL, 23 MANUAL_REVIEW, 7 LAB_ONLY, 15 NOT_TESTED**. Trong 48 mục Free ban đầu: **27 PARTIAL, 9 MANUAL_REVIEW, 12 NOT_TESTED; zero full-control PASS**. Đây không phải chỉ còn 12 mục để hoàn tất: mọi mục PARTIAL vẫn có giới hạn.
+
+Chi tiết và công việc còn lại: [CURRENT-REVIEW.vi.md](CURRENT-REVIEW.vi.md), [bảng 48 mục](REMAINING-FREE.vi.md). Các snapshot đợt trước bên dưới giữ số liệu của chính đợt đó.
+
+---
+
 # Cập nhật CodeQL Python
 
 Đã đối chiếu SARIF trước/sau: hai cảnh báo do public digest bị heuristic nhận diện là secret → zero result với cùng 43 rule. Code `1ce411f`, run 44213133290. Có 52 regression tests, gồm kiểm tra vật liệu ký không xuất ra file/log. Chi tiết và giới hạn: [CODEQL.vi.md](CODEQL.vi.md). Mục 1.5.4 vẫn PARTIAL; số liệu đợt registry bên dưới giữ đúng snapshot của đợt đó.

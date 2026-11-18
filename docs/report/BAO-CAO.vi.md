@@ -32,33 +32,19 @@ header-includes:
   - \renewcommand{\section}{\clearpage\oldsection}
 ---
 
-# 1. Giới thiệu benchmark
+# I. Giới thiệu benchmark
 
 ## 1.1. Tóm tắt
 
-CIS GitHub Benchmark là bộ khuyến nghị bảo mật do Center for Internet Security phát hành. Nhóm dùng phiên bản 1.2.0, ngày 18/02/2026. Bộ khuyến nghị giúp kiểm tra cách quản lý mã, build, dependency, artifact và triển khai phần mềm. CIS trong đề tài là tổ chức xây dựng hướng dẫn bảo mật, không phải Cisco.
+CIS GitHub Benchmark là bộ khuyến nghị bảo mật do Center for Internet Security phát hành. Nhóm dùng phiên bản 1.2.0, ngày 18/02/2026. Nội dung tập trung vào bảo vệ chuỗi cung ứng phần mềm sử dụng GitHub.
 
-GitHub tham gia nhiều bước của quá trình phát triển. Thành viên đẩy mã, tạo PR, review thay đổi và chạy pipeline trên cùng nền tảng. Vì vậy, một cấu hình thiếu kiểm soát có thể ảnh hưởng nhiều bước tiếp theo. Ví dụ, token có quyền quá lớn hoặc action thay đổi ngoài dự kiến có thể làm tăng rủi ro cho sản phẩm.
+Benchmark có 120 tiêu chí, gồm 118 Manual và 2 Automated. Năm nhóm nội dung là mã nguồn, pipeline build, dependency, artifact và triển khai. Mỗi tiêu chí có hướng dẫn Audit để kiểm tra và Remediation để khắc phục.
 
-Benchmark chia thành năm nhóm. Source Code có 50 tiêu chí về mã nguồn, review, quyền cộng tác và scanner. Build Pipelines có 33 tiêu chí về môi trường build, runner và các bước xử lý. Dependencies có 12 tiêu chí về thành phần bên ngoài. Artifacts có 14 tiêu chí về ký, mã hóa và phân phối. Deployment có 11 tiêu chí về cấu hình, quyền và tài khoản triển khai.
+Nhóm chọn Audit → Remediation → Re-audit làm phương pháp chung. Trước tiên, nhóm đọc cấu hình và thu bằng chứng. Sau đó, nhóm sửa phần được phép và kiểm tra lại bằng lệnh hoặc công cụ.
 
-Tổng cộng có 120 tiêu chí, gồm 118 Manual và 2 Automated. Nhóm giữ cách phân loại này khi lập danh mục. Với Manual, người kiểm tra cần đọc cấu hình, xem hồ sơ hoặc thử hành vi. Với Automated, nhóm có thể dùng công cụ để kiểm tra điều kiện kỹ thuật. Script cũng hỗ trợ các mục Manual bằng cách thu dữ liệu và xuất kết quả.
+Môi trường thực nghiệm gồm GitHub Organization Free, repository finalrepo, GitHub-hosted runner và VM VMware Ubuntu. Nhóm làm việc trên nhánh audit/remaining-free-integration, giữ nguyên main và hai repository nguồn.
 
-Mỗi tiêu chí có mã, tên, mô tả, lý do, hướng dẫn Audit và Remediation. Audit chỉ ra nội dung cần kiểm tra. Remediation hướng dẫn cách sửa khi cấu hình chưa đáp ứng. Nhóm kiểm tra lại sau thay đổi để xem kết quả thực tế. Ví dụ, sau khi sửa SSH, nhóm mở phiên đăng nhập mới để kiểm tra kết nối.
-
-Các profile giúp chọn mức tăng cường phù hợp. Level 2 mở rộng yêu cầu của Level 1. Nhóm chọn các mục có hướng dẫn Audit rõ và có thể kiểm tra trong lab. Với mục cần quyền cao hơn, nhóm ghi lý do và công việc còn lại. Nhãn kết quả được giải thích ở phần 4.
-
-Môi trường chính là organization GitHub Free và repository public finalrepo của nhóm. Mã thực nghiệm nằm trên nhánh audit/remaining-free-integration. Nhóm giữ nguyên main và hai repository nguồn. GitHub-hosted runner chạy các tác vụ kiểm tra. Một VM VMware riêng được dùng cho tài khoản OS, SSH và thư mục triển khai.
-
-Trong phạm vi Free, nhóm triển khai các chức năng hiện có. Ba mục 1.3.10, 1.3.11 và 1.3.12 cần tính năng Enterprise nên chưa làm. Nhóm vẫn liệt kê ba mục trong bảng kết quả. Cách này giúp thấy đầy đủ nội dung đã kiểm tra và nội dung còn thiếu.
-
-Quyền API ảnh hưởng đến việc thu bằng chứng. Nhóm có thể đọc metadata repository nhưng bị chặn ở một số cấu hình quản trị. Khi API trả 403, nhóm ghi rõ cần kiểm tra Settings. Danh sách thành viên công khai cũng có thể ít hơn số người thực tế. Nhóm đối chiếu thêm quyền repository và xác nhận của thành viên.
-
-Đề tài chọn Audit → Remediation → Re-audit làm phương pháp chung. Nhóm thực hiện theo ba cách: thủ công, tự động hóa và tự động từ xa. Dữ liệu đầu ra gồm JSON, CSV, SPDX, SARIF, log và ảnh workflow. Các tệp giúp kiểm tra lại phát hiện, cấu hình và kết quả của từng lần chạy.
-
-Ngoài trường hợp hợp lệ, nhóm thử cả trường hợp cần bị từ chối. Các ví dụ gồm chữ ký sai, dữ liệu bị sửa, yêu cầu phát lại và tài khoản không được cấp quyền. Nhóm cũng kiểm tra việc từ chối người chạy build ngoài danh sách. Những phép thử này giúp đánh giá hành vi cụ thể thay vì chỉ xem trạng thái job.
-
-Kết quả được gắn với môi trường và thời điểm đo. Trong lab, nhóm kiểm tra được nhiều thành phần của chuỗi cung ứng phần mềm. Các yêu cầu còn thiếu thường liên quan đến quyền quản trị, hồ sơ nhóm, dữ liệu supplier hoặc production. Bảng 120 tiêu chí ở phần 4 nêu riêng kết quả và lý do của từng mục.
+Các mục có thể lặp lại được hỗ trợ bằng Python, GitHub API, GitHub Actions và công cụ bảo mật. Những mục cần quyết định nhóm hoặc quyền quản trị vẫn phải kiểm tra thủ công. Ba mục cần Enterprise chưa được triển khai. Phần kết quả ghi rõ việc nhóm làm được và lý do các mục còn thiếu.
 
 ## 1.2. Nội dung benchmark
 
@@ -74,6 +60,14 @@ Nhóm giữ mã, tên và phân loại của CIS trong hai bảng dưới. Cột
 | 5 | Deployment — cấu hình và môi trường triển khai | 11 |
 | Tổng | 118 Manual + 2 Automated | 120 |
 
+
+Nhóm phân biệt phân loại của CIS với cách thực hiện trong lab. Mục Manual được script hỗ trợ vẫn giữ phân loại Manual.
+
+| STT | Tên nội dung | Mô tả |
+| --- | --- | --- |
+| 1 | Manual theo CIS — 118 mục | Kiểm cấu hình, hành vi và hồ sơ bằng người thực hiện; có thể dùng lệnh hoặc script hỗ trợ. |
+| 2 | Automated theo CIS — 2 mục | Hai tiêu chí 1.1.3 và 2.3.8 được benchmark xếp loại Automated. |
+| 3 | Manual được hỗ trợ tự động hóa — 58 mục | Tập con của 118 mục Manual, được liệt kê riêng tại 1.2.3; không cộng thêm vào tổng 120. |
 
 ### 1.2.1. Manual
 
@@ -208,23 +202,69 @@ Nhóm giữ mã, tên và phân loại của CIS trong hai bảng dưới. Cột
 | 1 | 1.1.3 — Ensure any change to code receives approval of two strongly authenticated users | Kiểm tra yêu cầu hai người phê duyệt độc lập có xác thực mạnh và hiệu lực ngăn merge khi thiếu điều kiện. |
 | 2 | 2.3.8 — Ensure scanners are in place to identify and prevent sensitive data in pipeline files | Kiểm tra scanner nhận diện và ngăn dữ liệu nhạy cảm trong pipeline files; đối chiếu phạm vi và cơ chế chặn. |
 
-# 2. Phương pháp làm việc
+### 1.2.3. Các mục Manual được nhóm hỗ trợ bằng tự động hóa
+
+Bảng dưới ghi phần việc script hoặc công cụ đã hỗ trợ. Nó không chuyển tiêu chí Manual thành Automated của CIS. Một số công cụ chỉ thu dữ liệu hoặc thử trong lab.
+
+| STT | Tên nội dung và mã CIS | Mô tả phần tự động hóa |
+| --- | --- | --- |
+| 1 | 1.1.1 — Quản lý mã trong Git | Git / project_bundle.py: Đóng gói theo commit và kiểm tra mã nguồn trong gói. |
+| 2 | 1.1.8,1.2.5,1.2.7 — Nhánh, fork và repository | inventory_governance.py / inventory_organization.py: Thu danh sách có phân trang; quyết định xóa hoặc archive vẫn do người quản trị. |
+| 3 | 1.1.19 — Thay đổi quy tắc nhánh | audit_pending_free.py: Lưu cấu hình đọc được và so digest; còn cần audit log thật. |
+| 4 | 1.3.1,1.3.3,2.1.11 — Thành viên và quản trị viên | GitHub API / Python: Thu dữ liệu quyền nhìn thấy; các trường bị chặn cần kiểm tra Settings. |
+| 5 | 1.3.13 — Thay đổi mã nhạy cảm | code_change_monitor.py: Ghi đường dẫn thay đổi và phát hiện một số mẫu workflow nguy hiểm. |
+| 6 | 1.4.4,2.1.10 — Webhook bảo mật | webhook_integration.py: Thử HTTPS, HMAC và các yêu cầu phải bị từ chối trên loopback. |
+| 7 | 1.5.1 — Dữ liệu nhạy cảm trong mã | Gitleaks: Quét cây mã và thử dữ liệu nhạy cảm mẫu. |
+| 8 | 1.1.18,1.5.2,2.3.6,2.3.7 — An toàn workflow | Actionlint / Zizmor: Quét chỉ dẫn pipeline và ghi kết quả quét của nhánh audit. |
+| 9 | 1.5.3,5.1.5 — Cấu hình IaC | Trivy: Quét cấu hình và image thuộc phạm vi lab. |
+| 10 | 1.5.4 — Lỗ hổng trong mã Python | Bandit / CodeQL: Quét mã Python và đối chiếu cảnh báo trong JSON/SARIF. |
+| 11 | 1.5.5,2.1.8,2.2.6,3.2.2 — Lỗ hổng package và image | pip-audit / Trivy: Đối chiếu phiên bản, danh sách package và lỗ hổng đã biết. |
+| 12 | 1.5.6,3.2.3 — Giấy phép phần mềm | audit_python_toolchain.py: Thu metadata giấy phép; các trường hợp cần duyệt được ghi riêng. |
+| 13 | 2.1.3 — Thông tin môi trường build | record_runtime.py: Lưu thông tin OS, công cụ và phiên chạy được cho phép xuất. |
+| 14 | 2.1.5,2.1.6,2.3.5 — Người được chạy build | GitHub Actions / build_access_guard.py: Kiểm repository, actor, nhánh và người yêu cầu chạy lại. |
+| 15 | 2.2.4,2.2.5 — Cô lập container mẫu | Docker / lệnh kiểm tra runtime: Kiểm mạng, quyền root, capabilities và khả năng ghi của container. |
+| 16 | 2.3.3 — Lưu kết quả build | GitHub Actions artifacts: Đưa kết quả ra kho artifact riêng với phiên chạy. |
+| 17 | 2.4.1,4.1.1 — Ký artifact | OpenSSL / project_bundle.py: Ký gói kết quả và thử dữ liệu hoặc khóa không đúng. |
+| 18 | 2.1.2,2.4.2,3.1.7 — Khóa phiên bản đầu vào | SHA / digest / wheel hash: Cố định các đầu vào chính và kiểm hash trước dùng. |
+| 19 | 2.4.3,3.1.1 — Xác minh dependency | Checksum / metadata nguồn: Đối chiếu các đầu vào đã chọn với dữ liệu nguồn tin cậy. |
+| 20 | 2.4.4 — Artifact tái lập | supply_chain_lab.py: Tạo artifact hai lần từ cùng đầu vào rồi so byte. |
+| 21 | 2.4.5,2.4.6,3.1.6 — Tạo và ký SBOM | Python / SPDX / OpenSSL: Sinh và xác minh SBOM cho phạm vi phần mềm đã chọn. |
+| 22 | 3.1.2 — SBOM của nhà cung cấp | supplier_intake.py: Lập danh sách đầu vào và ghi rõ tài liệu supplier còn thiếu. |
+| 23 | 3.1.3,4.4.1 — Thông tin nguồn gốc | Provenance / signed manifest: Gắn thông tin mã nguồn và hash vào gói kết quả có chữ ký. |
+| 24 | 3.1.4 — Quan hệ dependency | dependency_graph.py: Xuất nút, cạnh và phạm vi quan hệ giữa các package. |
+| 25 | 3.1.8 — Tuổi phiên bản package | Metadata API / Python: Tính tuổi phiên bản để hỗ trợ đối chiếu yêu cầu trên 60 ngày. |
+| 26 | 3.2.4 — Chủ sở hữu action | monitor_action_owners.py: So ID repository và chủ sở hữu với danh sách đã lưu. |
+| 27 | 4.1.2 — Mã hóa artifact | OpenSSL / supply_chain_lab.py: Mã hóa, giải mã và từ chối ciphertext bị sửa trong lab. |
+| 28 | 4.2.2,4.2.5 — Tài khoản registry | registry_integration.py: Thử quyền publisher và từ chối truy cập ẩn danh. |
+| 29 | 4.3.2 — Chữ ký các phiên bản | HTTPS registry / OpenSSL: Tải hai phiên bản thử và xác minh dữ liệu, chữ ký. |
+| 30 | 5.1.6,5.1.7 — Manifest triển khai | Hash / lab-inputs.lock.json: Đối chiếu phiên bản và hash cấu hình demo trước triển khai. |
+| 31 | 5.2.1 — Triển khai tự động | supply_chain_lab.py: Đưa artifact đã xác minh vào thư mục tạm rồi chạy thử. |
+| 32 | 5.2.3,5.2.4 — Hỗ trợ rà host | deployment_preflight.py: Thu thông tin account/SSH chỉ đọc; VM còn được kiểm bằng lệnh thủ công. |
+
+# II. Phương pháp làm việc
 
 Nhóm dùng Audit → Remediation → Re-audit cho từng mục. Audit xác định hiện trạng. Remediation xử lý điểm cần sửa. Re-audit kiểm tra lại sau thay đổi.
 
 ## 2.1. Manual
 
-Nhóm bắt đầu bằng cách đọc hướng dẫn Audit và chọn đối tượng kiểm tra. Đối tượng có thể là repository, organization, tài khoản hoặc VM. Sau đó, nhóm ghi lại cấu hình ban đầu và so với yêu cầu của tiêu chí. Với quyền truy cập, nhóm xem cả quyền trực tiếp và quyền kế thừa.
+Nhóm làm thủ công theo hai cách: dùng giao diện GitHub và nhập lệnh trong terminal. Trước mỗi thao tác, nhóm đọc Audit để xác định đối tượng và giá trị cần kiểm tra.
 
-Ở bước Remediation, nhóm sửa cấu hình trong phạm vi được phép. Ví dụ, nhóm đổi base permissions thành No permission và bật Push protection trên finalrepo. Với VM, nhóm tạo tài khoản cisdeploy không có sudo và đặt thư mục triển khai ở mode 700. Các thay đổi đều có bước kiểm tra lại.
+**Cách 1 — GitHub Console.** Nhóm đăng nhập bằng tài khoản có quyền, chọn đúng organization hoặc finalrepo rồi mở Settings. Với quyền thành viên, nhóm vào Member privileges. Với Secret Protection, nhóm vào Advanced Security. Nhóm đọc cấu hình, lưu hiện trạng rồi mới thay đổi phần được phép.
 
-Re-audit gồm kiểm tra cấu hình sau lưu và thử hành vi nếu an toàn. Nhóm dùng cisdeploy tạo tệp trong thư mục triển khai. Tiếp đó, nhóm dùng nobody thử tạo tệp và nhận Permission denied. Khi sửa SSH, nhóm giữ phiên quản trị cũ rồi thử đăng nhập từ PowerShell mới.
+Sau khi lưu, nhóm tải lại trang và đối chiếu giá trị. Ví dụ, base permissions cần hiện No permission; Push protection cần ở trạng thái bật. Các mục cần phê duyệt hoặc phân công phải có quyết định thật của nhóm.
 
-Nhóm ghi lệnh, kết quả, mã tiêu chí và đối tượng kiểm tra. Những mục cần quyết định quản trị phải có xác nhận của người có quyền. Ví dụ, số admin dự phòng và lịch rà thành viên phải được nhóm thống nhất. Tên người duyệt và thời gian rà chỉ được ghi khi có hoạt động thật.
+**Cách 2 — Command line.** Thành viên mở PowerShell trên Windows rồi SSH vào VM. Sau khi thấy dấu nhắc Ubuntu, nhóm kiểm account, SSH và quyền thư mục. Các tài khoản được thử bằng cùng một dạng lệnh; chỉ thay tên hoặc đường dẫn.
 
-Khi thiếu quyền đọc, nhóm nêu rõ bước chưa thực hiện. Với ảnh Settings và terminal VM còn thiếu tệp gốc, nhóm giữ kết quả theo đầu ra đã nhận. Công việc bổ sung được ghi trong bảng kết quả.
+```bash
+ssh user@192.168.88.130
+sudo passwd -S TEN_TAI_KHOAN
+sudo -l -U TEN_TAI_KHOAN
+sudo -u TEN_TAI_KHOAN touch DUONG_DAN_TEP
+```
 
-Workflow Manual chỉ gồm các bước lớn dưới đây. Nhóm áp dụng cùng chu trình cho các mục có hướng dẫn Audit rõ.
+Các chữ in hoa là giá trị cần thay. Ví dụ, cisdeploy tạo được tệp trong thư mục triển khai, còn nobody bị từ chối. Sau khi sửa SSH, nhóm chạy kiểm tra cú pháp, reload dịch vụ và mở phiên đăng nhập mới.
+
+Kết thúc mỗi mục, nhóm ghi thao tác, đầu ra và điều kiện còn thiếu. Ảnh Settings/terminal phải chụp từ môi trường thật. Workflow Manual được dùng chung cho các mục trong bảng 3.2.
 
 ![Hình 2.1. Workflow Manual: chọn mục, kiểm tra, khắc phục và kiểm tra lại.](images/manual.png){width=95%}
 
@@ -232,47 +272,56 @@ Workflow Manual chỉ gồm các bước lớn dưới đây. Nhóm áp dụng c
 
 ## 2.2. Automated
 
-Nhóm tự động hóa các tác vụ lặp lại như kiểm hash, quét mã và xác minh chữ ký. Trước khi chạy, nhóm xác định đầu vào, phiên bản công cụ và điều kiện lỗi. Action được ghim bằng SHA; image và wheel có digest hoặc hash tương ứng.
+Nhóm tự động hóa các bước lặp lại bằng Python, shell và GitHub Actions. Python xử lý API, hash, dữ liệu JSON/CSV và kiểm thử. Shell gọi scanner hoặc OpenSSL. GitHub Actions sắp xếp bước chạy, kiểm quyền và lưu đầu ra. Nhóm không dùng Terraform hoặc Ansible trong lab này.
 
-Sau bước Audit, nhóm sửa nguồn hoặc cấu hình có phát hiện. Re-audit chạy lại cùng phép kiểm để so kết quả trước và sau. Với artifact, bản gốc phải xác minh được. Bản bị sửa và chữ ký sai phải bị từ chối.
+Đầu tiên, nhóm khóa đầu vào bằng SHA, digest hoặc wheel hash. Tiếp theo, script đọc cấu hình hoặc công cụ quét đối tượng. Khi có phát hiện, nhóm sửa nguồn/cấu hình rồi chạy lại cùng phép kiểm. Cuối cùng, nhóm đọc tệp kết quả để xác định việc đã kiểm chứng.
 
-Trường hợp registry cho thấy cần đọc kỹ đầu ra scanner. Lần quét filesystem đầu tiên không nhận diện binary Go. Nhóm chuyển sang quét rootfs và kiểm tra danh sách package. Lần quét này nhận diện 104 package và 8 HIGH. Sau khắc phục, kết quả còn 0 HIGH/CRITICAL ở thời điểm đo.
+Ví dụ, quét binary registry ban đầu không nhận diện package. Nhóm đổi sang rootfs và bổ sung bước kiểm danh mục. Bản quét đúng ghi 104 package, 8 HIGH; sau khắc phục còn 0 HIGH/CRITICAL.
 
 ![Hình 2.2. Workflow tự động hóa: kiểm đầu vào, quét, build, xác minh và xuất kết quả.](images/automated.png){width=95%}
 
-| Tool / step | Kết quả | Nội dung nhóm kiểm tra |
+| Tool / step | Kết quả | Cách nhóm xử lý |
 | --- | --- | --- |
-| Bandit / pip-audit | Lỗi mã và advisory | Đúng phạm vi Python và package đã khóa |
-| Trivy và kiểm kê package | CVE, image và binary | Danh sách package phải nhận diện đúng đối tượng |
-| OpenSSL và phép thử từ chối | Chữ ký và dữ liệu gốc | Bản sửa hoặc khóa sai phải thất bại |
-| JSON / CSV / SPDX / SARIF | Tệp kết quả | Đối chiếu số liệu, phạm vi và lỗi công cụ |
+| Python / GitHub API | JSON/CSV về cấu hình và quyền | Kiểm mã HTTP, kiểu dữ liệu và phân trang. |
+| Bandit / pip-audit / Trivy | Cảnh báo mã, package và image | So đối tượng quét, phiên bản và ngưỡng lỗi. |
+| OpenSSL / unit tests | Chữ ký và kết quả từ chối | Bản gốc hợp lệ; dữ liệu sửa hoặc khóa sai bị chặn. |
+| GitHub Actions artifacts | Tệp output theo run ID | Lưu rồi đọc nội dung để chốt từng mục. |
 
-Nhóm đọc nội dung tệp trước khi kết luận. CodeQL được kiểm tra bằng SARIF và đường truyền dữ liệu của cảnh báo. Các test hồi quy giúp phát hiện lỗi xử lý quyền, dữ liệu sửa và chữ ký sai. Kết quả từng công cụ được đưa vào bảng triển khai.
+Cú pháp chung là `python3 scripts/TEN_SCRIPT.py --output THU_MUC`. Nhóm thay script theo tác vụ cần chạy. Những tiêu chí Manual trong mục 1.2.3 vẫn cần người đánh giá ý nghĩa kết quả.
 
 \newpage
 
 ## 2.3. Remote automated
 
-Nhóm chạy các script trên GitHub-hosted runner bằng push hoặc thao tác chạy workflow thủ công. Các job chỉ dùng nhánh audit được phép. Trước tác vụ chính, nhóm kiểm repository ID, actor ID và người yêu cầu chạy lại. Checkout không lưu credential vào cấu hình Git.
+Nhóm có hai miền thực nghiệm: GitHub-hosted runner trên cloud và VM VMware ở máy thành viên. GitHub Actions tự động chạy trên runner. VM nhận lệnh qua SSH từ PowerShell và trả file bằng SCP; pipeline chưa điều khiển VM tự động.
 
-Token mặc định chỉ có quyền đọc nội dung. Riêng job CodeQL được ghi kết quả phân tích bảo mật. Nhóm đặt token trong biến môi trường và loại giá trị bí mật khỏi báo cáo đầu ra. Các job có thời hạn chạy và kho artifact theo từng phiên.
+**Luồng cloud.** Thành viên đẩy mã hoặc chọn Run workflow trên nhánh audit. Job kiểm repository, actor và nhánh trước khi checkout. Python gọi GitHub API bằng HTTPS GET; scanner và dịch vụ loopback chạy trên runner. Các bước cuối xuất JSON, CSV, SPDX, SARIF và gói xác minh.
 
-GitHub API cung cấp dữ liệu cho bước Audit. Nhóm dùng HTTPS GET, phiên bản API và timeout. Với danh sách dài, script đọc phân trang trước khi đếm. Nếu field thiếu hoặc API chặn đọc, nhóm ghi việc cần kiểm tra bằng Settings.
+Nhóm dùng trình duyệt hoặc GitHub CLI để khởi chạy và lấy kết quả. Với CLI đã đăng nhập, cú pháp chính là:
+
+```bash
+gh workflow run pipeline-io.yml --ref audit/remaining-free-integration
+gh run view RUN_ID --log
+gh run download RUN_ID --dir reports/remote
+```
+
+RUN_ID là số phiên chạy cần đối chiếu trong bảng 4.2. Nhóm chọn phiên chạy, xem log rồi tải artifact.
 
 ![Hình 2.3. Workflow từ xa: chạy nhánh audit, kiểm quyền, gọi API và thu artifact.](images/remote.png){width=95%}
 
-| Endpoint GET | Dữ liệu nhóm thu | Cách đối chiếu |
+| Hệ thống / công cụ | Bước xử lý | Đầu ra |
 | --- | --- | --- |
-| /repos/{owner}/{repo} | Metadata, nhánh mặc định | Đúng repository cần đánh giá |
-| /branches/{branch}/protection; /rulesets | Quy tắc nhánh | Đọc quyền truy cập và cấu hình hiệu lực |
-| /collaborators; org members | Vai trò, danh sách thành viên | Phân trang và đối chiếu phạm vi đọc |
-| /actions/permissions; /actions/runners | Quyền Actions và runner | Ghi mã HTTP nếu bị chặn |
+| Windows / trình duyệt, gh | Chọn nhánh, chạy workflow, tải kết quả | Run ID, log và artifact. |
+| Runner / Actions, Python, HTTPS | Checkout, gọi API, quét và kiểm thử | JSON / CSV / SPDX / SARIF. |
+| VM / SSH, SCP | Thành viên chạy lệnh lab và chuyển báo cáo | JSON VM và đầu ra terminal. |
 
-Nhóm tải artifact và đọc JSON, CSV hoặc SARIF để chốt kết quả. Các thay đổi mã được đẩy lên nhánh audit rồi chạy lại. VM VMware được vận hành riêng qua SSH từ Windows. Nhóm chuyển báo cáo VM bằng SCP, sau đó đối chiếu các phép kiểm trong tệp.
+Nhóm đọc quyền API trước khi kết luận. Metadata có thể đọc được trong khi protection hoặc invitations bị chặn. Khi thiếu quyền, nhóm ghi lý do và yêu cầu kiểm tra Settings. Luồng SSH/SCP của VM được tách khỏi luồng tự động trên cloud trong topology.
 
 \newpage
 
-![Hình 2.4. Mô hình thực nghiệm. Nét đứt thể hiện chuyển báo cáo VM bằng thao tác thủ công.](images/topology.png){width=95%}
+![Hình 2.4. Topology: máy thật/VMware, GitHub Organization và GitHub Actions. Nét đứt là chuyển bằng chứng thủ công.](images/topology.png){width=95%}
+
+\newpage
 
 ![Hình 2.5. Kết quả quét 104 package: 8 HIGH trước, 0 HIGH/CRITICAL sau. Nguồn: runs 44127179185 và 44130146471.](images/registry-remediation.png){width=95%}
 
@@ -286,7 +335,7 @@ Nhóm tải artifact và đọc JSON, CSV hoặc SARIF để chốt kết quả.
 
 ![Hình 2.8. Run 44077094456, commit 4003107: hai job thành công và có artifact trên Organization.](images/organization-run.jpg){width=95%}
 
-# 3. Triển khai
+# III. Triển khai
 
 ## 3.1. Mô hình (Topology)
 
@@ -323,29 +372,38 @@ Thành viên dùng SSH từ Windows qua mạng NAT. Tài khoản user giữ quy�
 
 Nhóm dùng cisdeploy tạo tệp thành công, còn nobody bị từ chối. Sau reload SSH, user và cisdeploy đăng nhập được từ phiên mới. Root có trạng thái mật khẩu L; user và cisdeploy có trạng thái P. Nhóm ghi nhận PermitRootLogin no và PermitEmptyPasswords no.
 
+### 3.1.5. GitHub API và nguồn đầu vào
+
+Runner gọi GitHub REST API bằng HTTPS GET để đọc metadata, quyền và quy tắc. Nhóm kiểm mã HTTP và phạm vi dữ liệu trả về. Nguồn đầu vào bên ngoài gồm GitHub Actions, PyPI, Go modules và container image. Các đầu vào chính được ghim bằng phiên bản, SHA hoặc hash trước khi dùng.
+
+### 3.1.6. Kho kết quả và tổng hợp bằng chứng
+
+GitHub Actions artifacts lưu kết quả theo phiên chạy. Báo cáo từ VM được chuyển bằng SCP về máy thành viên. Nhóm đối chiếu hai nguồn để lập bảng tiêu chí. Sơ đồ không có luồng runner tự triển khai vào VM; nhánh thực nghiệm cloud và thao tác VM được quản lý riêng.
+
 ## 3.2. Triển khai Manual
 
-Nhóm ghi thao tác, kết quả và trạng thái theo bằng chứng hiện có. Hình 2.6–2.8 là ảnh workflow; ảnh Settings và terminal VM cần được bổ sung riêng.
+Nhóm ghi thao tác, kết quả và mức đã kiểm chứng. “Đạt một phần” chỉ kết quả thành phần; dấu “—” không phải kết luận đạt hoặc không đạt. Hình 2.6–2.8 là ảnh workflow; ảnh Settings và terminal VM cần được bổ sung riêng.
 
-| Mục | Kết quả | Đạt hay không đạt |
-| --- | --- | --- |
-| 1.2.1 — SECURITY.md | Nhóm có policy; kênh báo cáo riêng tư còn cần địa chỉ cụ thể. | Đạt một phần |
-| 1.2.3 — Xóa/chuyển repository | Nhóm thấy tùy chọn cho thành viên xóa/chuyển repository đã tắt; cần ảnh sau lưu. | Chưa làm |
-| 1.2.4 — Xóa issue | Tùy chọn cho repo admin xóa issue đã tắt theo quan sát; nhóm cần ảnh gốc. | Chưa làm |
-| 1.2.6 — Visibility | Nhóm hạn chế đổi visibility; chưa kiểm tra sự kiện đổi visibility và kỳ rà. | Chưa làm |
-| 1.3.2 — Tạo team | Nhóm thấy quyền tạo team đã tắt; cần ảnh sau tải lại và phép thử quyền. | Chưa làm |
-| 1.3.4/1.3.5 — MFA | Ba người xác nhận đã bật; dtk0106 chưa hoàn tất; nhóm cần kiểm cơ chế bắt buộc. | Chưa làm |
-| 1.3.7 — Admin repository | Nhóm thấy một Admin; quyết định quản trị viên dự phòng còn thiếu. | Chưa làm |
-| 1.3.8 — Quyền nền | Nhóm đổi thành No permission; cần ảnh sau tải lại và kiểm tra quyền kế thừa. | Chưa làm |
-| 1.4.1 — Phê duyệt ứng dụng | Nhóm rà giới hạn cài app; hồ sơ phê duyệt và trạng thái sau lưu còn thiếu. | Đạt một phần |
-| 1.4.2 — Rà ứng dụng | Nhóm kiểm tra ứng dụng đang dùng; lịch rà và tiêu chí gỡ chưa được duyệt. | Đạt một phần |
-| 1.4.3 — Quyền ứng dụng | ChatGPT Codex Connector giới hạn vào finalrepo; nhóm cần giải trình quyền issues và PR. | Đạt một phần |
-| 1.4.4 — Webhook | Nhóm chưa cài hook GitHub; receiver riêng đã qua 11 phép thử HTTPS. | Đạt một phần |
-| 1.5.1 — Secret scanning | Nhóm bật Secret Protection và Push protection; lịch sử credential còn cần xử lý. | Đạt một phần |
-| 1.5.5/3.2.2 — Dependency alerts | Nhóm bật Dependency graph và Dependabot alerts; hai quy tắc tự đóng cảnh báo đã tắt. | Đạt một phần |
-| 3.1.4 — SBOM GitHub | Nhóm xuất SPDX 2.3: 10 package, gồm repository và 9 mục action/phiên bản của 8 action repo. | Đạt một phần |
-| 5.2.3 — Quyền triển khai | cisdeploy không sudo, thư mục mode 700; nobody bị từ chối và phiên SSH hợp lệ thành công. | Đạt một phần |
-| 5.2.4 — Mật khẩu | Root bị khóa mật khẩu và chặn SSH; nhóm cần xác nhận mật khẩu user và tài khoản dịch vụ. | Đạt một phần |
+| Mục | Kết quả | Đạt | Không đạt / Chưa làm |
+| --- | --- | --- | --- |
+| 1.2.1 — SECURITY.md | Nhóm có policy; kênh báo cáo riêng tư còn cần địa chỉ cụ thể. | Đạt một phần | — |
+| 1.2.3 — Xóa/chuyển repository | Nhóm thấy tùy chọn cho thành viên xóa/chuyển repository đã tắt; cần ảnh sau lưu. | — | Chưa làm |
+| 1.2.4 — Xóa issue | Tùy chọn cho repo admin xóa issue đã tắt theo quan sát; nhóm cần ảnh gốc. | — | Chưa làm |
+| 1.2.6 — Visibility | Nhóm hạn chế đổi visibility; chưa kiểm tra sự kiện đổi visibility và kỳ rà. | — | Chưa làm |
+| 1.3.2 — Tạo team | Nhóm thấy quyền tạo team đã tắt; cần ảnh sau tải lại và phép thử quyền. | — | Chưa làm |
+| 1.3.4/1.3.5 — MFA | Ba người xác nhận đã bật; dtk0106 chưa hoàn tất; nhóm cần kiểm cơ chế bắt buộc. | — | Chưa làm |
+| 1.3.7 — Admin repository | Nhóm thấy một Admin; quyết định quản trị viên dự phòng còn thiếu. | — | Chưa làm |
+| 1.3.8 — Quyền nền | Nhóm đổi thành No permission; cần ảnh sau tải lại và kiểm tra quyền kế thừa. | — | Chưa làm |
+| 1.4.1 — Phê duyệt ứng dụng | Nhóm rà giới hạn cài app; hồ sơ phê duyệt và trạng thái sau lưu còn thiếu. | Đạt một phần | — |
+| 1.4.2 — Rà ứng dụng | Nhóm kiểm tra ứng dụng đang dùng; lịch rà và tiêu chí gỡ chưa được duyệt. | Đạt một phần | — |
+| 1.4.3 — Quyền ứng dụng | ChatGPT Codex Connector giới hạn vào finalrepo; nhóm cần giải trình quyền issues và PR. | Đạt một phần | — |
+| 1.4.4 — Webhook | Nhóm chưa cài hook GitHub; receiver riêng đã qua 11 phép thử HTTPS. | Đạt một phần | — |
+| 1.5.1 — Secret scanning | Nhóm bật Secret Protection và Push protection; lịch sử credential còn cần xử lý. | Đạt một phần | — |
+| 1.5.5/3.2.2 — Dependency alerts | Nhóm bật Dependency graph và Dependabot alerts; hai quy tắc tự đóng cảnh báo đã tắt. | Đạt một phần | — |
+| 3.1.4 — SBOM GitHub | Nhóm xuất SPDX 2.3: 10 package, gồm repository và 9 mục action/phiên bản của 8 action repo. | Đạt một phần | — |
+| 5.2.3 — Quyền triển khai | cisdeploy không sudo, thư mục mode 700; nobody bị từ chối và phiên SSH hợp lệ thành công. | Đạt một phần | — |
+| 5.2.4 — Mật khẩu | Root bị khóa mật khẩu và chặn SSH; nhóm cần xác nhận mật khẩu user và tài khoản dịch vụ. | Đạt một phần | — |
+
 
 ## 3.3. Triển khai tự động hóa
 
@@ -396,7 +454,7 @@ python3 scripts/registry_integration.py --registry /duong-dan/registry-da-xac-mi
 
 Nhóm lưu JSON, CSV, SPDX và SARIF trong reports/ để đối chiếu từng phép kiểm.
 
-# 4. Kết quả
+# IV. Kết quả
 
 ## 4.1. Cách ghi kết quả
 
@@ -436,16 +494,32 @@ Nhóm gắn kết quả với các mốc trong bảng. Số 71 test và bốn wo
 | Wheel và giấy phép | 32/32 hash khớp; 20 giấy phép cần xét thủ công. | Metadata PyPI và danh mục công cụ. |
 | Actions | ID của chín action và chủ sở hữu không đổi. | Bản đối chiếu ID trong evidence. |
 
-## 4.3. Thống kê
+## 4.3. Thống kê và KPI
 
-Nhóm có bằng chứng thành phần cho 82 tiêu chí. 38 mục còn lại cần kiểm tra thực tế, quyền truy cập hoặc tính năng Enterprise.
+Nhóm đếm kết quả tiêu chí từ COVERAGE.csv. Kết quả công cụ và số test được thống kê riêng.
 
 | Phạm vi | Đạt | Đạt một phần | Không đạt | Chưa làm |
 | --- | --- | --- | --- | --- |
 | Toàn bộ 120 tiêu chí | 0 | 82 | 0 | 38 |
 | 48 tiêu chí Free được chọn | 0 | 34 | 0 | 14 |
 
-Tổng bảng là 120 mục; nhóm Free có 48 mục. Nhóm chưa có mục Đạt. Các mục có quan sát ban đầu nhưng thiếu ảnh hoặc kiểm tra hiệu lực vẫn nêu kết quả quan sát trong ghi chú.
+Bảng KPI dưới đây nêu tử số, mẫu số và ý nghĩa. Phần trăm có bằng chứng thành phần không phải tỷ lệ đạt benchmark.
+
+| KPI | Kết quả / Tỷ lệ | Ý nghĩa |
+| --- | --- | --- |
+| Danh mục được đối chiếu | 120/120 — 100.00% | Số dòng đã có trong bảng 120 tiêu chí. |
+| Tiêu chí có kết quả thành phần | 82/120 — 68.33% | Có phần đã kiểm chứng; không phải tỷ lệ đạt toàn tiêu chí. |
+| Tiêu chí còn cần kiểm chứng | 38/120 — 31.67% | Ghi Chưa làm cùng lý do ở bảng 4.4. |
+| Tiêu chí đạt đầy đủ | 0/120 — 0.00% | Chưa có bằng chứng toàn tiêu chí để ghi Đạt. |
+| Kết quả thành phần trong nhóm Free | 34/48 — 70.83% | Phạm vi 48 mục được chọn; 14 mục còn Chưa làm. |
+| Manual có công cụ hỗ trợ | 58/118 — 49.15% | Đếm mã duy nhất tại 1.2.3; giữ phân loại Manual của CIS. |
+| Unit/negative tests thành công | 71/71 — 100.00% | Kết quả kiểm thử mã, không phải 71 tiêu chí CIS. |
+| Phép thử webhook HTTPS | 11/11 — 100.00% | Dữ liệu thử qua loopback. |
+| Phép thử registry HTTPS | 23/23 — 100.00% | Hai phiên bản trong registry tạm. |
+| Phép thử trong báo cáo VM | 29/29 — 100.00% | 5 supply chain, 13 registry mô hình và 11 webhook. |
+| Wheel hash khớp | 32/32 — 100.00% | Chỉ 32 wheel trong bộ công cụ đã khóa. |
+| ID action/chủ sở hữu không đổi | 9/9 — 100.00% | Chín repository action được theo dõi. |
+| SBOM supplier đã xác minh | 0/43 — 0.00% | 43 đầu vào trực tiếp còn thiếu tài liệu supplier phù hợp. |
 
 ## 4.4. Đối chiếu 120 tiêu chí
 

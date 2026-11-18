@@ -1,0 +1,59 @@
+cis_id,cis_assessment,content,tool,automated_scope
+1.1.1,Manual,Quản lý mã trong Git,Git / project_bundle.py,Đóng gói theo commit và kiểm tra mã nguồn trong gói.
+1.1.8,Manual,"Nhánh, fork và repository",inventory_governance.py / inventory_organization.py,Thu danh sách có phân trang; quyết định xóa hoặc archive vẫn do người quản trị.
+1.2.5,Manual,"Nhánh, fork và repository",inventory_governance.py / inventory_organization.py,Thu danh sách có phân trang; quyết định xóa hoặc archive vẫn do người quản trị.
+1.2.7,Manual,"Nhánh, fork và repository",inventory_governance.py / inventory_organization.py,Thu danh sách có phân trang; quyết định xóa hoặc archive vẫn do người quản trị.
+1.1.19,Manual,Thay đổi quy tắc nhánh,audit_pending_free.py,Lưu cấu hình đọc được và so digest; còn cần audit log thật.
+1.3.1,Manual,Thành viên và quản trị viên,GitHub API / Python,Thu dữ liệu quyền nhìn thấy; các trường bị chặn cần kiểm tra Settings.
+1.3.3,Manual,Thành viên và quản trị viên,GitHub API / Python,Thu dữ liệu quyền nhìn thấy; các trường bị chặn cần kiểm tra Settings.
+2.1.11,Manual,Thành viên và quản trị viên,GitHub API / Python,Thu dữ liệu quyền nhìn thấy; các trường bị chặn cần kiểm tra Settings.
+1.3.13,Manual,Thay đổi mã nhạy cảm,code_change_monitor.py,Ghi đường dẫn thay đổi và phát hiện một số mẫu workflow nguy hiểm.
+1.4.4,Manual,Webhook bảo mật,webhook_integration.py,"Thử HTTPS, HMAC và các yêu cầu phải bị từ chối trên loopback."
+2.1.10,Manual,Webhook bảo mật,webhook_integration.py,"Thử HTTPS, HMAC và các yêu cầu phải bị từ chối trên loopback."
+1.5.1,Manual,Dữ liệu nhạy cảm trong mã,Gitleaks,Quét cây mã và thử dữ liệu nhạy cảm mẫu.
+1.1.18,Manual,An toàn workflow,Actionlint / Zizmor,Quét chỉ dẫn pipeline và ghi kết quả quét của nhánh audit.
+1.5.2,Manual,An toàn workflow,Actionlint / Zizmor,Quét chỉ dẫn pipeline và ghi kết quả quét của nhánh audit.
+2.3.6,Manual,An toàn workflow,Actionlint / Zizmor,Quét chỉ dẫn pipeline và ghi kết quả quét của nhánh audit.
+2.3.7,Manual,An toàn workflow,Actionlint / Zizmor,Quét chỉ dẫn pipeline và ghi kết quả quét của nhánh audit.
+1.5.3,Manual,Cấu hình IaC,Trivy,Quét cấu hình và image thuộc phạm vi lab.
+5.1.5,Manual,Cấu hình IaC,Trivy,Quét cấu hình và image thuộc phạm vi lab.
+1.5.4,Manual,Lỗ hổng trong mã Python,Bandit / CodeQL,Quét mã Python và đối chiếu cảnh báo trong JSON/SARIF.
+1.5.5,Manual,Lỗ hổng package và image,pip-audit / Trivy,"Đối chiếu phiên bản, danh sách package và lỗ hổng đã biết."
+2.1.8,Manual,Lỗ hổng package và image,pip-audit / Trivy,"Đối chiếu phiên bản, danh sách package và lỗ hổng đã biết."
+2.2.6,Manual,Lỗ hổng package và image,pip-audit / Trivy,"Đối chiếu phiên bản, danh sách package và lỗ hổng đã biết."
+3.2.2,Manual,Lỗ hổng package và image,pip-audit / Trivy,"Đối chiếu phiên bản, danh sách package và lỗ hổng đã biết."
+1.5.6,Manual,Giấy phép phần mềm,audit_python_toolchain.py,Thu metadata giấy phép; các trường hợp cần duyệt được ghi riêng.
+3.2.3,Manual,Giấy phép phần mềm,audit_python_toolchain.py,Thu metadata giấy phép; các trường hợp cần duyệt được ghi riêng.
+2.1.3,Manual,Thông tin môi trường build,record_runtime.py,"Lưu thông tin OS, công cụ và phiên chạy được cho phép xuất."
+2.1.5,Manual,Người được chạy build,GitHub Actions / build_access_guard.py,"Kiểm repository, actor, nhánh và người yêu cầu chạy lại."
+2.1.6,Manual,Người được chạy build,GitHub Actions / build_access_guard.py,"Kiểm repository, actor, nhánh và người yêu cầu chạy lại."
+2.3.5,Manual,Người được chạy build,GitHub Actions / build_access_guard.py,"Kiểm repository, actor, nhánh và người yêu cầu chạy lại."
+2.2.4,Manual,Cô lập container mẫu,Docker / lệnh kiểm tra runtime,"Kiểm mạng, quyền root, capabilities và khả năng ghi của container."
+2.2.5,Manual,Cô lập container mẫu,Docker / lệnh kiểm tra runtime,"Kiểm mạng, quyền root, capabilities và khả năng ghi của container."
+2.3.3,Manual,Lưu kết quả build,GitHub Actions artifacts,Đưa kết quả ra kho artifact riêng với phiên chạy.
+2.4.1,Manual,Ký artifact,OpenSSL / project_bundle.py,Ký gói kết quả và thử dữ liệu hoặc khóa không đúng.
+4.1.1,Manual,Ký artifact,OpenSSL / project_bundle.py,Ký gói kết quả và thử dữ liệu hoặc khóa không đúng.
+2.1.2,Manual,Khóa phiên bản đầu vào,SHA / digest / wheel hash,Cố định các đầu vào chính và kiểm hash trước dùng.
+2.4.2,Manual,Khóa phiên bản đầu vào,SHA / digest / wheel hash,Cố định các đầu vào chính và kiểm hash trước dùng.
+3.1.7,Manual,Khóa phiên bản đầu vào,SHA / digest / wheel hash,Cố định các đầu vào chính và kiểm hash trước dùng.
+2.4.3,Manual,Xác minh dependency,Checksum / metadata nguồn,Đối chiếu các đầu vào đã chọn với dữ liệu nguồn tin cậy.
+3.1.1,Manual,Xác minh dependency,Checksum / metadata nguồn,Đối chiếu các đầu vào đã chọn với dữ liệu nguồn tin cậy.
+2.4.4,Manual,Artifact tái lập,supply_chain_lab.py,Tạo artifact hai lần từ cùng đầu vào rồi so byte.
+2.4.5,Manual,Tạo và ký SBOM,Python / SPDX / OpenSSL,Sinh và xác minh SBOM cho phạm vi phần mềm đã chọn.
+2.4.6,Manual,Tạo và ký SBOM,Python / SPDX / OpenSSL,Sinh và xác minh SBOM cho phạm vi phần mềm đã chọn.
+3.1.6,Manual,Tạo và ký SBOM,Python / SPDX / OpenSSL,Sinh và xác minh SBOM cho phạm vi phần mềm đã chọn.
+3.1.2,Manual,SBOM của nhà cung cấp,supplier_intake.py,Lập danh sách đầu vào và ghi rõ tài liệu supplier còn thiếu.
+3.1.3,Manual,Thông tin nguồn gốc,Provenance / signed manifest,Gắn thông tin mã nguồn và hash vào gói kết quả có chữ ký.
+4.4.1,Manual,Thông tin nguồn gốc,Provenance / signed manifest,Gắn thông tin mã nguồn và hash vào gói kết quả có chữ ký.
+3.1.4,Manual,Quan hệ dependency,dependency_graph.py,"Xuất nút, cạnh và phạm vi quan hệ giữa các package."
+3.1.8,Manual,Tuổi phiên bản package,Metadata API / Python,Tính tuổi phiên bản để hỗ trợ đối chiếu yêu cầu trên 60 ngày.
+3.2.4,Manual,Chủ sở hữu action,monitor_action_owners.py,So ID repository và chủ sở hữu với danh sách đã lưu.
+4.1.2,Manual,Mã hóa artifact,OpenSSL / supply_chain_lab.py,"Mã hóa, giải mã và từ chối ciphertext bị sửa trong lab."
+4.2.2,Manual,Tài khoản registry,registry_integration.py,Thử quyền publisher và từ chối truy cập ẩn danh.
+4.2.5,Manual,Tài khoản registry,registry_integration.py,Thử quyền publisher và từ chối truy cập ẩn danh.
+4.3.2,Manual,Chữ ký các phiên bản,HTTPS registry / OpenSSL,"Tải hai phiên bản thử và xác minh dữ liệu, chữ ký."
+5.1.6,Manual,Manifest triển khai,Hash / lab-inputs.lock.json,Đối chiếu phiên bản và hash cấu hình demo trước triển khai.
+5.1.7,Manual,Manifest triển khai,Hash / lab-inputs.lock.json,Đối chiếu phiên bản và hash cấu hình demo trước triển khai.
+5.2.1,Manual,Triển khai tự động,supply_chain_lab.py,Đưa artifact đã xác minh vào thư mục tạm rồi chạy thử.
+5.2.3,Manual,Hỗ trợ rà host,deployment_preflight.py,Thu thông tin account/SSH chỉ đọc; VM còn được kiểm bằng lệnh thủ công.
+5.2.4,Manual,Hỗ trợ rà host,deployment_preflight.py,Thu thông tin account/SSH chỉ đọc; VM còn được kiểm bằng lệnh thủ công.

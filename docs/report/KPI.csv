@@ -1,0 +1,14 @@
+kpi,observed,denominator,percent,meaning
+Danh mục được đối chiếu,120,120,100.00,Số dòng đã có trong bảng 120 tiêu chí.
+Tiêu chí có kết quả thành phần,82,120,68.33,Có phần đã kiểm chứng; không phải tỷ lệ đạt toàn tiêu chí.
+Tiêu chí còn cần kiểm chứng,38,120,31.67,Ghi Chưa làm cùng lý do ở bảng 4.4.
+Tiêu chí đạt đầy đủ,0,120,0.00,Chưa có bằng chứng toàn tiêu chí để ghi Đạt.
+Kết quả thành phần trong nhóm Free,34,48,70.83,Phạm vi 48 mục được chọn; 14 mục còn Chưa làm.
+Manual có công cụ hỗ trợ,58,118,49.15,Đếm mã duy nhất tại 1.2.3; giữ phân loại Manual của CIS.
+Unit/negative tests thành công,71,71,100.00,"Kết quả kiểm thử mã, không phải 71 tiêu chí CIS."
+Phép thử webhook HTTPS,11,11,100.00,Dữ liệu thử qua loopback.
+Phép thử registry HTTPS,23,23,100.00,Hai phiên bản trong registry tạm.
+Phép thử trong báo cáo VM,29,29,100.00,"5 supply chain, 13 registry mô hình và 11 webhook."
+Wheel hash khớp,32,32,100.00,Chỉ 32 wheel trong bộ công cụ đã khóa.
+ID action/chủ sở hữu không đổi,9,9,100.00,Chín repository action được theo dõi.
+SBOM supplier đã xác minh,0,43,0.00,43 đầu vào trực tiếp còn thiếu tài liệu supplier phù hợp.

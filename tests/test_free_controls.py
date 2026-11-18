@@ -16,9 +16,23 @@ import audit_free_controls
 import monitor_action_owners
 import project_bundle
 import inventory_governance
+import audit_dependencies
 
 
 class FreeEvidenceTests(unittest.TestCase):
+    def test_subdirectory_actions_are_inventoried_without_losing_repository_identity(self):
+        sha = 'a' * 40
+        text = f'  uses: github/codeql-action/init@{sha} # v4.39.3\n  uses: github/codeql-action/analyze@{sha} # v4.39.3\n'
+        rows = audit_dependencies.parse_action_uses(text)
+        self.assertEqual({x['repository'] for x in rows}, {'github/codeql-action'})
+        self.assertEqual({x['entrypoint'] for x in rows}, {'init', 'analyze'})
+        self.assertTrue(all(x['ref'] == sha and x['tag_hint'] == 'v4.39.3' for x in rows))
+
+    def test_quoted_and_unpinned_remote_uses_are_not_silently_dropped(self):
+        rows = audit_dependencies.parse_action_uses('  - uses: "github/codeql-action/init@v4"\n  - uses: ./local\n')
+        self.assertEqual(len(rows), 1)
+        self.assertEqual(rows[0]['ref'], 'v4')
+
     def test_mid_pagination_denial_retains_partial_and_never_claims_complete(self):
         replies = iter([{'http': 200, 'data': [{}] * 100}, {'http': 403}])
         items, complete, http = inventory_governance.pages('a/b', '/branches', None, fetch=lambda *args: next(replies))

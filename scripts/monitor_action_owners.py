@@ -7,13 +7,14 @@ import os
 from pathlib import Path
 import re
 import audit_github
+from audit_dependencies import parse_action_uses
 
 ROOT = Path(__file__).resolve().parents[1]
 
 
 def actions():
-    pattern = re.compile(r'^\s*uses:\s*([A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+)@[a-f0-9]{40}\b', re.M)
-    return sorted({m for path in (ROOT / '.github/workflows').glob('*.yml') for m in pattern.findall(path.read_text())})
+    return sorted({row['repository'] for path in (ROOT / '.github/workflows').glob('*.yml')
+                   for row in parse_action_uses(path.read_text()) if re.fullmatch('[a-f0-9]{40}', row['ref'])})
 
 
 def compare(expected, observed):

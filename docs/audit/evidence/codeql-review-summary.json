@@ -38,5 +38,15 @@
     "SAST evidence for Python on this audit branch only; not a full CIS compliance verdict",
     "Code scanning alert-detail API returns HTTP 403 for the connector; states in UI require owner observation",
     "Historical source snapshots and signed exports remain unchanged"
-  ]
+  ],
+  "action_inventory_followup": {
+    "local_tests": 54,
+    "action_repositories": 9,
+    "ownership_pairs_unchanged": 9,
+    "subdirectory_actions_recognized": [
+      "github/codeql-action/init",
+      "github/codeql-action/analyze"
+    ],
+    "note": "Follow-up inventory tests supplement the 52-test CodeQL-fix snapshot above; no compliance state upgraded."
+  }
 }

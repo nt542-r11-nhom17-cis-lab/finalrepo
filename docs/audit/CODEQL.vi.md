@@ -29,3 +29,7 @@ Workflow giữ SARIF trong Actions artifact một ngày để đọc data-flow k
 Code được phân tích lại: `1ce411fba512ccce4b7d0261d5020e400c348850`. Run trước: [44149453062](https://github.com/nt542-r11-nhom17-cis-lab/finalrepo/actions/runs/44149453062); run sau: [44213133290](https://github.com/nt542-r11-nhom17-cis-lab/finalrepo/actions/runs/44213133290). Đã tải và đọc SARIF, không suy kết quả từ biểu tượng workflow xanh. Hash catalog và thông tin kiểm tra lưu trong [codeql-review-summary.json](evidence/codeql-review-summary.json).
 
 Đây là xử lý cảnh báo nhầm đối với định danh công khai và bổ sung kiểm chứng an toàn dữ liệu, không phải bằng chứng đã thu hồi một credential thật. Kết quả chỉ thuộc Python và tập query đã chạy trên nhánh audit. Mục 1.5.4 tiếp tục PARTIAL; không tự kết luận đạt toàn benchmark. Main, quyền thành viên, Enterprise và các gói bằng chứng đã ký không bị thay đổi.
+
+## Kiểm kê action khi tích hợp CodeQL
+
+Parser inventory được bổ sung hỗ trợ action ở thư mục con, có dấu nháy và ref chưa ghim SHA. Hai entrypoint CodeQL init/analyze được giữ riêng nhưng cùng quy về repository github/codeql-action để kiểm tra numeric repository/owner IDs. Kiểm thử local bổ sung đạt tổng 54 tests; collector nhận diện chín repository action và đối chiếu 9/9 cặp owner không đổi. Tag không ghim SHA vẫn được inventory, không bị bỏ qua hoặc coi là đã khóa. Trạng thái tuân thủ của các tiêu chí không tự được nâng chỉ nhờ thay đổi parser.

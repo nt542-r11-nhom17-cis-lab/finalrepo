@@ -11,19 +11,35 @@ import audit_github
 ROOT=Path(__file__).resolve().parents[1]
 
 
+def parse_action_uses(text):
+    """Inventory static remote uses, including subdirectory actions such as CodeQL."""
+    pattern = re.compile(
+        r'''^[ \t]*(?:-[ \t]+)?uses:[ \t]*(?P<quote>['"]?)(?P<repo>[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+)'''
+        r'''(?:/(?P<entrypoint>[A-Za-z0-9_./-]+))?@(?P<ref>[A-Za-z0-9_.-]+)(?P=quote)[ \t]*(?:\#[ \t]*(?P<comment>.*))?$''',
+        re.M)
+    rows = []
+    for match in pattern.finditer(text):
+        hint = re.match(r'(v[0-9][A-Za-z0-9_.-]*)(?:[ \t]|$)', match['comment'] or '')
+        rows.append({'repository': match['repo'], 'entrypoint': match['entrypoint'] or '',
+                     'ref': match['ref'], 'tag_hint': hint[1] if hint else None})
+    return rows
+
+
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--output',default='reports/dependencies')
     args=parser.parse_args()
     token=os.environ.get('GH_TOKEN') or os.environ.get('GITHUB_TOKEN')
     refs={}
-    pattern=re.compile(r'^\s*uses:\s*([A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+)@([A-Za-z0-9_.-]+)(?:\s*#\s*(v[0-9][A-Za-z0-9_.-]*))?\s*$',re.M)
     for path in sorted((ROOT/'.github/workflows').glob('*.yml')):
-        for match in pattern.finditer(path.read_text()):
-            action,ref,tag=match.groups()
+        for parsed in parse_action_uses(path.read_text()):
+            action,ref,tag=parsed['repository'],parsed['ref'],parsed['tag_hint']
             key=action+'@'+ref
-            item=refs.setdefault(key,{'action':action,'ref':ref,'tag_hint':tag,'files':[]})
-            item['files'].append(path.name)
+            item=refs.setdefault(key,{'action':action,'ref':ref,'tag_hint':tag,'files':[], 'entrypoints':[]})
+            if path.name not in item['files']:
+                item['files'].append(path.name)
+            if parsed['entrypoint'] not in item['entrypoints']:
+                item['entrypoints'].append(parsed['entrypoint'])
     now=datetime.datetime.now(datetime.timezone.utc)
     rows=[]
     for item in refs.values():

@@ -26,10 +26,10 @@ def public_signing_digest(public_pem):
     return sha(run('openssl', 'pkey', '-pubin', '-in', str(public_pem), '-outform', 'DER'))
 
 
-def verify(directory, trusted_fingerprint):
+def verify(directory, expected_public_digest_sha256):
     """The fingerprint must arrive through an independently reviewed run/log channel."""
     out = Path(directory)
-    if public_signing_digest(out / 'public.pem') != trusted_fingerprint:
+    if public_signing_digest(out / 'public.pem') != expected_public_digest_sha256:
         raise ValueError('Signing key differs from trusted fingerprint')
     run('openssl', 'dgst', '-sha256', '-verify', str(out / 'public.pem'),
         '-signature', str(out / 'manifest.sig'), str(out / 'manifest.json'))
@@ -82,23 +82,23 @@ def generate(out):
         key.chmod(0o600)
         run('openssl', 'pkey', '-in', str(key), '-pubout', '-out', str(out / 'public.pem'))
         run('openssl', 'dgst', '-sha256', '-sign', str(key), '-out', str(out / 'manifest.sig'), str(out / 'manifest.json'))
-    trusted = public_signing_digest(out / 'public.pem')
-    verify(out, trusted)
+    public_digest_sha256 = public_signing_digest(out / 'public.pem')
+    verify(out, public_digest_sha256)
     # Exercise a rejected payload without leaving modified evidence behind.
     original = (out / 'source.zip').read_bytes()
     try:
         (out / 'source.zip').write_bytes(original + b'tampered')
         try:
-            verify(out, trusted)
+            verify(out, public_digest_sha256)
         except ValueError:
             rejected = True
         else:
             raise RuntimeError('Tampered payload accepted')
     finally:
         (out / 'source.zip').write_bytes(original)
-    verify(out, trusted)
+    verify(out, public_digest_sha256)
     result = {'scope': manifest['scope'], 'commit': commit, 'payloads_verified': len(PAYLOADS),
-              'tampered_payload_rejected': rejected, 'signer_fingerprint_sha256_der': trusted,
+              'tampered_payload_rejected': rejected, 'signer_fingerprint_sha256_der': public_digest_sha256,
               'private_key_exported': False, 'overall_cis': 'PARTIAL'}
     (out / 'verification.json').write_text(json.dumps(result, indent=2) + '\n')
     print(json.dumps(result))

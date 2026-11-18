@@ -18,3 +18,5 @@ Review thay đổi: tác giả tạo PR vào nhánh sandbox; Vương và Hiệp 
 Mẫu biên bản mỗi kỳ: thời gian + phạm vi + commit/report hash + người rà + tài nguyên + phát hiện + quyết định/ngoại lệ + người phê duyệt + ngày rà tiếp. Chưa điền tên người rà hoặc chữ ký nếu người đó chưa thực hiện. Bằng chứng chứa password, token, email riêng, hook endpoint hoặc recovery code không được commit.
 
 Điều kiện chuyển từ dự thảo sang áp dụng: nhóm chọn người chịu trách nhiệm/phê duyệt từng phạm vi và xác nhận nhịp rà; lưu biên bản kỳ đầu có bằng chứng thực. Không suy tài liệu này thành đạt các tiêu chí định kỳ.
+
+Công cụ hỗ trợ rà hiện có: audit_pending_free.py (GET evidence), code_change_monitor.py (code/rule-review support), supplier_intake.py (missing supplier evidence), deployment_preflight.py (read-only host preflight). Không thay việc người được giao thực hiện/phê duyệt kỳ rà. Xem PENDING-FREE.vi.md để phân biệt kết quả đo và phần còn thiếu.

@@ -14,6 +14,8 @@ concurrency:
 jobs:
   verify-local-services:
     name: Verify isolated TLS webhook and registry
+    if: >-
+      github.repository_id == '1461201903' && startsWith(github.ref, 'refs/heads/audit/') && contains(fromJSON('["357749923","234109911","243073680"]'), github.actor_id) && contains(fromJSON('["hieune-ui","Vuongdlx","HiepTran01"]'), github.triggering_actor)
     runs-on: ubuntu-24.04
     timeout-minutes: 15
     steps:
@@ -21,6 +23,13 @@ jobs:
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
+          fetch-depth: 2
+
+      - name: Require audited build execution identity
+        run: python3 scripts/build_access_guard.py
+
+      - name: Record sensitive code changes and reject selected workflow risks
+        run: python3 scripts/code_change_monitor.py
 
       - name: Verify policy and failure-path regressions
         run: python3 -m unittest discover -s tests -v
@@ -52,6 +61,14 @@ jobs:
         if: ${{ !cancelled() }}
         run: python3 scripts/verify_registry_scan.py
 
+      - name: Collect pending Free control evidence without administrative writes
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          python3 scripts/audit_pending_free.py --previous docs/audit/evidence/pending-free-baseline.json
+          python3 scripts/supplier_intake.py
+          python3 scripts/deployment_preflight.py
+
       - name: Inventory repositories and access without changing settings
         if: ${{ !cancelled() }}
         env:
@@ -64,6 +81,11 @@ jobs:
         with:
           name: remaining-integration-${{ github.run_id }}
           path: |
+            reports/pending-free/results.json
+            reports/supplier-intake/results.json
+            reports/deployment-preflight/results.json
+            reports/build-access/results.json
+            reports/code-monitor/results.json
             reports/vm-evidence/results.json
             reports/webhook-integration/results.json
             reports/registry-integration/results.json

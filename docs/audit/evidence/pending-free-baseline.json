@@ -1,0 +1,153 @@
+{
+  "checked_at": "2026-11-18T06:33:42.787316+00:00",
+  "repository": "nt542-r11-nhom17-cis-lab/finalrepo",
+  "mode": "GET-only; no Audit Log API, invitations or permission writes",
+  "sources": {
+    "counts": {
+      "owners": {
+        "count": 0,
+        "scope": "Caller-visible only; not proof of full organization membership/ownership",
+        "http": 200,
+        "pagination_complete": true
+      },
+      "members": {
+        "count": 0,
+        "scope": "Caller-visible only; not proof of full organization membership/ownership",
+        "http": 200,
+        "pagination_complete": true
+      },
+      "mfa_disabled": {
+        "count": null,
+        "scope": "Caller-visible only; not proof of full organization membership/ownership",
+        "http": 422,
+        "pagination_complete": false
+      },
+      "collaborators": {
+        "count": 4,
+        "scope": "Caller-visible only; not proof of full organization membership/ownership",
+        "http": 200,
+        "pagination_complete": true
+      },
+      "invitations": {
+        "count": null,
+        "scope": "Caller-visible only; not proof of full organization membership/ownership",
+        "http": 403,
+        "pagination_complete": false
+      }
+    },
+    "repo_access": {
+      "visible_accounts": 4,
+      "visible_roles": {
+        "write": 2,
+        "read": 1,
+        "admin": 1
+      },
+      "pagination": {
+        "http": 200,
+        "pagination_complete": true
+      },
+      "full_effective_access_verified": false,
+      "mfa": "UNKNOWN",
+      "inactive_user_decision": "OWNER_REVIEW_REQUIRED",
+      "note": "API visibility depends on caller; role counts do not prove full member/admin inventory or MFA."
+    },
+    "organization_mfa_required": "UNKNOWN",
+    "anonymous_runner_metadata_http": 403,
+    "runner_count": null,
+    "actions_permissions_http": 403,
+    "workflow_permissions_http": 403,
+    "default_workflow_permissions": "UNKNOWN",
+    "note": "Anonymous metadata rejection is not proof that every build-management path rejects access"
+  },
+  "policies": {
+    "protection": {
+      "http": 403,
+      "digest": null,
+      "state": "UNKNOWN"
+    },
+    "rulesets": {
+      "http": 200,
+      "digest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "state": "OBSERVED"
+    }
+  },
+  "policy_drift": {
+    "protection": "UNKNOWN",
+    "rulesets": "UNKNOWN"
+  },
+  "controls": [
+    {
+      "cis_id": "1.1.19",
+      "component": "Policy snapshots and digest comparison",
+      "remaining": "Effective rule event/actor/time log and recurring owner review missing",
+      "overall_cis": "MANUAL_REVIEW"
+    },
+    {
+      "cis_id": "1.3.1",
+      "component": "Paginated visible member inventory",
+      "remaining": "Last-login/full activity, periodic review and any authorized removal not established",
+      "overall_cis": "MANUAL_REVIEW"
+    },
+    {
+      "cis_id": "1.3.3",
+      "component": "Paginated organization owner count",
+      "remaining": "Owner justification, minimum required and recovery approval still needed",
+      "overall_cis": "MANUAL_REVIEW"
+    },
+    {
+      "cis_id": "1.3.4",
+      "component": "Org MFA field and filtered member count attempted",
+      "remaining": "Enforcement and contributor coverage require privileged evidence; no member access changed",
+      "overall_cis": "MANUAL_REVIEW"
+    },
+    {
+      "cis_id": "1.3.6",
+      "component": "Invitation inventory attempted without exporting emails",
+      "remaining": "Approved-email policy and actual invitation comparison unavailable; no invitations sent",
+      "overall_cis": "MANUAL_REVIEW"
+    },
+    {
+      "cis_id": "1.3.13",
+      "component": "Code change monitor and CI findings artifact",
+      "remaining": "No comprehensive behavioral detection or human incident receipt verified",
+      "overall_cis": "MANUAL_REVIEW"
+    },
+    {
+      "cis_id": "2.1.5",
+      "component": "Platform-context execution guard for existing write/admin contributors",
+      "remaining": "Not complete host/platform ACL enforcement; writers can modify workflow policy",
+      "overall_cis": "MANUAL_REVIEW"
+    },
+    {
+      "cis_id": "2.1.6",
+      "component": "Platform actor/id guard, rerun actor check and anonymous metadata GET",
+      "remaining": "No independent authentication service or all-path negative authorization test",
+      "overall_cis": "MANUAL_REVIEW"
+    },
+    {
+      "cis_id": "2.1.11",
+      "component": "Repo admin counts and Actions management GETs",
+      "remaining": "Hosted platform administrators, justified minimum and owner approval not established",
+      "overall_cis": "MANUAL_REVIEW"
+    },
+    {
+      "cis_id": "3.1.2",
+      "component": "Third-party exact-version/digest intake ledger",
+      "remaining": "Supplier-issued SBOM missing for components; own export is not supplier SBOM",
+      "overall_cis": "MANUAL_REVIEW"
+    },
+    {
+      "cis_id": "5.2.3",
+      "component": "Read-only deployment-host preflight prepared",
+      "remaining": "No authorized production execution or effective access evidence supplied",
+      "overall_cis": "MANUAL_REVIEW"
+    },
+    {
+      "cis_id": "5.2.4",
+      "component": "Read-only SSH/account configuration preflight prepared",
+      "remaining": "No production credential inventory or authorized old/default credential rejection test",
+      "overall_cis": "MANUAL_REVIEW"
+    }
+  ],
+  "compliance_pass": 0
+}

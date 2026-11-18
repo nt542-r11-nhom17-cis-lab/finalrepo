@@ -1,3 +1,5 @@
+> Trạng thái mới nhất: [PENDING-FREE.vi.md](PENDING-FREE.vi.md), [COVERAGE.vi.md](COVERAGE.vi.md). Các số liệu bên dưới thuộc snapshot trước.
+
 # Cập nhật ngày 18/11/2026
 
 Xem [CURRENT-REVIEW.vi.md](CURRENT-REVIEW.vi.md): HiepTran01 hiện có Write theo người dùng xác nhận, API tổng hợp trả 1 Admin/2 Write/1 Read. Đã nhận ba báo cáo VMware (29 phép thử), SBOM native và đối chiếu Settings. Bảng phân quyền/thiết lập bên dưới là snapshot cũ, không thay trạng thái hiện hành. [Dự thảo quy trình](GOVERNANCE-DRAFT.vi.md) chưa được nhóm phê duyệt.

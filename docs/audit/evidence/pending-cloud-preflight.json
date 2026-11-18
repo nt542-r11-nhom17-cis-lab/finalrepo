@@ -1,0 +1,33 @@
+{
+  "checked_at": "2026-11-18T06:32:31.503362+00:00",
+  "scope": "Host executing this command; declared lab evidence only, no production attestation",
+  "running_as_root": false,
+  "current_privileged_group_flags": {
+    "sudo": false,
+    "wheel": false,
+    "docker": false,
+    "lxd": false
+  },
+  "uid_zero_account_count": 1,
+  "interactive_account_count": 4,
+  "ssh": {
+    "execution": "INSUFFICIENT_PRIVILEGE_OR_INVALID_CONFIG",
+    "settings": {
+      "permitrootlogin": "UNKNOWN",
+      "passwordauthentication": "UNKNOWN",
+      "pubkeyauthentication": "UNKNOWN",
+      "permitemptypasswords": "UNKNOWN",
+      "usepam": "UNKNOWN"
+    }
+  },
+  "default_password_test": "NOT_PERFORMED",
+  "password_hashes_read": false,
+  "login_attempts": 0,
+  "mutations": 0,
+  "overall_cis": "MANUAL_REVIEW",
+  "limits": [
+    "Does not establish effective sudo, directory identities, cloud IAM or production ACLs",
+    "Cannot determine default passwords from account names or a password-authentication flag",
+    "Requires authorized target execution and owner review before production conclusions"
+  ]
+}

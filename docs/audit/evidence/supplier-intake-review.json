@@ -1,0 +1,315 @@
+{
+  "scope": "Selected pinned direct inputs only; not a complete transitive supplier inventory",
+  "inputs": [
+    {
+      "ecosystem": "pypi",
+      "name": "bandit",
+      "version": "1.9.4",
+      "artifact_sha256": "f89ffa663767f5a0585ea075f01020207e966a9c0f2b9ef56a57c7963a3f6f8e",
+      "supplier_sbom": "MISSING"
+    },
+    {
+      "ecosystem": "pypi",
+      "name": "boolean.py",
+      "version": "5.0",
+      "artifact_sha256": "ef28a70bd43115208441b53a045d1549e2f0ec6e3d08a9d142cbc41c1938e8d9",
+      "supplier_sbom": "MISSING"
+    },
+    {
+      "ecosystem": "pypi",
+      "name": "CacheControl",
+      "version": "0.15.0",
+      "artifact_sha256": "10b7ab4387355ad9361d5b89bc0f6758e48099017be173241c4e0f20d9e1dad2",
+      "supplier_sbom": "MISSING"
+    },
+    {
+      "ecosystem": "pypi",
+      "name": "certifi",
+      "version": "2026.10.23",
+      "artifact_sha256": "e9b54de76e530bb6cf0ccd036787103acb58fd42ba930ea8bf948ddbaa2f61d1",
+      "supplier_sbom": "MISSING"
+    },
+    {
+      "ecosystem": "pypi",
+      "name": "charset-normalizer",
+      "version": "3.5.2",
+      "artifact_sha256": "3d31298449090ab8d47b7b1b2a555ff73cac7ed438a08b7ac160980c7ebed649",
+      "supplier_sbom": "MISSING"
+    },
+    {
+      "ecosystem": "pypi",
+      "name": "cyclonedx-python-lib",
+      "version": "11.12.0",
+      "artifact_sha256": "0e807521a921a5c3cb8ce1153f8a61d29eedfe76a46aac2796b7c6b573391a54",
+      "supplier_sbom": "MISSING"
+    },
+    {
+      "ecosystem": "pypi",
+      "name": "defusedxml",
+      "version": "0.7.1",
+      "artifact_sha256": "a352e7e428770286cc899e2542b6cdaedb2b4953ff269a210103ec58f6198a61",
+      "supplier_sbom": "MISSING"
+    },
+    {
+      "ecosystem": "pypi",
+      "name": "filelock",
+      "version": "4.2.11",
+      "artifact_sha256": "020e229e4bb9d410fc799c07ddf45fa217cba970278f40b30751d94f309b69e2",
+      "supplier_sbom": "MISSING"
+    },
+    {
+      "ecosystem": "pypi",
+      "name": "idna",
+      "version": "3.20",
+      "artifact_sha256": "ab7ae7122974553370f0bdb919e1a960b2cd1bc1ef0276416d896db81c14582c",
+      "supplier_sbom": "MISSING"
+    },
+    {
+      "ecosystem": "pypi",
+      "name": "license-expression",
+      "version": "30.4.4",
+      "artifact_sha256": "421788fdcadb41f049d2dc934ce666626265aeccefddd25e162a26f23bcbf8a4",
+      "supplier_sbom": "MISSING"
+    },
+    {
+      "ecosystem": "pypi",
+      "name": "markdown-it-py",
+      "version": "4.3.0",
+      "artifact_sha256": "7aa1511a46c39138de78d9eba92ce47e63124d8003fc98b3a351909e04239efa",
+      "supplier_sbom": "MISSING"
+    },
+    {
+      "ecosystem": "pypi",
+      "name": "mdurl",
+      "version": "0.1.2",
+      "artifact_sha256": "84008a41e51615a49fc9966191ff91509e3c40b939176e643fd50a5c2196b8f8",
+      "supplier_sbom": "MISSING"
+    },
+    {
+      "ecosystem": "pypi",
+      "name": "msgpack",
+      "version": "1.2.4",
+      "artifact_sha256": "c4d5bbdbea8f5669b3a734d6c226772804fb120848f99cbe63a0ddee63b049c9",
+      "supplier_sbom": "MISSING"
+    },
+    {
+      "ecosystem": "pypi",
+      "name": "packageurl-python",
+      "version": "0.17.6",
+      "artifact_sha256": "31a85c2717bc41dd818f3c62908685ff9eebcb68588213745b14a6ee9e7df7c9",
+      "supplier_sbom": "MISSING"
+    },
+    {
+      "ecosystem": "pypi",
+      "name": "packaging",
+      "version": "26.3",
+      "artifact_sha256": "d7193f7c8e4e93f444fde0262bf90af30e16fa0ad0ad44cb553c87339b23cd1c",
+      "supplier_sbom": "MISSING"
+    },
+    {
+      "ecosystem": "pypi",
+      "name": "pip",
+      "version": "26.3",
+      "artifact_sha256": "f3b60b20ffaadd4415ed7957212a38ac63fa4c5fa375bd0f4a797777940fad13",
+      "supplier_sbom": "MISSING"
+    },
+    {
+      "ecosystem": "pypi",
+      "name": "pip-requirements-parser",
+      "version": "32.0.1",
+      "artifact_sha256": "4659bc2a667783e7a15d190f6fccf8b2486685b6dba4c19c3876314769c57526",
+      "supplier_sbom": "MISSING"
+    },
+    {
+      "ecosystem": "pypi",
+      "name": "pip_api",
+      "version": "0.0.35",
+      "artifact_sha256": "66990d0da25378555cbb538db79384bab92d4617c6350dfd7a2126ba2a3a9894",
+      "supplier_sbom": "MISSING"
+    },
+    {
+      "ecosystem": "pypi",
+      "name": "pip_audit",
+      "version": "2.10.1",
+      "artifact_sha256": "99ef3f600a317c1945f1e89e227ef26e1c2d618429b8bd3fa6f4f7c440c4611a",
+      "supplier_sbom": "MISSING"
+    },
+    {
+      "ecosystem": "pypi",
+      "name": "platformdirs",
+      "version": "4.14.5",
+      "artifact_sha256": "8e778c6fa421516f4d3369449f8df3b0e1b72c0e0005fe88e3ec772d0a14e750",
+      "supplier_sbom": "MISSING"
+    },
+    {
+      "ecosystem": "pypi",
+      "name": "py-serializable",
+      "version": "2.2.0",
+      "artifact_sha256": "2cce775abc5aac12115f9ff572a145c7276d04a770090334bd4e51ed9c782415",
+      "supplier_sbom": "MISSING"
+    },
+    {
+      "ecosystem": "pypi",
+      "name": "Pygments",
+      "version": "2.21.0",
+      "artifact_sha256": "2363c69b61c4a97c838da3b130dcd6468f4848992b21a82f2a63ec34377137d9",
+      "supplier_sbom": "MISSING"
+    },
+    {
+      "ecosystem": "pypi",
+      "name": "pyparsing",
+      "version": "3.3.3",
+      "artifact_sha256": "ece8c00a69cf01b45d0b1dedabb469c90d8caf996d4fda40f147627a122849a4",
+      "supplier_sbom": "MISSING"
+    },
+    {
+      "ecosystem": "pypi",
+      "name": "PyYAML",
+      "version": "6.0.3",
+      "artifact_sha256": "ba1cc08a7ccde2d2ec775841541641e4548226580ab850948cbfda66a1befcdc",
+      "supplier_sbom": "MISSING"
+    },
+    {
+      "ecosystem": "pypi",
+      "name": "requests",
+      "version": "2.34.2",
+      "artifact_sha256": "2a0d60c172f83ac6ab31e4554906c0f3b3588d37b5cb939b1c061f4907e278e0",
+      "supplier_sbom": "MISSING"
+    },
+    {
+      "ecosystem": "pypi",
+      "name": "rich",
+      "version": "15.0.0",
+      "artifact_sha256": "33bd4ef74232fb73fe9279a257718407f169c09b78a87ad3d296f548e27de0bb",
+      "supplier_sbom": "MISSING"
+    },
+    {
+      "ecosystem": "pypi",
+      "name": "sortedcontainers",
+      "version": "2.4.0",
+      "artifact_sha256": "a163dcaede0f1c021485e957a39245190e74249897e2ae4b2aa38595db237ee0",
+      "supplier_sbom": "MISSING"
+    },
+    {
+      "ecosystem": "pypi",
+      "name": "stevedore",
+      "version": "5.10.0",
+      "artifact_sha256": "47c48dc09e75933106c1bba0a7690eef3b5acecdb807df6d47cc40b2532fa927",
+      "supplier_sbom": "MISSING"
+    },
+    {
+      "ecosystem": "pypi",
+      "name": "tomli",
+      "version": "2.5.0",
+      "artifact_sha256": "6cf74416bdc94ae458b14e37286c1073081850ac8459a00d0c5efef5d44294c6",
+      "supplier_sbom": "MISSING"
+    },
+    {
+      "ecosystem": "pypi",
+      "name": "tomli_w",
+      "version": "1.2.0",
+      "artifact_sha256": "188306098d013b691fcadc011abd66727d3c414c571bb01b1a174ba8c983cf90",
+      "supplier_sbom": "MISSING"
+    },
+    {
+      "ecosystem": "pypi",
+      "name": "typing_extensions",
+      "version": "4.16.0",
+      "artifact_sha256": "481caa481374e813c1b176ada14e97f1f67a4539ce9cfeb3f350d78d6370c2e8",
+      "supplier_sbom": "MISSING"
+    },
+    {
+      "ecosystem": "pypi",
+      "name": "urllib3",
+      "version": "2.8.0",
+      "artifact_sha256": "0cf3cae568d36aa9576b28dfb35f11328f1cb974ca7647d9475ebb86c75ac6e3",
+      "supplier_sbom": "MISSING"
+    },
+    {
+      "ecosystem": "githubactions",
+      "name": "actions/checkout",
+      "version": "3d3c42e5aac5ba805825da76410c181273ba90b1",
+      "artifact_sha256": null,
+      "supplier_sbom": "MISSING"
+    },
+    {
+      "ecosystem": "githubactions",
+      "name": "actions/upload-artifact",
+      "version": "cf430e030ddbb5b0abf93d22962f4752f3646cd9",
+      "artifact_sha256": null,
+      "supplier_sbom": "MISSING"
+    },
+    {
+      "ecosystem": "githubactions",
+      "name": "rhysd/actionlint",
+      "version": "62dc61a45fc95efe8c800af7a557ab0b9165d63b",
+      "artifact_sha256": null,
+      "supplier_sbom": "MISSING"
+    },
+    {
+      "ecosystem": "githubactions",
+      "name": "aquasecurity/trivy-action",
+      "version": "ed142fd0673e97e23eac54620cfb913e5ce36c25",
+      "artifact_sha256": null,
+      "supplier_sbom": "MISSING"
+    },
+    {
+      "ecosystem": "githubactions",
+      "name": "github/codeql-action",
+      "version": "33d7b85da1a04171e211befe2c739303b9a4c066",
+      "artifact_sha256": null,
+      "supplier_sbom": "MISSING"
+    },
+    {
+      "ecosystem": "githubactions",
+      "name": "anchore/sbom-action",
+      "version": "66cbf4bc1f1c0d2edc94016e65bc221b6bb0ad6c",
+      "artifact_sha256": null,
+      "supplier_sbom": "MISSING"
+    },
+    {
+      "ecosystem": "githubactions",
+      "name": "zizmorcore/zizmor-action",
+      "version": "85b2b9fb8e3325e7a23d7d0a9d7ba5ae0f999e3e",
+      "artifact_sha256": null,
+      "supplier_sbom": "MISSING"
+    },
+    {
+      "ecosystem": "githubactions",
+      "name": "step-security/harden-runner",
+      "version": "05e31511f85b41b11d1cf0ef85d0992719546e2c",
+      "artifact_sha256": null,
+      "supplier_sbom": "MISSING"
+    },
+    {
+      "ecosystem": "githubactions",
+      "name": "anchore/scan-action",
+      "version": "27805bf3b4e84b4a5c980df22ed233c00390a439",
+      "artifact_sha256": null,
+      "supplier_sbom": "MISSING"
+    },
+    {
+      "ecosystem": "oci",
+      "name": "docker.io/library/alpine",
+      "version": "3.24.4",
+      "artifact_sha256": "sha256:f59abe656b692d901e184be3445e084786602108599d2a51d229c0f5a48c71bf",
+      "supplier_sbom": "MISSING"
+    },
+    {
+      "ecosystem": "native-go",
+      "name": "distribution/distribution",
+      "version": "3.1.2+cis.1",
+      "artifact_sha256": "06c66b1b908b420ea2ef95d97f289ab920ee3b1497bf9d52ac59a0d8c8d72585",
+      "supplier_sbom": "MISSING"
+    }
+  ],
+  "supplier_sboms_verified": 0,
+  "missing_supplier_sboms": 43,
+  "overall_cis": "MANUAL_REVIEW",
+  "limits": [
+    "GitHub dependency export and locally generated SBOM are not supplier-issued evidence",
+    "Upstream Distribution release offers provenance but no named SBOM asset; custom build differs",
+    "Metadata/checksum/source availability does not establish supplier SBOM authenticity",
+    "Owner must approve supplier intake requirement and handle missing evidence explicitly"
+  ]
+}

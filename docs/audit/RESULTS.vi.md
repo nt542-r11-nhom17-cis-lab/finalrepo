@@ -1,3 +1,11 @@
+# Bổ sung phần chưa triển khai của 48 mục Free
+
+Đợt này tập trung đúng 12 mục NOT_TESTED còn lại, không làm lại các mục đã có bằng chứng và không triển khai Enterprise. Đã thêm guard quyền chạy build, monitor thay đổi mã, collector GET-only cho 12 mục, ledger supplier và host preflight chỉ đọc. Kết quả: **32 PARTIAL, 14 MANUAL_REVIEW, 2 NOT_TESTED trong 48 mục**. Hai NOT_TESTED là 5.2.3/5.2.4, chưa có production target; không giả lập thành đã đạt. Toàn bảng: **80 PARTIAL, 28 MANUAL_REVIEW, 7 LAB_ONLY, 5 NOT_TESTED; full-control PASS=0**.
+
+Chi tiết bằng chứng/giới hạn: [PENDING-FREE.vi.md](PENDING-FREE.vi.md). Các phần dưới là snapshot đợt trước.
+
+---
+
 # Kết quả bổ sung ngày 18/11/2026
 
 Đã lưu ba báo cáo do người dùng chạy trên VMware: **29/29 kiểm tra lab PASS** (5 supply chain, 13 registry mô phỏng, 11 webhook HTTPS). Đây là bằng chứng người dùng cung cấp, chưa có attestation thực thi từ xa. GET API mới: một repo, bốn tài khoản nhìn thấy (1 Admin, 2 Write, 1 Read), tám nhánh và zero fork nhìn thấy; không đổi quyền hoặc xóa tài nguyên.

@@ -16,7 +16,8 @@ concurrency:
 jobs:
   analyze:
     name: Analyze Python with CodeQL
-    if: github.ref == 'refs/heads/audit/remaining-free-integration'
+    if: >-
+      github.repository_id == '1461201903' && startsWith(github.ref, 'refs/heads/audit/') && contains(fromJSON('["357749923","234109911","243073680"]'), github.actor_id) && contains(fromJSON('["hieune-ui","Vuongdlx","HiepTran01"]'), github.triggering_actor)
     runs-on: ubuntu-24.04
     timeout-minutes: 30
     permissions:
@@ -28,6 +29,9 @@ jobs:
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
+
+      - name: Require audited build execution identity
+        run: python3 scripts/build_access_guard.py
 
       - name: Initialize CodeQL
         uses: github/codeql-action/init@33d7b85da1a04171e211befe2c739303b9a4c066 # v4.39.3

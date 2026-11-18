@@ -1,3 +1,5 @@
+> Trạng thái mới nhất: [PENDING-FREE.vi.md](PENDING-FREE.vi.md), [COVERAGE.vi.md](COVERAGE.vi.md). Các số liệu bên dưới thuộc snapshot trước.
+
 # Đối chiếu bằng chứng và công việc còn thiếu ngày 18/11/2026
 
 Nhánh `audit/remaining-free-integration`. Không sửa main hoặc hai repo nguồn, không đổi quyền, bật yêu cầu MFA, cài app, tạo webhook GitHub, xóa nhánh hoặc archive repo. Ba mục Enterprise 1.3.10/1.3.11/1.3.12 tiếp tục nằm ngoài phạm vi triển khai Free.

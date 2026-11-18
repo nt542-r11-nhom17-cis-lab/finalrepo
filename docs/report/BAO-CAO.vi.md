@@ -394,7 +394,7 @@ python3 scripts/webhook_integration.py
 python3 scripts/registry_integration.py --registry /duong-dan/registry-da-xac-minh
 ```
 
-Nhóm lưu output theo từng công cụ và phiên chạy. JSON chứa dữ liệu kiểm tra, CSV hỗ trợ thống kê, SPDX mô tả thành phần phần mềm. SARIF ghi kết quả CodeQL. Các tệp hiện có nằm trong danh mục cuối phần 4.
+Nhóm lưu JSON, CSV, SPDX và SARIF trong reports/ để đối chiếu từng phép kiểm.
 
 # 4. Kết quả
 

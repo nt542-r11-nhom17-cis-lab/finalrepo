@@ -1,3 +1,7 @@
+# Cập nhật CodeQL Python
+
+Đã đối chiếu SARIF trước/sau: hai cảnh báo do public digest bị heuristic nhận diện là secret → zero result với cùng 43 rule. Code `1ce411f`, run 44213133290. Có 52 regression tests, gồm kiểm tra vật liệu ký không xuất ra file/log. Chi tiết và giới hạn: [CODEQL.vi.md](CODEQL.vi.md). Mục 1.5.4 vẫn PARTIAL; số liệu đợt registry bên dưới giữ đúng snapshot của đợt đó.
+
 # Kết quả hiện hành — kiểm thử HTTPS và registry source-build
 
 Nhánh `audit/remaining-free-integration`; code kiểm tra `545c3a2ad044fa1292712b1c00bcb7244943fbbe`. Main vẫn `e052945db5b4a2bace480b5ab98446a8b82da02e`. Không đổi lịch sử, quyền hoặc Settings.

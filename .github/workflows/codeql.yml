@@ -21,29 +21,30 @@ jobs:
     timeout-minutes: 30
     permissions:
       contents: read
+      # Required to upload SARIF results to code scanning for the audited branch.
       security-events: write
 
     steps:
       - name: Checkout source
-        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
 
       - name: Initialize CodeQL
-        uses: github/codeql-action/init@33d7b85da1a04171e211befe2c739303b9a4c066
+        uses: github/codeql-action/init@33d7b85da1a04171e211befe2c739303b9a4c066 # v4.39.3
         with:
           languages: python
           build-mode: none
 
       - name: Analyze and upload results
-        uses: github/codeql-action/analyze@33d7b85da1a04171e211befe2c739303b9a4c066
+        uses: github/codeql-action/analyze@33d7b85da1a04171e211befe2c739303b9a4c066 # v4.39.3
         with:
           category: /language:python
           output: reports/codeql
 
       - name: Save SARIF evidence for analysis review
         if: ${{ !cancelled() }}
-        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
           name: codeql-python-${{ github.run_id }}
           path: reports/codeql/*.sarif

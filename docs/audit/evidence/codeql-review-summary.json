@@ -1,0 +1,42 @@
+{
+  "checked_at": "2026-11-18T01:13:39.802057+00:00",
+  "branch": "audit/remaining-free-integration",
+  "tested_code_sha": "1ce411fba512ccce4b7d0261d5020e400c348850",
+  "main_sha": "e052945db5b4a2bace480b5ab98446a8b82da02e",
+  "main_changed": false,
+  "before": {
+    "run": 44149453062,
+    "results": 2,
+    "rules": [
+      "py/clear-text-logging-sensitive-data",
+      "py/clear-text-storage-sensitive-data"
+    ],
+    "security_severity": {
+      "py/clear-text-logging-sensitive-data": "7.5",
+      "py/clear-text-storage-sensitive-data": "7.5"
+    }
+  },
+  "after": {
+    "run": 44213133290,
+    "results": 0,
+    "rule_count": 43,
+    "same_rule_catalog": true,
+    "catalog_sha256": "10165b979772303967840717fa118615523e479feea5dda70885d9c8c8965725",
+    "execution_successful": true,
+    "required_rules_present": true,
+    "codeql_version": "2.27.4"
+  },
+  "cause": "Public DER SHA256 identifier assigned to a variable named trusted, classified as generic secret by CodeQL name heuristics. Local generation test found no private PEM/body in exported files or stdout.",
+  "resolution": "Use explicit public digest names; keep the same digest computation, signature verification, output schema and CLI. No query exclusion, suppression or manual alert dismissal.",
+  "regression_tests": {
+    "total": 52,
+    "tamper_and_wrong_digest_tests": "PASS",
+    "generated_material_absent_from_outputs_and_log": "PASS",
+    "temporary_key_removed": "PASS"
+  },
+  "limits": [
+    "SAST evidence for Python on this audit branch only; not a full CIS compliance verdict",
+    "Code scanning alert-detail API returns HTTP 403 for the connector; states in UI require owner observation",
+    "Historical source snapshots and signed exports remain unchanged"
+  ]
+}

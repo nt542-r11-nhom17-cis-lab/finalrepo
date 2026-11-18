@@ -1,12 +1,29 @@
 {
   "repository": "nt542-r11-nhom17-cis-lab/finalrepo",
   "repository_id": "1461201903",
-  "refs": ["refs/heads/audit/remaining-free-integration", "refs/heads/audit/free-controls-completion"],
-  "events": ["push", "workflow_dispatch"],
+  "refs": [
+    "refs/heads/audit/remaining-free-integration"
+  ],
+  "events": [
+    "push",
+    "workflow_dispatch"
+  ],
   "principals": [
-    {"login": "hieune-ui", "id": "357749923", "observed_role": "admin"},
-    {"login": "Vuongdlx", "id": "234109911", "observed_role": "write"},
-    {"login": "HiepTran01", "id": "243073680", "observed_role": "write"}
+    {
+      "login": "hieune-ui",
+      "id": "357749923",
+      "observed_role": "admin"
+    },
+    {
+      "login": "Vuongdlx",
+      "id": "234109911",
+      "observed_role": "write"
+    },
+    {
+      "login": "HiepTran01",
+      "id": "243073680",
+      "observed_role": "write"
+    }
   ],
   "source": "User-confirmed contributors; numeric IDs and repository roles verified by GET API on 2026-11-18",
   "limits": "In-workflow guard only; cannot replace protected workflow definitions, GitHub authorization or MFA. No access grants."

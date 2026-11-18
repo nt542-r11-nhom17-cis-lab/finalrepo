@@ -10,7 +10,14 @@ while read -r local_ref local_sha remote_ref remote_sha; do
     *) echo 'Refusing push: only audit/* branches are permitted here; main is protected locally.' >&2; exit 1 ;;
   esac
   case "$local_sha" in
-    0000000000000000000000000000000000000000) echo 'Refusing branch deletion.' >&2; exit 1 ;;
+    0000000000000000000000000000000000000000)
+      if [ "${CIS_DELETE_MERGED_AUDIT_BRANCHES:-0}" != 1 ] ||
+         [ "$remote_ref" = refs/heads/audit/remaining-free-integration ] ||
+         ! git merge-base --is-ancestor "$remote_sha" refs/heads/audit/remaining-free-integration; then
+        echo 'Refusing deletion: explicit cleanup and a fully retained audit history are required.' >&2
+        exit 1
+      fi
+      ;;
   esac
 done
 exit 0

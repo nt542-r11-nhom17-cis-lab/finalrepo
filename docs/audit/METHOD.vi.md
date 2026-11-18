@@ -85,7 +85,7 @@ Quy trình khắc phục từ xa của đợt này chỉ sửa mã và tài li�
 
 ## Bổ sung phương pháp cho toàn bộ 120 mục
 
-Mỗi mục có Audit, Remediation đề xuất, Re-audit và yêu cầu bằng chứng trong [runbooks](COMPLETE-REVIEW.vi.md). Bộ thu thập readiness thực hiện GET metadata; 403, thiếu IdP/registry/production được ghi BLOCKED_PREREQUISITE. Registry fixture chỉ kiểm thử logic ủy quyền, claim MFA giả, chữ ký, phiên bản bất biến, từ chối anonymous/tampering và log; không chứng minh MFA/SSO thật. Inventory dependency ghi SHA, tag, release date và tuổi, không suy từ tuổi commit sang tuổi phiên bản. Scanner self-test dùng credential tổng hợp trong thư mục tạm, kiểm cả trường hợp sạch và có phát hiện.
+Mỗi mục có Audit, Remediation đề xuất, Re-audit và yêu cầu bằng chứng trong [runbooks](RESULTS-HISTORY.vi.md). Bộ thu thập readiness thực hiện GET metadata; 403, thiếu IdP/registry/production được ghi BLOCKED_PREREQUISITE. Registry fixture chỉ kiểm thử logic ủy quyền, claim MFA giả, chữ ký, phiên bản bất biến, từ chối anonymous/tampering và log; không chứng minh MFA/SSO thật. Inventory dependency ghi SHA, tag, release date và tuổi, không suy từ tuổi commit sang tuổi phiên bản. Scanner self-test dùng credential tổng hợp trong thư mục tạm, kiểm cả trường hợp sạch và có phát hiện.
 
 ### Hình 2.5 — Ảnh chụp thực tế workflow nhánh mới
 
@@ -118,7 +118,7 @@ Audit tổ chức dùng GET-only, phân biệt null/thiếu/403 với false; kh�
 
 ## Bổ sung phương pháp cho 48 mục hướng Free
 
-Hướng dẫn thao tác riêng theo mã ở [FREE-CONTROLS.vi.md](FREE-CONTROLS.vi.md). Workflow lớn: chốt phạm vi → đọc cấu hình/API → kiểm tra nguồn/runtime/bundle → ghi thiếu bằng chứng → owner khắc phục trên nhánh thử → re-audit và lưu minh chứng. Không suy từ source scan sang bảo vệ main, hoặc từ khóa ký tạm sang release authority.
+Hướng dẫn thao tác riêng theo mã ở [PROCEDURES.vi.md](PROCEDURES.vi.md). Workflow lớn: chốt phạm vi → đọc cấu hình/API → kiểm tra nguồn/runtime/bundle → ghi thiếu bằng chứng → owner khắc phục trên nhánh thử → re-audit và lưu minh chứng. Không suy từ source scan sang bảo vệ main, hoặc từ khóa ký tạm sang release authority.
 
 ### Hình 2.9 — Sơ đồ tổng hợp từ kết quả đợt Free
 

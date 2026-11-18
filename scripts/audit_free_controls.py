@@ -45,7 +45,7 @@ def build_rows(plans, sources):
         rows.append({'cis_id': plan['id'], 'execution': 'EVIDENCE_COLLECTED' if not missing else 'INCOMPLETE',
                      'overall_cis': 'MANUAL_REVIEW', 'available_sources': ', '.join(available),
                      'missing_sources': ', '.join(missing), 'remaining': plan['remaining'],
-                     'manual_guide': 'FREE-CONTROLS.vi.md#cis-' + plan['id'].replace('.', '-')})
+                     'manual_guide': 'PROCEDURES.vi.md#cis-' + plan['id'].replace('.', '-')})
     return rows
 
 

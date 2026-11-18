@@ -68,6 +68,10 @@ jobs:
           python3 scripts/audit_pending_free.py --previous docs/audit/evidence/pending-free-baseline.json
           python3 scripts/supplier_intake.py
           python3 scripts/deployment_preflight.py
+          python3 scripts/monitor_action_owners.py
+          python3 scripts/inventory_governance.py
+          python3 scripts/project_bundle.py
+          python3 scripts/audit_free_controls.py
 
       - name: Inventory repositories and access without changing settings
         if: ${{ !cancelled() }}
@@ -81,6 +85,11 @@ jobs:
         with:
           name: remaining-integration-${{ github.run_id }}
           path: |
+            reports/action-owners/results.json
+            reports/governance/results.json
+            reports/project-bundle/
+            reports/free-controls/results.json
+            reports/free-controls/results.csv
             reports/pending-free/results.json
             reports/supplier-intake/results.json
             reports/deployment-preflight/results.json

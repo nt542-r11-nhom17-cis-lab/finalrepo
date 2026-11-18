@@ -1,4 +1,4 @@
-# 2. Bổ sung phương pháp cho 48 tiêu chí theo hướng miễn phí
+# Phụ lục: quy trình thực hành các tiêu chí trong phạm vi Free
 
 Phạm vi bổ sung gồm 48 mục NOT_TESTED của lần đánh giá trước, sau khi loại 1.3.10/1.3.11/1.3.12 cần tính năng Enterprise Cloud tương ứng. Việc đáp ứng đầy đủ 48 mục còn phụ thuộc điều kiện triển khai: một số cần môi trường, domain, danh tính hoặc supplier thật. Không thay nhãn Manual/Automated của CIS.
 

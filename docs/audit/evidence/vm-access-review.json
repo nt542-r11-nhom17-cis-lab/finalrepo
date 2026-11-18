@@ -1,0 +1,34 @@
+{
+  "recorded_on": "2026-11-18",
+  "scope": "VMware Ubuntu lab: OS accounts, SSH and /opt/cis-deploy-lab only",
+  "source": "Terminal outputs and user confirmations in guided session; not independently executed or remotely attested",
+  "checks": {
+    "cisdeploy_groups": [
+      "cisdeploy"
+    ],
+    "cisdeploy_sudo_allowed": false,
+    "deployment_directory_mode": "700",
+    "deployment_directory_owner": "cisdeploy",
+    "deployment_directory_group": "cisdeploy",
+    "authorized_file_creation": "SUCCEEDED",
+    "nobody_file_creation": "PERMISSION_DENIED",
+    "fresh_ssh_login_user": "SUCCEEDED",
+    "fresh_ssh_login_cisdeploy": "SUCCEEDED",
+    "password_status": {
+      "root": "L",
+      "user": "P",
+      "cisdeploy": "P"
+    },
+    "effective_root_ssh_login": "no",
+    "effective_empty_passwords": "no"
+  },
+  "user_password_origin": "NOT_CONFIRMED",
+  "overall_cis": "PARTIAL",
+  "limits": [
+    "No real production target evaluated",
+    "P means a password exists, not that it is non-default",
+    "No complete application/service credential inventory",
+    "Root/authorized sudo administrators remain privileged",
+    "No password or password hash collected"
+  ]
+}

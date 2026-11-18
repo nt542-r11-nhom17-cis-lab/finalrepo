@@ -19,4 +19,4 @@ Mẫu biên bản mỗi kỳ: thời gian + phạm vi + commit/report hash + ng�
 
 Điều kiện chuyển từ dự thảo sang áp dụng: nhóm chọn người chịu trách nhiệm/phê duyệt từng phạm vi và xác nhận nhịp rà; lưu biên bản kỳ đầu có bằng chứng thực. Không suy tài liệu này thành đạt các tiêu chí định kỳ.
 
-Công cụ hỗ trợ rà hiện có: audit_pending_free.py (GET evidence), code_change_monitor.py (code/rule-review support), supplier_intake.py (missing supplier evidence), deployment_preflight.py (read-only host preflight). Không thay việc người được giao thực hiện/phê duyệt kỳ rà. Xem PENDING-FREE.vi.md để phân biệt kết quả đo và phần còn thiếu.
+Công cụ hỗ trợ rà hiện có: audit_pending_free.py (GET evidence), code_change_monitor.py (code/rule-review support), supplier_intake.py (missing supplier evidence), deployment_preflight.py (read-only host preflight). Không thay việc người được giao thực hiện/phê duyệt kỳ rà. Xem IMPLEMENTATION.vi.md để phân biệt kết quả đo và phần còn thiếu.

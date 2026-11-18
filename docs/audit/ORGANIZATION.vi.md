@@ -1,3 +1,5 @@
+> Phụ lục kỹ thuật của lần đo trước. Kết quả tổng hợp hiện hành: [RESULTS.vi.md](RESULTS.vi.md); mô hình hiện hành: [IMPLEMENTATION.vi.md](IMPLEMENTATION.vi.md).
+
 # Kiểm tra và bổ sung sau chuyển Organization
 
 ## Repo và giới hạn thay đổi

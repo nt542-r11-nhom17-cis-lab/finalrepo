@@ -1,3 +1,5 @@
+> Phụ lục kỹ thuật của lần đo trước. Kết quả tổng hợp hiện hành: [RESULTS.vi.md](RESULTS.vi.md); mô hình hiện hành: [IMPLEMENTATION.vi.md](IMPLEMENTATION.vi.md).
+
 # Khắc phục cấu hình và bổ sung kiểm tra còn thiếu
 
 Nhánh mới: `audit/remediate-config-and-scans`. Code kiểm tra: `4e1c9663acb9e9ecc89ac2233e4dcbe5d6b4001c`. Không merge, không sửa main, không chỉnh Settings hoặc cấp quyền. Snapshot main trước/sau vẫn e052945db5b4a2bace480b5ab98446a8b82da02e.

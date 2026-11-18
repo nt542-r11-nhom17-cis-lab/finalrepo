@@ -1,3 +1,5 @@
+> Phụ lục kỹ thuật theo commit/phiên chạy được nêu trong tài liệu. Bảng kết quả tổng hợp hiện hành: [RESULTS.vi.md](RESULTS.vi.md).
+
 # Kiểm thử tích hợp HTTPS và khắc phục registry
 
 Nhánh triển khai: `audit/remaining-free-integration`, kế thừa bản biên tập báo cáo. Đợt này bổ sung dịch vụ thử nghiệm thật trên loopback và kiểm kê Organization bằng GET API. Không đổi main, Rulesets, quyền thành viên, MFA, webhook GitHub hoặc hai repo nguồn. Không tạo registry/production công khai và không dùng dịch vụ trả phí.
@@ -81,4 +83,4 @@ File xuất kết quả được chọn để lưu trong nhánh: [JSON tổng h�
 
 Mười lăm mục hướng Free còn NOT_TESTED: 1.1.19; 1.3.1/1.3.3/1.3.4/1.3.6/1.3.13; 1.4.1/1.4.2/1.4.3; 2.1.5/2.1.6/2.1.11; 3.1.2; 5.2.3/5.2.4. Owner cần bằng chứng policy/audit log UI, phân công và MFA; supplier cần cung cấp SBOM; production cần môi trường được phép và quyền thực tế. API HTTP 403 không chứng minh các mục đó cần Enterprise.
 
-Chín mục MANUAL_REVIEW của phạm vi 48: 1.1.5/1.1.10/1.1.11/1.1.12/1.1.13/1.1.14/1.1.15, 1.3.7 và 5.1.4. Các bước thao tác đã có trong FREE-CONTROLS.vi.md; dùng nhánh thử riêng, không đổi main. Các mục thiếu điều kiện triển khai không được tự động đổi thành N/A hoặc PASS. Ba mục tính năng Enterprise 1.3.10–1.3.12 vẫn giữ riêng ngoài phạm vi 48 mục hướng Free.
+Chín mục MANUAL_REVIEW của phạm vi 48: 1.1.5/1.1.10/1.1.11/1.1.12/1.1.13/1.1.14/1.1.15, 1.3.7 và 5.1.4. Các bước thao tác đã có trong PROCEDURES.vi.md; dùng nhánh thử riêng, không đổi main. Các mục thiếu điều kiện triển khai không được tự động đổi thành N/A hoặc PASS. Ba mục tính năng Enterprise 1.3.10–1.3.12 vẫn giữ riêng ngoài phạm vi 48 mục hướng Free.

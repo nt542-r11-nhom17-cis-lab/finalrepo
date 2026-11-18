@@ -1,32 +1,4 @@
-# Kết quả mới nhất đã được push và kiểm thử
-
-Nhánh `audit/organization-controls`: [bảng kết quả và bằng chứng](RESULTS.vi.md), [đánh giá Organization](ORGANIZATION.vi.md), [đối chiếu 120 mục](COVERAGE.vi.md). 21 tests và hai workflow đã thành công; còn các mục cần dữ liệu/quyền/hệ thống thật. Main không đổi.
-
-# Đợt bổ sung sau chuyển Organization
-
-Xem [ORGANIZATION.vi.md](ORGANIZATION.vi.md), [bảng 120 mục mới nhất](COVERAGE.vi.md). Các kết quả/địa chỉ phía dưới được giữ như lịch sử; không dùng số liệu cũ thay kết quả mới.
-
-# Đợt khắc phục mới nhất
-
-Xem [REMEDIATION.vi.md](REMEDIATION.vi.md): credential HEAD đã bỏ, base image pin digest, container smoke test và source/image scan có ngưỡng chặn đã PASS. Số liệu/kết quả phía dưới là lịch sử review trước.
-
-# Cập nhật đợt bổ sung toàn bộ quy trình
-
-Xem [COMPLETE-REVIEW.vi.md](COMPLETE-REVIEW.vi.md) và [bảng 120 mục cập nhật](COVERAGE.vi.md). Đã có 120 runbook, thu thập readiness và lab bổ sung; không có tuyên bố đạt toàn benchmark. Các thống kê/kết quả phía dưới thuộc lần review trước, giữ lại để truy vết.
-
-# Rà soát 5 nhóm CIS GitHub Benchmark v1.2.0
-
-## Kết luận hiện trạng
-
-Chưa đủ căn cứ kết luận đạt toàn bộ 5 nhóm. Repo trước rà soát có scanner và workflow demo chủ yếu nhóm 1–2, SBOM runner và chữ ký lab. Thiếu danh mục đầy đủ, phương pháp Audit/Remediation có đối chiếu, script GitHub API, quản trị dependency, registry và deployment thực tế. Nhánh này bổ sung phần có thể thực hiện an toàn; không thay main, quyền người dùng hoặc hai repo gốc.
-
-| Nhóm CIS | Số tiêu chí | Trước rà soát | Bổ sung trên nhánh | Chưa chứng minh |
-|---|---:|---|---|---|
-| 1 Source Code | 50 | Gitleaks, SECURITY.md, scanner; placeholder CIS 1.1 | Audit API và checklist | Protection, MFA, thành viên, quyền, PR thực tế |
-| 2 Build Pipelines | 33 | Build demo, Actionlint, Zizmor, runner, SBOM runner | API + lab được gọi từ workflow nhánh; báo cáo | Toàn hạ tầng build, cô lập đầy đủ, cổng chặn |
-| 3 Dependencies | 12 | SHA action ở một số workflow | Khóa input first-party; policy dependency; SBOM có phạm vi | Supplier SBOM, ownership monitoring, package age, provenance tin cậy |
-| 4 Artifacts | 14 | Chữ ký khóa lab | Artifact/SBOM/provenance ký; mã hóa và negative tests | Registry, MFA/SSO, phân quyền khóa, mọi version/release |
-| 5 Deployment | 11 | Chưa có triển khai | Config riêng, kiểm tra hash, triển khai sandbox tự động | Production, quyền production, kiểm soát mật khẩu thực tế |
+# Báo cáo thực nghiệm CIS GitHub Benchmark v1.2.0
 
 ## 1. Giới thiệu benchmark
 
@@ -59,25 +31,17 @@ Danh mục được trích cấu trúc từ PDF người dùng cung cấp, đố
 - [1.2.1 Manual](MANUAL.vi.md): 118 tiêu chí.
 - [1.2.2 Automated](AUTOMATED.vi.md): 2 tiêu chí.
 
-## 2. Phương pháp và hình minh họa
+## Cấu trúc báo cáo
 
-Xem [METHOD.vi.md](METHOD.vi.md): 2.1 Manual có workflow chung; 2.2 Automated; 2.3 Remote Automated/GitHub API. Tất cả hình phương pháp và vị trí ảnh thực nghiệm được tập trung tại phần 2. Sơ đồ là hình minh họa gốc, không phải screenshot kết quả.
+| Phần | Nội dung |
+|---|---|
+| [2. Phương pháp](METHOD.vi.md) | Audit → Remediation → Re-audit; phân biệt Manual/Automated/Remote; hình minh họa |
+| [3. Triển khai](IMPLEMENTATION.vi.md) | Môi trường, tài khoản, công cụ, CI, registry và VMware |
+| [4. Kết quả](RESULTS.vi.md) | Các phép đo, workflow run, kết luận và giới hạn |
+| [Đối chiếu 120 tiêu chí](COVERAGE.vi.md) | Trạng thái và bằng chứng từng mục; có bản CSV |
+| [Quy trình thực hành](PROCEDURES.vi.md) | Các bước thao tác thủ công trong phạm vi Free |
+| [Runbook nhóm 1](runbooks/GROUP-1.vi.md), [2](runbooks/GROUP-2.vi.md), [3](runbooks/GROUP-3.vi.md), [4](runbooks/GROUP-4.vi.md), [5](runbooks/GROUP-5.vi.md) | Audit, Remediation và Re-audit theo từng mã CIS |
 
-## 3. Triển khai
+## Phạm vi kết luận
 
-Xem [IMPLEMENTATION.vi.md](IMPLEMENTATION.vi.md): mô hình, bảng phân công bốn người, triển khai Manual và Automated. Phần 3 dùng chữ/bảng và dẫn lại bằng chứng phần 2. Ba username còn thiếu không được tự đặt; không cấp quyền tài khoản khi chưa xác định người nhận.
-
-## 4. Kết quả
-
-- [Bảng tất cả 120 tiêu chí](COVERAGE.vi.md), [CSV](COVERAGE.csv).
-- [Kết quả chạy trên nhánh](RESULTS.vi.md).
-- [Chính sách dependency đề xuất](DEPENDENCIES.vi.md).
-- [Checklist Audit–Remediation cho các mục được chọn](CHECKLIST.vi.md).
-
-Bảng bao gồm cả những việc chưa làm và lý do. Trạng thái PARTIAL nghĩa là có một phần bằng chứng hoặc lab, không phải PASS. NOT_TESTED nghĩa là chưa thực hiện, không tự suy ra FAIL hay không áp dụng. MANUAL_REVIEW nghĩa là cần thêm quyền, con người hoặc bằng chứng. Chưa tiêu chí nào được tuyên bố PASS toàn diện chỉ từ chạy script.
-
-## Những yêu cầu còn cần dữ liệu thật
-
-Ảnh Settings/PR, ba tài khoản nhóm còn lại, minh chứng cấp quyền, registry, nhà cung cấp và production chưa có. Không thể tự bổ sung bằng chứng của hệ thống chưa tồn tại hoặc thay cấu hình main trái yêu cầu. Catalog và checklist nêu các bước cần làm tiếp.
-
-Nguồn: CIS GitHub Benchmark v1.2.0, PDF do người dùng cung cấp; trang 2–5 (mục lục), 13–15 (phân loại/profile), trang của từng khuyến nghị trong catalog. API: https://docs.github.com/en/rest/branches/branch-protection và https://docs.github.com/en/rest/repos/rules .
+Báo cáo kết hợp kiểm tra bằng công cụ và thao tác thủ công có hướng dẫn. Các công cụ, môi trường thực thi và nguồn bằng chứng được nêu trong phần triển khai. Kết quả lab, báo cáo được cung cấp và xác nhận của cá nhân được phân biệt với phép đo CI/API; không suy thành kiểm chứng production hoặc phê duyệt quy trình nhóm.

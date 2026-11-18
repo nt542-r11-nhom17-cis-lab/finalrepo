@@ -51,7 +51,7 @@ Mức triển khai hiện ghi 39 PARTIAL, 10 LAB_ONLY, 7 MANUAL_REVIEW và 64 NO
 
 # Cập nhật đợt bổ sung toàn bộ quy trình
 
-Xem [COMPLETE-REVIEW.vi.md](COMPLETE-REVIEW.vi.md) và [bảng 120 mục cập nhật](COVERAGE.vi.md). Đã có 120 runbook, thu thập readiness và lab bổ sung; không có tuyên bố đạt toàn benchmark. Các thống kê/kết quả phía dưới thuộc lần review trước, giữ lại để truy vết.
+Xem [RESULTS-HISTORY.vi.md](RESULTS-HISTORY.vi.md) và [bảng 120 mục cập nhật](COVERAGE.vi.md). Đã có 120 runbook, thu thập readiness và lab bổ sung; không có tuyên bố đạt toàn benchmark. Các thống kê/kết quả phía dưới thuộc lần review trước, giữ lại để truy vết.
 
 # Kết quả kiểm chứng nhánh review
 
@@ -107,7 +107,7 @@ Nhánh: `audit/free-controls-completion`. Code được kiểm tra: `f1df426fb33
 
 Trong 48 mục: 21 PARTIAL mới, tám MANUAL_REVIEW mới, 19 vẫn NOT_TESTED; có hướng dẫn riêng cho cả 48. Bộ readiness khác với mức triển khai: năm mục đủ nguồn thu thập khai báo, 43 còn thiếu nguồn; không gọi năm mục đó là PASS. Toàn bộ 120 mục: **66 PARTIAL, 22 MANUAL_REVIEW, 10 LAB_ONLY, 22 NOT_TESTED; zero full-control PASS**. Trong 22 NOT_TESTED gồm 19 mục hướng Free và ba mục Enterprise.
 
-Xem [FREE-COMPLETION.vi.md](FREE-COMPLETION.vi.md) để biết mục nào đã bổ sung, các điều kiện còn thiếu và nguyên nhân; [FREE-CONTROLS.vi.md](FREE-CONTROLS.vi.md) có thao tác Audit/Remediation/Re-audit theo từng mã. Mục PARTIAL vẫn còn giới hạn, không được báo hoàn tất. Không đổi Settings, role, secret, main hoặc hai repo nguồn. Không mua gói, tạo registry/production hay mời người. Mẫu ruleset chỉ là đề xuất cho nhánh thử, chưa áp dụng.
+Xem [RESULTS-HISTORY.vi.md](RESULTS-HISTORY.vi.md) để biết mục nào đã bổ sung, các điều kiện còn thiếu và nguyên nhân; [PROCEDURES.vi.md](PROCEDURES.vi.md) có thao tác Audit/Remediation/Re-audit theo từng mã. Mục PARTIAL vẫn còn giới hạn, không được báo hoàn tất. Không đổi Settings, role, secret, main hoặc hai repo nguồn. Không mua gói, tạo registry/production hay mời người. Mẫu ruleset chỉ là đề xuất cho nhánh thử, chưa áp dụng.
 
 ## Phụ lục kết quả cũ
 

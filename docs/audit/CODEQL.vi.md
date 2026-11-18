@@ -1,3 +1,5 @@
+> Phụ lục kỹ thuật theo commit/phiên chạy được nêu trong tài liệu. Bảng kết quả tổng hợp hiện hành: [RESULTS.vi.md](RESULTS.vi.md).
+
 # Đối chiếu hai cảnh báo CodeQL về dữ liệu nhạy cảm
 
 ## Audit
